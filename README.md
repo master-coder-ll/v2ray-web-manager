@@ -59,16 +59,16 @@
          sudo apt-get install openjdk-8-jre
       
          Fedora, Oracle Linux, Red Hat Enterprise Linux, etc.
-         $ su -c "yum install java-1.8.0-openjdk"
-
-    
+          su -c "yum install java-1.8.0-openjdk"
+        
+         验证: java -version
         ```
    
    2. 从[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases) 下载admin-1.0.jar 、v2ray-proxy-1.0.jar
         * 新建目录 `mkdir -p /opt/jar`  
         * 保存到 /opt/jar
         
-   3. java配置，文件在conf目录下,*你应复制conf下的文件进行修改*。所有properties文件应该保持UTF-8编码，避免乱码
+   3. java配置，文件在conf目录下,`你应复制conf下的文件进行修改`。`所有properties文件应该保持UTF-8编码`，避免乱码
       1. admin.properties 需要你手动配置的如下：
         ```
         
@@ -106,7 +106,7 @@
       ```
    4. v2ray配置
        1. 安装v2ray
-       2. 复制 `/conf` 下的config.json 覆盖 v2ray默认配置
+       2. 复制 `/conf` 下的config.json 覆盖 v2ray默认配置`var/v2ray/`
        3. config.json 会开通2个监听在127.0.0.1上的端口 `api端口62789`，`ws端口 6001`。这2个端口不会发布到外网请放心。
        4. 重启v2ray   
    5. 最后一步，运行java应用
@@ -118,11 +118,7 @@
 
  
   
-    
- 总体步骤：从GitHub上clone源码,修改配置文件,生成你特有的jar文件。
- 
-    
-### 部署
+  
 
 ## 架构
 现在架构：

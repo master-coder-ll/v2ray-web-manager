@@ -9,6 +9,7 @@ import com.jhl.admin.service.StatService;
 import com.jhl.admin.service.UserService;
 import com.jhl.admin.util.Utils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Example;
@@ -40,7 +41,7 @@ public class AdminInitService {
 
         if (initialedConfig != null && Boolean.valueOf(initialedConfig.getValue())) return;
         //todo 新增一个管理员账号
-        User user = User.builder().email(email).password(password).nickName("admin").role("admin").status(1).build();
+        User user = User.builder().email(email).password(DigestUtils.md5Hex(password)).nickName("admin").role("admin").status(1).build();
         userService.create(user);
         Account ac = Account.builder().userId(user.getId()).build();
         ac.setCycle(30);

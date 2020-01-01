@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+     <github-corner class="github-corner" />
     <div hidden>{{ autoLogin }}</div>
     <div v-if="loginVisible" id="login">
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
@@ -220,12 +221,13 @@ import { validEmail } from '@/utils/validate'
 import { sendEmail } from '@/api/email'
 import { reg, forgot } from '@/api/user'
 import md5  from 'js-md5'
-
+import GithubCorner from '@/components/GithubCorner'
 
 
 
 export default {
   name: 'Login',
+  components :{GithubCorner},
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validEmail(value)) {
@@ -543,4 +545,11 @@ $light_gray:#eee;
     user-select: none;
   }
 }
+
+  .github-corner {
+    position: absolute;
+    top: 0px;
+    border: 0;
+    right: 0;
+  }
 </style>

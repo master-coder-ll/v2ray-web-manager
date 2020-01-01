@@ -27,3 +27,29 @@ hs_err_pid*
 */target/*
 */.idea
 /.idea
+
+# vue
+
+.DS_Store
+/web/node_modules/
+/web/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+**/*.log
+
+/web/tests/**/coverage/
+/web/tests/e2e/reports
+selenium-debug.log
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.local
+
+package-lock.json
+yarn.lock

@@ -19,12 +19,44 @@
 普通用户看到页面
  ![管理员账号]( https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/my-account.png)
 
+更多页面，请自己尝试。
  ## 开始使用 
-  
- ### 编译java
- 从release中开始
  
- 从编译环境开始
+ ### 从release中开始
+ #### web部署
+  
+  1. 安装nginx
+      * 配置nginx.conf
+
+      ```
+         root /var/www/admin;   
+          location /api {
+                      proxy_pass http://127.0.0.1:9091/;
+                    } 
+      ```
+   2. 从[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases) 下载web 的zip.解压到/var/www/admin
+  #### java部署
+   1. 安装java 环境
+   
+        ```
+         Debian, Ubuntu, etc.
+         sudo apt-get install openjdk-8-jre
+      
+         Fedora, Oracle Linux, Red Hat Enterprise Linux, etc.
+         $ su -c "yum install java-1.8.0-openjdk"
+
+    
+        ```
+   
+   2. 从[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases) 下载admin-1.0.jar 、v2ray-proxy-1.0.jar
+        * 新建目录 `mkdir -p /opt/jar`  
+        * 保存到 /opt/jar
+        
+   3. java配置
+   
+    从编译环境开始    
+
+ 
    * java8 以上
    * maven 3
     

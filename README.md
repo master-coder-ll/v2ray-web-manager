@@ -25,7 +25,7 @@
  ### 从release中开始
  #### web部署
   
-      1. 安装nginx/apache等
+   1. 安装nginx/apache等
       * 配置nginx.conf
 
       ```
@@ -110,16 +110,33 @@
        3. config.json 会开通2个监听在127.0.0.1上的端口 `api端口62789`，`ws端口 6001`。这2个端口不会发布到外网请放心。
        4. 重启v2ray   
    5. 最后一步，运行java应用
-       1. 运行admin端: `nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m admin [jar所在位置如:/opt/jar/admin.jar] 
+       1. 运行admin端: `nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m admin [jar所在位置如:/opt/jar/admin-1.0.jar] 
          --spring.config.location=[配置文件所在位置如：/opt/jar/admin.properties] > /dev/null 2>&1 &`
-       2. 运行proxy端： `nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m admin [jar所在位置如:/opt/jar/v2ray-proxy.jar] 
+       
+       2. 运行proxy端： `nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m admin [jar所在位置如:/opt/jar/v2ray-proxy-1.0.jar] 
                             --spring.config.location=[配置文件所在位置如：/opt/jar/proxy.properties] > /dev/null 2>&1 &`
        
 
  
   
-  
-
+  ## 参数说名
+  ### 服务器配置参数
+   1.  访问域名 如：test.com ,v2ray客户端限制的名称，可以是域名/IP
+    
+   2. 访问端口  https tls ->443 ,或者其他80 etc
+   
+   3. v2rayTag  当前v2ray config.json下默认`6001` 
+    
+  ### 账号参数
+   1. 周期  结算周期 30天 表示没30天，重置用户的流量统计
+   
+   2. 速率  1024KB/s ,单位KB/S
+   
+   3. 账号  组成v2ray path ，在当前配置下客户端会生成 path:/ws/账号/
+   
+   4. 流量 周期内可用流量数，单位GB
+   
+    
 ## 架构
 现在架构：
 

@@ -5,13 +5,26 @@
  * 流量管理-到期自动、流量超标断开连接
  * 服务器管理 
  * 公告管理
+ * 分权限
  
  v2ray-web-manager 在原有的 tls+ws+vemss+v2ray 的基础上，增强了流量、账号的管理。
  
+ ## 简要视图
+ 服务器配置
+ ![服务器](https://github.com/master-coder-ll/v2ray-web-manager/raw/master/static/admin_index.png)
+ 
+ 管理员帐号页面 
+ ![管理员账号](https://github.com/master-coder-ll/v2ray-web-manager/raw/master/static/admin_account.png)
+ 
+普通用户看到页面
+ ![管理员账号]( https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/my-account.png)
+
  ## 开始使用 
   
  ### 编译java
- 编译环境要求
+ 从release中开始
+ 
+ 从编译环境开始
    * java8 以上
    * maven 3
     

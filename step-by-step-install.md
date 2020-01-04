@@ -9,7 +9,7 @@
         # apt-get update  更新软件源
         # apt install vim  -y  编辑器
         # apt install nginx -y 安装nginx
-        # apt install  openjdk-8-jdk -y  安装java
+        # apt install  openjdk-8-jre -y  安装java
         # bash <(curl -L -s https://install.direct/go.sh) 安装v2ray -来源官网
         ```
    

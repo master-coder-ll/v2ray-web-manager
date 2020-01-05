@@ -24,10 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class AccountService {
@@ -72,10 +69,10 @@ public class AccountService {
         Date fromDate = Utils.formatDate(date, null);
         if (account.getFromDate() == null) account.setFromDate(fromDate);
         if (account.getCycle() == null) {
-                account.setCycle(KVConst.DAY);
+            account.setCycle(KVConst.DAY);
         }
         if (account.getMaxConnection() == null) account.setMaxConnection(32);
-       if (account.getToDate()==null) account.setToDate(Utils.getDateBy(fromDate, KVConst.DAY, Calendar.DAY_OF_YEAR));
+        if (account.getToDate()==null) account.setToDate(Utils.getDateBy(fromDate, KVConst.DAY, Calendar.DAY_OF_YEAR));
         account.setStatus(1);
         accountRepository.save(account);
 
@@ -135,16 +132,21 @@ public class AccountService {
 
 
         String email = userService.get(dbAccount.getUserId()).getEmail();
-        //增加事件
+        //删除旧服务器账号
         if (oldServerId != null) {
             Server oldServer = serverRepository.getOne(oldServerId);
-              Account toSendAccount =new Account();
+            Account toSendAccount =new Account();
             BeanUtils.copyProperties(dbAccount,toSendAccount);
             V2RayProxyEvent rmEvent = new V2RayProxyEvent(restTemplate, oldServer,toSendAccount , email, ProxyEvent.RM_EVENT);
             proxyEventService.addProxyEvent(rmEvent);
         }
 
-         accountRepository.save(account);
+        accountRepository.save(account);
+        //同时也确保删除新服务器账号，好重新获取
+        Account newAccount = accountRepository.findById(id).orElse(null);
+        V2RayProxyEvent rmEvent = new V2RayProxyEvent(restTemplate, newServer,newAccount , email, ProxyEvent.RM_EVENT);
+        proxyEventService.addProxyEvent(rmEvent);
+
 
     /*
     //不要需要主动添加 通过懒加载的方式，proxy端获取

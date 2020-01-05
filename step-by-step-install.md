@@ -47,9 +47,9 @@
      # mkdir /opt/v2ray-manager -p  创建目录
      # cd /opt/v2ray-manager 
      下载releases 包,应该选择最新的release进行下载`wget -c [url] `
-     # wget -c https://github.com/master-coder-ll/v2ray-web-manager/releases/download/v1.0/admin-1.0.jar
-     # wget -c https://github.com/master-coder-ll/v2ray-web-manager/releases/download/v1.0/dist.zip   
-     # wget -c https://github.com/master-coder-ll/v2ray-web-manager/releases/download/v1.0/v2ray-proxy-1.0.jar
+     # wget -c https://github.com/master-coder-ll/v2ray-web-manager/releases/download/v1.1/admin-1.0.jar
+     # wget -c https://github.com/master-coder-ll/v2ray-web-manager/releases/download/v1.1/dist.zip   
+     # wget -c https://github.com/master-coder-ll/v2ray-web-manager/releases/download/v1.1/v2ray-proxy-1.0.jar
      
      # unzip dist.zip  -d web  先解压web
      

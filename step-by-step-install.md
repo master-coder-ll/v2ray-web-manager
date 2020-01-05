@@ -39,7 +39,7 @@
                               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                          } 
          }
-      # nginx - reload  没有报错，配置成功
+      # nginx -s reload  没有报错，配置成功
      ```
   4. 下载文件releases文件
     

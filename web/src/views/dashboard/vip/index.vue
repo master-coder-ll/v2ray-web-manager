@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard-editor-container">
+        <github-corner class="github-corner" />
     <!-- <el-row>
       <el-col :xs="24" :sm="24" :lg="12">
         <pan-thumb :image="avatar" style="float: left">
@@ -39,10 +40,10 @@ import { mapGetters } from 'vuex'
 import PanThumb from '@/components/PanThumb'
 // import GithubCorner from '@/components/GithubCorner'
 import { listNotice } from '@/api/notice' 
-
+import GithubCorner from '@/components/GithubCorner'
 export default {
   name: 'DashboardEditor',
-  components: { PanThumb },
+  components: { PanThumb,GithubCorner },
   data() {
     return {
       activeNames: 0,
@@ -67,7 +68,12 @@ export default {
 
 <style lang="scss" >
 
-
+.github-corner {
+    position: absolute;
+    top: 0px;
+    border: 0;
+    right: 0;
+  }
  
 
   .dashboard-editor-container {

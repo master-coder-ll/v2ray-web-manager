@@ -15,8 +15,13 @@ import java.io.Serializable;
 public class ServerConfig extends BaseEntity implements Serializable {
     @Column(unique = true,nullable = false)
     private String key;
+
+    private String name;
+
     @Column(nullable = false)
     private String value;
+
+    private String scope;
 
 }
 

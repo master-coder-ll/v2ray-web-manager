@@ -335,6 +335,59 @@ export const asyncRoutes = [
     ]
   }
   ,
+  {
+    path: '/inviteCode',
+    component: Layout,
+    redirect: '/inviteCode/list',
+    name: '邀请码列表',
+    meta: {
+      title: '邀请码列表',
+      icon: 'list',
+      roles: ['vip']
+    },
+    children: [
+      
+      {
+        path: 'list',
+        component: () => import('@/views/inviteCode/list'),
+        name: '邀请码列表',
+        meta: { title: '邀请码列表', icon: 'list' }
+      }
+    ]
+  }
+  ,
+  {
+    path: '/serverConfig',
+    component: Layout,
+    redirect: '/serverConfig/list',
+    name: '参数管理',
+    meta: {
+      title: '参数管理',
+      icon: 'tab',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/serverConfig/create'),
+        name: '创建参数',
+        meta: { title: '创建参数', icon: 'edit',roles: ['admin'] }
+      },
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/serverConfig/edit'),
+        name: '修改参数',
+        meta: { title: '修改参数', noCache: true, activeMenu: '/serverConfig/list' ,roles: ['admin'] },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/serverConfig/list'),
+        name: '参数列表',
+        meta: { title: '参数列表', icon: 'list' }
+      }
+    ]
+  },
   //componentsRouter,
   
    

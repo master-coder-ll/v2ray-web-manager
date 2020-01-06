@@ -122,6 +122,19 @@
             tabindex="24"
           />
         </el-form-item>
+          <el-form-item prop="inviteCode">
+          <span class="svg-container">
+            <svg-icon icon-class="password" />
+          </span>
+       <el-input
+            ref="inviteCode"
+            v-model="regForm.inviteCode"
+            placeholder="邀请码"
+            name="inviteCode"
+            type="text"
+            tabindex="22"
+          />
+        </el-form-item>
 
         <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="reg">提交</el-button>
         <div class="tips">
@@ -262,14 +275,16 @@ export default {
         email: '',
         password: '',
         password2: '',
-        vCode: ''
+        vCode: '',
+        inviteCode:""
 
       },
       regForm: {
         email: '',
         password: '',
         password2: '',
-        vCode: ''
+        vCode: '',
+        inviteCode:''
 
       },
       forgotRules: {
@@ -315,11 +330,11 @@ export default {
   methods: {
     getVcode(form, type) {
       var email = this.$refs[form].model.email
-
+      var inviteCode = this.$refs[form].model.inviteCode
       if (!validEmail(email)) {
         this.$message.error('email不正确,不能获取验证码')
       } else {
-        sendEmail(email, type).then(resp => {
+        sendEmail(email, type,inviteCode).then(resp => {
           this.$message.success('邮件可能出现在你的垃圾箱中,请注意。')
           this.wait_timer = 89
           var that = this

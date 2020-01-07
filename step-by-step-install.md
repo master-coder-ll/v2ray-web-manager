@@ -23,7 +23,7 @@
       # `ESC ` `:wq` 退出并保存
          server {
                  listen 80 ;
-                 server_name _;
+                 server_name _; #或者域名
                  root /opt/v2ray-manager/web;
                  location /api {
                                   proxy_pass http://127.0.0.1:9091/;

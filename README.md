@@ -35,6 +35,10 @@
  ### 熟悉linux的用户
  
  [安装简要](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/old.md)
+  ###  模式配置
+  
+  [模式配置](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
+  
 ### 维护
    java 不需要维护
    
@@ -75,12 +79,7 @@
        次要选项: 用户能邀请其他人注册吗？默认 false ，开启 true 
         
     
-   
-  ## 其他场景
-  
-  ### 中转
-    
-  仅需要 `proxy端` 就可以实现流量中转。在某些地区可能更加隐蔽，配置相同。
+ 
 ## 架构
 现在架构：
 

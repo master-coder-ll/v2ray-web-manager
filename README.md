@@ -35,9 +35,9 @@
  ### 熟悉linux的用户
  
  [安装简要](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/old.md)
-  ###  模式配置
+  ###  模式和配置
   
-  [模式配置](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
+  [模式和配置](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
   
 ### 维护
    java 不需要维护

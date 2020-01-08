@@ -11,8 +11,7 @@
  
  v2ray-web-manager 现阶段只支持v2ray-ws+vemss的模式。tls（https/wss）需要nginx，caddy等提供支持。v2ray-web-manager项目核心提供流量控制、账号识别/管理、流量转发功能。
  
- proxy端: proxy端是工作在传输层的中间件。理论上支持上层所有的协议，但都要对位于应用层的协议进行一定的解析工作。
- 比喻ws协议需要解析握手阶段。对于ws这种协议是构建在http之上的协议，proxy端理论上是完全兼容http和http2。 
+ 原理-proxy端是工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，但都要对位于应用层的协议进行一定的解析工作。 比喻ws协议需要解析握手阶段。同时ws这种协议是构建在http之上的协议，proxy端理论上是完全兼容http和http2。 
  
  #### 如果能帮助到你，请给我个`star` `Fork`
  

@@ -37,8 +37,8 @@
 
     ![模型2](https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/model2.png)
       
-    此模式，所有流量都会经过 `192.168.2.1`,v2ray配置文件`config.json`中所有"listen": "127.0.0.1" 去掉重启v2ray服务。*这回使得v2ray
-    的api端口发布在外网，请自行设置防火墙限制外网范围，仅特定ip范围*
+    此模式，所有流量都会经过 `192.168.2.1`,v2ray配置文件`config.json`中所有"listen": "127.0.0.1" 去掉重启v2ray服务。*这会使得v2ray
+    的api端口发布在外网，请自行设置防火墙限仅特定ip范围*
     
         
             服务器名称：节点1

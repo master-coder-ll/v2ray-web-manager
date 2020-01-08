@@ -14,7 +14,7 @@ public class TrafficController {
     private ConcurrentHashMap<Object, AtomicInteger> channelTrafficCounter = new ConcurrentHashMap<>(5);
 
 
-    public GlobalTrafficShapingHandler getOrSetGroupGlobalTrafficShapingHandler(Object accountId, ScheduledExecutorService executor, Long readLimit, Long writeLimit) {
+    public GlobalTrafficShapingHandler putIfAbsent(Object accountId, ScheduledExecutorService executor, Long readLimit, Long writeLimit) {
         if (accountId == null) throw new NullPointerException("accountId is null");
         if (globalTrafficShapingHandlerMap.containsKey(accountId)) return globalTrafficShapingHandlerMap.get(accountId);
 

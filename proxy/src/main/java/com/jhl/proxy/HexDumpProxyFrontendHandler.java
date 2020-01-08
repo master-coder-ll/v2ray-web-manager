@@ -139,7 +139,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
             Integer v2rayPort = proxyAccount != null ? proxyAccount.getV2rayPort() : proxyConfig.getRemotePort();
 
             //加入流量控制
-            GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficController.getOrSetGroupGlobalTrafficShapingHandler(accountNo, ctx.executor(), readLimit, writeLimit);
+            GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficController.putIfAbsent(accountNo, ctx.executor(), readLimit, writeLimit);
             //因为没有fireChannel
             ctx.pipeline().addFirst(orSetGroupGlobalTrafficShapingHandler);
 

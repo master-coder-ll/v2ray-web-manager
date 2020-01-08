@@ -24,7 +24,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AccountService {
@@ -69,10 +72,10 @@ public class AccountService {
         Date fromDate = Utils.formatDate(date, null);
         if (account.getFromDate() == null) account.setFromDate(fromDate);
         if (account.getCycle() == null) {
-            account.setCycle(KVConst.DAY);
+                account.setCycle(KVConst.DAY);
         }
         if (account.getMaxConnection() == null) account.setMaxConnection(32);
-        if (account.getToDate()==null) account.setToDate(Utils.getDateBy(fromDate, KVConst.DAY, Calendar.DAY_OF_YEAR));
+       if (account.getToDate()==null) account.setToDate(Utils.getDateBy(fromDate, KVConst.DAY, Calendar.DAY_OF_YEAR));
         account.setStatus(1);
         accountRepository.save(account);
 
@@ -116,7 +119,7 @@ public class AccountService {
 
         Integer newServerId = account.getServerId();
         //如果为空
-        if (oldServerId == newServerId) return;
+       // if (oldServerId == newServerId) return;
         Server newServer = serverRepository.findById(newServerId).orElse(null);
         if (newServer == null) throw new NullPointerException("服务器为空");
 
@@ -135,7 +138,7 @@ public class AccountService {
         //删除旧服务器账号
         if (oldServerId != null) {
             Server oldServer = serverRepository.getOne(oldServerId);
-            Account toSendAccount =new Account();
+              Account toSendAccount =new Account();
             BeanUtils.copyProperties(dbAccount,toSendAccount);
             V2RayProxyEvent rmEvent = new V2RayProxyEvent(restTemplate, oldServer,toSendAccount , email, ProxyEvent.RM_EVENT);
             proxyEventService.addProxyEvent(rmEvent);
@@ -143,7 +146,7 @@ public class AccountService {
 
         accountRepository.save(account);
         //同时也确保删除新服务器账号，好重新获取
-        Account newAccount = accountRepository.findById(id).orElse(null);
+       Account newAccount = accountRepository.findById(id).orElse(null);
         V2RayProxyEvent rmEvent = new V2RayProxyEvent(restTemplate, newServer,newAccount , email, ProxyEvent.RM_EVENT);
         proxyEventService.addProxyEvent(rmEvent);
 

@@ -1,5 +1,6 @@
 # v2ray-web-manager
- 一个v2ray的管理后台和一个v2ray中间件，有以下重要的特征：
+ v2ray-web-manager 包含一个admin管理端和一个核心中间件proxy端，admin端提供管理功能。proxy端提供核心的流量控制、账号识别、流量转发功能。
+ 同时支持多种转发流量模式。具有以下的特征：
  * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制
  * 账号管理
  * 流量管理-到期自动、流量超标断开连接
@@ -8,7 +9,7 @@
  * 分权限
  * 邀请码注册
  
- v2ray-web-manager 在原有的 tls+ws+vemss+v2ray 的基础上，增强了流量、账号的管理等功能。
+ v2ray-web-manager 现阶段只支持v2ray ws+vemss的模式。需要tls（https/wss）需要nginx，caddy等提供支持。v2ray-web-manager项目核心提供流量控制、账号识别/管理、流量转发功能。
  
  #### 如果能帮助到你，请给我个`star` `Fork`
  

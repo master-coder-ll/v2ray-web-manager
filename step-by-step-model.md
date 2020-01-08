@@ -2,7 +2,7 @@
 
 1. 分散式负载
     
-    此模式，每台机器都有有proxy端。用户可以直接访问每台服务器的proxy端，并且能提供`v2ray-web-manager`的所有特性。
+    此模式，每台机器都有proxy端。用户可以直接访问每台服务器的proxy端，并且能提供`v2ray-web-manager`的所有特性。
 
    
 ![模型1](https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/model1.png)

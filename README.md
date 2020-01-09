@@ -81,12 +81,18 @@
    
        次要选项: 用户能邀请其他人注册吗？默认 false ，开启 true 
         
+## 测试
+
+### 限速测试
     
- 
+   说明: 带宽本地 下行50Mpbs,上行1Mpbs。admin端限速2MB/S, (Mpbs转MB/S基本是除以8) 测试结果如图：
+    
+![测试1](https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/speedtest.png)
+   
+   测试结果：16.36/8=2.1 刚刚好是admin端配置的2MB/S。
+   
 ## 架构
 现在架构：
-
-![架构1](https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/now.png)
 
 未来架构(不继续开发)：
 

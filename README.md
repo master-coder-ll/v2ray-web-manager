@@ -85,7 +85,7 @@
 
 ### 限速测试
     
-   说明: 本地带宽下行50Mpbs,上行1Mpbs。admin端限速2MB/S, (Mpbs转MB/S基本是除以8) 测试结果如图：
+   说明: 本地带宽下行50Mpbs,上行1Mpbs。admin端限速2MB/S, 测试结果如图：
     
 ![测试1](https://www.speedtest.net/result/8927382635.png)
    

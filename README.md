@@ -28,7 +28,13 @@
 更多页面，请自己尝试。
  
  ## 开始使用 
- 
+   
+   最新releases:
+   
+      https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
+      https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   
+      https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
+   
  ### 新手
  
   [一步一步跟着我从零安装](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-install.md)

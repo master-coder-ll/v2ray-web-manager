@@ -29,7 +29,15 @@
  
  ## 开始使用 
    
-   最新releases:
+ #### 系统要求
+ 
+    * java8 以上
+    * 内存大于等于300M
+    * cpu vCPU 1核心
+    * nginx 或者其他具有相同功能
+    * java8 +
+
+ #### 最新releases
    
       https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
       https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   

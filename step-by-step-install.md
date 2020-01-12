@@ -105,7 +105,7 @@
         # service v2ray start   重启v2ray
        ```
      
-    5. 运行java
+  5. 运行java
      
      ```
       运行 admin

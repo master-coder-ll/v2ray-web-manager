@@ -5,10 +5,6 @@ import com.jhl.admin.model.Stat;
 import com.jhl.admin.repository.StatRepository;
 import com.jhl.admin.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -41,7 +37,7 @@ public class StatService {
                  stat.setAccountId(account.getId());
                  stat.setFromDate(fromDate);
                  stat.setToDate(nextCycleDate);
-                 stat.setFlow(0l);
+                 stat.setFlow(0L);
                  statRepository.save(stat);
             }
             return stat;

@@ -1,6 +1,6 @@
 ## 新手教程-Ubuntu16.04-安装
 
-  2. 必要软件安装
+  1. 必要软件安装
         ```
         $ sudo su
         # apt-get update  更新软件源
@@ -10,7 +10,7 @@
         # bash <(curl -L -s https://install.direct/go.sh) 安装v2ray -来源官网
         ```
    
-  3. 配置nginx
+  2. 配置nginx
    
      ```
       # cd /etc/nginx/sites-enabled  进入到nginx配置文件夹
@@ -38,7 +38,7 @@
          }
       # nginx -s reload  没有报错，配置成功
      ```
-  4. 下载文件releases文件
+  3. 下载文件releases文件
     
      ```
      # mkdir /opt/v2ray-manager -p  创建目录
@@ -51,7 +51,7 @@
      # unzip dist.zip  -d web  先解压web
      
      ```
-  5. 配置
+  4. 配置
      
         ```
     
@@ -105,7 +105,7 @@
         # service v2ray start   重启v2ray
        ```
      
-     运行java
+  5. 运行java
      
      ```
       运行 admin

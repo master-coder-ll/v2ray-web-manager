@@ -44,17 +44,14 @@ public final class HexDumpProxyServer implements Runnable {
             b.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
             b.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
 
-            ChannelFuture cf = b.group(bossGroup, workerGroup)
+             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                //    .handler(new LoggingHandler(LogLevel.ERROR))
                     .childHandler(new HexDumpProxyInitializer(proxyConfig, trafficController, proxyAccountCache))
                     .childOption(ChannelOption.AUTO_READ, false)
                     .bind(proxyConfig.getLocalPort()).sync().channel().closeFuture().sync();
 
         } catch (Exception e) {
             log.error("netty start exception:{}", e);
-        } finally {
-
         }
     }
 

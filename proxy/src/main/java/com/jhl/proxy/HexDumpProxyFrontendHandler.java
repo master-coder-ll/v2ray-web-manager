@@ -29,14 +29,13 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     final ProxyConfig proxyConfig;
     final TrafficController trafficController;
     //800多k
-    private static final long CHANNEL_TRAFFIC = 934 * 1000;
+  //  private static final long CHANNEL_TRAFFIC = 934 * 1000;
     // As we use inboundChannel.eventLoop() when building the Bootstrap this does not need to be volatile as
     // the outboundChannel will use the same EventLoop (and therefore Thread) as the inboundChannel.
     private Channel outboundChannel;
     private String accountNo;
     private ProxyAccountCache proxyAccountCache;
     private static final String HOST = "HOST";
-    private ProxyAccount proxyAccount;
     private static final Long MAX_INTERVAL_REPORT_TIME_MS = 1000 * 60 * 5L;
     private final static Interner<String> STRING_WEAK_POLL = Interners.newWeakInterner();
 
@@ -83,7 +82,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                 for (String head : split) {
                     // :空格
                     String[] headKV = head.split(": ");
-                    if (headKV == null || headKV.length != 2) continue;
+                    if (headKV.length != 2) continue;
                     if (headKV[0].trim().toUpperCase().equals(HOST)) {
                         host = headKV[1].trim();
                         break;
@@ -115,7 +114,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
             log.info("当前连接数account:{},{}", accountNo, connections);
 
             isHandshaking = false;
-            proxyAccount = proxyAccountCache.get(accountNo);
+            ProxyAccount proxyAccount = proxyAccountCache.get(accountNo);
             if (proxyAccount == null) {
                 log.error("获取不到账号");
                 ReferenceCountUtil.release(HandshakeByteBuf);
@@ -132,11 +131,11 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                 return;
             }
 
-            Long readLimit = proxyAccount != null ? proxyAccount.getUpTrafficLimit() * 1000 : CHANNEL_TRAFFIC;
-            Long writeLimit = proxyAccount != null ? proxyAccount.getDownTrafficLimit() * 1000 : CHANNEL_TRAFFIC;
-            int maxConnection = proxyAccount != null ? proxyAccount.getMaxConnection() : proxyConfig.getMaxConnections();
-            String v2rayIp = proxyAccount != null ? proxyAccount.getV2rayHost() : proxyConfig.getRemoteHost();
-            Integer v2rayPort = proxyAccount != null ? proxyAccount.getV2rayPort() : proxyConfig.getRemotePort();
+            Long readLimit =  proxyAccount.getUpTrafficLimit() * 1000 ;
+            Long writeLimit =  proxyAccount.getDownTrafficLimit() * 1000 ;
+            int maxConnection = proxyAccount.getMaxConnection();
+            String v2rayIp = proxyAccount.getV2rayHost();
+            int v2rayPort = proxyAccount.getV2rayPort();
 
             //加入流量控制
             GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficController.putIfAbsent(accountNo, ctx.executor(), readLimit, writeLimit);
@@ -159,19 +158,15 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 
             ChannelFuture f = b.connect(v2rayIp, v2rayPort);
             outboundChannel = f.channel();
-            f.addListener(new ChannelFutureListener() {
-                @Override
-                public void operationComplete(ChannelFuture future) {
-                    if (future.isSuccess()) {
-                        // connection complete start to read first data
-                        writeToOutBoundChannel(HandshakeByteBuf, ctx);
+            f.addListener((ChannelFutureListener) future -> {
+                if (future.isSuccess()) {
+                    // connection complete start to read first data
+                    writeToOutBoundChannel(HandshakeByteBuf, ctx);
 
-                    } else {
-                        // Close the connection if the connection attempt has failed.
-                        inboundChannel.close();
-                    }
+                } else {
+                    // Close the connection if the connection attempt has failed.
+                    inboundChannel.close();
                 }
-
             });
 
         } else {
@@ -185,16 +180,13 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
-        outboundChannel.writeAndFlush(msg).addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) {
-                if (future.isSuccess()) {
-                    // was able to flush out data, start to read the next chunk
-                    ctx.channel().read();
+        outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
+            if (future.isSuccess()) {
+                // was able to flush out data, start to read the next chunk
+                ctx.channel().read();
 
-                } else {
-                    future.channel().close();
-                }
+            } else {
+                future.channel().close();
             }
         });
     }

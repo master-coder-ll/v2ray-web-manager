@@ -35,6 +35,7 @@ public class EmailUtils {
             email.setSubject(mailContent.getSubject());
             email.setTextMsg(mailContent.getMsg());
             email.setSSLOnConnect(true);
+            email.setSSLCheckServerIdentity(false);
            // email.setStartTLSEnabled(true);
             email.send();
 

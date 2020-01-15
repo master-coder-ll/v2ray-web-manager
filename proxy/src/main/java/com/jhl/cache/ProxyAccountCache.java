@@ -99,7 +99,7 @@ public class ProxyAccountCache {
         }
         Result result = entity.getBody();
         if (result.getCode() != 200) {
-            log.warn("getRemotePAccount  error:{}", JSON.toJSONString(result));
+            log.warn("获取远程账号错误，可能admin端没启动，或者配置错误 error:{}", JSON.toJSONString(result));
             return null;
         }
         return JSON.parseObject(JSON.toJSONString(result.getObj()), ProxyAccount.class);

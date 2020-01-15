@@ -100,7 +100,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                 handshakeByteBuf.writeBytes(rep.getBytes());
             } catch (Exception e) {
 
-                log.error("解析协议阶段发送错误:{},e:{}", heads, e.getLocalizedMessage());
+                log.error("解析协议阶段发送错误,可能原因：1. 爬虫,2.黑客扫描攻击 :{},e:{}", heads, e.getLocalizedMessage());
                 ReferenceCountUtil.release(handshakeByteBuf);
                 closeOnFlush(ctx.channel());
                 return;
@@ -174,7 +174,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
             } catch (Exception e) {
                 int refCnt = handshakeByteBuf.refCnt();
                 if (refCnt > 0) handshakeByteBuf.release(refCnt);
-                log.error("v2ray建立连接阶段发送错误", e);
+                log.error("v2ray建立连接阶段发送错误，可能原因：v2ray未启动;配置错误", e);
                 closeOnFlush(ctx.channel());
             }
         } else {
@@ -221,7 +221,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
             reportStat(writtenBytes, readBytes);
 
             log.info("账号:{},完全断开连接。。", accountNo);
-            log.info("当前{},累计字节:{}B", accountNo, writtenBytes + readBytes);
+            log.info("当前:{},累计字节:{}B", accountNo, writtenBytes + readBytes);
             //   log.info("当前{},累计读字节:{}", accountNo, readBytes);
             trafficController.releaseGroupGlobalTrafficShapingHandler(accountNo);
         } else {

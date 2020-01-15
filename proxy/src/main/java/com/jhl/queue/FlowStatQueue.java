@@ -1,4 +1,4 @@
-package com.jhl.cache;
+package com.jhl.queue;
 
 import com.jhl.config.ManagerConfig;
 import com.jhl.pojo.ComparableFlowStat;
@@ -40,7 +40,6 @@ public class FlowStatQueue {
 
     @PostConstruct
     public void start() {
-        //todo  load local file
         new Thread(() -> {
             startFSQueue();
         }, "上报线程").start();

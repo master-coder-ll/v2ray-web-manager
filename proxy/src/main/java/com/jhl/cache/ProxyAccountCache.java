@@ -5,6 +5,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Maps;
 import com.jhl.config.ManagerConfig;
+import com.jhl.utils.Utils;
 import com.jhl.v2ray.service.V2rayService;
 import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
@@ -15,7 +16,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -52,32 +52,35 @@ public class ProxyAccountCache {
         AtomicInteger reqCountObj = REQ_COUNT.getIfPresent(accountNo);
         int reqCount = reqCountObj == null ? 0 : reqCountObj.get();
         if (proxyAccount == null && reqCount < 3) {
-            //远程请求，获取信息
-            proxyAccount = getRemotePAccount(accountNo);
+            synchronized (Utils.getStringWeakReference(accountNo + ":getRemotePAccount")) {
+                proxyAccount = PA_MAP.getIfPresent(accountNo);
+                if (proxyAccount !=null) return  proxyAccount;
+                //远程请求，获取信息
+                proxyAccount = getRemotePAccount(accountNo);
 
-            if (proxyAccount == null) {
-                AtomicInteger counter = REQ_COUNT.getIfPresent(accountNo);
-                synchronized (accountNo.intern()) {
-                    if (counter != null) {
-                        counter.addAndGet(1);
-                    } else {
-                        REQ_COUNT.put(accountNo, new AtomicInteger(1));
+                if (proxyAccount == null) {
+                    AtomicInteger counter = REQ_COUNT.getIfPresent(accountNo);
+                    synchronized (accountNo.intern()) {
+                        if (counter != null) {
+                            counter.addAndGet(1);
+                        } else {
+                            REQ_COUNT.put(accountNo, new AtomicInteger(1));
+                        }
+                    }
+                } else {
+                    //确保存在账号
+                    addOrUpdate(proxyAccount);
+                    try {
+                        v2rayService.addProxyAccount(proxyAccount.getV2rayHost(), proxyAccount.getV2rayManagerPort(), proxyAccount);
+                    } catch (Exception e) {
+                        log.warn("增加失败:{}", e.getLocalizedMessage());
                     }
 
-                }
-            } else {
-                //确保存在账号
-                addOrUpdate(proxyAccount);
-                try {
-                    v2rayService.addProxyAccount(proxyAccount.getV2rayHost(), proxyAccount.getV2rayManagerPort(), proxyAccount);
-                }catch (Exception e){
-                        log.warn("增加失败:{}",e.getLocalizedMessage());
-                }
 
-
+                }
             }
         }
-        if (reqCount>0) log.info("阻止远程请求:{}:{}",accountNo,reqCount);
+        if (reqCount > 0) log.info("阻止远程请求:{}:{}", accountNo, reqCount);
 
 
         return proxyAccount;
@@ -85,9 +88,9 @@ public class ProxyAccountCache {
 
 
     private ProxyAccount getRemotePAccount(String accountNo) {
-        log.info("getRemotePAccount:{}",accountNo);
+        log.info("getRemotePAccount:{}", accountNo);
         HashMap<String, Object> kvMap = Maps.newHashMap();
-        kvMap.put("accountNo",accountNo);
+        kvMap.put("accountNo", accountNo);
         ResponseEntity<Result> entity = restTemplate.getForEntity(managerConfig.getGetProxyAccountUrl(),
                 Result.class, kvMap);
         if (!entity.getStatusCode().is2xxSuccessful()) {
@@ -95,10 +98,10 @@ public class ProxyAccountCache {
             return null;
         }
         Result result = entity.getBody();
-            if (result.getCode() != 200) {
-                log.warn("getRemotePAccount is error:{}",JSON.toJSONString(result));
-                return null;
-            }
+        if (result.getCode() != 200) {
+            log.warn("getRemotePAccount is error:{}", JSON.toJSONString(result));
+            return null;
+        }
         return JSON.parseObject(JSON.toJSONString(result.getObj()), ProxyAccount.class);
     }
 

@@ -1,6 +1,6 @@
 # v2ray-web-manager
- v2ray-web-manager 项目包含admin管理端和proxy端，admin端提供管理功能。proxy端提供核心的流量控制、账号识别、流量转发功能。
- 同时支持多种转发流量模型（1对1，1对多）。项目具有以下的特征：
+ v2ray-web-manager 项目包含admin管理端和proxy端，admin端提供管理功能。proxy端提供核心的流量控制、账号识别、流量转发功能，
+ 同时支持多种转发流量模型（1对1，1对多）。项目有以下的特征：
  * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制
  * 账号管理
  * 流量管理-到期自动、流量超标断开连接
@@ -9,9 +9,9 @@
  * 分权限
  * 邀请码注册
  
- v2ray-web-manager 现阶段只支持v2ray-ws+vemss的模式。tls（https/wss）需要nginx，caddy等提供支持。v2ray-web-manager项目核心提供流量控制、账号识别/管理、流量转发功能。
+ v2ray-web-manager 现阶段只支持v2ray-ws+vemss的模式。tls（https/wss）需要nginx，caddy等提供支持。
  
- 原理-proxy端是工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，但都要对位于应用层的协议进行一定的解析工作。 比喻ws协议需要解析握手阶段。同时ws是构建在http之上的协议，现阶段proxy端`理论上是完全兼容http和http2`。 
+ 原理:proxy工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，现在仅适配了ws协议。 
  
  #### 如果能帮助到你，请`watch` `star` `Fork`
  
@@ -54,12 +54,8 @@
   
   [模式和配置](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
   
-### 维护
-   java 不需要维护
-   
+### 维护 
    数据库-默认情况下会在 `/opt/jar/db` 生成admin.db 定时保存就好
-   
-   java日志-自动维护
 ### 优化
    #### 减少java 内存占用
    

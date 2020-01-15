@@ -1,12 +1,11 @@
 package com.jhl.proxy;
 
-import com.google.common.collect.Interner;
-import com.google.common.collect.Interners;
 import com.jhl.TrafficController.TrafficController;
-import com.jhl.cache.FlowStatQueue;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.config.ProxyConfig;
 import com.jhl.pojo.ComparableFlowStat;
+import com.jhl.queue.FlowStatQueue;
+import com.jhl.utils.Utils;
 import com.ljh.common.model.ProxyAccount;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -29,7 +28,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     final ProxyConfig proxyConfig;
     final TrafficController trafficController;
     //800多k
-  //  private static final long CHANNEL_TRAFFIC = 934 * 1000;
+    //  private static final long CHANNEL_TRAFFIC = 934 * 1000;
     // As we use inboundChannel.eventLoop() when building the Bootstrap this does not need to be volatile as
     // the outboundChannel will use the same EventLoop (and therefore Thread) as the inboundChannel.
     private Channel outboundChannel;
@@ -37,7 +36,6 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     private ProxyAccountCache proxyAccountCache;
     private static final String HOST = "HOST";
     private static final Long MAX_INTERVAL_REPORT_TIME_MS = 1000 * 60 * 5L;
-    private final static Interner<String> STRING_WEAK_POLL = Interners.newWeakInterner();
 
     public HexDumpProxyFrontendHandler(ProxyConfig proxyConfig, TrafficController trafficController, ProxyAccountCache proxyAccountCache) {
         this.proxyConfig = proxyConfig;
@@ -69,10 +67,11 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
              */
 
             String heads = null;
-            final ByteBuf HandshakeByteBuf = ctx.alloc().buffer();
+            ByteBuf handshakeByteBuf = null;
             final Channel inboundChannel = ctx.channel();
             String host = null;
             try {
+                handshakeByteBuf = ctx.alloc().buffer();
                 ByteBuf byteBuf = ((ByteBuf) msg);
                 heads = byteBuf.toString(Charset.defaultCharset());
                 //使用了处理后的握手数据，释放原理的
@@ -98,77 +97,86 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                 String rep = heads.replaceAll(path, path.substring(0, pathLen - (accountIdLen + 1)));
                 //整形后的握手数据
 
-                HandshakeByteBuf.writeBytes(rep.getBytes());
+                handshakeByteBuf.writeBytes(rep.getBytes());
             } catch (Exception e) {
 
-                log.error("获取认证路径失败:{},e:{}", heads, e.getLocalizedMessage());
-                ReferenceCountUtil.release(HandshakeByteBuf);
+                log.error("解析协议阶段发送错误:{},e:{}", heads, e.getLocalizedMessage());
+                ReferenceCountUtil.release(handshakeByteBuf);
                 closeOnFlush(ctx.channel());
                 return;
             } finally {
                 ReferenceCountUtil.release(msg);
             }
 
-            //  bug :如果 accountNo正常获取到应该->增加
-            int connections = trafficController.incrementChannelCount(accountNo);
-            log.info("当前连接数account:{},{}", accountNo, connections);
-
-            isHandshaking = false;
-            ProxyAccount proxyAccount = proxyAccountCache.get(accountNo);
-            if (proxyAccount == null) {
-                log.error("获取不到账号");
-                ReferenceCountUtil.release(HandshakeByteBuf);
-                closeOnFlush(ctx.channel());
-                return;
-            }
+            try {
 
 
-            //如果来源不是proxyAccount 中设置的 断开连接
-            if (!proxyAccount.getHost().toUpperCase().equals(host.toUpperCase())) {
-                log.error("来源host错误 from :{} ,to:{}", host, proxyAccount.getHost());
-                ReferenceCountUtil.release(HandshakeByteBuf);
-                closeOnFlush(ctx.channel());
-                return;
-            }
+                //  bug :如果 accountNo正常获取到应该->增加
+                int connections = trafficController.incrementChannelCount(accountNo);
+                log.info("当前连接数account:{},{}", accountNo, connections);
 
-            Long readLimit =  proxyAccount.getUpTrafficLimit() * 1000 ;
-            Long writeLimit =  proxyAccount.getDownTrafficLimit() * 1000 ;
-            int maxConnection = proxyAccount.getMaxConnection();
-            String v2rayIp = proxyAccount.getV2rayHost();
-            int v2rayPort = proxyAccount.getV2rayPort();
-
-            //加入流量控制
-            GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficController.putIfAbsent(accountNo, ctx.executor(), readLimit, writeLimit);
-            //因为没有fireChannel
-            ctx.pipeline().addFirst(orSetGroupGlobalTrafficShapingHandler);
-
-
-            if (connections > maxConnection) {
-                log.error("连接数过多当前：{},最大值：{}", connections, maxConnection);
-                ReferenceCountUtil.release(HandshakeByteBuf);
-                closeOnFlush(ctx.channel());
-                return;
-            }
-            Bootstrap b = new Bootstrap();
-            b.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-            b.group(inboundChannel.eventLoop())
-                    .channel(ctx.channel().getClass())
-                    .handler(new HexDumpProxyBackendHandler(inboundChannel))
-                    .option(ChannelOption.AUTO_READ, false);
-
-            ChannelFuture f = b.connect(v2rayIp, v2rayPort);
-            outboundChannel = f.channel();
-            f.addListener((ChannelFutureListener) future -> {
-                if (future.isSuccess()) {
-                    // connection complete start to read first data
-                    writeToOutBoundChannel(HandshakeByteBuf, ctx);
-
-                } else {
-                    // Close the connection if the connection attempt has failed.
-                    inboundChannel.close();
+                isHandshaking = false;
+                ProxyAccount proxyAccount = proxyAccountCache.get(accountNo);
+                if (proxyAccount == null) {
+                    log.error("获取不到账号");
+                    ReferenceCountUtil.release(handshakeByteBuf);
+                    closeOnFlush(ctx.channel());
+                    return;
                 }
-            });
 
+
+                //如果来源不是proxyAccount 中设置的 断开连接
+                if (!proxyAccount.getHost().toUpperCase().equals(host.toUpperCase())) {
+                    log.error("来源host错误 from :{} ,to:{}", host, proxyAccount.getHost());
+                    ReferenceCountUtil.release(handshakeByteBuf);
+                    closeOnFlush(ctx.channel());
+                    return;
+                }
+
+                Long readLimit = proxyAccount.getUpTrafficLimit() * 1000;
+                Long writeLimit = proxyAccount.getDownTrafficLimit() * 1000;
+                int maxConnection = proxyAccount.getMaxConnection();
+                String v2rayIp = proxyAccount.getV2rayHost();
+                int v2rayPort = proxyAccount.getV2rayPort();
+
+                //加入流量控制
+                GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficController.putIfAbsent(accountNo, ctx.executor(), readLimit, writeLimit);
+                //因为没有fireChannel
+                ctx.pipeline().addFirst(orSetGroupGlobalTrafficShapingHandler);
+
+
+                if (connections > maxConnection) {
+                    log.error("连接数过多当前：{},最大值：{}", connections, maxConnection);
+                    ReferenceCountUtil.release(handshakeByteBuf);
+                    closeOnFlush(ctx.channel());
+                    return;
+                }
+                Bootstrap b = new Bootstrap();
+                b.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
+                b.group(inboundChannel.eventLoop())
+                        .channel(ctx.channel().getClass())
+                        .handler(new HexDumpProxyBackendHandler(inboundChannel))
+                        .option(ChannelOption.AUTO_READ, false);
+
+                ChannelFuture f = b.connect(v2rayIp, v2rayPort);
+                final ByteBuf handshakeByteBuf2 = handshakeByteBuf;
+                outboundChannel = f.channel();
+                f.addListener((ChannelFutureListener) future -> {
+                    if (future.isSuccess()) {
+                        // connection complete start to read first data
+                        writeToOutBoundChannel(handshakeByteBuf2, ctx);
+
+                    } else {
+                        // Close the connection if the connection attempt has failed.
+                        inboundChannel.close();
+                    }
+                });
+            } catch (Exception e) {
+                int refCnt = handshakeByteBuf.refCnt();
+                if (refCnt > 0) handshakeByteBuf.release(refCnt);
+                log.error("v2ray建立连接阶段发送错误", e);
+                closeOnFlush(ctx.channel());
+            }
         } else {
             if (outboundChannel.isActive()) {
                 writeToOutBoundChannel(msg, ctx);
@@ -204,7 +212,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
         log.info("关闭当前连接数后->account:{},：{}", accountNo, channelCount);
 
         GlobalTrafficShapingHandler globalTrafficShapingHandler = trafficController.getGlobalTrafficShapingHandler(accountNo);
-        if (globalTrafficShapingHandler ==null) return;
+        if (globalTrafficShapingHandler == null) return;
         TrafficCounter trafficCounter = globalTrafficShapingHandler.trafficCounter();
         if (channelCount < 1) {
             long writtenBytes = trafficCounter.cumulativeWrittenBytes();
@@ -218,7 +226,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
             trafficController.releaseGroupGlobalTrafficShapingHandler(accountNo);
         } else {
             if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
-                synchronized (STRING_WEAK_POLL.intern(accountNo)) {
+                synchronized (Utils.getStringWeakReference(accountNo)) {
                     if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
 
                         long writtenBytes = trafficCounter.cumulativeWrittenBytes();

@@ -99,7 +99,7 @@ public class ProxyAccountCache {
         }
         Result result = entity.getBody();
         if (result.getCode() != 200) {
-            log.warn("getRemotePAccount is error:{}", JSON.toJSONString(result));
+            log.warn("getRemotePAccount  error:{}", JSON.toJSONString(result));
             return null;
         }
         return JSON.parseObject(JSON.toJSONString(result.getObj()), ProxyAccount.class);

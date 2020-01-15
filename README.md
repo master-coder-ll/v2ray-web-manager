@@ -11,7 +11,7 @@
  
  v2ray-web-manager 现阶段只支持v2ray-ws+vemss的模式。tls（https/wss）需要nginx，caddy等提供支持。
  
- 原理:proxy工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，现在仅适配了ws协议。 
+ 原理:proxy工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，现适配了ws协议。 
  
  #### 如果能帮助到你，请`watch` `star` `Fork`
  

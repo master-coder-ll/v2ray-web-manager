@@ -102,6 +102,8 @@
 ## 架构
 现在架构：
 
+![now](https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/now.png)
+
 未来架构(不继续开发)：
 
 ![架构1](https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/static/future.png)

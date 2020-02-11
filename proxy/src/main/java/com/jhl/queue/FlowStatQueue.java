@@ -102,6 +102,7 @@ private  Thread  workerThread =null;
         log.warn("上报失败 等待：{}ms,{}", sleepTime, FS_QUEUE.offer(take));
     }
 
+
     @PreDestroy
     public void destroy() throws InterruptedException {
 

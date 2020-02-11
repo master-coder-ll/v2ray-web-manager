@@ -20,7 +20,7 @@ import java.util.concurrent.DelayQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 运行时保持
+ * singleton
  */
 @Slf4j
 @Component

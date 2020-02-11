@@ -42,9 +42,7 @@ public class FlowStatQueue {
 private  Thread  workerThread =null;
     @PostConstruct
     public void start() {
-      workerThread=  new Thread(() -> {
-            startReport();
-        }, "report thread");
+      workerThread=  new Thread(() -> startReport(), "report thread");
 
     }
 

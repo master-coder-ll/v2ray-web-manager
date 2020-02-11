@@ -32,23 +32,26 @@ public class FlowStatQueue {
     @Autowired
     RestTemplate restTemplate;
 
+    private volatile  static  boolean IS_SHUTDOWN=false;
     public static void addQueue(ComparableFlowStat flowStat) {
         if (flowStat == null) return;
+        if (IS_SHUTDOWN) throw  new IllegalStateException(" the report service is closed");
         FS_QUEUE.offer(flowStat);
     }
 
-
+private  Thread  workerThread =null;
     @PostConstruct
     public void start() {
-        new Thread(() -> {
-            startFSQueue();
-        }, "上报线程").start();
+      workerThread=  new Thread(() -> {
+            startReport();
+        }, "report thread");
 
     }
 
-    private void startFSQueue() {
+    private void startReport() {
         while (true) {
             ComparableFlowStat take = null;
+                if (IS_SHUTDOWN && FS_QUEUE.size()<=0) break;
             try {
                 take = FS_QUEUE.take();
                 //超过最大努力值不继续
@@ -82,13 +85,6 @@ public class FlowStatQueue {
                 tryAgain(take);
 
             } catch (InterruptedException e) {
-                log.warn("InterruptedException：", e);
-                //如果是系统关闭事件，并且size<1 ?
-                if (FS_QUEUE.size() < 1) {
-                    break;
-                } else {
-                    log.error("上报流量队列还有数据，但是系统发出了中断指令。忽略中断。。。");
-                }
 
             } catch (Exception e) {
                 log.error("FS_QUEUE error :{}", e);
@@ -111,9 +107,11 @@ public class FlowStatQueue {
     @PreDestroy
     public void destroy() throws InterruptedException {
 
-
+        workerThread.interrupt();
         int i=0;
          while ( i< 10){
+             if (i>=8)FS_QUEUE.clear();
+
               if (FS_QUEUE.size()>0){
                   TimeUnit.SECONDS.sleep(1l);
                   i++;
@@ -121,6 +119,7 @@ public class FlowStatQueue {
                   break;
               }
          }
+
     }
 
 //    public static void main(String[] args) throws InterruptedException {

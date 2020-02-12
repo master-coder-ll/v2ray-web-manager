@@ -105,19 +105,13 @@ private  Thread  workerThread =null;
 
     @PreDestroy
     public void destroy() throws InterruptedException {
-
+        IS_SHUTDOWN=true;
         workerThread.interrupt();
-        int i=0;
-         while ( i< 10){
-             if (i>=8)FS_QUEUE.clear();
-
-              if (FS_QUEUE.size()>0){
-                  TimeUnit.SECONDS.sleep(1l);
-                  i++;
-              }else {
-                  break;
-              }
-         }
+        if (FS_QUEUE.size()>0) {
+            Thread.sleep(5000);
+            FS_QUEUE.clear();
+            workerThread.interrupt();
+        }
 
     }
 

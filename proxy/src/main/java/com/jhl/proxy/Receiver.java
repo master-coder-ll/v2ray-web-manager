@@ -3,12 +3,16 @@ package com.jhl.proxy;
 import io.netty.channel.*;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Receiver
+ * Nothing to do.
+ */
 @Slf4j
-public class HexDumpProxyBackendHandler extends ChannelInboundHandlerAdapter {
+public class Receiver extends ChannelInboundHandlerAdapter {
 
     private final Channel inboundChannel;
 
-    public HexDumpProxyBackendHandler(Channel inboundChannel) {
+    public Receiver(Channel inboundChannel) {
         this.inboundChannel = inboundChannel;
     }
 
@@ -30,12 +34,12 @@ public class HexDumpProxyBackendHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        HexDumpProxyFrontendHandler.closeOnFlush(inboundChannel);
+        Dispatcher.closeOnFlush(inboundChannel);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.info(" HexDumpProxyBackendHandler exceptionCaught:{}",cause);
-        HexDumpProxyFrontendHandler.closeOnFlush(ctx.channel());
+        Dispatcher.closeOnFlush(ctx.channel());
     }
 }

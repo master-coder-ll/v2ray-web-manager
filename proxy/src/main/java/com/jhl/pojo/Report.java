@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
-public class ComparableFlowStat extends FlowStat implements Delayed {
+public class Report extends FlowStat implements Delayed {
 
     long nextTime;
 
@@ -28,7 +28,7 @@ public class ComparableFlowStat extends FlowStat implements Delayed {
 
     @Override
     public int compareTo(Delayed o) {
-        return (int) (this.nextTime - ((ComparableFlowStat) o).nextTime);
+        return (int) (this.nextTime - ((Report) o).nextTime);
     }
 
     public static void main(String[] args) {

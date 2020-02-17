@@ -1,6 +1,6 @@
 package com.jhl.controller;
 
-import com.jhl.TrafficController.TrafficController;
+import com.jhl.service.TrafficControllerService;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.v2ray.service.V2rayService;
 import com.ljh.common.model.ProxyAccount;
@@ -19,7 +19,7 @@ public class ApiController {
     @Autowired
     ProxyAccountCache proxyAccountCache;
     @Autowired
-    TrafficController trafficController;
+    TrafficControllerService trafficControllerService;
     @ResponseBody
     @PostMapping(value = "/account/del")
     public Result rmAccount(@RequestBody ProxyAccount proxyAccount) {
@@ -59,7 +59,7 @@ public class ApiController {
         try {
 
             Result success = Result.SUCCESS();
-            success.setObj(trafficController.getChannelCount(accountNo));
+            success.setObj(trafficControllerService.getChannelCount(accountNo));
             return  success;
         } catch (Exception e) {
             log.error("getConnection error :{}", e.getLocalizedMessage());

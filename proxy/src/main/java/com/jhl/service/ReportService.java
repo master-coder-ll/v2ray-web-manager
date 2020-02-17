@@ -1,7 +1,7 @@
-package com.jhl.queue;
+package com.jhl.service;
 
 import com.jhl.config.ManagerConfig;
-import com.jhl.pojo.ComparableFlowStat;
+import com.jhl.pojo.Report;
 import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -17,41 +17,45 @@ import org.springframework.web.client.RestTemplate;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.DelayQueue;
-import java.util.concurrent.TimeUnit;
 
 /**
  * singleton
+ * 主动push模式的队列
  */
 @Slf4j
 @Component
-public class FlowStatQueue {
+public class ReportService {
     @Autowired
     ManagerConfig managerConfig;
 
-    private static DelayQueue<ComparableFlowStat> FS_QUEUE = new DelayQueue<>();
+    private static DelayQueue<Report> REPORT_QUEUE = new DelayQueue<>();
     @Autowired
     RestTemplate restTemplate;
 
-    private volatile  static  boolean IS_SHUTDOWN=false;
-    public static void addQueue(ComparableFlowStat flowStat) {
+    private static boolean IS_SHUTDOWN = false;
+
+
+    public static void addQueue(Report flowStat) {
         if (flowStat == null) return;
-        if (IS_SHUTDOWN) throw  new IllegalStateException(" the report service is closed");
-        FS_QUEUE.offer(flowStat);
+        if (IS_SHUTDOWN) throw new IllegalStateException(" the report service is closed");
+        REPORT_QUEUE.offer(flowStat);
     }
 
-private  Thread  workerThread =null;
+    private Thread workerThread = null;
+
     @PostConstruct
     public void start() {
-      workerThread=  new Thread(() -> startReport(), "report thread");
+        workerThread = new Thread(() -> startReport(), "report thread");
 
     }
 
     private void startReport() {
         while (true) {
-            ComparableFlowStat take = null;
-                if (IS_SHUTDOWN && FS_QUEUE.size()<=0) break;
+            Report take = null;
+
             try {
-                take = FS_QUEUE.take();
+                if (IS_SHUTDOWN && REPORT_QUEUE.size() <= 0) break;
+                take = REPORT_QUEUE.take();
                 //超过最大努力值不继续
                 if (take.getFailureTimes() > 80) {
                     log.warn("上报次数大于最大值:{}", take);
@@ -72,7 +76,7 @@ private  Thread  workerThread =null;
                         log.error("上报流量失败：{},{},error:{}", managerConfig.getReportFlowUrl(), take, result);
                         tryAgain(take);
 
-                    }else {
+                    } else {
                         log.info("上报流量成功");
                     }
                 }
@@ -92,30 +96,30 @@ private  Thread  workerThread =null;
         }
     }
 
-    private void tryAgain(ComparableFlowStat take) {
+    private void tryAgain(Report take) {
         take.setFailureTimes(take.getFailureTimes() + 1);
 
         // 6s 12s 18s 24s ...1min ....6min
         int sleepTime = 6000 * take.getFailureTimes();
 
-        take.setNextTime(System.currentTimeMillis()+sleepTime);
-        log.warn("上报失败 等待：{}ms,{}", sleepTime, FS_QUEUE.offer(take));
+        take.setNextTime(System.currentTimeMillis() + sleepTime);
+        log.warn("上报失败 等待：{}ms,{}", sleepTime, REPORT_QUEUE.offer(take));
     }
 
 
     @PreDestroy
     public void destroy() throws InterruptedException {
-        IS_SHUTDOWN=true;
+        IS_SHUTDOWN = true;
         workerThread.interrupt();
-        if (FS_QUEUE.size()>0) {
+        if (REPORT_QUEUE.size() > 0) {
             Thread.sleep(5000);
-            FS_QUEUE.clear();
+            REPORT_QUEUE.clear();
             workerThread.interrupt();
         }
 
     }
 
 //    public static void main(String[] args) throws InterruptedException {
-  //      DelayQueue<ComparableFlowStat> queue = new DelayQueue();
+    //      DelayQueue<ComparableFlowStat> queue = new DelayQueue();
     //}
 }

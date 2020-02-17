@@ -1,10 +1,10 @@
 package com.jhl.proxy;
 
-import com.jhl.TrafficController.TrafficController;
+import com.jhl.service.TrafficControllerService;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.config.ProxyConfig;
-import com.jhl.pojo.ComparableFlowStat;
-import com.jhl.queue.FlowStatQueue;
+import com.jhl.pojo.Report;
+import com.jhl.service.ReportService;
 import com.jhl.utils.Utils;
 import com.ljh.common.model.ProxyAccount;
 import io.netty.bootstrap.Bootstrap;
@@ -21,12 +21,18 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
+/**
+ *解析分发连接-pool.DirectByteBuf ,无阻塞（除了握手阶段）
+ * 如果 client ws协议在握手阶段支持支持的http响应头，那就可以通过http code 302 调整线路
+ * 如果你是client端作者，希望你能实现并且响应302、301 头，但是这个不是ws的标准
+ * 应该是在error里面实现的吧
+ */
 @Slf4j
-public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
+public class Dispatcher extends ChannelInboundHandlerAdapter {
 
 
     final ProxyConfig proxyConfig;
-    final TrafficController trafficController;
+    final TrafficControllerService trafficControllerService;
     //800多k
     //  private static final long CHANNEL_TRAFFIC = 934 * 1000;
     // As we use inboundChannel.eventLoop() when building the Bootstrap this does not need to be volatile as
@@ -37,9 +43,9 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     private static final String HOST = "HOST";
     private static final Long MAX_INTERVAL_REPORT_TIME_MS = 1000 * 60 * 5L;
 
-    public HexDumpProxyFrontendHandler(ProxyConfig proxyConfig, TrafficController trafficController, ProxyAccountCache proxyAccountCache) {
+    public Dispatcher(ProxyConfig proxyConfig, TrafficControllerService trafficControllerService, ProxyAccountCache proxyAccountCache) {
         this.proxyConfig = proxyConfig;
-        this.trafficController = trafficController;
+        this.trafficControllerService = trafficControllerService;
         this.proxyAccountCache = proxyAccountCache;
     }
 
@@ -84,6 +90,8 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                     if (headKV.length != 2) continue;
                     if (headKV[0].trim().toUpperCase().equals(HOST)) {
                         host = headKV[1].trim();
+                        String[] ipAndPort = host.split(":");
+                         host=ipAndPort[0];
                         break;
                     }
                 }
@@ -112,7 +120,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 
 
                 //  bug :如果 accountNo正常获取到应该->增加
-                int connections = trafficController.incrementChannelCount(accountNo);
+                int connections = trafficControllerService.incrementChannelCount(accountNo);
                 log.info("当前连接数account:{},{}", accountNo, connections);
 
                 isHandshaking = false;
@@ -140,7 +148,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                 int v2rayPort = proxyAccount.getV2rayPort();
 
                 //加入流量控制
-                GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficController.putIfAbsent(accountNo, ctx.executor(), readLimit, writeLimit);
+                GlobalTrafficShapingHandler orSetGroupGlobalTrafficShapingHandler = trafficControllerService.putIfAbsent(accountNo, ctx.executor(), readLimit, writeLimit);
                 //因为没有fireChannel
                 ctx.pipeline().addFirst(orSetGroupGlobalTrafficShapingHandler);
 
@@ -155,7 +163,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
                 b.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
                 b.group(inboundChannel.eventLoop())
                         .channel(ctx.channel().getClass())
-                        .handler(new HexDumpProxyBackendHandler(inboundChannel))
+                        .handler(new Receiver(inboundChannel))
                         .option(ChannelOption.AUTO_READ, false);
 
                 ChannelFuture f = b.connect(v2rayIp, v2rayPort);
@@ -208,10 +216,10 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
 
         if (accountNo == null) return;
         //减少channel 引用计数
-        int channelCount = trafficController.decrementChannelCount(accountNo);
+        int channelCount = trafficControllerService.decrementChannelCount(accountNo);
         log.info("关闭当前连接数后->account:{},：{}", accountNo, channelCount);
 
-        GlobalTrafficShapingHandler globalTrafficShapingHandler = trafficController.getGlobalTrafficShapingHandler(accountNo);
+        GlobalTrafficShapingHandler globalTrafficShapingHandler = trafficControllerService.getGlobalTrafficShapingHandler(accountNo);
         if (globalTrafficShapingHandler == null) return;
         TrafficCounter trafficCounter = globalTrafficShapingHandler.trafficCounter();
         if (channelCount < 1) {
@@ -223,7 +231,7 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
             log.info("账号:{},完全断开连接。。", accountNo);
             log.info("当前:{},累计字节:{}B", accountNo, writtenBytes + readBytes);
             //   log.info("当前{},累计读字节:{}", accountNo, readBytes);
-            trafficController.releaseGroupGlobalTrafficShapingHandler(accountNo);
+            trafficControllerService.releaseGroupGlobalTrafficShapingHandler(accountNo);
         } else {
             if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
                 synchronized (Utils.getStringWeakReference(accountNo)) {
@@ -247,13 +255,13 @@ public class HexDumpProxyFrontendHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void reportStat(long writtenBytes, long readBytes) {
-        ComparableFlowStat comparableFlowStat = new ComparableFlowStat();
-        comparableFlowStat.setAccountNo(accountNo);
-        comparableFlowStat.setFailureTimes(0);
-        comparableFlowStat.setUsed(writtenBytes + readBytes);
-        comparableFlowStat.setNextTime(0);
-        comparableFlowStat.setUniqueId(UUID.randomUUID().toString());
-        FlowStatQueue.addQueue(comparableFlowStat);
+        Report report = new Report();
+        report.setAccountNo(accountNo);
+        report.setFailureTimes(0);
+        report.setUsed(writtenBytes + readBytes);
+        report.setNextTime(0);
+        report.setUniqueId(UUID.randomUUID().toString());
+        ReportService.addQueue(report);
     }
 
     @Override

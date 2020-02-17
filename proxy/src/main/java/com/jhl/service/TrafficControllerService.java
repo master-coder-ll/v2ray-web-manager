@@ -1,4 +1,4 @@
-package com.jhl.TrafficController;
+package com.jhl.service;
 
 import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import org.springframework.stereotype.Component;
@@ -6,14 +6,28 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
-
+/**
+ * TrafficControllerService 提供流量控制，
+ * 每个账号持有生命周期内全局的 {@link GlobalTrafficShapingHandler}
+ * todo 分布式流量控制 -never-分布式协调？
+ */
 @Component
-public class TrafficController {
+public class TrafficControllerService {
 
     private ConcurrentHashMap<Object, GlobalTrafficShapingHandler> globalTrafficShapingHandlerMap = new ConcurrentHashMap<>(5);
     private ConcurrentHashMap<Object, AtomicInteger> channelTrafficCounter = new ConcurrentHashMap<>(5);
 
-
+    /**
+     *
+     * life cycle
+     *
+     * Put  connections to the {@link GlobalTrafficShapingHandler}
+     * @param accountId
+     * @param executor
+     * @param readLimit
+     * @param writeLimit
+     * @return
+     */
     public GlobalTrafficShapingHandler putIfAbsent(Object accountId, ScheduledExecutorService executor, Long readLimit, Long writeLimit) {
         if (accountId == null) throw new NullPointerException("accountId is null");
         if (globalTrafficShapingHandlerMap.containsKey(accountId)) return globalTrafficShapingHandlerMap.get(accountId);
@@ -32,11 +46,21 @@ public class TrafficController {
 
     }
 
+    /**
+     * get a {@GlobalTrafficShapingHandler} from {@accountId}
+     * @param accountId
+     * @return
+     */
     public GlobalTrafficShapingHandler getGlobalTrafficShapingHandler(Object accountId) {
         if (accountId == null) throw new NullPointerException("accountId is null");
         return globalTrafficShapingHandlerMap.get(accountId);
     }
 
+    /**
+     *  account counter
+     * @param accountId
+     * @return
+     */
     public int incrementChannelCount(Object accountId) {
 
         if (accountId == null) throw new NullPointerException("countId is null");
@@ -63,6 +87,12 @@ public class TrafficController {
             return -1;
     }
 
+    /**
+     * life cycle
+     *
+     *  If all connections of the account are closed, {@link GlobalTrafficShapingHandler} will be released
+     * @param accountId
+     */
     public void releaseGroupGlobalTrafficShapingHandler(Object accountId) {
         if (accountId == null) throw new NullPointerException("countId is null");
         AtomicInteger channelCounter = channelTrafficCounter.get(accountId);

@@ -1,18 +1,15 @@
 package com.jhl.proxy;
 
 
-import com.jhl.TrafficController.TrafficController;
+import com.jhl.service.TrafficControllerService;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.config.ProxyConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,15 +19,17 @@ import javax.annotation.PreDestroy;
 
 @Slf4j
 @Component
-
-public final class HexDumpProxyServer implements Runnable {
+/**
+ * a proxyServer starter
+ */
+public final class ProxyServer implements Runnable {
 
     @Autowired
     ProxyConfig proxyConfig;
     @Autowired
     ProxyAccountCache proxyAccountCache;
     @Autowired
-    TrafficController trafficController;
+    TrafficControllerService trafficControllerService;
     private static EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private static EventLoopGroup workerGroup = new NioEventLoopGroup();
 
@@ -46,7 +45,7 @@ public final class HexDumpProxyServer implements Runnable {
 
              b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new HexDumpProxyInitializer(proxyConfig, trafficController, proxyAccountCache))
+                    .childHandler(new ProxyInitializer(proxyConfig, trafficControllerService, proxyAccountCache))
                     .childOption(ChannelOption.AUTO_READ, false)
                     .bind(proxyConfig.getLocalPort()).sync().channel().closeFuture().sync();
 
@@ -57,13 +56,13 @@ public final class HexDumpProxyServer implements Runnable {
 
     @PostConstruct
     public void initNettyServer() {
-        new Thread(this).start();
+        new Thread(this,"starter thread").start();
     }
 
     @PreDestroy
     public void preDestroy() {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        log.warn("spring 即将关闭，netty 关闭");
+        log.warn("netty 关闭");
     }
 }

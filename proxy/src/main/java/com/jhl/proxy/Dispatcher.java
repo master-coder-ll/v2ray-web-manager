@@ -22,7 +22,9 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 /**
- *解析分发连接-pool.DirectByteBuf ,无阻塞（除了握手阶段）
+ *解析分发器
+ * 根据管理端配置分发到不同的服务器
+ *
  * 如果 client ws协议在握手阶段支持支持的http响应头，那就可以通过http code 302 调整线路
  * 如果你是client端作者，希望你能实现并且响应302、301 头，但是这个不是ws的标准
  * 应该是在error里面实现的吧

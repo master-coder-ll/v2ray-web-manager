@@ -27,7 +27,7 @@
 
 更多页面，请自己尝试。
  
- ## 开始使用 
+ ## 1.开始使用 
    
  #### 系统要求
  
@@ -37,26 +37,51 @@
     * nginx 或者其他具有相同功能
     * java8 +
 
- #### 最新releases
+
    
-      https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
-      https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   
-      https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
-   
- ### 新手
+ #### 新手
  
   [一步一步跟着我从零安装](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-install.md)
   
   [一步一步跟着我从零配置网站](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-conf.md)
  
 
-  ###  模式和配置
+  #### 模式和配置
   
   [模式和配置](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
-  
-### 维护 
+
+## 2.维护与治理 
+
+#### 数据库
+
    数据库-默认情况下会在 `/opt/jar/db` 生成admin.db 定时保存就好
-### 优化
+
+#### 更新/升级
+
++ 关闭java服务
+
+```
+    关闭 admin
+    # ps -ef | grep admin-1.0.jar
+    # kill [进程号]
+    # ps -ef | grep v2ray-proxy-1.0.jar
+    # kill [进程号]
+ ```
+
++ 下载最新的release包
+
+```
+    https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
+    https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   
+    https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
+
+```
++ 重新启动
+
+
+
+     
+#### 优化
    #### 减少java 内存占用
    
    1. 使用其他jre 如：[openj9-eclipse](https://www.eclipse.org/openj9/),
@@ -68,14 +93,14 @@
         
      
   ## 参数说明
-  ### 服务器配置参数
+  #### 服务器配置参数
    1.  访问域名 如：test.com ,v2ray客户端显示的名称，可以是域名/IP
     
    2. 访问端口  https tls ->443 ,或者其他80 etc
    
    3. v2rayTag  当前v2ray config.json下默认`6001` 
     
-  ### 账号参数
+  #### 账号参数
    1. 周期  结算周期 30 表示每30天，重置用户的流量统计
    
    2. 速率  1024KB/s ,单位KB/S
@@ -84,14 +109,14 @@
    
    4. 流量 周期内可用流量数，单位GB
   
-  ### 开启邀请码注册(release 大于 v2.0)
+  #### 开启邀请码注册(release 大于 v2.0)
    管理员登录->参数列表->需要邀请码才能注册吗？默认 `false` ，开启 `true`  
    
        次要选项: 用户能邀请其他人注册吗？默认 false ，开启 true 
         
 ## 测试
 
-### 限速测试
+#### 限速测试
     
    说明: 本地带宽下行50Mpbs,上行约8Mpbs。admin端限速2MB/S, 测试结果如图：
     

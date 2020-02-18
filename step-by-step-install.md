@@ -118,14 +118,6 @@
      
      全部完成，部署成功。
              
-  6. 关闭java服务
-   ```
-    关闭 admin
-    # ps -ef | grep admin-1.0.jar
-    # kill [进程号]
-    # ps -ef | grep v2ray-proxy-1.0.jar
-    # kill [进程号]
-   ```
     
   
 

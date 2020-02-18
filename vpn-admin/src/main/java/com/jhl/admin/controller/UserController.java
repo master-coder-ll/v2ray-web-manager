@@ -216,29 +216,32 @@ public class UserController {
         Validator.isNotNull(auth);
         User cacheUser = (User) userCache.getCache(auth);
         if (cacheUser.getId() == id) throw new RuntimeException("不能修改自己账号");
-        userRepository.deleteById(id);
+
         List<Account> accounts = accountRepository.findAll(Example.of(Account.builder().userId(id).build()));
+
+
+        for (Account account : accounts) {
+            if (account.getServerId() == null) continue;
+            proxyEventService.addProxyEvent(
+                    proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT));
+        }
+        userRepository.deleteById(id);
         if (accounts != null)
             accountRepository.deleteAll(accounts);
-
-        for (Account account:accounts){
-        proxyEventService.addProxyEvent(
-                proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT));}
-
         return Result.SUCCESS();
     }
 
     /**
      * admin
-
      */
     @PreAuth("admin")
     @PostMapping("/addRemark")
     public Result addRemark(@RequestBody User user) {
-        if (user==null || user.getId()==null|| user.getRemark()==null) throw  new RuntimeException("参数不能为空");
+        if (user == null || user.getId() == null || user.getRemark() == null) throw new RuntimeException("参数不能为空");
         userService.addRemark(user.getId(), user.getRemark());
         return Result.SUCCESS();
     }
+
     /**
      * admin -新增用户
      *

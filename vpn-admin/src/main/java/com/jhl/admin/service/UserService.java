@@ -109,4 +109,10 @@ public class UserService {
         return userRepository.getOne(id);
     }
 
+    public  void addRemark(Integer userId, String remark){
+        User user =  new User();
+        user.setId(userId);
+        user.setRemark(remark);
+        userRepository.save(user);
+    }
 }

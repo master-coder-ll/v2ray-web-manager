@@ -229,6 +229,17 @@ public class UserController {
     }
 
     /**
+     * admin
+
+     */
+    @PreAuth("admin")
+    @PostMapping("/addRemark")
+    public Result addRemark(@RequestBody User user) {
+        if (user==null || user.getId()==null|| user.getRemark()==null) throw  new RuntimeException("参数不能为空");
+        userService.addRemark(user.getId(), user.getRemark());
+        return Result.SUCCESS();
+    }
+    /**
      * admin -新增用户
      *
      * @param user

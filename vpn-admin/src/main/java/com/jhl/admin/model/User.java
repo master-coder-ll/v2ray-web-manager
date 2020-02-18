@@ -31,5 +31,7 @@ public class User extends BaseEntity implements Serializable {
     private  String inviteCode;
     private Integer status =1;
 
+    private String remark;
+
 
 }

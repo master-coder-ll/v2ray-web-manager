@@ -86,7 +86,7 @@
       <el-tag v-permission="['admin']">
 
         <el-row>
-          <el-input v-model="listQuery.userEmail" />  <el-button @click="getList">搜索</el-button>
+          <el-input v-model="listQuery.userEmail" placeholder="email" />  <el-button @click="getList">搜索</el-button>
         </el-row>
       </el-tag>
     </div>

@@ -49,6 +49,7 @@ export function userList(pageable) {
     params: pageable
   })
 }
+
 /**
  * admin 新增一个用户
  * @param {*} user
@@ -56,6 +57,19 @@ export function userList(pageable) {
 export function addUser(data) {
   return request({
     url: '/user',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 添加备注
+ * addRemark
+ * @param {int id ,string remark} data 
+ */
+export function addremark(data) {
+  return request({
+    url: 'user/addRemark',
     method: 'post',
     data
   })

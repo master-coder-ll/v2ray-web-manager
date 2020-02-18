@@ -14,6 +14,8 @@ import com.jhl.admin.repository.UserRepository;
 import com.jhl.admin.service.EmailService;
 import com.jhl.admin.service.ServerConfigService;
 import com.jhl.admin.service.UserService;
+import com.jhl.admin.service.v2ray.ProxyEvent;
+import com.jhl.admin.service.v2ray.ProxyEventService;
 import com.jhl.admin.util.Utils;
 import com.jhl.admin.util.Validator;
 import com.ljh.common.model.Result;
@@ -50,7 +52,8 @@ public class UserController {
     @Autowired
     InvitationCodeRepository invitationCodeRepository;
     public static final String COOKIE_NAME = "auth";
-
+    @Autowired
+    ProxyEventService proxyEventService;
 
     @PostMapping("/login")
     public Result login(@RequestBody User user, HttpServletRequest request, HttpServletResponse response) {
@@ -217,6 +220,11 @@ public class UserController {
         List<Account> accounts = accountRepository.findAll(Example.of(Account.builder().userId(id).build()));
         if (accounts != null)
             accountRepository.deleteAll(accounts);
+
+        for (Account account:accounts){
+        proxyEventService.addProxyEvent(
+                proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT));}
+
         return Result.SUCCESS();
     }
 

@@ -117,7 +117,18 @@
      ```
      
      全部完成，部署成功。
-        
+             
+  6. 关闭java服务
+   ```
+    关闭 admin
+    # ps -ef | grep admin
+    # kill [进程号]
+    # ps -ef | grep v2ray-proxy
+    # kill [进程号]
+   ```
+    
+  
+
       
     
     

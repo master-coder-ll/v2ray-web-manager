@@ -6,5 +6,5 @@ script:
   - "mvn clean install -Dmaven.test.skip=true"
 #  - "mvn cobertura:cobertura"
 #
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

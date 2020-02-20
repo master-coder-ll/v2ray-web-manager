@@ -1,4 +1,4 @@
-# v2ray-web-manager
+# v2ray-web-manager ![image](https://travis-ci.com/master-coder-ll/v2ray-web-manager.svg?branch=master)
  v2ray-web-manager 项目包含admin管理端和proxy端，admin端提供管理功能。proxy端提供核心的流量控制、账号识别、流量转发功能，
  同时支持多种转发流量模型（1对1，1对多）。项目有以下的特征：
  * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制

@@ -56,13 +56,13 @@
 
 
     <build>
-        <extensions>
+       <!-- <extensions>
             <extension>
                 <groupId>kr.motd.maven</groupId>
                 <artifactId>os-maven-plugin</artifactId>
                 <version>1.5.0.Final</version>
             </extension>
-        </extensions>
+        </extensions>-->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

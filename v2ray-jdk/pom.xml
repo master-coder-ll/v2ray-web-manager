@@ -72,7 +72,9 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
+
+           <!--不需要重新生成
+      <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.5.1</version>
@@ -89,7 +91,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 

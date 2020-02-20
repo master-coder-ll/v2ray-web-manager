@@ -3,6 +3,9 @@ jdk:
   - openjdk8
 env:
   - CODECOV_TOKEN="1e661540-781a-4a33-ad49-977add171f54"
-
+before_install:
+  - pip install --user codecov
+install:
+  - mvn clean install -Dmaven.test.skip=true
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov

@@ -8,12 +8,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = {ManagerApplication.class})// 指定启动类
+/*@RunWith(SpringRunner.class)
+@SpringBootTest(classes = {ManagerApplication.class})// 指定启动类*/
 public class Test {
-@Autowired
-AppCron appCron;
-    @org.junit.Test
+
     public void test() {
         //appCron.createStatTimer();
     }

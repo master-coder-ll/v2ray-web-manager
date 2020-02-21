@@ -8,15 +8,15 @@
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
     <scm>
-        <url>https://github.com/master-coder-ll/v2ray-web-manager</url>
-        <connection>
-            scm:git:git://github.com/master-coder-ll/v2ray-web-manager.git
-        </connection>
-        <developerConnection>
-            scm:git:ssh://git@kxsw/master-coder-ll/v2ray-web-manager
-        </developerConnection>
-        <tag>1.1</tag>
-    </scm>
+    <url>https://github.com/master-coder-ll/v2ray-web-manager</url>
+    <connection>
+        scm:git:git://github.com/master-coder-ll/v2ray-web-manager.git
+    </connection>
+    <developerConnection>
+        scm:git:ssh://git@kxsw/master-coder-ll/v2ray-web-manager
+    </developerConnection>
+    <tag>1.1</tag>
+</scm>
     <developers>
     <developer>
         <name>master-coder-ll</name>

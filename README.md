@@ -18,7 +18,7 @@
 #### 如果能帮助到你，请`watch` `star` `Fork`
   
  ## 前端项目
-   [web-console](https://github.com/master-coder-ll/web-console)
+   [前端项目->v2ray-manager-console](https://github.com/master-coder-ll/v2ray-manager-console)
  
 
  
@@ -75,7 +75,12 @@
     # kill [进程号]
  ```
 
-+ 下载最新的release包，访问[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
++ 下载最新的release包
+
+     [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
+         
+     [前端服务-releases页面](https://github.com/master-coder-ll/v2ray-manager-console/releases)
+        
 
 + 重新启动
 

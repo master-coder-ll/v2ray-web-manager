@@ -38,17 +38,22 @@
          }
       # nginx -s reload  没有报错，配置成功
      ```
-  3. 下载文件releases文件-[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
+  3. 下载文件releases文件
+  
+     [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
+     
+     [前端服务-releases页面](https://github.com/master-coder-ll/v2ray-manager-console/releases)
     
      ```
      # mkdir /opt/v2ray-manager -p  创建目录
      # cd /opt/v2ray-manager 
      下载releases 包,选择最新的release进行下载`wget -c [url] `,下面地址为自动获取最新的release,特定版本访问releases页面下载
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
-     # wget -c https://glare.now.sh/master-coder-ll/web-console/dist.zip   
+     # wget -c https://glare.now.sh/master-coder-ll/v2ray-manager-console/dist.zip   
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
-     
+      
      # unzip dist.zip  -d web  先解压web
+      前端项目部署完成
      
      ```
   4. 配置
@@ -107,6 +112,7 @@
       运行 admin
       #  mkdir /opt/jar/db -p  创建默认数据库目录
       # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m  /opt/v2ray-manager/admin-1.0.jar --spring.config.location=/opt/v2ray-manager/admin.properties > /dev/null 2>&1 &
+      --- 
       运行 v2ray-proxy
       # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m /opt/v2ray-manager/v2ray-proxy-1.0.jar --spring.config.location=/opt/v2ray-manager/proxy.properties > /dev/null 2>&1 &
       

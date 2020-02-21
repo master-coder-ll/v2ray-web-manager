@@ -4,30 +4,34 @@
 package com.v2ray.core.proxy.shadowsocks;
 
 public interface ClientConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.shadowsocks.ClientConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.shadowsocks.ClientConfig)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  java.util.List<com.v2ray.core.common.protocol.ServerEndpoint> 
-      getServerList();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  com.v2ray.core.common.protocol.ServerEndpoint getServer(int index);
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  int getServerCount();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  java.util.List<? extends com.v2ray.core.common.protocol.ServerEndpointOrBuilder> 
-      getServerOrBuilderList();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  com.v2ray.core.common.protocol.ServerEndpointOrBuilder getServerOrBuilder(
-          int index);
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    java.util.List<com.v2ray.core.common.protocol.ServerEndpoint>
+    getServerList();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    com.v2ray.core.common.protocol.ServerEndpoint getServer(int index);
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    int getServerCount();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    java.util.List<? extends com.v2ray.core.common.protocol.ServerEndpointOrBuilder>
+    getServerOrBuilderList();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    com.v2ray.core.common.protocol.ServerEndpointOrBuilder getServerOrBuilder(
+            int index);
 }

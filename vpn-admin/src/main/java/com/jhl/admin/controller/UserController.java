@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.jhl.admin.Interceptor.PreAuth;
 import com.jhl.admin.cache.UserCache;
-import com.jhl.admin.constant.WebsiteConfigKV;
+import com.jhl.admin.constant.enumObject.WebsiteConfigEnum;
 import com.jhl.admin.model.Account;
 import com.jhl.admin.model.InvitationCode;
 import com.jhl.admin.model.User;
@@ -52,6 +52,7 @@ public class UserController {
     @Autowired
     InvitationCodeRepository invitationCodeRepository;
     public static final String COOKIE_NAME = "auth";
+
     @Autowired
     ProxyEventService proxyEventService;
 
@@ -139,7 +140,7 @@ public class UserController {
     }
 
     private boolean checkIsNeedInviteCode() {
-        return serverConfigService.checkKey(WebsiteConfigKV.IS_NEED_INVITE_CODE.getKey());
+        return serverConfigService.checkKey(WebsiteConfigEnum.IS_NEED_INVITE_CODE.getKey());
     }
 
     @PostMapping("/forgot")
@@ -192,6 +193,17 @@ public class UserController {
 
     /**
      * admin
+     */
+    @PreAuth("admin")
+    @PostMapping("/addRemark")
+    public Result addRemark(@RequestBody User user) {
+        if (user == null || user.getId() == null || user.getRemark() == null) throw new RuntimeException("参数不能为空");
+        userService.addRemark(user.getId(), user.getRemark());
+        return Result.SUCCESS();
+    }
+
+    /**
+     * admin
      *
      * @param id
      * @return
@@ -219,26 +231,17 @@ public class UserController {
 
         List<Account> accounts = accountRepository.findAll(Example.of(Account.builder().userId(id).build()));
 
-
         for (Account account : accounts) {
             if (account.getServerId() == null) continue;
             proxyEventService.addProxyEvent(
                     proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT));
         }
+
+
         userRepository.deleteById(id);
         if (accounts != null)
             accountRepository.deleteAll(accounts);
-        return Result.SUCCESS();
-    }
 
-    /**
-     * admin
-     */
-    @PreAuth("admin")
-    @PostMapping("/addRemark")
-    public Result addRemark(@RequestBody User user) {
-        if (user == null || user.getId() == null || user.getRemark() == null) throw new RuntimeException("参数不能为空");
-        userService.addRemark(user.getId(), user.getRemark());
         return Result.SUCCESS();
     }
 

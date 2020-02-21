@@ -4,81 +4,86 @@
 package com.v2ray.core.proxy.http;
 
 public final class Config {
-  private Config() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    private Config() {
+    }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_proxy_http_ServerConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_proxy_http_ServerConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_proxy_http_ClientConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_proxy_http_ClientConfig_fieldAccessorTable;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    String[] descriptorData = {
-      "\n&v2ray.com/core/proxy/http/config.proto" +
-      "\022\025v2ray.core.proxy.http\"\310\001\n\014ServerConfig" +
-      "\022\023\n\007timeout\030\001 \001(\rB\002\030\001\022C\n\010accounts\030\002 \003(\0132" +
-      "1.v2ray.core.proxy.http.ServerConfig.Acc" +
-      "ountsEntry\022\031\n\021allow_transparent\030\003 \001(\010\022\022\n" +
-      "\nuser_level\030\004 \001(\r\032/\n\rAccountsEntry\022\013\n\003ke" +
-      "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\016\n\014ClientConf" +
-      "igB;\n\031com.v2ray.core.proxy.httpP\001Z\004http\252" +
-      "\002\025V2Ray.Core.Proxy.Httpb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
+
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_proxy_http_ServerConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_proxy_http_ServerConfig_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_proxy_http_ClientConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_proxy_http_ClientConfig_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        String[] descriptorData = {
+                "\n&v2ray.com/core/proxy/http/config.proto" +
+                        "\022\025v2ray.core.proxy.http\"\310\001\n\014ServerConfig" +
+                        "\022\023\n\007timeout\030\001 \001(\rB\002\030\001\022C\n\010accounts\030\002 \003(\0132" +
+                        "1.v2ray.core.proxy.http.ServerConfig.Acc" +
+                        "ountsEntry\022\031\n\021allow_transparent\030\003 \001(\010\022\022\n" +
+                        "\nuser_level\030\004 \001(\r\032/\n\rAccountsEntry\022\013\n\003ke" +
+                        "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\"\016\n\014ClientConf" +
+                        "igB;\n\031com.v2ray.core.proxy.httpP\001Z\004http\252" +
+                        "\002\025V2Ray.Core.Proxy.Httpb\006proto3"
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_v2ray_core_proxy_http_ServerConfig_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_v2ray_core_proxy_http_ServerConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_proxy_http_ServerConfig_descriptor,
-        new String[] { "Timeout", "Accounts", "AllowTransparent", "UserLevel", });
-    internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_descriptor =
-      internal_static_v2ray_core_proxy_http_ServerConfig_descriptor.getNestedTypes().get(0);
-    internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_descriptor,
-        new String[] { "Key", "Value", });
-    internal_static_v2ray_core_proxy_http_ClientConfig_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_v2ray_core_proxy_http_ClientConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_proxy_http_ClientConfig_descriptor,
-        new String[] { });
-  }
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                        }, assigner);
+        internal_static_v2ray_core_proxy_http_ServerConfig_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_v2ray_core_proxy_http_ServerConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_proxy_http_ServerConfig_descriptor,
+                new String[]{"Timeout", "Accounts", "AllowTransparent", "UserLevel",});
+        internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_descriptor =
+                internal_static_v2ray_core_proxy_http_ServerConfig_descriptor.getNestedTypes().get(0);
+        internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_proxy_http_ServerConfig_AccountsEntry_descriptor,
+                new String[]{"Key", "Value",});
+        internal_static_v2ray_core_proxy_http_ClientConfig_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_v2ray_core_proxy_http_ClientConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_proxy_http_ClientConfig_descriptor,
+                new String[]{});
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

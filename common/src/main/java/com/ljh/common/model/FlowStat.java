@@ -15,11 +15,8 @@ public class FlowStat {
     //B 字节
     private Long used;
 
-    //上报时候失败的次数
-    private  int failureTimes;
+    private String uniqueId;
 
-    private  String uniqueId;
-
-
+    private String domain;
 
 }

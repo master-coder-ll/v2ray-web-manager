@@ -4,19 +4,21 @@
 package com.v2ray.core.proxy.freedom;
 
 public interface DestinationOverrideOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.freedom.DestinationOverride)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.freedom.DestinationOverride)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  boolean hasServer();
-  /**
-   * <code>.v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  com.v2ray.core.common.protocol.ServerEndpoint getServer();
-  /**
-   * <code>.v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
-   */
-  com.v2ray.core.common.protocol.ServerEndpointOrBuilder getServerOrBuilder();
+    /**
+     * <code>.v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    boolean hasServer();
+
+    /**
+     * <code>.v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    com.v2ray.core.common.protocol.ServerEndpoint getServer();
+
+    /**
+     * <code>.v2ray.core.common.protocol.ServerEndpoint server = 1;</code>
+     */
+    com.v2ray.core.common.protocol.ServerEndpointOrBuilder getServerOrBuilder();
 }

@@ -6,2271 +6,2438 @@ package com.v2ray.core.app.router;
 /**
  * Protobuf type {@code v2ray.core.app.router.RoutingRule}
  */
-public  final class RoutingRule extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.app.router.RoutingRule)
-    RoutingRuleOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use RoutingRule.newBuilder() to construct.
-  private RoutingRule(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private RoutingRule() {
-    tag_ = "";
-    domain_ = java.util.Collections.emptyList();
-    cidr_ = java.util.Collections.emptyList();
-    sourceCidr_ = java.util.Collections.emptyList();
-    userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-  }
+public final class RoutingRule extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.app.router.RoutingRule)
+        RoutingRuleOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private RoutingRule(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use RoutingRule.newBuilder() to construct.
+    private RoutingRule(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            String s = input.readStringRequireUtf8();
 
-            tag_ = s;
-            break;
-          }
-          case 18: {
-            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-              domain_ = new java.util.ArrayList<Domain>();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            domain_.add(
-                input.readMessage(Domain.parser(), extensionRegistry));
-            break;
-          }
-          case 26: {
-            if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-              cidr_ = new java.util.ArrayList<CIDR>();
-              mutable_bitField0_ |= 0x00000004;
-            }
-            cidr_.add(
-                input.readMessage(CIDR.parser(), extensionRegistry));
-            break;
-          }
-          case 34: {
-            com.v2ray.core.common.net.PortRange.Builder subBuilder = null;
-            if (portRange_ != null) {
-              subBuilder = portRange_.toBuilder();
-            }
-            portRange_ = input.readMessage(com.v2ray.core.common.net.PortRange.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(portRange_);
-              portRange_ = subBuilder.buildPartial();
-            }
+    private RoutingRule() {
+        tag_ = "";
+        domain_ = java.util.Collections.emptyList();
+        cidr_ = java.util.Collections.emptyList();
+        sourceCidr_ = java.util.Collections.emptyList();
+        userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
 
-            break;
-          }
-          case 42: {
-            com.v2ray.core.common.net.NetworkList.Builder subBuilder = null;
-            if (networkList_ != null) {
-              subBuilder = networkList_.toBuilder();
-            }
-            networkList_ = input.readMessage(com.v2ray.core.common.net.NetworkList.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(networkList_);
-              networkList_ = subBuilder.buildPartial();
-            }
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
 
-            break;
-          }
-          case 50: {
-            if (!((mutable_bitField0_ & 0x00000020) != 0)) {
-              sourceCidr_ = new java.util.ArrayList<CIDR>();
-              mutable_bitField0_ |= 0x00000020;
-            }
-            sourceCidr_.add(
-                input.readMessage(CIDR.parser(), extensionRegistry));
-            break;
-          }
-          case 58: {
-            String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000040) != 0)) {
-              userEmail_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000040;
-            }
-            userEmail_.add(s);
-            break;
-          }
-          case 66: {
-            String s = input.readStringRequireUtf8();
-            if (!((mutable_bitField0_ & 0x00000080) != 0)) {
-              inboundTag_ = new com.google.protobuf.LazyStringArrayList();
-              mutable_bitField0_ |= 0x00000080;
-            }
-            inboundTag_.add(s);
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+    private RoutingRule(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000002) != 0)) {
-        domain_ = java.util.Collections.unmodifiableList(domain_);
-      }
-      if (((mutable_bitField0_ & 0x00000004) != 0)) {
-        cidr_ = java.util.Collections.unmodifiableList(cidr_);
-      }
-      if (((mutable_bitField0_ & 0x00000020) != 0)) {
-        sourceCidr_ = java.util.Collections.unmodifiableList(sourceCidr_);
-      }
-      if (((mutable_bitField0_ & 0x00000040) != 0)) {
-        userEmail_ = userEmail_.getUnmodifiableView();
-      }
-      if (((mutable_bitField0_ & 0x00000080) != 0)) {
-        inboundTag_ = inboundTag_.getUnmodifiableView();
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_descriptor;
-  }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 10: {
+                        String s = input.readStringRequireUtf8();
 
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            RoutingRule.class, Builder.class);
-  }
+                        tag_ = s;
+                        break;
+                    }
+                    case 18: {
+                        if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                            domain_ = new java.util.ArrayList<Domain>();
+                            mutable_bitField0_ |= 0x00000002;
+                        }
+                        domain_.add(
+                                input.readMessage(Domain.parser(), extensionRegistry));
+                        break;
+                    }
+                    case 26: {
+                        if (!((mutable_bitField0_ & 0x00000004) != 0)) {
+                            cidr_ = new java.util.ArrayList<CIDR>();
+                            mutable_bitField0_ |= 0x00000004;
+                        }
+                        cidr_.add(
+                                input.readMessage(CIDR.parser(), extensionRegistry));
+                        break;
+                    }
+                    case 34: {
+                        com.v2ray.core.common.net.PortRange.Builder subBuilder = null;
+                        if (portRange_ != null) {
+                            subBuilder = portRange_.toBuilder();
+                        }
+                        portRange_ = input.readMessage(com.v2ray.core.common.net.PortRange.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(portRange_);
+                            portRange_ = subBuilder.buildPartial();
+                        }
 
-  private int bitField0_;
-  public static final int TAG_FIELD_NUMBER = 1;
-  private volatile Object tag_;
-  /**
-   * <code>string tag = 1;</code>
-   */
-  public String getTag() {
-    Object ref = tag_;
-    if (ref instanceof String) {
-      return (String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      String s = bs.toStringUtf8();
-      tag_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string tag = 1;</code>
-   */
-  public com.google.protobuf.ByteString
-      getTagBytes() {
-    Object ref = tag_;
-    if (ref instanceof String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (String) ref);
-      tag_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
+                        break;
+                    }
+                    case 42: {
+                        com.v2ray.core.common.net.NetworkList.Builder subBuilder = null;
+                        if (networkList_ != null) {
+                            subBuilder = networkList_.toBuilder();
+                        }
+                        networkList_ = input.readMessage(com.v2ray.core.common.net.NetworkList.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(networkList_);
+                            networkList_ = subBuilder.buildPartial();
+                        }
 
-  public static final int DOMAIN_FIELD_NUMBER = 2;
-  private java.util.List<Domain> domain_;
-  /**
-   * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-   */
-  public java.util.List<Domain> getDomainList() {
-    return domain_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-   */
-  public java.util.List<? extends com.v2ray.core.app.router.DomainOrBuilder> 
-      getDomainOrBuilderList() {
-    return domain_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-   */
-  public int getDomainCount() {
-    return domain_.size();
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-   */
-  public Domain getDomain(int index) {
-    return domain_.get(index);
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-   */
-  public com.v2ray.core.app.router.DomainOrBuilder getDomainOrBuilder(
-      int index) {
-    return domain_.get(index);
-  }
+                        break;
+                    }
+                    case 50: {
+                        if (!((mutable_bitField0_ & 0x00000020) != 0)) {
+                            sourceCidr_ = new java.util.ArrayList<CIDR>();
+                            mutable_bitField0_ |= 0x00000020;
+                        }
+                        sourceCidr_.add(
+                                input.readMessage(CIDR.parser(), extensionRegistry));
+                        break;
+                    }
+                    case 58: {
+                        String s = input.readStringRequireUtf8();
+                        if (!((mutable_bitField0_ & 0x00000040) != 0)) {
+                            userEmail_ = new com.google.protobuf.LazyStringArrayList();
+                            mutable_bitField0_ |= 0x00000040;
+                        }
+                        userEmail_.add(s);
+                        break;
+                    }
+                    case 66: {
+                        String s = input.readStringRequireUtf8();
+                        if (!((mutable_bitField0_ & 0x00000080) != 0)) {
+                            inboundTag_ = new com.google.protobuf.LazyStringArrayList();
+                            mutable_bitField0_ |= 0x00000080;
+                        }
+                        inboundTag_.add(s);
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            if (((mutable_bitField0_ & 0x00000002) != 0)) {
+                domain_ = java.util.Collections.unmodifiableList(domain_);
+            }
+            if (((mutable_bitField0_ & 0x00000004) != 0)) {
+                cidr_ = java.util.Collections.unmodifiableList(cidr_);
+            }
+            if (((mutable_bitField0_ & 0x00000020) != 0)) {
+                sourceCidr_ = java.util.Collections.unmodifiableList(sourceCidr_);
+            }
+            if (((mutable_bitField0_ & 0x00000040) != 0)) {
+                userEmail_ = userEmail_.getUnmodifiableView();
+            }
+            if (((mutable_bitField0_ & 0x00000080) != 0)) {
+                inboundTag_ = inboundTag_.getUnmodifiableView();
+            }
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
+    }
 
-  public static final int CIDR_FIELD_NUMBER = 3;
-  private java.util.List<CIDR> cidr_;
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-   */
-  public java.util.List<CIDR> getCidrList() {
-    return cidr_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-   */
-  public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder> 
-      getCidrOrBuilderList() {
-    return cidr_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-   */
-  public int getCidrCount() {
-    return cidr_.size();
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-   */
-  public CIDR getCidr(int index) {
-    return cidr_.get(index);
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-   */
-  public com.v2ray.core.app.router.CIDROrBuilder getCidrOrBuilder(
-      int index) {
-    return cidr_.get(index);
-  }
-
-  public static final int PORT_RANGE_FIELD_NUMBER = 4;
-  private com.v2ray.core.common.net.PortRange portRange_;
-  /**
-   * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-   */
-  public boolean hasPortRange() {
-    return portRange_ != null;
-  }
-  /**
-   * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-   */
-  public com.v2ray.core.common.net.PortRange getPortRange() {
-    return portRange_ == null ? com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
-  }
-  /**
-   * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-   */
-  public com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder() {
-    return getPortRange();
-  }
-
-  public static final int NETWORK_LIST_FIELD_NUMBER = 5;
-  private com.v2ray.core.common.net.NetworkList networkList_;
-  /**
-   * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-   */
-  public boolean hasNetworkList() {
-    return networkList_ != null;
-  }
-  /**
-   * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-   */
-  public com.v2ray.core.common.net.NetworkList getNetworkList() {
-    return networkList_ == null ? com.v2ray.core.common.net.NetworkList.getDefaultInstance() : networkList_;
-  }
-  /**
-   * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-   */
-  public com.v2ray.core.common.net.NetworkListOrBuilder getNetworkListOrBuilder() {
-    return getNetworkList();
-  }
-
-  public static final int SOURCE_CIDR_FIELD_NUMBER = 6;
-  private java.util.List<CIDR> sourceCidr_;
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-   */
-  public java.util.List<CIDR> getSourceCidrList() {
-    return sourceCidr_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-   */
-  public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder> 
-      getSourceCidrOrBuilderList() {
-    return sourceCidr_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-   */
-  public int getSourceCidrCount() {
-    return sourceCidr_.size();
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-   */
-  public CIDR getSourceCidr(int index) {
-    return sourceCidr_.get(index);
-  }
-  /**
-   * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-   */
-  public com.v2ray.core.app.router.CIDROrBuilder getSourceCidrOrBuilder(
-      int index) {
-    return sourceCidr_.get(index);
-  }
-
-  public static final int USER_EMAIL_FIELD_NUMBER = 7;
-  private com.google.protobuf.LazyStringList userEmail_;
-  /**
-   * <code>repeated string user_email = 7;</code>
-   */
-  public com.google.protobuf.ProtocolStringList
-      getUserEmailList() {
-    return userEmail_;
-  }
-  /**
-   * <code>repeated string user_email = 7;</code>
-   */
-  public int getUserEmailCount() {
-    return userEmail_.size();
-  }
-  /**
-   * <code>repeated string user_email = 7;</code>
-   */
-  public String getUserEmail(int index) {
-    return userEmail_.get(index);
-  }
-  /**
-   * <code>repeated string user_email = 7;</code>
-   */
-  public com.google.protobuf.ByteString
-      getUserEmailBytes(int index) {
-    return userEmail_.getByteString(index);
-  }
-
-  public static final int INBOUND_TAG_FIELD_NUMBER = 8;
-  private com.google.protobuf.LazyStringList inboundTag_;
-  /**
-   * <code>repeated string inbound_tag = 8;</code>
-   */
-  public com.google.protobuf.ProtocolStringList
-      getInboundTagList() {
-    return inboundTag_;
-  }
-  /**
-   * <code>repeated string inbound_tag = 8;</code>
-   */
-  public int getInboundTagCount() {
-    return inboundTag_.size();
-  }
-  /**
-   * <code>repeated string inbound_tag = 8;</code>
-   */
-  public String getInboundTag(int index) {
-    return inboundTag_.get(index);
-  }
-  /**
-   * <code>repeated string inbound_tag = 8;</code>
-   */
-  public com.google.protobuf.ByteString
-      getInboundTagBytes(int index) {
-    return inboundTag_.getByteString(index);
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (!getTagBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tag_);
-    }
-    for (int i = 0; i < domain_.size(); i++) {
-      output.writeMessage(2, domain_.get(i));
-    }
-    for (int i = 0; i < cidr_.size(); i++) {
-      output.writeMessage(3, cidr_.get(i));
-    }
-    if (portRange_ != null) {
-      output.writeMessage(4, getPortRange());
-    }
-    if (networkList_ != null) {
-      output.writeMessage(5, getNetworkList());
-    }
-    for (int i = 0; i < sourceCidr_.size(); i++) {
-      output.writeMessage(6, sourceCidr_.get(i));
-    }
-    for (int i = 0; i < userEmail_.size(); i++) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, userEmail_.getRaw(i));
-    }
-    for (int i = 0; i < inboundTag_.size(); i++) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, inboundTag_.getRaw(i));
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (!getTagBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tag_);
-    }
-    for (int i = 0; i < domain_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, domain_.get(i));
-    }
-    for (int i = 0; i < cidr_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, cidr_.get(i));
-    }
-    if (portRange_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getPortRange());
-    }
-    if (networkList_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, getNetworkList());
-    }
-    for (int i = 0; i < sourceCidr_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, sourceCidr_.get(i));
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < userEmail_.size(); i++) {
-        dataSize += computeStringSizeNoTag(userEmail_.getRaw(i));
-      }
-      size += dataSize;
-      size += 1 * getUserEmailList().size();
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < inboundTag_.size(); i++) {
-        dataSize += computeStringSizeNoTag(inboundTag_.getRaw(i));
-      }
-      size += dataSize;
-      size += 1 * getInboundTagList().size();
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof RoutingRule)) {
-      return super.equals(obj);
-    }
-    RoutingRule other = (RoutingRule) obj;
-
-    if (!getTag()
-        .equals(other.getTag())) return false;
-    if (!getDomainList()
-        .equals(other.getDomainList())) return false;
-    if (!getCidrList()
-        .equals(other.getCidrList())) return false;
-    if (hasPortRange() != other.hasPortRange()) return false;
-    if (hasPortRange()) {
-      if (!getPortRange()
-          .equals(other.getPortRange())) return false;
-    }
-    if (hasNetworkList() != other.hasNetworkList()) return false;
-    if (hasNetworkList()) {
-      if (!getNetworkList()
-          .equals(other.getNetworkList())) return false;
-    }
-    if (!getSourceCidrList()
-        .equals(other.getSourceCidrList())) return false;
-    if (!getUserEmailList()
-        .equals(other.getUserEmailList())) return false;
-    if (!getInboundTagList()
-        .equals(other.getInboundTagList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TAG_FIELD_NUMBER;
-    hash = (53 * hash) + getTag().hashCode();
-    if (getDomainCount() > 0) {
-      hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
-      hash = (53 * hash) + getDomainList().hashCode();
-    }
-    if (getCidrCount() > 0) {
-      hash = (37 * hash) + CIDR_FIELD_NUMBER;
-      hash = (53 * hash) + getCidrList().hashCode();
-    }
-    if (hasPortRange()) {
-      hash = (37 * hash) + PORT_RANGE_FIELD_NUMBER;
-      hash = (53 * hash) + getPortRange().hashCode();
-    }
-    if (hasNetworkList()) {
-      hash = (37 * hash) + NETWORK_LIST_FIELD_NUMBER;
-      hash = (53 * hash) + getNetworkList().hashCode();
-    }
-    if (getSourceCidrCount() > 0) {
-      hash = (37 * hash) + SOURCE_CIDR_FIELD_NUMBER;
-      hash = (53 * hash) + getSourceCidrList().hashCode();
-    }
-    if (getUserEmailCount() > 0) {
-      hash = (37 * hash) + USER_EMAIL_FIELD_NUMBER;
-      hash = (53 * hash) + getUserEmailList().hashCode();
-    }
-    if (getInboundTagCount() > 0) {
-      hash = (37 * hash) + INBOUND_TAG_FIELD_NUMBER;
-      hash = (53 * hash) + getInboundTagList().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static RoutingRule parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static RoutingRule parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static RoutingRule parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static RoutingRule parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static RoutingRule parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static RoutingRule parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static RoutingRule parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static RoutingRule parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static RoutingRule parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static RoutingRule parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static RoutingRule parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static RoutingRule parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(RoutingRule prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.router.RoutingRule}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.app.router.RoutingRule)
-      com.v2ray.core.app.router.RoutingRuleOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_descriptor;
+    getDescriptor() {
+        return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              RoutingRule.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        RoutingRule.class, Builder.class);
     }
 
-    // Construct using com.v2ray.core.app.router.RoutingRule.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-        getDomainFieldBuilder();
-        getCidrFieldBuilder();
-        getSourceCidrFieldBuilder();
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      tag_ = "";
-
-      if (domainBuilder_ == null) {
-        domain_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-      } else {
-        domainBuilder_.clear();
-      }
-      if (cidrBuilder_ == null) {
-        cidr_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
-      } else {
-        cidrBuilder_.clear();
-      }
-      if (portRangeBuilder_ == null) {
-        portRange_ = null;
-      } else {
-        portRange_ = null;
-        portRangeBuilder_ = null;
-      }
-      if (networkListBuilder_ == null) {
-        networkList_ = null;
-      } else {
-        networkList_ = null;
-        networkListBuilder_ = null;
-      }
-      if (sourceCidrBuilder_ == null) {
-        sourceCidr_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
-      } else {
-        sourceCidrBuilder_.clear();
-      }
-      userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000040);
-      inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000080);
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_descriptor;
-    }
-
-    @Override
-    public RoutingRule getDefaultInstanceForType() {
-      return RoutingRule.getDefaultInstance();
-    }
-
-    @Override
-    public RoutingRule build() {
-      RoutingRule result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public RoutingRule buildPartial() {
-      RoutingRule result = new RoutingRule(this);
-      int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      result.tag_ = tag_;
-      if (domainBuilder_ == null) {
-        if (((bitField0_ & 0x00000002) != 0)) {
-          domain_ = java.util.Collections.unmodifiableList(domain_);
-          bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.domain_ = domain_;
-      } else {
-        result.domain_ = domainBuilder_.build();
-      }
-      if (cidrBuilder_ == null) {
-        if (((bitField0_ & 0x00000004) != 0)) {
-          cidr_ = java.util.Collections.unmodifiableList(cidr_);
-          bitField0_ = (bitField0_ & ~0x00000004);
-        }
-        result.cidr_ = cidr_;
-      } else {
-        result.cidr_ = cidrBuilder_.build();
-      }
-      if (portRangeBuilder_ == null) {
-        result.portRange_ = portRange_;
-      } else {
-        result.portRange_ = portRangeBuilder_.build();
-      }
-      if (networkListBuilder_ == null) {
-        result.networkList_ = networkList_;
-      } else {
-        result.networkList_ = networkListBuilder_.build();
-      }
-      if (sourceCidrBuilder_ == null) {
-        if (((bitField0_ & 0x00000020) != 0)) {
-          sourceCidr_ = java.util.Collections.unmodifiableList(sourceCidr_);
-          bitField0_ = (bitField0_ & ~0x00000020);
-        }
-        result.sourceCidr_ = sourceCidr_;
-      } else {
-        result.sourceCidr_ = sourceCidrBuilder_.build();
-      }
-      if (((bitField0_ & 0x00000040) != 0)) {
-        userEmail_ = userEmail_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000040);
-      }
-      result.userEmail_ = userEmail_;
-      if (((bitField0_ & 0x00000080) != 0)) {
-        inboundTag_ = inboundTag_.getUnmodifiableView();
-        bitField0_ = (bitField0_ & ~0x00000080);
-      }
-      result.inboundTag_ = inboundTag_;
-      result.bitField0_ = to_bitField0_;
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof RoutingRule) {
-        return mergeFrom((RoutingRule)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(RoutingRule other) {
-      if (other == RoutingRule.getDefaultInstance()) return this;
-      if (!other.getTag().isEmpty()) {
-        tag_ = other.tag_;
-        onChanged();
-      }
-      if (domainBuilder_ == null) {
-        if (!other.domain_.isEmpty()) {
-          if (domain_.isEmpty()) {
-            domain_ = other.domain_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureDomainIsMutable();
-            domain_.addAll(other.domain_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.domain_.isEmpty()) {
-          if (domainBuilder_.isEmpty()) {
-            domainBuilder_.dispose();
-            domainBuilder_ = null;
-            domain_ = other.domain_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-            domainBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getDomainFieldBuilder() : null;
-          } else {
-            domainBuilder_.addAllMessages(other.domain_);
-          }
-        }
-      }
-      if (cidrBuilder_ == null) {
-        if (!other.cidr_.isEmpty()) {
-          if (cidr_.isEmpty()) {
-            cidr_ = other.cidr_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-          } else {
-            ensureCidrIsMutable();
-            cidr_.addAll(other.cidr_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.cidr_.isEmpty()) {
-          if (cidrBuilder_.isEmpty()) {
-            cidrBuilder_.dispose();
-            cidrBuilder_ = null;
-            cidr_ = other.cidr_;
-            bitField0_ = (bitField0_ & ~0x00000004);
-            cidrBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getCidrFieldBuilder() : null;
-          } else {
-            cidrBuilder_.addAllMessages(other.cidr_);
-          }
-        }
-      }
-      if (other.hasPortRange()) {
-        mergePortRange(other.getPortRange());
-      }
-      if (other.hasNetworkList()) {
-        mergeNetworkList(other.getNetworkList());
-      }
-      if (sourceCidrBuilder_ == null) {
-        if (!other.sourceCidr_.isEmpty()) {
-          if (sourceCidr_.isEmpty()) {
-            sourceCidr_ = other.sourceCidr_;
-            bitField0_ = (bitField0_ & ~0x00000020);
-          } else {
-            ensureSourceCidrIsMutable();
-            sourceCidr_.addAll(other.sourceCidr_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.sourceCidr_.isEmpty()) {
-          if (sourceCidrBuilder_.isEmpty()) {
-            sourceCidrBuilder_.dispose();
-            sourceCidrBuilder_ = null;
-            sourceCidr_ = other.sourceCidr_;
-            bitField0_ = (bitField0_ & ~0x00000020);
-            sourceCidrBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getSourceCidrFieldBuilder() : null;
-          } else {
-            sourceCidrBuilder_.addAllMessages(other.sourceCidr_);
-          }
-        }
-      }
-      if (!other.userEmail_.isEmpty()) {
-        if (userEmail_.isEmpty()) {
-          userEmail_ = other.userEmail_;
-          bitField0_ = (bitField0_ & ~0x00000040);
-        } else {
-          ensureUserEmailIsMutable();
-          userEmail_.addAll(other.userEmail_);
-        }
-        onChanged();
-      }
-      if (!other.inboundTag_.isEmpty()) {
-        if (inboundTag_.isEmpty()) {
-          inboundTag_ = other.inboundTag_;
-          bitField0_ = (bitField0_ & ~0x00000080);
-        } else {
-          ensureInboundTagIsMutable();
-          inboundTag_.addAll(other.inboundTag_);
-        }
-        onChanged();
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      RoutingRule parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (RoutingRule) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
     private int bitField0_;
+    public static final int TAG_FIELD_NUMBER = 1;
+    private volatile Object tag_;
 
-    private Object tag_ = "";
     /**
      * <code>string tag = 1;</code>
      */
     public String getTag() {
-      Object ref = tag_;
-      if (!(ref instanceof String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        tag_ = s;
-        return s;
-      } else {
-        return (String) ref;
-      }
+        Object ref = tag_;
+        if (ref instanceof String) {
+            return (String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            String s = bs.toStringUtf8();
+            tag_ = s;
+            return s;
+        }
     }
+
     /**
      * <code>string tag = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getTagBytes() {
-      Object ref = tag_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
-        tag_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string tag = 1;</code>
-     */
-    public Builder setTag(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      tag_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string tag = 1;</code>
-     */
-    public Builder clearTag() {
-      
-      tag_ = getDefaultInstance().getTag();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string tag = 1;</code>
-     */
-    public Builder setTagBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      tag_ = value;
-      onChanged();
-      return this;
+    getTagBytes() {
+        Object ref = tag_;
+        if (ref instanceof String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (String) ref);
+            tag_ = b;
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
     }
 
-    private java.util.List<Domain> domain_ =
-      java.util.Collections.emptyList();
-    private void ensureDomainIsMutable() {
-      if (!((bitField0_ & 0x00000002) != 0)) {
-        domain_ = new java.util.ArrayList<Domain>(domain_);
-        bitField0_ |= 0x00000002;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        Domain, Domain.Builder, com.v2ray.core.app.router.DomainOrBuilder> domainBuilder_;
+    public static final int DOMAIN_FIELD_NUMBER = 2;
+    private java.util.List<Domain> domain_;
 
     /**
      * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
      */
     public java.util.List<Domain> getDomainList() {
-      if (domainBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(domain_);
-      } else {
-        return domainBuilder_.getMessageList();
-      }
+        return domain_;
     }
+
+    /**
+     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+     */
+    public java.util.List<? extends com.v2ray.core.app.router.DomainOrBuilder>
+    getDomainOrBuilderList() {
+        return domain_;
+    }
+
     /**
      * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
      */
     public int getDomainCount() {
-      if (domainBuilder_ == null) {
         return domain_.size();
-      } else {
-        return domainBuilder_.getCount();
-      }
     }
+
     /**
      * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
      */
     public Domain getDomain(int index) {
-      if (domainBuilder_ == null) {
         return domain_.get(index);
-      } else {
-        return domainBuilder_.getMessage(index);
-      }
     }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder setDomain(
-        int index, Domain value) {
-      if (domainBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureDomainIsMutable();
-        domain_.set(index, value);
-        onChanged();
-      } else {
-        domainBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder setDomain(
-        int index, Domain.Builder builderForValue) {
-      if (domainBuilder_ == null) {
-        ensureDomainIsMutable();
-        domain_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        domainBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder addDomain(Domain value) {
-      if (domainBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureDomainIsMutable();
-        domain_.add(value);
-        onChanged();
-      } else {
-        domainBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder addDomain(
-        int index, Domain value) {
-      if (domainBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureDomainIsMutable();
-        domain_.add(index, value);
-        onChanged();
-      } else {
-        domainBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder addDomain(
-        Domain.Builder builderForValue) {
-      if (domainBuilder_ == null) {
-        ensureDomainIsMutable();
-        domain_.add(builderForValue.build());
-        onChanged();
-      } else {
-        domainBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder addDomain(
-        int index, Domain.Builder builderForValue) {
-      if (domainBuilder_ == null) {
-        ensureDomainIsMutable();
-        domain_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        domainBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder addAllDomain(
-        Iterable<? extends Domain> values) {
-      if (domainBuilder_ == null) {
-        ensureDomainIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, domain_);
-        onChanged();
-      } else {
-        domainBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder clearDomain() {
-      if (domainBuilder_ == null) {
-        domain_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-      } else {
-        domainBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Builder removeDomain(int index) {
-      if (domainBuilder_ == null) {
-        ensureDomainIsMutable();
-        domain_.remove(index);
-        onChanged();
-      } else {
-        domainBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Domain.Builder getDomainBuilder(
-        int index) {
-      return getDomainFieldBuilder().getBuilder(index);
-    }
+
     /**
      * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
      */
     public com.v2ray.core.app.router.DomainOrBuilder getDomainOrBuilder(
-        int index) {
-      if (domainBuilder_ == null) {
-        return domain_.get(index);  } else {
-        return domainBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public java.util.List<? extends com.v2ray.core.app.router.DomainOrBuilder> 
-         getDomainOrBuilderList() {
-      if (domainBuilder_ != null) {
-        return domainBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(domain_);
-      }
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Domain.Builder addDomainBuilder() {
-      return getDomainFieldBuilder().addBuilder(
-          Domain.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public Domain.Builder addDomainBuilder(
-        int index) {
-      return getDomainFieldBuilder().addBuilder(
-          index, Domain.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
-     */
-    public java.util.List<Domain.Builder>
-         getDomainBuilderList() {
-      return getDomainFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        Domain, Domain.Builder, com.v2ray.core.app.router.DomainOrBuilder>
-        getDomainFieldBuilder() {
-      if (domainBuilder_ == null) {
-        domainBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            Domain, Domain.Builder, com.v2ray.core.app.router.DomainOrBuilder>(
-                domain_,
-                ((bitField0_ & 0x00000002) != 0),
-                getParentForChildren(),
-                isClean());
-        domain_ = null;
-      }
-      return domainBuilder_;
+            int index) {
+        return domain_.get(index);
     }
 
-    private java.util.List<CIDR> cidr_ =
-      java.util.Collections.emptyList();
-    private void ensureCidrIsMutable() {
-      if (!((bitField0_ & 0x00000004) != 0)) {
-        cidr_ = new java.util.ArrayList<CIDR>(cidr_);
-        bitField0_ |= 0x00000004;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder> cidrBuilder_;
+    public static final int CIDR_FIELD_NUMBER = 3;
+    private java.util.List<CIDR> cidr_;
 
     /**
      * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
      */
     public java.util.List<CIDR> getCidrList() {
-      if (cidrBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(cidr_);
-      } else {
-        return cidrBuilder_.getMessageList();
-      }
+        return cidr_;
     }
+
+    /**
+     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+     */
+    public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder>
+    getCidrOrBuilderList() {
+        return cidr_;
+    }
+
     /**
      * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
      */
     public int getCidrCount() {
-      if (cidrBuilder_ == null) {
         return cidr_.size();
-      } else {
-        return cidrBuilder_.getCount();
-      }
     }
+
     /**
      * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
      */
     public CIDR getCidr(int index) {
-      if (cidrBuilder_ == null) {
         return cidr_.get(index);
-      } else {
-        return cidrBuilder_.getMessage(index);
-      }
     }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder setCidr(
-        int index, CIDR value) {
-      if (cidrBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCidrIsMutable();
-        cidr_.set(index, value);
-        onChanged();
-      } else {
-        cidrBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder setCidr(
-        int index, CIDR.Builder builderForValue) {
-      if (cidrBuilder_ == null) {
-        ensureCidrIsMutable();
-        cidr_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        cidrBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder addCidr(CIDR value) {
-      if (cidrBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCidrIsMutable();
-        cidr_.add(value);
-        onChanged();
-      } else {
-        cidrBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder addCidr(
-        int index, CIDR value) {
-      if (cidrBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureCidrIsMutable();
-        cidr_.add(index, value);
-        onChanged();
-      } else {
-        cidrBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder addCidr(
-        CIDR.Builder builderForValue) {
-      if (cidrBuilder_ == null) {
-        ensureCidrIsMutable();
-        cidr_.add(builderForValue.build());
-        onChanged();
-      } else {
-        cidrBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder addCidr(
-        int index, CIDR.Builder builderForValue) {
-      if (cidrBuilder_ == null) {
-        ensureCidrIsMutable();
-        cidr_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        cidrBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder addAllCidr(
-        Iterable<? extends CIDR> values) {
-      if (cidrBuilder_ == null) {
-        ensureCidrIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, cidr_);
-        onChanged();
-      } else {
-        cidrBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder clearCidr() {
-      if (cidrBuilder_ == null) {
-        cidr_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000004);
-        onChanged();
-      } else {
-        cidrBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public Builder removeCidr(int index) {
-      if (cidrBuilder_ == null) {
-        ensureCidrIsMutable();
-        cidr_.remove(index);
-        onChanged();
-      } else {
-        cidrBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public CIDR.Builder getCidrBuilder(
-        int index) {
-      return getCidrFieldBuilder().getBuilder(index);
-    }
+
     /**
      * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
      */
     public com.v2ray.core.app.router.CIDROrBuilder getCidrOrBuilder(
-        int index) {
-      if (cidrBuilder_ == null) {
-        return cidr_.get(index);  } else {
-        return cidrBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder> 
-         getCidrOrBuilderList() {
-      if (cidrBuilder_ != null) {
-        return cidrBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(cidr_);
-      }
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public CIDR.Builder addCidrBuilder() {
-      return getCidrFieldBuilder().addBuilder(
-          CIDR.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public CIDR.Builder addCidrBuilder(
-        int index) {
-      return getCidrFieldBuilder().addBuilder(
-          index, CIDR.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
-     */
-    public java.util.List<CIDR.Builder>
-         getCidrBuilderList() {
-      return getCidrFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>
-        getCidrFieldBuilder() {
-      if (cidrBuilder_ == null) {
-        cidrBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>(
-                cidr_,
-                ((bitField0_ & 0x00000004) != 0),
-                getParentForChildren(),
-                isClean());
-        cidr_ = null;
-      }
-      return cidrBuilder_;
+            int index) {
+        return cidr_.get(index);
     }
 
+    public static final int PORT_RANGE_FIELD_NUMBER = 4;
     private com.v2ray.core.common.net.PortRange portRange_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder> portRangeBuilder_;
+
     /**
      * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
      */
     public boolean hasPortRange() {
-      return portRangeBuilder_ != null || portRange_ != null;
+        return portRange_ != null;
     }
+
     /**
      * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
      */
     public com.v2ray.core.common.net.PortRange getPortRange() {
-      if (portRangeBuilder_ == null) {
         return portRange_ == null ? com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
-      } else {
-        return portRangeBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-     */
-    public Builder setPortRange(com.v2ray.core.common.net.PortRange value) {
-      if (portRangeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        portRange_ = value;
-        onChanged();
-      } else {
-        portRangeBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-     */
-    public Builder setPortRange(
-        com.v2ray.core.common.net.PortRange.Builder builderForValue) {
-      if (portRangeBuilder_ == null) {
-        portRange_ = builderForValue.build();
-        onChanged();
-      } else {
-        portRangeBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-     */
-    public Builder mergePortRange(com.v2ray.core.common.net.PortRange value) {
-      if (portRangeBuilder_ == null) {
-        if (portRange_ != null) {
-          portRange_ =
-            com.v2ray.core.common.net.PortRange.newBuilder(portRange_).mergeFrom(value).buildPartial();
-        } else {
-          portRange_ = value;
-        }
-        onChanged();
-      } else {
-        portRangeBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-     */
-    public Builder clearPortRange() {
-      if (portRangeBuilder_ == null) {
-        portRange_ = null;
-        onChanged();
-      } else {
-        portRange_ = null;
-        portRangeBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-     */
-    public com.v2ray.core.common.net.PortRange.Builder getPortRangeBuilder() {
-      
-      onChanged();
-      return getPortRangeFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
      */
     public com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder() {
-      if (portRangeBuilder_ != null) {
-        return portRangeBuilder_.getMessageOrBuilder();
-      } else {
-        return portRange_ == null ?
-            com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder> 
-        getPortRangeFieldBuilder() {
-      if (portRangeBuilder_ == null) {
-        portRangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder>(
-                getPortRange(),
-                getParentForChildren(),
-                isClean());
-        portRange_ = null;
-      }
-      return portRangeBuilder_;
+        return getPortRange();
     }
 
+    public static final int NETWORK_LIST_FIELD_NUMBER = 5;
     private com.v2ray.core.common.net.NetworkList networkList_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.NetworkList, com.v2ray.core.common.net.NetworkList.Builder, com.v2ray.core.common.net.NetworkListOrBuilder> networkListBuilder_;
+
     /**
      * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
      */
     public boolean hasNetworkList() {
-      return networkListBuilder_ != null || networkList_ != null;
+        return networkList_ != null;
     }
+
     /**
      * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
      */
     public com.v2ray.core.common.net.NetworkList getNetworkList() {
-      if (networkListBuilder_ == null) {
         return networkList_ == null ? com.v2ray.core.common.net.NetworkList.getDefaultInstance() : networkList_;
-      } else {
-        return networkListBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-     */
-    public Builder setNetworkList(com.v2ray.core.common.net.NetworkList value) {
-      if (networkListBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        networkList_ = value;
-        onChanged();
-      } else {
-        networkListBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-     */
-    public Builder setNetworkList(
-        com.v2ray.core.common.net.NetworkList.Builder builderForValue) {
-      if (networkListBuilder_ == null) {
-        networkList_ = builderForValue.build();
-        onChanged();
-      } else {
-        networkListBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-     */
-    public Builder mergeNetworkList(com.v2ray.core.common.net.NetworkList value) {
-      if (networkListBuilder_ == null) {
-        if (networkList_ != null) {
-          networkList_ =
-            com.v2ray.core.common.net.NetworkList.newBuilder(networkList_).mergeFrom(value).buildPartial();
-        } else {
-          networkList_ = value;
-        }
-        onChanged();
-      } else {
-        networkListBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-     */
-    public Builder clearNetworkList() {
-      if (networkListBuilder_ == null) {
-        networkList_ = null;
-        onChanged();
-      } else {
-        networkList_ = null;
-        networkListBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-     */
-    public com.v2ray.core.common.net.NetworkList.Builder getNetworkListBuilder() {
-      
-      onChanged();
-      return getNetworkListFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
      */
     public com.v2ray.core.common.net.NetworkListOrBuilder getNetworkListOrBuilder() {
-      if (networkListBuilder_ != null) {
-        return networkListBuilder_.getMessageOrBuilder();
-      } else {
-        return networkList_ == null ?
-            com.v2ray.core.common.net.NetworkList.getDefaultInstance() : networkList_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.NetworkList, com.v2ray.core.common.net.NetworkList.Builder, com.v2ray.core.common.net.NetworkListOrBuilder> 
-        getNetworkListFieldBuilder() {
-      if (networkListBuilder_ == null) {
-        networkListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.NetworkList, com.v2ray.core.common.net.NetworkList.Builder, com.v2ray.core.common.net.NetworkListOrBuilder>(
-                getNetworkList(),
-                getParentForChildren(),
-                isClean());
-        networkList_ = null;
-      }
-      return networkListBuilder_;
+        return getNetworkList();
     }
 
-    private java.util.List<CIDR> sourceCidr_ =
-      java.util.Collections.emptyList();
-    private void ensureSourceCidrIsMutable() {
-      if (!((bitField0_ & 0x00000020) != 0)) {
-        sourceCidr_ = new java.util.ArrayList<CIDR>(sourceCidr_);
-        bitField0_ |= 0x00000020;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder> sourceCidrBuilder_;
+    public static final int SOURCE_CIDR_FIELD_NUMBER = 6;
+    private java.util.List<CIDR> sourceCidr_;
 
     /**
      * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
      */
     public java.util.List<CIDR> getSourceCidrList() {
-      if (sourceCidrBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(sourceCidr_);
-      } else {
-        return sourceCidrBuilder_.getMessageList();
-      }
+        return sourceCidr_;
     }
+
+    /**
+     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+     */
+    public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder>
+    getSourceCidrOrBuilderList() {
+        return sourceCidr_;
+    }
+
     /**
      * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
      */
     public int getSourceCidrCount() {
-      if (sourceCidrBuilder_ == null) {
         return sourceCidr_.size();
-      } else {
-        return sourceCidrBuilder_.getCount();
-      }
     }
+
     /**
      * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
      */
     public CIDR getSourceCidr(int index) {
-      if (sourceCidrBuilder_ == null) {
         return sourceCidr_.get(index);
-      } else {
-        return sourceCidrBuilder_.getMessage(index);
-      }
     }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder setSourceCidr(
-        int index, CIDR value) {
-      if (sourceCidrBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureSourceCidrIsMutable();
-        sourceCidr_.set(index, value);
-        onChanged();
-      } else {
-        sourceCidrBuilder_.setMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder setSourceCidr(
-        int index, CIDR.Builder builderForValue) {
-      if (sourceCidrBuilder_ == null) {
-        ensureSourceCidrIsMutable();
-        sourceCidr_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        sourceCidrBuilder_.setMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder addSourceCidr(CIDR value) {
-      if (sourceCidrBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureSourceCidrIsMutable();
-        sourceCidr_.add(value);
-        onChanged();
-      } else {
-        sourceCidrBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder addSourceCidr(
-        int index, CIDR value) {
-      if (sourceCidrBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureSourceCidrIsMutable();
-        sourceCidr_.add(index, value);
-        onChanged();
-      } else {
-        sourceCidrBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder addSourceCidr(
-        CIDR.Builder builderForValue) {
-      if (sourceCidrBuilder_ == null) {
-        ensureSourceCidrIsMutable();
-        sourceCidr_.add(builderForValue.build());
-        onChanged();
-      } else {
-        sourceCidrBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder addSourceCidr(
-        int index, CIDR.Builder builderForValue) {
-      if (sourceCidrBuilder_ == null) {
-        ensureSourceCidrIsMutable();
-        sourceCidr_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        sourceCidrBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder addAllSourceCidr(
-        Iterable<? extends CIDR> values) {
-      if (sourceCidrBuilder_ == null) {
-        ensureSourceCidrIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, sourceCidr_);
-        onChanged();
-      } else {
-        sourceCidrBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder clearSourceCidr() {
-      if (sourceCidrBuilder_ == null) {
-        sourceCidr_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
-        onChanged();
-      } else {
-        sourceCidrBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public Builder removeSourceCidr(int index) {
-      if (sourceCidrBuilder_ == null) {
-        ensureSourceCidrIsMutable();
-        sourceCidr_.remove(index);
-        onChanged();
-      } else {
-        sourceCidrBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public CIDR.Builder getSourceCidrBuilder(
-        int index) {
-      return getSourceCidrFieldBuilder().getBuilder(index);
-    }
+
     /**
      * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
      */
     public com.v2ray.core.app.router.CIDROrBuilder getSourceCidrOrBuilder(
-        int index) {
-      if (sourceCidrBuilder_ == null) {
-        return sourceCidr_.get(index);  } else {
-        return sourceCidrBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder> 
-         getSourceCidrOrBuilderList() {
-      if (sourceCidrBuilder_ != null) {
-        return sourceCidrBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(sourceCidr_);
-      }
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public CIDR.Builder addSourceCidrBuilder() {
-      return getSourceCidrFieldBuilder().addBuilder(
-          CIDR.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public CIDR.Builder addSourceCidrBuilder(
-        int index) {
-      return getSourceCidrFieldBuilder().addBuilder(
-          index, CIDR.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
-     */
-    public java.util.List<CIDR.Builder>
-         getSourceCidrBuilderList() {
-      return getSourceCidrFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>
-        getSourceCidrFieldBuilder() {
-      if (sourceCidrBuilder_ == null) {
-        sourceCidrBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>(
-                sourceCidr_,
-                ((bitField0_ & 0x00000020) != 0),
-                getParentForChildren(),
-                isClean());
-        sourceCidr_ = null;
-      }
-      return sourceCidrBuilder_;
+            int index) {
+        return sourceCidr_.get(index);
     }
 
-    private com.google.protobuf.LazyStringList userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    private void ensureUserEmailIsMutable() {
-      if (!((bitField0_ & 0x00000040) != 0)) {
-        userEmail_ = new com.google.protobuf.LazyStringArrayList(userEmail_);
-        bitField0_ |= 0x00000040;
-       }
-    }
+    public static final int USER_EMAIL_FIELD_NUMBER = 7;
+    private com.google.protobuf.LazyStringList userEmail_;
+
     /**
      * <code>repeated string user_email = 7;</code>
      */
     public com.google.protobuf.ProtocolStringList
-        getUserEmailList() {
-      return userEmail_.getUnmodifiableView();
+    getUserEmailList() {
+        return userEmail_;
     }
+
     /**
      * <code>repeated string user_email = 7;</code>
      */
     public int getUserEmailCount() {
-      return userEmail_.size();
+        return userEmail_.size();
     }
+
     /**
      * <code>repeated string user_email = 7;</code>
      */
     public String getUserEmail(int index) {
-      return userEmail_.get(index);
+        return userEmail_.get(index);
     }
+
     /**
      * <code>repeated string user_email = 7;</code>
      */
     public com.google.protobuf.ByteString
-        getUserEmailBytes(int index) {
-      return userEmail_.getByteString(index);
-    }
-    /**
-     * <code>repeated string user_email = 7;</code>
-     */
-    public Builder setUserEmail(
-        int index, String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureUserEmailIsMutable();
-      userEmail_.set(index, value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string user_email = 7;</code>
-     */
-    public Builder addUserEmail(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureUserEmailIsMutable();
-      userEmail_.add(value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string user_email = 7;</code>
-     */
-    public Builder addAllUserEmail(
-        Iterable<String> values) {
-      ensureUserEmailIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, userEmail_);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string user_email = 7;</code>
-     */
-    public Builder clearUserEmail() {
-      userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000040);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string user_email = 7;</code>
-     */
-    public Builder addUserEmailBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureUserEmailIsMutable();
-      userEmail_.add(value);
-      onChanged();
-      return this;
+    getUserEmailBytes(int index) {
+        return userEmail_.getByteString(index);
     }
 
-    private com.google.protobuf.LazyStringList inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-    private void ensureInboundTagIsMutable() {
-      if (!((bitField0_ & 0x00000080) != 0)) {
-        inboundTag_ = new com.google.protobuf.LazyStringArrayList(inboundTag_);
-        bitField0_ |= 0x00000080;
-       }
-    }
+    public static final int INBOUND_TAG_FIELD_NUMBER = 8;
+    private com.google.protobuf.LazyStringList inboundTag_;
+
     /**
      * <code>repeated string inbound_tag = 8;</code>
      */
     public com.google.protobuf.ProtocolStringList
-        getInboundTagList() {
-      return inboundTag_.getUnmodifiableView();
+    getInboundTagList() {
+        return inboundTag_;
     }
+
     /**
      * <code>repeated string inbound_tag = 8;</code>
      */
     public int getInboundTagCount() {
-      return inboundTag_.size();
+        return inboundTag_.size();
     }
+
     /**
      * <code>repeated string inbound_tag = 8;</code>
      */
     public String getInboundTag(int index) {
-      return inboundTag_.get(index);
+        return inboundTag_.get(index);
     }
+
     /**
      * <code>repeated string inbound_tag = 8;</code>
      */
     public com.google.protobuf.ByteString
+    getInboundTagBytes(int index) {
+        return inboundTag_.getByteString(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (!getTagBytes().isEmpty()) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 1, tag_);
+        }
+        for (int i = 0; i < domain_.size(); i++) {
+            output.writeMessage(2, domain_.get(i));
+        }
+        for (int i = 0; i < cidr_.size(); i++) {
+            output.writeMessage(3, cidr_.get(i));
+        }
+        if (portRange_ != null) {
+            output.writeMessage(4, getPortRange());
+        }
+        if (networkList_ != null) {
+            output.writeMessage(5, getNetworkList());
+        }
+        for (int i = 0; i < sourceCidr_.size(); i++) {
+            output.writeMessage(6, sourceCidr_.get(i));
+        }
+        for (int i = 0; i < userEmail_.size(); i++) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 7, userEmail_.getRaw(i));
+        }
+        for (int i = 0; i < inboundTag_.size(); i++) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 8, inboundTag_.getRaw(i));
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getTagBytes().isEmpty()) {
+            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, tag_);
+        }
+        for (int i = 0; i < domain_.size(); i++) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, domain_.get(i));
+        }
+        for (int i = 0; i < cidr_.size(); i++) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(3, cidr_.get(i));
+        }
+        if (portRange_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(4, getPortRange());
+        }
+        if (networkList_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(5, getNetworkList());
+        }
+        for (int i = 0; i < sourceCidr_.size(); i++) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(6, sourceCidr_.get(i));
+        }
+        {
+            int dataSize = 0;
+            for (int i = 0; i < userEmail_.size(); i++) {
+                dataSize += computeStringSizeNoTag(userEmail_.getRaw(i));
+            }
+            size += dataSize;
+            size += 1 * getUserEmailList().size();
+        }
+        {
+            int dataSize = 0;
+            for (int i = 0; i < inboundTag_.size(); i++) {
+                dataSize += computeStringSizeNoTag(inboundTag_.getRaw(i));
+            }
+            size += dataSize;
+            size += 1 * getInboundTagList().size();
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof RoutingRule)) {
+            return super.equals(obj);
+        }
+        RoutingRule other = (RoutingRule) obj;
+
+        if (!getTag()
+                .equals(other.getTag())) return false;
+        if (!getDomainList()
+                .equals(other.getDomainList())) return false;
+        if (!getCidrList()
+                .equals(other.getCidrList())) return false;
+        if (hasPortRange() != other.hasPortRange()) return false;
+        if (hasPortRange()) {
+            if (!getPortRange()
+                    .equals(other.getPortRange())) return false;
+        }
+        if (hasNetworkList() != other.hasNetworkList()) return false;
+        if (hasNetworkList()) {
+            if (!getNetworkList()
+                    .equals(other.getNetworkList())) return false;
+        }
+        if (!getSourceCidrList()
+                .equals(other.getSourceCidrList())) return false;
+        if (!getUserEmailList()
+                .equals(other.getUserEmailList())) return false;
+        if (!getInboundTagList()
+                .equals(other.getInboundTagList())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + TAG_FIELD_NUMBER;
+        hash = (53 * hash) + getTag().hashCode();
+        if (getDomainCount() > 0) {
+            hash = (37 * hash) + DOMAIN_FIELD_NUMBER;
+            hash = (53 * hash) + getDomainList().hashCode();
+        }
+        if (getCidrCount() > 0) {
+            hash = (37 * hash) + CIDR_FIELD_NUMBER;
+            hash = (53 * hash) + getCidrList().hashCode();
+        }
+        if (hasPortRange()) {
+            hash = (37 * hash) + PORT_RANGE_FIELD_NUMBER;
+            hash = (53 * hash) + getPortRange().hashCode();
+        }
+        if (hasNetworkList()) {
+            hash = (37 * hash) + NETWORK_LIST_FIELD_NUMBER;
+            hash = (53 * hash) + getNetworkList().hashCode();
+        }
+        if (getSourceCidrCount() > 0) {
+            hash = (37 * hash) + SOURCE_CIDR_FIELD_NUMBER;
+            hash = (53 * hash) + getSourceCidrList().hashCode();
+        }
+        if (getUserEmailCount() > 0) {
+            hash = (37 * hash) + USER_EMAIL_FIELD_NUMBER;
+            hash = (53 * hash) + getUserEmailList().hashCode();
+        }
+        if (getInboundTagCount() > 0) {
+            hash = (37 * hash) + INBOUND_TAG_FIELD_NUMBER;
+            hash = (53 * hash) + getInboundTagList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static RoutingRule parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static RoutingRule parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static RoutingRule parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static RoutingRule parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static RoutingRule parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static RoutingRule parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static RoutingRule parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static RoutingRule parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static RoutingRule parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static RoutingRule parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static RoutingRule parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static RoutingRule parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(RoutingRule prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
+    /**
+     * Protobuf type {@code v2ray.core.app.router.RoutingRule}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.app.router.RoutingRule)
+            com.v2ray.core.app.router.RoutingRuleOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            RoutingRule.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.app.router.RoutingRule.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+                getDomainFieldBuilder();
+                getCidrFieldBuilder();
+                getSourceCidrFieldBuilder();
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            tag_ = "";
+
+            if (domainBuilder_ == null) {
+                domain_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+                domainBuilder_.clear();
+            }
+            if (cidrBuilder_ == null) {
+                cidr_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+                cidrBuilder_.clear();
+            }
+            if (portRangeBuilder_ == null) {
+                portRange_ = null;
+            } else {
+                portRange_ = null;
+                portRangeBuilder_ = null;
+            }
+            if (networkListBuilder_ == null) {
+                networkList_ = null;
+            } else {
+                networkList_ = null;
+                networkListBuilder_ = null;
+            }
+            if (sourceCidrBuilder_ == null) {
+                sourceCidr_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+                sourceCidrBuilder_.clear();
+            }
+            userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+            bitField0_ = (bitField0_ & ~0x00000040);
+            inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+            bitField0_ = (bitField0_ & ~0x00000080);
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return com.v2ray.core.app.router.ConfigOuterClass.internal_static_v2ray_core_app_router_RoutingRule_descriptor;
+        }
+
+        @Override
+        public RoutingRule getDefaultInstanceForType() {
+            return RoutingRule.getDefaultInstance();
+        }
+
+        @Override
+        public RoutingRule build() {
+            RoutingRule result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public RoutingRule buildPartial() {
+            RoutingRule result = new RoutingRule(this);
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            result.tag_ = tag_;
+            if (domainBuilder_ == null) {
+                if (((bitField0_ & 0x00000002) != 0)) {
+                    domain_ = java.util.Collections.unmodifiableList(domain_);
+                    bitField0_ = (bitField0_ & ~0x00000002);
+                }
+                result.domain_ = domain_;
+            } else {
+                result.domain_ = domainBuilder_.build();
+            }
+            if (cidrBuilder_ == null) {
+                if (((bitField0_ & 0x00000004) != 0)) {
+                    cidr_ = java.util.Collections.unmodifiableList(cidr_);
+                    bitField0_ = (bitField0_ & ~0x00000004);
+                }
+                result.cidr_ = cidr_;
+            } else {
+                result.cidr_ = cidrBuilder_.build();
+            }
+            if (portRangeBuilder_ == null) {
+                result.portRange_ = portRange_;
+            } else {
+                result.portRange_ = portRangeBuilder_.build();
+            }
+            if (networkListBuilder_ == null) {
+                result.networkList_ = networkList_;
+            } else {
+                result.networkList_ = networkListBuilder_.build();
+            }
+            if (sourceCidrBuilder_ == null) {
+                if (((bitField0_ & 0x00000020) != 0)) {
+                    sourceCidr_ = java.util.Collections.unmodifiableList(sourceCidr_);
+                    bitField0_ = (bitField0_ & ~0x00000020);
+                }
+                result.sourceCidr_ = sourceCidr_;
+            } else {
+                result.sourceCidr_ = sourceCidrBuilder_.build();
+            }
+            if (((bitField0_ & 0x00000040) != 0)) {
+                userEmail_ = userEmail_.getUnmodifiableView();
+                bitField0_ = (bitField0_ & ~0x00000040);
+            }
+            result.userEmail_ = userEmail_;
+            if (((bitField0_ & 0x00000080) != 0)) {
+                inboundTag_ = inboundTag_.getUnmodifiableView();
+                bitField0_ = (bitField0_ & ~0x00000080);
+            }
+            result.inboundTag_ = inboundTag_;
+            result.bitField0_ = to_bitField0_;
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof RoutingRule) {
+                return mergeFrom((RoutingRule) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(RoutingRule other) {
+            if (other == RoutingRule.getDefaultInstance()) return this;
+            if (!other.getTag().isEmpty()) {
+                tag_ = other.tag_;
+                onChanged();
+            }
+            if (domainBuilder_ == null) {
+                if (!other.domain_.isEmpty()) {
+                    if (domain_.isEmpty()) {
+                        domain_ = other.domain_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                    } else {
+                        ensureDomainIsMutable();
+                        domain_.addAll(other.domain_);
+                    }
+                    onChanged();
+                }
+            } else {
+                if (!other.domain_.isEmpty()) {
+                    if (domainBuilder_.isEmpty()) {
+                        domainBuilder_.dispose();
+                        domainBuilder_ = null;
+                        domain_ = other.domain_;
+                        bitField0_ = (bitField0_ & ~0x00000002);
+                        domainBuilder_ =
+                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                        getDomainFieldBuilder() : null;
+                    } else {
+                        domainBuilder_.addAllMessages(other.domain_);
+                    }
+                }
+            }
+            if (cidrBuilder_ == null) {
+                if (!other.cidr_.isEmpty()) {
+                    if (cidr_.isEmpty()) {
+                        cidr_ = other.cidr_;
+                        bitField0_ = (bitField0_ & ~0x00000004);
+                    } else {
+                        ensureCidrIsMutable();
+                        cidr_.addAll(other.cidr_);
+                    }
+                    onChanged();
+                }
+            } else {
+                if (!other.cidr_.isEmpty()) {
+                    if (cidrBuilder_.isEmpty()) {
+                        cidrBuilder_.dispose();
+                        cidrBuilder_ = null;
+                        cidr_ = other.cidr_;
+                        bitField0_ = (bitField0_ & ~0x00000004);
+                        cidrBuilder_ =
+                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                        getCidrFieldBuilder() : null;
+                    } else {
+                        cidrBuilder_.addAllMessages(other.cidr_);
+                    }
+                }
+            }
+            if (other.hasPortRange()) {
+                mergePortRange(other.getPortRange());
+            }
+            if (other.hasNetworkList()) {
+                mergeNetworkList(other.getNetworkList());
+            }
+            if (sourceCidrBuilder_ == null) {
+                if (!other.sourceCidr_.isEmpty()) {
+                    if (sourceCidr_.isEmpty()) {
+                        sourceCidr_ = other.sourceCidr_;
+                        bitField0_ = (bitField0_ & ~0x00000020);
+                    } else {
+                        ensureSourceCidrIsMutable();
+                        sourceCidr_.addAll(other.sourceCidr_);
+                    }
+                    onChanged();
+                }
+            } else {
+                if (!other.sourceCidr_.isEmpty()) {
+                    if (sourceCidrBuilder_.isEmpty()) {
+                        sourceCidrBuilder_.dispose();
+                        sourceCidrBuilder_ = null;
+                        sourceCidr_ = other.sourceCidr_;
+                        bitField0_ = (bitField0_ & ~0x00000020);
+                        sourceCidrBuilder_ =
+                                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                                        getSourceCidrFieldBuilder() : null;
+                    } else {
+                        sourceCidrBuilder_.addAllMessages(other.sourceCidr_);
+                    }
+                }
+            }
+            if (!other.userEmail_.isEmpty()) {
+                if (userEmail_.isEmpty()) {
+                    userEmail_ = other.userEmail_;
+                    bitField0_ = (bitField0_ & ~0x00000040);
+                } else {
+                    ensureUserEmailIsMutable();
+                    userEmail_.addAll(other.userEmail_);
+                }
+                onChanged();
+            }
+            if (!other.inboundTag_.isEmpty()) {
+                if (inboundTag_.isEmpty()) {
+                    inboundTag_ = other.inboundTag_;
+                    bitField0_ = (bitField0_ & ~0x00000080);
+                } else {
+                    ensureInboundTagIsMutable();
+                    inboundTag_.addAll(other.inboundTag_);
+                }
+                onChanged();
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            RoutingRule parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (RoutingRule) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private int bitField0_;
+
+        private Object tag_ = "";
+
+        /**
+         * <code>string tag = 1;</code>
+         */
+        public String getTag() {
+            Object ref = tag_;
+            if (!(ref instanceof String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                String s = bs.toStringUtf8();
+                tag_ = s;
+                return s;
+            } else {
+                return (String) ref;
+            }
+        }
+
+        /**
+         * <code>string tag = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getTagBytes() {
+            Object ref = tag_;
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (String) ref);
+                tag_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        /**
+         * <code>string tag = 1;</code>
+         */
+        public Builder setTag(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            tag_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string tag = 1;</code>
+         */
+        public Builder clearTag() {
+
+            tag_ = getDefaultInstance().getTag();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>string tag = 1;</code>
+         */
+        public Builder setTagBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+
+            tag_ = value;
+            onChanged();
+            return this;
+        }
+
+        private java.util.List<Domain> domain_ =
+                java.util.Collections.emptyList();
+
+        private void ensureDomainIsMutable() {
+            if (!((bitField0_ & 0x00000002) != 0)) {
+                domain_ = new java.util.ArrayList<Domain>(domain_);
+                bitField0_ |= 0x00000002;
+            }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                Domain, Domain.Builder, com.v2ray.core.app.router.DomainOrBuilder> domainBuilder_;
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public java.util.List<Domain> getDomainList() {
+            if (domainBuilder_ == null) {
+                return java.util.Collections.unmodifiableList(domain_);
+            } else {
+                return domainBuilder_.getMessageList();
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public int getDomainCount() {
+            if (domainBuilder_ == null) {
+                return domain_.size();
+            } else {
+                return domainBuilder_.getCount();
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Domain getDomain(int index) {
+            if (domainBuilder_ == null) {
+                return domain_.get(index);
+            } else {
+                return domainBuilder_.getMessage(index);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder setDomain(
+                int index, Domain value) {
+            if (domainBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureDomainIsMutable();
+                domain_.set(index, value);
+                onChanged();
+            } else {
+                domainBuilder_.setMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder setDomain(
+                int index, Domain.Builder builderForValue) {
+            if (domainBuilder_ == null) {
+                ensureDomainIsMutable();
+                domain_.set(index, builderForValue.build());
+                onChanged();
+            } else {
+                domainBuilder_.setMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder addDomain(Domain value) {
+            if (domainBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureDomainIsMutable();
+                domain_.add(value);
+                onChanged();
+            } else {
+                domainBuilder_.addMessage(value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder addDomain(
+                int index, Domain value) {
+            if (domainBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureDomainIsMutable();
+                domain_.add(index, value);
+                onChanged();
+            } else {
+                domainBuilder_.addMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder addDomain(
+                Domain.Builder builderForValue) {
+            if (domainBuilder_ == null) {
+                ensureDomainIsMutable();
+                domain_.add(builderForValue.build());
+                onChanged();
+            } else {
+                domainBuilder_.addMessage(builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder addDomain(
+                int index, Domain.Builder builderForValue) {
+            if (domainBuilder_ == null) {
+                ensureDomainIsMutable();
+                domain_.add(index, builderForValue.build());
+                onChanged();
+            } else {
+                domainBuilder_.addMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder addAllDomain(
+                Iterable<? extends Domain> values) {
+            if (domainBuilder_ == null) {
+                ensureDomainIsMutable();
+                com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                        values, domain_);
+                onChanged();
+            } else {
+                domainBuilder_.addAllMessages(values);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder clearDomain() {
+            if (domainBuilder_ == null) {
+                domain_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000002);
+                onChanged();
+            } else {
+                domainBuilder_.clear();
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Builder removeDomain(int index) {
+            if (domainBuilder_ == null) {
+                ensureDomainIsMutable();
+                domain_.remove(index);
+                onChanged();
+            } else {
+                domainBuilder_.remove(index);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Domain.Builder getDomainBuilder(
+                int index) {
+            return getDomainFieldBuilder().getBuilder(index);
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public com.v2ray.core.app.router.DomainOrBuilder getDomainOrBuilder(
+                int index) {
+            if (domainBuilder_ == null) {
+                return domain_.get(index);
+            } else {
+                return domainBuilder_.getMessageOrBuilder(index);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public java.util.List<? extends com.v2ray.core.app.router.DomainOrBuilder>
+        getDomainOrBuilderList() {
+            if (domainBuilder_ != null) {
+                return domainBuilder_.getMessageOrBuilderList();
+            } else {
+                return java.util.Collections.unmodifiableList(domain_);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Domain.Builder addDomainBuilder() {
+            return getDomainFieldBuilder().addBuilder(
+                    Domain.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public Domain.Builder addDomainBuilder(
+                int index) {
+            return getDomainFieldBuilder().addBuilder(
+                    index, Domain.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.Domain domain = 2;</code>
+         */
+        public java.util.List<Domain.Builder>
+        getDomainBuilderList() {
+            return getDomainFieldBuilder().getBuilderList();
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                Domain, Domain.Builder, com.v2ray.core.app.router.DomainOrBuilder>
+        getDomainFieldBuilder() {
+            if (domainBuilder_ == null) {
+                domainBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                        Domain, Domain.Builder, com.v2ray.core.app.router.DomainOrBuilder>(
+                        domain_,
+                        ((bitField0_ & 0x00000002) != 0),
+                        getParentForChildren(),
+                        isClean());
+                domain_ = null;
+            }
+            return domainBuilder_;
+        }
+
+        private java.util.List<CIDR> cidr_ =
+                java.util.Collections.emptyList();
+
+        private void ensureCidrIsMutable() {
+            if (!((bitField0_ & 0x00000004) != 0)) {
+                cidr_ = new java.util.ArrayList<CIDR>(cidr_);
+                bitField0_ |= 0x00000004;
+            }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder> cidrBuilder_;
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public java.util.List<CIDR> getCidrList() {
+            if (cidrBuilder_ == null) {
+                return java.util.Collections.unmodifiableList(cidr_);
+            } else {
+                return cidrBuilder_.getMessageList();
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public int getCidrCount() {
+            if (cidrBuilder_ == null) {
+                return cidr_.size();
+            } else {
+                return cidrBuilder_.getCount();
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public CIDR getCidr(int index) {
+            if (cidrBuilder_ == null) {
+                return cidr_.get(index);
+            } else {
+                return cidrBuilder_.getMessage(index);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder setCidr(
+                int index, CIDR value) {
+            if (cidrBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureCidrIsMutable();
+                cidr_.set(index, value);
+                onChanged();
+            } else {
+                cidrBuilder_.setMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder setCidr(
+                int index, CIDR.Builder builderForValue) {
+            if (cidrBuilder_ == null) {
+                ensureCidrIsMutable();
+                cidr_.set(index, builderForValue.build());
+                onChanged();
+            } else {
+                cidrBuilder_.setMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder addCidr(CIDR value) {
+            if (cidrBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureCidrIsMutable();
+                cidr_.add(value);
+                onChanged();
+            } else {
+                cidrBuilder_.addMessage(value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder addCidr(
+                int index, CIDR value) {
+            if (cidrBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureCidrIsMutable();
+                cidr_.add(index, value);
+                onChanged();
+            } else {
+                cidrBuilder_.addMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder addCidr(
+                CIDR.Builder builderForValue) {
+            if (cidrBuilder_ == null) {
+                ensureCidrIsMutable();
+                cidr_.add(builderForValue.build());
+                onChanged();
+            } else {
+                cidrBuilder_.addMessage(builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder addCidr(
+                int index, CIDR.Builder builderForValue) {
+            if (cidrBuilder_ == null) {
+                ensureCidrIsMutable();
+                cidr_.add(index, builderForValue.build());
+                onChanged();
+            } else {
+                cidrBuilder_.addMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder addAllCidr(
+                Iterable<? extends CIDR> values) {
+            if (cidrBuilder_ == null) {
+                ensureCidrIsMutable();
+                com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                        values, cidr_);
+                onChanged();
+            } else {
+                cidrBuilder_.addAllMessages(values);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder clearCidr() {
+            if (cidrBuilder_ == null) {
+                cidr_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000004);
+                onChanged();
+            } else {
+                cidrBuilder_.clear();
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public Builder removeCidr(int index) {
+            if (cidrBuilder_ == null) {
+                ensureCidrIsMutable();
+                cidr_.remove(index);
+                onChanged();
+            } else {
+                cidrBuilder_.remove(index);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public CIDR.Builder getCidrBuilder(
+                int index) {
+            return getCidrFieldBuilder().getBuilder(index);
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public com.v2ray.core.app.router.CIDROrBuilder getCidrOrBuilder(
+                int index) {
+            if (cidrBuilder_ == null) {
+                return cidr_.get(index);
+            } else {
+                return cidrBuilder_.getMessageOrBuilder(index);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder>
+        getCidrOrBuilderList() {
+            if (cidrBuilder_ != null) {
+                return cidrBuilder_.getMessageOrBuilderList();
+            } else {
+                return java.util.Collections.unmodifiableList(cidr_);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public CIDR.Builder addCidrBuilder() {
+            return getCidrFieldBuilder().addBuilder(
+                    CIDR.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public CIDR.Builder addCidrBuilder(
+                int index) {
+            return getCidrFieldBuilder().addBuilder(
+                    index, CIDR.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR cidr = 3;</code>
+         */
+        public java.util.List<CIDR.Builder>
+        getCidrBuilderList() {
+            return getCidrFieldBuilder().getBuilderList();
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>
+        getCidrFieldBuilder() {
+            if (cidrBuilder_ == null) {
+                cidrBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                        CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>(
+                        cidr_,
+                        ((bitField0_ & 0x00000004) != 0),
+                        getParentForChildren(),
+                        isClean());
+                cidr_ = null;
+            }
+            return cidrBuilder_;
+        }
+
+        private com.v2ray.core.common.net.PortRange portRange_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder> portRangeBuilder_;
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public boolean hasPortRange() {
+            return portRangeBuilder_ != null || portRange_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public com.v2ray.core.common.net.PortRange getPortRange() {
+            if (portRangeBuilder_ == null) {
+                return portRange_ == null ? com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
+            } else {
+                return portRangeBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public Builder setPortRange(com.v2ray.core.common.net.PortRange value) {
+            if (portRangeBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                portRange_ = value;
+                onChanged();
+            } else {
+                portRangeBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public Builder setPortRange(
+                com.v2ray.core.common.net.PortRange.Builder builderForValue) {
+            if (portRangeBuilder_ == null) {
+                portRange_ = builderForValue.build();
+                onChanged();
+            } else {
+                portRangeBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public Builder mergePortRange(com.v2ray.core.common.net.PortRange value) {
+            if (portRangeBuilder_ == null) {
+                if (portRange_ != null) {
+                    portRange_ =
+                            com.v2ray.core.common.net.PortRange.newBuilder(portRange_).mergeFrom(value).buildPartial();
+                } else {
+                    portRange_ = value;
+                }
+                onChanged();
+            } else {
+                portRangeBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public Builder clearPortRange() {
+            if (portRangeBuilder_ == null) {
+                portRange_ = null;
+                onChanged();
+            } else {
+                portRange_ = null;
+                portRangeBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public com.v2ray.core.common.net.PortRange.Builder getPortRangeBuilder() {
+
+            onChanged();
+            return getPortRangeFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        public com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder() {
+            if (portRangeBuilder_ != null) {
+                return portRangeBuilder_.getMessageOrBuilder();
+            } else {
+                return portRange_ == null ?
+                        com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.PortRange port_range = 4;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder>
+        getPortRangeFieldBuilder() {
+            if (portRangeBuilder_ == null) {
+                portRangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder>(
+                        getPortRange(),
+                        getParentForChildren(),
+                        isClean());
+                portRange_ = null;
+            }
+            return portRangeBuilder_;
+        }
+
+        private com.v2ray.core.common.net.NetworkList networkList_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.NetworkList, com.v2ray.core.common.net.NetworkList.Builder, com.v2ray.core.common.net.NetworkListOrBuilder> networkListBuilder_;
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public boolean hasNetworkList() {
+            return networkListBuilder_ != null || networkList_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public com.v2ray.core.common.net.NetworkList getNetworkList() {
+            if (networkListBuilder_ == null) {
+                return networkList_ == null ? com.v2ray.core.common.net.NetworkList.getDefaultInstance() : networkList_;
+            } else {
+                return networkListBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public Builder setNetworkList(com.v2ray.core.common.net.NetworkList value) {
+            if (networkListBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                networkList_ = value;
+                onChanged();
+            } else {
+                networkListBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public Builder setNetworkList(
+                com.v2ray.core.common.net.NetworkList.Builder builderForValue) {
+            if (networkListBuilder_ == null) {
+                networkList_ = builderForValue.build();
+                onChanged();
+            } else {
+                networkListBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public Builder mergeNetworkList(com.v2ray.core.common.net.NetworkList value) {
+            if (networkListBuilder_ == null) {
+                if (networkList_ != null) {
+                    networkList_ =
+                            com.v2ray.core.common.net.NetworkList.newBuilder(networkList_).mergeFrom(value).buildPartial();
+                } else {
+                    networkList_ = value;
+                }
+                onChanged();
+            } else {
+                networkListBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public Builder clearNetworkList() {
+            if (networkListBuilder_ == null) {
+                networkList_ = null;
+                onChanged();
+            } else {
+                networkList_ = null;
+                networkListBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public com.v2ray.core.common.net.NetworkList.Builder getNetworkListBuilder() {
+
+            onChanged();
+            return getNetworkListFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        public com.v2ray.core.common.net.NetworkListOrBuilder getNetworkListOrBuilder() {
+            if (networkListBuilder_ != null) {
+                return networkListBuilder_.getMessageOrBuilder();
+            } else {
+                return networkList_ == null ?
+                        com.v2ray.core.common.net.NetworkList.getDefaultInstance() : networkList_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.NetworkList network_list = 5;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.NetworkList, com.v2ray.core.common.net.NetworkList.Builder, com.v2ray.core.common.net.NetworkListOrBuilder>
+        getNetworkListFieldBuilder() {
+            if (networkListBuilder_ == null) {
+                networkListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.NetworkList, com.v2ray.core.common.net.NetworkList.Builder, com.v2ray.core.common.net.NetworkListOrBuilder>(
+                        getNetworkList(),
+                        getParentForChildren(),
+                        isClean());
+                networkList_ = null;
+            }
+            return networkListBuilder_;
+        }
+
+        private java.util.List<CIDR> sourceCidr_ =
+                java.util.Collections.emptyList();
+
+        private void ensureSourceCidrIsMutable() {
+            if (!((bitField0_ & 0x00000020) != 0)) {
+                sourceCidr_ = new java.util.ArrayList<CIDR>(sourceCidr_);
+                bitField0_ |= 0x00000020;
+            }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder> sourceCidrBuilder_;
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public java.util.List<CIDR> getSourceCidrList() {
+            if (sourceCidrBuilder_ == null) {
+                return java.util.Collections.unmodifiableList(sourceCidr_);
+            } else {
+                return sourceCidrBuilder_.getMessageList();
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public int getSourceCidrCount() {
+            if (sourceCidrBuilder_ == null) {
+                return sourceCidr_.size();
+            } else {
+                return sourceCidrBuilder_.getCount();
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public CIDR getSourceCidr(int index) {
+            if (sourceCidrBuilder_ == null) {
+                return sourceCidr_.get(index);
+            } else {
+                return sourceCidrBuilder_.getMessage(index);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder setSourceCidr(
+                int index, CIDR value) {
+            if (sourceCidrBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureSourceCidrIsMutable();
+                sourceCidr_.set(index, value);
+                onChanged();
+            } else {
+                sourceCidrBuilder_.setMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder setSourceCidr(
+                int index, CIDR.Builder builderForValue) {
+            if (sourceCidrBuilder_ == null) {
+                ensureSourceCidrIsMutable();
+                sourceCidr_.set(index, builderForValue.build());
+                onChanged();
+            } else {
+                sourceCidrBuilder_.setMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder addSourceCidr(CIDR value) {
+            if (sourceCidrBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureSourceCidrIsMutable();
+                sourceCidr_.add(value);
+                onChanged();
+            } else {
+                sourceCidrBuilder_.addMessage(value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder addSourceCidr(
+                int index, CIDR value) {
+            if (sourceCidrBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                ensureSourceCidrIsMutable();
+                sourceCidr_.add(index, value);
+                onChanged();
+            } else {
+                sourceCidrBuilder_.addMessage(index, value);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder addSourceCidr(
+                CIDR.Builder builderForValue) {
+            if (sourceCidrBuilder_ == null) {
+                ensureSourceCidrIsMutable();
+                sourceCidr_.add(builderForValue.build());
+                onChanged();
+            } else {
+                sourceCidrBuilder_.addMessage(builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder addSourceCidr(
+                int index, CIDR.Builder builderForValue) {
+            if (sourceCidrBuilder_ == null) {
+                ensureSourceCidrIsMutable();
+                sourceCidr_.add(index, builderForValue.build());
+                onChanged();
+            } else {
+                sourceCidrBuilder_.addMessage(index, builderForValue.build());
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder addAllSourceCidr(
+                Iterable<? extends CIDR> values) {
+            if (sourceCidrBuilder_ == null) {
+                ensureSourceCidrIsMutable();
+                com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                        values, sourceCidr_);
+                onChanged();
+            } else {
+                sourceCidrBuilder_.addAllMessages(values);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder clearSourceCidr() {
+            if (sourceCidrBuilder_ == null) {
+                sourceCidr_ = java.util.Collections.emptyList();
+                bitField0_ = (bitField0_ & ~0x00000020);
+                onChanged();
+            } else {
+                sourceCidrBuilder_.clear();
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public Builder removeSourceCidr(int index) {
+            if (sourceCidrBuilder_ == null) {
+                ensureSourceCidrIsMutable();
+                sourceCidr_.remove(index);
+                onChanged();
+            } else {
+                sourceCidrBuilder_.remove(index);
+            }
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public CIDR.Builder getSourceCidrBuilder(
+                int index) {
+            return getSourceCidrFieldBuilder().getBuilder(index);
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public com.v2ray.core.app.router.CIDROrBuilder getSourceCidrOrBuilder(
+                int index) {
+            if (sourceCidrBuilder_ == null) {
+                return sourceCidr_.get(index);
+            } else {
+                return sourceCidrBuilder_.getMessageOrBuilder(index);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public java.util.List<? extends com.v2ray.core.app.router.CIDROrBuilder>
+        getSourceCidrOrBuilderList() {
+            if (sourceCidrBuilder_ != null) {
+                return sourceCidrBuilder_.getMessageOrBuilderList();
+            } else {
+                return java.util.Collections.unmodifiableList(sourceCidr_);
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public CIDR.Builder addSourceCidrBuilder() {
+            return getSourceCidrFieldBuilder().addBuilder(
+                    CIDR.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public CIDR.Builder addSourceCidrBuilder(
+                int index) {
+            return getSourceCidrFieldBuilder().addBuilder(
+                    index, CIDR.getDefaultInstance());
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.router.CIDR source_cidr = 6;</code>
+         */
+        public java.util.List<CIDR.Builder>
+        getSourceCidrBuilderList() {
+            return getSourceCidrFieldBuilder().getBuilderList();
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+                CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>
+        getSourceCidrFieldBuilder() {
+            if (sourceCidrBuilder_ == null) {
+                sourceCidrBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                        CIDR, CIDR.Builder, com.v2ray.core.app.router.CIDROrBuilder>(
+                        sourceCidr_,
+                        ((bitField0_ & 0x00000020) != 0),
+                        getParentForChildren(),
+                        isClean());
+                sourceCidr_ = null;
+            }
+            return sourceCidrBuilder_;
+        }
+
+        private com.google.protobuf.LazyStringList userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
+        private void ensureUserEmailIsMutable() {
+            if (!((bitField0_ & 0x00000040) != 0)) {
+                userEmail_ = new com.google.protobuf.LazyStringArrayList(userEmail_);
+                bitField0_ |= 0x00000040;
+            }
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public com.google.protobuf.ProtocolStringList
+        getUserEmailList() {
+            return userEmail_.getUnmodifiableView();
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public int getUserEmailCount() {
+            return userEmail_.size();
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public String getUserEmail(int index) {
+            return userEmail_.get(index);
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public com.google.protobuf.ByteString
+        getUserEmailBytes(int index) {
+            return userEmail_.getByteString(index);
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public Builder setUserEmail(
+                int index, String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureUserEmailIsMutable();
+            userEmail_.set(index, value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public Builder addUserEmail(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureUserEmailIsMutable();
+            userEmail_.add(value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public Builder addAllUserEmail(
+                Iterable<String> values) {
+            ensureUserEmailIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                    values, userEmail_);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public Builder clearUserEmail() {
+            userEmail_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+            bitField0_ = (bitField0_ & ~0x00000040);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string user_email = 7;</code>
+         */
+        public Builder addUserEmailBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+            ensureUserEmailIsMutable();
+            userEmail_.add(value);
+            onChanged();
+            return this;
+        }
+
+        private com.google.protobuf.LazyStringList inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+
+        private void ensureInboundTagIsMutable() {
+            if (!((bitField0_ & 0x00000080) != 0)) {
+                inboundTag_ = new com.google.protobuf.LazyStringArrayList(inboundTag_);
+                bitField0_ |= 0x00000080;
+            }
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public com.google.protobuf.ProtocolStringList
+        getInboundTagList() {
+            return inboundTag_.getUnmodifiableView();
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public int getInboundTagCount() {
+            return inboundTag_.size();
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public String getInboundTag(int index) {
+            return inboundTag_.get(index);
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public com.google.protobuf.ByteString
         getInboundTagBytes(int index) {
-      return inboundTag_.getByteString(index);
+            return inboundTag_.getByteString(index);
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public Builder setInboundTag(
+                int index, String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureInboundTagIsMutable();
+            inboundTag_.set(index, value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public Builder addInboundTag(
+                String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureInboundTagIsMutable();
+            inboundTag_.add(value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public Builder addAllInboundTag(
+                Iterable<String> values) {
+            ensureInboundTagIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                    values, inboundTag_);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public Builder clearInboundTag() {
+            inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+            bitField0_ = (bitField0_ & ~0x00000080);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated string inbound_tag = 8;</code>
+         */
+        public Builder addInboundTagBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+            ensureInboundTagIsMutable();
+            inboundTag_.add(value);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.app.router.RoutingRule)
     }
-    /**
-     * <code>repeated string inbound_tag = 8;</code>
-     */
-    public Builder setInboundTag(
-        int index, String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureInboundTagIsMutable();
-      inboundTag_.set(index, value);
-      onChanged();
-      return this;
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.app.router.RoutingRule)
+    private static final RoutingRule DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new RoutingRule();
     }
-    /**
-     * <code>repeated string inbound_tag = 8;</code>
-     */
-    public Builder addInboundTag(
-        String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureInboundTagIsMutable();
-      inboundTag_.add(value);
-      onChanged();
-      return this;
+
+    public static RoutingRule getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
-    /**
-     * <code>repeated string inbound_tag = 8;</code>
-     */
-    public Builder addAllInboundTag(
-        Iterable<String> values) {
-      ensureInboundTagIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, inboundTag_);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string inbound_tag = 8;</code>
-     */
-    public Builder clearInboundTag() {
-      inboundTag_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      bitField0_ = (bitField0_ & ~0x00000080);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated string inbound_tag = 8;</code>
-     */
-    public Builder addInboundTagBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      ensureInboundTagIsMutable();
-      inboundTag_.add(value);
-      onChanged();
-      return this;
-    }
-    @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+
+    private static final com.google.protobuf.Parser<RoutingRule>
+            PARSER = new com.google.protobuf.AbstractParser<RoutingRule>() {
+        @Override
+        public RoutingRule parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new RoutingRule(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<RoutingRule> parser() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<RoutingRule> getParserForType() {
+        return PARSER;
     }
 
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.app.router.RoutingRule)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.app.router.RoutingRule)
-  private static final RoutingRule DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new RoutingRule();
-  }
-
-  public static RoutingRule getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<RoutingRule>
-      PARSER = new com.google.protobuf.AbstractParser<RoutingRule>() {
     @Override
-    public RoutingRule parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new RoutingRule(input, extensionRegistry);
+    public RoutingRule getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-  };
-
-  public static com.google.protobuf.Parser<RoutingRule> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<RoutingRule> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public RoutingRule getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

@@ -4,61 +4,69 @@
 package com.v2ray.core.proxy.vmess.inbound;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.inbound.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.inbound.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
-   */
-  java.util.List<com.v2ray.core.common.protocol.User> 
-      getUserList();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
-   */
-  com.v2ray.core.common.protocol.User getUser(int index);
-  /**
-   * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
-   */
-  int getUserCount();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
-   */
-  java.util.List<? extends com.v2ray.core.common.protocol.UserOrBuilder> 
-      getUserOrBuilderList();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
-   */
-  com.v2ray.core.common.protocol.UserOrBuilder getUserOrBuilder(
-          int index);
+    /**
+     * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
+     */
+    java.util.List<com.v2ray.core.common.protocol.User>
+    getUserList();
 
-  /**
-   * <code>.v2ray.core.proxy.vmess.inbound.DefaultConfig default = 2;</code>
-   */
-  boolean hasDefault();
-  /**
-   * <code>.v2ray.core.proxy.vmess.inbound.DefaultConfig default = 2;</code>
-   */
-  DefaultConfig getDefault();
-  /**
-   * <code>.v2ray.core.proxy.vmess.inbound.DefaultConfig default = 2;</code>
-   */
-  com.v2ray.core.proxy.vmess.inbound.DefaultConfigOrBuilder getDefaultOrBuilder();
+    /**
+     * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
+     */
+    com.v2ray.core.common.protocol.User getUser(int index);
 
-  /**
-   * <code>.v2ray.core.proxy.vmess.inbound.DetourConfig detour = 3;</code>
-   */
-  boolean hasDetour();
-  /**
-   * <code>.v2ray.core.proxy.vmess.inbound.DetourConfig detour = 3;</code>
-   */
-  DetourConfig getDetour();
-  /**
-   * <code>.v2ray.core.proxy.vmess.inbound.DetourConfig detour = 3;</code>
-   */
-  com.v2ray.core.proxy.vmess.inbound.DetourConfigOrBuilder getDetourOrBuilder();
+    /**
+     * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
+     */
+    int getUserCount();
 
-  /**
-   * <code>bool secure_encryption_only = 4;</code>
-   */
-  boolean getSecureEncryptionOnly();
+    /**
+     * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
+     */
+    java.util.List<? extends com.v2ray.core.common.protocol.UserOrBuilder>
+    getUserOrBuilderList();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.User user = 1;</code>
+     */
+    com.v2ray.core.common.protocol.UserOrBuilder getUserOrBuilder(
+            int index);
+
+    /**
+     * <code>.v2ray.core.proxy.vmess.inbound.DefaultConfig default = 2;</code>
+     */
+    boolean hasDefault();
+
+    /**
+     * <code>.v2ray.core.proxy.vmess.inbound.DefaultConfig default = 2;</code>
+     */
+    DefaultConfig getDefault();
+
+    /**
+     * <code>.v2ray.core.proxy.vmess.inbound.DefaultConfig default = 2;</code>
+     */
+    com.v2ray.core.proxy.vmess.inbound.DefaultConfigOrBuilder getDefaultOrBuilder();
+
+    /**
+     * <code>.v2ray.core.proxy.vmess.inbound.DetourConfig detour = 3;</code>
+     */
+    boolean hasDetour();
+
+    /**
+     * <code>.v2ray.core.proxy.vmess.inbound.DetourConfig detour = 3;</code>
+     */
+    DetourConfig getDetour();
+
+    /**
+     * <code>.v2ray.core.proxy.vmess.inbound.DetourConfig detour = 3;</code>
+     */
+    com.v2ray.core.proxy.vmess.inbound.DetourConfigOrBuilder getDetourOrBuilder();
+
+    /**
+     * <code>bool secure_encryption_only = 4;</code>
+     */
+    boolean getSecureEncryptionOnly();
 }

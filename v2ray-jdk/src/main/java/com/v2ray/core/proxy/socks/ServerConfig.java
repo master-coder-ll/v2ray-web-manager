@@ -6,1124 +6,1233 @@ package com.v2ray.core.proxy.socks;
 /**
  * Protobuf type {@code v2ray.core.proxy.socks.ServerConfig}
  */
-public  final class ServerConfig extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.proxy.socks.ServerConfig)
-    ServerConfigOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use ServerConfig.newBuilder() to construct.
-  private ServerConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private ServerConfig() {
-    authType_ = 0;
-  }
+public final class ServerConfig extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.proxy.socks.ServerConfig)
+        ServerConfigOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private ServerConfig(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use ServerConfig.newBuilder() to construct.
+    private ServerConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-            int rawValue = input.readEnum();
 
-            authType_ = rawValue;
-            break;
-          }
-          case 18: {
-            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-              accounts_ = com.google.protobuf.MapField.newMapField(
-                  AccountsDefaultEntryHolder.defaultEntry);
-              mutable_bitField0_ |= 0x00000002;
-            }
-            com.google.protobuf.MapEntry<String, String>
-            accounts__ = input.readMessage(
-                AccountsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-            accounts_.getMutableMap().put(
-                accounts__.getKey(), accounts__.getValue());
-            break;
-          }
-          case 26: {
-            com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
-            if (address_ != null) {
-              subBuilder = address_.toBuilder();
-            }
-            address_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(address_);
-              address_ = subBuilder.buildPartial();
-            }
+    private ServerConfig() {
+        authType_ = 0;
+    }
 
-            break;
-          }
-          case 32: {
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
 
-            udpEnabled_ = input.readBool();
-            break;
-          }
-          case 40: {
-
-            timeout_ = input.readUInt32();
-            break;
-          }
-          case 48: {
-
-            userLevel_ = input.readUInt32();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+    private ServerConfig(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
+                        int rawValue = input.readEnum();
+
+                        authType_ = rawValue;
+                        break;
+                    }
+                    case 18: {
+                        if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                            accounts_ = com.google.protobuf.MapField.newMapField(
+                                    AccountsDefaultEntryHolder.defaultEntry);
+                            mutable_bitField0_ |= 0x00000002;
+                        }
+                        com.google.protobuf.MapEntry<String, String>
+                                accounts__ = input.readMessage(
+                                AccountsDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                        accounts_.getMutableMap().put(
+                                accounts__.getKey(), accounts__.getValue());
+                        break;
+                    }
+                    case 26: {
+                        com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
+                        if (address_ != null) {
+                            subBuilder = address_.toBuilder();
+                        }
+                        address_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(address_);
+                            address_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 32: {
+
+                        udpEnabled_ = input.readBool();
+                        break;
+                    }
+                    case 40: {
+
+                        timeout_ = input.readUInt32();
+                        break;
+                    }
+                    case 48: {
+
+                        userLevel_ = input.readUInt32();
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_descriptor;
-  }
 
-  @SuppressWarnings({"rawtypes"})
-  @Override
-  protected com.google.protobuf.MapField internalGetMapField(
-      int number) {
-    switch (number) {
-      case 2:
-        return internalGetAccounts();
-      default:
-        throw new RuntimeException(
-            "Invalid map field number: " + number);
-    }
-  }
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            ServerConfig.class, Builder.class);
-  }
-
-  private int bitField0_;
-  public static final int AUTH_TYPE_FIELD_NUMBER = 1;
-  private int authType_;
-  /**
-   * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
-   */
-  public int getAuthTypeValue() {
-    return authType_;
-  }
-  /**
-   * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
-   */
-  public AuthType getAuthType() {
-    @SuppressWarnings("deprecation")
-    AuthType result = AuthType.valueOf(authType_);
-    return result == null ? AuthType.UNRECOGNIZED : result;
-  }
-
-  public static final int ACCOUNTS_FIELD_NUMBER = 2;
-  private static final class AccountsDefaultEntryHolder {
-    static final com.google.protobuf.MapEntry<
-        String, String> defaultEntry =
-            com.google.protobuf.MapEntry
-            .<String, String>newDefaultInstance(
-                Config.internal_static_v2ray_core_proxy_socks_ServerConfig_AccountsEntry_descriptor,
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "",
-                com.google.protobuf.WireFormat.FieldType.STRING,
-                "");
-  }
-  private com.google.protobuf.MapField<
-      String, String> accounts_;
-  private com.google.protobuf.MapField<String, String>
-  internalGetAccounts() {
-    if (accounts_ == null) {
-      return com.google.protobuf.MapField.emptyMapField(
-          AccountsDefaultEntryHolder.defaultEntry);
-    }
-    return accounts_;
-  }
-
-  public int getAccountsCount() {
-    return internalGetAccounts().getMap().size();
-  }
-  /**
-   * <code>map&lt;string, string&gt; accounts = 2;</code>
-   */
-
-  public boolean containsAccounts(
-      String key) {
-    if (key == null) { throw new NullPointerException(); }
-    return internalGetAccounts().getMap().containsKey(key);
-  }
-  /**
-   * Use {@link #getAccountsMap()} instead.
-   */
-  @Deprecated
-  public java.util.Map<String, String> getAccounts() {
-    return getAccountsMap();
-  }
-  /**
-   * <code>map&lt;string, string&gt; accounts = 2;</code>
-   */
-
-  public java.util.Map<String, String> getAccountsMap() {
-    return internalGetAccounts().getMap();
-  }
-  /**
-   * <code>map&lt;string, string&gt; accounts = 2;</code>
-   */
-
-  public String getAccountsOrDefault(
-      String key,
-      String defaultValue) {
-    if (key == null) { throw new NullPointerException(); }
-    java.util.Map<String, String> map =
-        internalGetAccounts().getMap();
-    return map.containsKey(key) ? map.get(key) : defaultValue;
-  }
-  /**
-   * <code>map&lt;string, string&gt; accounts = 2;</code>
-   */
-
-  public String getAccountsOrThrow(
-      String key) {
-    if (key == null) { throw new NullPointerException(); }
-    java.util.Map<String, String> map =
-        internalGetAccounts().getMap();
-    if (!map.containsKey(key)) {
-      throw new IllegalArgumentException();
-    }
-    return map.get(key);
-  }
-
-  public static final int ADDRESS_FIELD_NUMBER = 3;
-  private com.v2ray.core.common.net.IPOrDomain address_;
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-   */
-  public boolean hasAddress() {
-    return address_ != null;
-  }
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomain getAddress() {
-    return address_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
-  }
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder() {
-    return getAddress();
-  }
-
-  public static final int UDP_ENABLED_FIELD_NUMBER = 4;
-  private boolean udpEnabled_;
-  /**
-   * <code>bool udp_enabled = 4;</code>
-   */
-  public boolean getUdpEnabled() {
-    return udpEnabled_;
-  }
-
-  public static final int TIMEOUT_FIELD_NUMBER = 5;
-  private int timeout_;
-  /**
-   * <code>uint32 timeout = 5 [deprecated = true];</code>
-   */
-  @Deprecated public int getTimeout() {
-    return timeout_;
-  }
-
-  public static final int USER_LEVEL_FIELD_NUMBER = 6;
-  private int userLevel_;
-  /**
-   * <code>uint32 user_level = 6;</code>
-   */
-  public int getUserLevel() {
-    return userLevel_;
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (authType_ != AuthType.NO_AUTH.getNumber()) {
-      output.writeEnum(1, authType_);
-    }
-    com.google.protobuf.GeneratedMessageV3
-      .serializeStringMapTo(
-        output,
-        internalGetAccounts(),
-        AccountsDefaultEntryHolder.defaultEntry,
-        2);
-    if (address_ != null) {
-      output.writeMessage(3, getAddress());
-    }
-    if (udpEnabled_ != false) {
-      output.writeBool(4, udpEnabled_);
-    }
-    if (timeout_ != 0) {
-      output.writeUInt32(5, timeout_);
-    }
-    if (userLevel_ != 0) {
-      output.writeUInt32(6, userLevel_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (authType_ != AuthType.NO_AUTH.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, authType_);
-    }
-    for (java.util.Map.Entry<String, String> entry
-         : internalGetAccounts().getMap().entrySet()) {
-      com.google.protobuf.MapEntry<String, String>
-      accounts__ = AccountsDefaultEntryHolder.defaultEntry.newBuilderForType()
-          .setKey(entry.getKey())
-          .setValue(entry.getValue())
-          .build();
-      size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, accounts__);
-    }
-    if (address_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getAddress());
-    }
-    if (udpEnabled_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(4, udpEnabled_);
-    }
-    if (timeout_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(5, timeout_);
-    }
-    if (userLevel_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(6, userLevel_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof ServerConfig)) {
-      return super.equals(obj);
-    }
-    ServerConfig other = (ServerConfig) obj;
-
-    if (authType_ != other.authType_) return false;
-    if (!internalGetAccounts().equals(
-        other.internalGetAccounts())) return false;
-    if (hasAddress() != other.hasAddress()) return false;
-    if (hasAddress()) {
-      if (!getAddress()
-          .equals(other.getAddress())) return false;
-    }
-    if (getUdpEnabled()
-        != other.getUdpEnabled()) return false;
-    if (getTimeout()
-        != other.getTimeout()) return false;
-    if (getUserLevel()
-        != other.getUserLevel()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + AUTH_TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + authType_;
-    if (!internalGetAccounts().getMap().isEmpty()) {
-      hash = (37 * hash) + ACCOUNTS_FIELD_NUMBER;
-      hash = (53 * hash) + internalGetAccounts().hashCode();
-    }
-    if (hasAddress()) {
-      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getAddress().hashCode();
-    }
-    hash = (37 * hash) + UDP_ENABLED_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getUdpEnabled());
-    hash = (37 * hash) + TIMEOUT_FIELD_NUMBER;
-    hash = (53 * hash) + getTimeout();
-    hash = (37 * hash) + USER_LEVEL_FIELD_NUMBER;
-    hash = (53 * hash) + getUserLevel();
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static ServerConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static ServerConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static ServerConfig parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static ServerConfig parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static ServerConfig parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static ServerConfig parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static ServerConfig parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static ServerConfig parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static ServerConfig parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static ServerConfig parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static ServerConfig parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static ServerConfig parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(ServerConfig prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.proxy.socks.ServerConfig}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.proxy.socks.ServerConfig)
-      com.v2ray.core.proxy.socks.ServerConfigOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_descriptor;
+    getDescriptor() {
+        return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_descriptor;
     }
 
     @SuppressWarnings({"rawtypes"})
+    @Override
     protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 2:
-          return internalGetAccounts();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
+            int number) {
+        switch (number) {
+            case 2:
+                return internalGetAccounts();
+            default:
+                throw new RuntimeException(
+                        "Invalid map field number: " + number);
+        }
     }
-    @SuppressWarnings({"rawtypes"})
-    protected com.google.protobuf.MapField internalGetMutableMapField(
-        int number) {
-      switch (number) {
-        case 2:
-          return internalGetMutableAccounts();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
+
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              ServerConfig.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        ServerConfig.class, Builder.class);
     }
 
-    // Construct using com.v2ray.core.proxy.socks.ServerConfig.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      authType_ = 0;
-
-      internalGetMutableAccounts().clear();
-      if (addressBuilder_ == null) {
-        address_ = null;
-      } else {
-        address_ = null;
-        addressBuilder_ = null;
-      }
-      udpEnabled_ = false;
-
-      timeout_ = 0;
-
-      userLevel_ = 0;
-
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_descriptor;
-    }
-
-    @Override
-    public ServerConfig getDefaultInstanceForType() {
-      return ServerConfig.getDefaultInstance();
-    }
-
-    @Override
-    public ServerConfig build() {
-      ServerConfig result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public ServerConfig buildPartial() {
-      ServerConfig result = new ServerConfig(this);
-      int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      result.authType_ = authType_;
-      result.accounts_ = internalGetAccounts();
-      result.accounts_.makeImmutable();
-      if (addressBuilder_ == null) {
-        result.address_ = address_;
-      } else {
-        result.address_ = addressBuilder_.build();
-      }
-      result.udpEnabled_ = udpEnabled_;
-      result.timeout_ = timeout_;
-      result.userLevel_ = userLevel_;
-      result.bitField0_ = to_bitField0_;
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof ServerConfig) {
-        return mergeFrom((ServerConfig)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(ServerConfig other) {
-      if (other == ServerConfig.getDefaultInstance()) return this;
-      if (other.authType_ != 0) {
-        setAuthTypeValue(other.getAuthTypeValue());
-      }
-      internalGetMutableAccounts().mergeFrom(
-          other.internalGetAccounts());
-      if (other.hasAddress()) {
-        mergeAddress(other.getAddress());
-      }
-      if (other.getUdpEnabled() != false) {
-        setUdpEnabled(other.getUdpEnabled());
-      }
-      if (other.getTimeout() != 0) {
-        setTimeout(other.getTimeout());
-      }
-      if (other.getUserLevel() != 0) {
-        setUserLevel(other.getUserLevel());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      ServerConfig parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ServerConfig) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
     private int bitField0_;
+    public static final int AUTH_TYPE_FIELD_NUMBER = 1;
+    private int authType_;
 
-    private int authType_ = 0;
     /**
      * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
      */
     public int getAuthTypeValue() {
-      return authType_;
+        return authType_;
     }
-    /**
-     * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
-     */
-    public Builder setAuthTypeValue(int value) {
-      authType_ = value;
-      onChanged();
-      return this;
-    }
+
     /**
      * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
      */
     public AuthType getAuthType() {
-      @SuppressWarnings("deprecation")
-      AuthType result = AuthType.valueOf(authType_);
-      return result == null ? AuthType.UNRECOGNIZED : result;
+        @SuppressWarnings("deprecation")
+        AuthType result = AuthType.valueOf(authType_);
+        return result == null ? AuthType.UNRECOGNIZED : result;
     }
-    /**
-     * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
-     */
-    public Builder setAuthType(AuthType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      authType_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
-     */
-    public Builder clearAuthType() {
-      
-      authType_ = 0;
-      onChanged();
-      return this;
+
+    public static final int ACCOUNTS_FIELD_NUMBER = 2;
+
+    private static final class AccountsDefaultEntryHolder {
+        static final com.google.protobuf.MapEntry<
+                String, String> defaultEntry =
+                com.google.protobuf.MapEntry
+                        .<String, String>newDefaultInstance(
+                                Config.internal_static_v2ray_core_proxy_socks_ServerConfig_AccountsEntry_descriptor,
+                                com.google.protobuf.WireFormat.FieldType.STRING,
+                                "",
+                                com.google.protobuf.WireFormat.FieldType.STRING,
+                                "");
     }
 
     private com.google.protobuf.MapField<
-        String, String> accounts_;
+            String, String> accounts_;
+
     private com.google.protobuf.MapField<String, String>
     internalGetAccounts() {
-      if (accounts_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            AccountsDefaultEntryHolder.defaultEntry);
-      }
-      return accounts_;
-    }
-    private com.google.protobuf.MapField<String, String>
-    internalGetMutableAccounts() {
-      onChanged();;
-      if (accounts_ == null) {
-        accounts_ = com.google.protobuf.MapField.newMapField(
-            AccountsDefaultEntryHolder.defaultEntry);
-      }
-      if (!accounts_.isMutable()) {
-        accounts_ = accounts_.copy();
-      }
-      return accounts_;
+        if (accounts_ == null) {
+            return com.google.protobuf.MapField.emptyMapField(
+                    AccountsDefaultEntryHolder.defaultEntry);
+        }
+        return accounts_;
     }
 
     public int getAccountsCount() {
-      return internalGetAccounts().getMap().size();
+        return internalGetAccounts().getMap().size();
     }
+
     /**
      * <code>map&lt;string, string&gt; accounts = 2;</code>
      */
 
     public boolean containsAccounts(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
-      return internalGetAccounts().getMap().containsKey(key);
+            String key) {
+        if (key == null) {
+            throw new NullPointerException();
+        }
+        return internalGetAccounts().getMap().containsKey(key);
     }
+
     /**
      * Use {@link #getAccountsMap()} instead.
      */
     @Deprecated
     public java.util.Map<String, String> getAccounts() {
-      return getAccountsMap();
+        return getAccountsMap();
     }
+
     /**
      * <code>map&lt;string, string&gt; accounts = 2;</code>
      */
 
     public java.util.Map<String, String> getAccountsMap() {
-      return internalGetAccounts().getMap();
+        return internalGetAccounts().getMap();
     }
+
     /**
      * <code>map&lt;string, string&gt; accounts = 2;</code>
      */
 
     public String getAccountsOrDefault(
-        String key,
-        String defaultValue) {
-      if (key == null) { throw new NullPointerException(); }
-      java.util.Map<String, String> map =
-          internalGetAccounts().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
+            String key,
+            String defaultValue) {
+        if (key == null) {
+            throw new NullPointerException();
+        }
+        java.util.Map<String, String> map =
+                internalGetAccounts().getMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
     }
+
     /**
      * <code>map&lt;string, string&gt; accounts = 2;</code>
      */
 
     public String getAccountsOrThrow(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
-      java.util.Map<String, String> map =
-          internalGetAccounts().getMap();
-      if (!map.containsKey(key)) {
-        throw new IllegalArgumentException();
-      }
-      return map.get(key);
+            String key) {
+        if (key == null) {
+            throw new NullPointerException();
+        }
+        java.util.Map<String, String> map =
+                internalGetAccounts().getMap();
+        if (!map.containsKey(key)) {
+            throw new IllegalArgumentException();
+        }
+        return map.get(key);
     }
 
-    public Builder clearAccounts() {
-      internalGetMutableAccounts().getMutableMap()
-          .clear();
-      return this;
-    }
-    /**
-     * <code>map&lt;string, string&gt; accounts = 2;</code>
-     */
-
-    public Builder removeAccounts(
-        String key) {
-      if (key == null) { throw new NullPointerException(); }
-      internalGetMutableAccounts().getMutableMap()
-          .remove(key);
-      return this;
-    }
-    /**
-     * Use alternate mutation accessors instead.
-     */
-    @Deprecated
-    public java.util.Map<String, String>
-    getMutableAccounts() {
-      return internalGetMutableAccounts().getMutableMap();
-    }
-    /**
-     * <code>map&lt;string, string&gt; accounts = 2;</code>
-     */
-    public Builder putAccounts(
-        String key,
-        String value) {
-      if (key == null) { throw new NullPointerException(); }
-      if (value == null) { throw new NullPointerException(); }
-      internalGetMutableAccounts().getMutableMap()
-          .put(key, value);
-      return this;
-    }
-    /**
-     * <code>map&lt;string, string&gt; accounts = 2;</code>
-     */
-
-    public Builder putAllAccounts(
-        java.util.Map<String, String> values) {
-      internalGetMutableAccounts().getMutableMap()
-          .putAll(values);
-      return this;
-    }
-
+    public static final int ADDRESS_FIELD_NUMBER = 3;
     private com.v2ray.core.common.net.IPOrDomain address_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> addressBuilder_;
+
     /**
      * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
      */
     public boolean hasAddress() {
-      return addressBuilder_ != null || address_ != null;
+        return address_ != null;
     }
+
     /**
      * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
      */
     public com.v2ray.core.common.net.IPOrDomain getAddress() {
-      if (addressBuilder_ == null) {
         return address_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
-      } else {
-        return addressBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-     */
-    public Builder setAddress(com.v2ray.core.common.net.IPOrDomain value) {
-      if (addressBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        address_ = value;
-        onChanged();
-      } else {
-        addressBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-     */
-    public Builder setAddress(
-        com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
-      if (addressBuilder_ == null) {
-        address_ = builderForValue.build();
-        onChanged();
-      } else {
-        addressBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-     */
-    public Builder mergeAddress(com.v2ray.core.common.net.IPOrDomain value) {
-      if (addressBuilder_ == null) {
-        if (address_ != null) {
-          address_ =
-            com.v2ray.core.common.net.IPOrDomain.newBuilder(address_).mergeFrom(value).buildPartial();
-        } else {
-          address_ = value;
-        }
-        onChanged();
-      } else {
-        addressBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-     */
-    public Builder clearAddress() {
-      if (addressBuilder_ == null) {
-        address_ = null;
-        onChanged();
-      } else {
-        address_ = null;
-        addressBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-     */
-    public com.v2ray.core.common.net.IPOrDomain.Builder getAddressBuilder() {
-      
-      onChanged();
-      return getAddressFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
      */
     public com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder() {
-      if (addressBuilder_ != null) {
-        return addressBuilder_.getMessageOrBuilder();
-      } else {
-        return address_ == null ?
-            com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> 
-        getAddressFieldBuilder() {
-      if (addressBuilder_ == null) {
-        addressBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
-                getAddress(),
-                getParentForChildren(),
-                isClean());
-        address_ = null;
-      }
-      return addressBuilder_;
+        return getAddress();
     }
 
-    private boolean udpEnabled_ ;
+    public static final int UDP_ENABLED_FIELD_NUMBER = 4;
+    private boolean udpEnabled_;
+
     /**
      * <code>bool udp_enabled = 4;</code>
      */
     public boolean getUdpEnabled() {
-      return udpEnabled_;
-    }
-    /**
-     * <code>bool udp_enabled = 4;</code>
-     */
-    public Builder setUdpEnabled(boolean value) {
-      
-      udpEnabled_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool udp_enabled = 4;</code>
-     */
-    public Builder clearUdpEnabled() {
-      
-      udpEnabled_ = false;
-      onChanged();
-      return this;
+        return udpEnabled_;
     }
 
-    private int timeout_ ;
+    public static final int TIMEOUT_FIELD_NUMBER = 5;
+    private int timeout_;
+
     /**
      * <code>uint32 timeout = 5 [deprecated = true];</code>
      */
-    @Deprecated public int getTimeout() {
-      return timeout_;
-    }
-    /**
-     * <code>uint32 timeout = 5 [deprecated = true];</code>
-     */
-    @Deprecated public Builder setTimeout(int value) {
-      
-      timeout_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>uint32 timeout = 5 [deprecated = true];</code>
-     */
-    @Deprecated public Builder clearTimeout() {
-      
-      timeout_ = 0;
-      onChanged();
-      return this;
+    @Deprecated
+    public int getTimeout() {
+        return timeout_;
     }
 
-    private int userLevel_ ;
+    public static final int USER_LEVEL_FIELD_NUMBER = 6;
+    private int userLevel_;
+
     /**
      * <code>uint32 user_level = 6;</code>
      */
     public int getUserLevel() {
-      return userLevel_;
+        return userLevel_;
     }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (authType_ != AuthType.NO_AUTH.getNumber()) {
+            output.writeEnum(1, authType_);
+        }
+        com.google.protobuf.GeneratedMessageV3
+                .serializeStringMapTo(
+                        output,
+                        internalGetAccounts(),
+                        AccountsDefaultEntryHolder.defaultEntry,
+                        2);
+        if (address_ != null) {
+            output.writeMessage(3, getAddress());
+        }
+        if (udpEnabled_ != false) {
+            output.writeBool(4, udpEnabled_);
+        }
+        if (timeout_ != 0) {
+            output.writeUInt32(5, timeout_);
+        }
+        if (userLevel_ != 0) {
+            output.writeUInt32(6, userLevel_);
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (authType_ != AuthType.NO_AUTH.getNumber()) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeEnumSize(1, authType_);
+        }
+        for (java.util.Map.Entry<String, String> entry
+                : internalGetAccounts().getMap().entrySet()) {
+            com.google.protobuf.MapEntry<String, String>
+                    accounts__ = AccountsDefaultEntryHolder.defaultEntry.newBuilderForType()
+                    .setKey(entry.getKey())
+                    .setValue(entry.getValue())
+                    .build();
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, accounts__);
+        }
+        if (address_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(3, getAddress());
+        }
+        if (udpEnabled_ != false) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeBoolSize(4, udpEnabled_);
+        }
+        if (timeout_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(5, timeout_);
+        }
+        if (userLevel_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(6, userLevel_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ServerConfig)) {
+            return super.equals(obj);
+        }
+        ServerConfig other = (ServerConfig) obj;
+
+        if (authType_ != other.authType_) return false;
+        if (!internalGetAccounts().equals(
+                other.internalGetAccounts())) return false;
+        if (hasAddress() != other.hasAddress()) return false;
+        if (hasAddress()) {
+            if (!getAddress()
+                    .equals(other.getAddress())) return false;
+        }
+        if (getUdpEnabled()
+                != other.getUdpEnabled()) return false;
+        if (getTimeout()
+                != other.getTimeout()) return false;
+        if (getUserLevel()
+                != other.getUserLevel()) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + AUTH_TYPE_FIELD_NUMBER;
+        hash = (53 * hash) + authType_;
+        if (!internalGetAccounts().getMap().isEmpty()) {
+            hash = (37 * hash) + ACCOUNTS_FIELD_NUMBER;
+            hash = (53 * hash) + internalGetAccounts().hashCode();
+        }
+        if (hasAddress()) {
+            hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+            hash = (53 * hash) + getAddress().hashCode();
+        }
+        hash = (37 * hash) + UDP_ENABLED_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                getUdpEnabled());
+        hash = (37 * hash) + TIMEOUT_FIELD_NUMBER;
+        hash = (53 * hash) + getTimeout();
+        hash = (37 * hash) + USER_LEVEL_FIELD_NUMBER;
+        hash = (53 * hash) + getUserLevel();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static ServerConfig parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static ServerConfig parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static ServerConfig parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static ServerConfig parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static ServerConfig parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static ServerConfig parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static ServerConfig parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static ServerConfig parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ServerConfig parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ServerConfig parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ServerConfig parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static ServerConfig parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(ServerConfig prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <code>uint32 user_level = 6;</code>
+     * Protobuf type {@code v2ray.core.proxy.socks.ServerConfig}
      */
-    public Builder setUserLevel(int value) {
-      
-      userLevel_ = value;
-      onChanged();
-      return this;
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.proxy.socks.ServerConfig)
+            com.v2ray.core.proxy.socks.ServerConfigOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_descriptor;
+        }
+
+        @SuppressWarnings({"rawtypes"})
+        protected com.google.protobuf.MapField internalGetMapField(
+                int number) {
+            switch (number) {
+                case 2:
+                    return internalGetAccounts();
+                default:
+                    throw new RuntimeException(
+                            "Invalid map field number: " + number);
+            }
+        }
+
+        @SuppressWarnings({"rawtypes"})
+        protected com.google.protobuf.MapField internalGetMutableMapField(
+                int number) {
+            switch (number) {
+                case 2:
+                    return internalGetMutableAccounts();
+                default:
+                    throw new RuntimeException(
+                            "Invalid map field number: " + number);
+            }
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            ServerConfig.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.proxy.socks.ServerConfig.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            authType_ = 0;
+
+            internalGetMutableAccounts().clear();
+            if (addressBuilder_ == null) {
+                address_ = null;
+            } else {
+                address_ = null;
+                addressBuilder_ = null;
+            }
+            udpEnabled_ = false;
+
+            timeout_ = 0;
+
+            userLevel_ = 0;
+
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return Config.internal_static_v2ray_core_proxy_socks_ServerConfig_descriptor;
+        }
+
+        @Override
+        public ServerConfig getDefaultInstanceForType() {
+            return ServerConfig.getDefaultInstance();
+        }
+
+        @Override
+        public ServerConfig build() {
+            ServerConfig result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public ServerConfig buildPartial() {
+            ServerConfig result = new ServerConfig(this);
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            result.authType_ = authType_;
+            result.accounts_ = internalGetAccounts();
+            result.accounts_.makeImmutable();
+            if (addressBuilder_ == null) {
+                result.address_ = address_;
+            } else {
+                result.address_ = addressBuilder_.build();
+            }
+            result.udpEnabled_ = udpEnabled_;
+            result.timeout_ = timeout_;
+            result.userLevel_ = userLevel_;
+            result.bitField0_ = to_bitField0_;
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof ServerConfig) {
+                return mergeFrom((ServerConfig) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(ServerConfig other) {
+            if (other == ServerConfig.getDefaultInstance()) return this;
+            if (other.authType_ != 0) {
+                setAuthTypeValue(other.getAuthTypeValue());
+            }
+            internalGetMutableAccounts().mergeFrom(
+                    other.internalGetAccounts());
+            if (other.hasAddress()) {
+                mergeAddress(other.getAddress());
+            }
+            if (other.getUdpEnabled() != false) {
+                setUdpEnabled(other.getUdpEnabled());
+            }
+            if (other.getTimeout() != 0) {
+                setTimeout(other.getTimeout());
+            }
+            if (other.getUserLevel() != 0) {
+                setUserLevel(other.getUserLevel());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            ServerConfig parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (ServerConfig) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private int bitField0_;
+
+        private int authType_ = 0;
+
+        /**
+         * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
+         */
+        public int getAuthTypeValue() {
+            return authType_;
+        }
+
+        /**
+         * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
+         */
+        public Builder setAuthTypeValue(int value) {
+            authType_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
+         */
+        public AuthType getAuthType() {
+            @SuppressWarnings("deprecation")
+            AuthType result = AuthType.valueOf(authType_);
+            return result == null ? AuthType.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
+         */
+        public Builder setAuthType(AuthType value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            authType_ = value.getNumber();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.proxy.socks.AuthType auth_type = 1;</code>
+         */
+        public Builder clearAuthType() {
+
+            authType_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private com.google.protobuf.MapField<
+                String, String> accounts_;
+
+        private com.google.protobuf.MapField<String, String>
+        internalGetAccounts() {
+            if (accounts_ == null) {
+                return com.google.protobuf.MapField.emptyMapField(
+                        AccountsDefaultEntryHolder.defaultEntry);
+            }
+            return accounts_;
+        }
+
+        private com.google.protobuf.MapField<String, String>
+        internalGetMutableAccounts() {
+            onChanged();
+            ;
+            if (accounts_ == null) {
+                accounts_ = com.google.protobuf.MapField.newMapField(
+                        AccountsDefaultEntryHolder.defaultEntry);
+            }
+            if (!accounts_.isMutable()) {
+                accounts_ = accounts_.copy();
+            }
+            return accounts_;
+        }
+
+        public int getAccountsCount() {
+            return internalGetAccounts().getMap().size();
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+
+        public boolean containsAccounts(
+                String key) {
+            if (key == null) {
+                throw new NullPointerException();
+            }
+            return internalGetAccounts().getMap().containsKey(key);
+        }
+
+        /**
+         * Use {@link #getAccountsMap()} instead.
+         */
+        @Deprecated
+        public java.util.Map<String, String> getAccounts() {
+            return getAccountsMap();
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+
+        public java.util.Map<String, String> getAccountsMap() {
+            return internalGetAccounts().getMap();
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+
+        public String getAccountsOrDefault(
+                String key,
+                String defaultValue) {
+            if (key == null) {
+                throw new NullPointerException();
+            }
+            java.util.Map<String, String> map =
+                    internalGetAccounts().getMap();
+            return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+
+        public String getAccountsOrThrow(
+                String key) {
+            if (key == null) {
+                throw new NullPointerException();
+            }
+            java.util.Map<String, String> map =
+                    internalGetAccounts().getMap();
+            if (!map.containsKey(key)) {
+                throw new IllegalArgumentException();
+            }
+            return map.get(key);
+        }
+
+        public Builder clearAccounts() {
+            internalGetMutableAccounts().getMutableMap()
+                    .clear();
+            return this;
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+
+        public Builder removeAccounts(
+                String key) {
+            if (key == null) {
+                throw new NullPointerException();
+            }
+            internalGetMutableAccounts().getMutableMap()
+                    .remove(key);
+            return this;
+        }
+
+        /**
+         * Use alternate mutation accessors instead.
+         */
+        @Deprecated
+        public java.util.Map<String, String>
+        getMutableAccounts() {
+            return internalGetMutableAccounts().getMutableMap();
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+        public Builder putAccounts(
+                String key,
+                String value) {
+            if (key == null) {
+                throw new NullPointerException();
+            }
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            internalGetMutableAccounts().getMutableMap()
+                    .put(key, value);
+            return this;
+        }
+
+        /**
+         * <code>map&lt;string, string&gt; accounts = 2;</code>
+         */
+
+        public Builder putAllAccounts(
+                java.util.Map<String, String> values) {
+            internalGetMutableAccounts().getMutableMap()
+                    .putAll(values);
+            return this;
+        }
+
+        private com.v2ray.core.common.net.IPOrDomain address_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> addressBuilder_;
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public boolean hasAddress() {
+            return addressBuilder_ != null || address_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain getAddress() {
+            if (addressBuilder_ == null) {
+                return address_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
+            } else {
+                return addressBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public Builder setAddress(com.v2ray.core.common.net.IPOrDomain value) {
+            if (addressBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                address_ = value;
+                onChanged();
+            } else {
+                addressBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public Builder setAddress(
+                com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
+            if (addressBuilder_ == null) {
+                address_ = builderForValue.build();
+                onChanged();
+            } else {
+                addressBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public Builder mergeAddress(com.v2ray.core.common.net.IPOrDomain value) {
+            if (addressBuilder_ == null) {
+                if (address_ != null) {
+                    address_ =
+                            com.v2ray.core.common.net.IPOrDomain.newBuilder(address_).mergeFrom(value).buildPartial();
+                } else {
+                    address_ = value;
+                }
+                onChanged();
+            } else {
+                addressBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public Builder clearAddress() {
+            if (addressBuilder_ == null) {
+                address_ = null;
+                onChanged();
+            } else {
+                address_ = null;
+                addressBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain.Builder getAddressBuilder() {
+
+            onChanged();
+            return getAddressFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder() {
+            if (addressBuilder_ != null) {
+                return addressBuilder_.getMessageOrBuilder();
+            } else {
+                return address_ == null ?
+                        com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 3;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>
+        getAddressFieldBuilder() {
+            if (addressBuilder_ == null) {
+                addressBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
+                        getAddress(),
+                        getParentForChildren(),
+                        isClean());
+                address_ = null;
+            }
+            return addressBuilder_;
+        }
+
+        private boolean udpEnabled_;
+
+        /**
+         * <code>bool udp_enabled = 4;</code>
+         */
+        public boolean getUdpEnabled() {
+            return udpEnabled_;
+        }
+
+        /**
+         * <code>bool udp_enabled = 4;</code>
+         */
+        public Builder setUdpEnabled(boolean value) {
+
+            udpEnabled_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>bool udp_enabled = 4;</code>
+         */
+        public Builder clearUdpEnabled() {
+
+            udpEnabled_ = false;
+            onChanged();
+            return this;
+        }
+
+        private int timeout_;
+
+        /**
+         * <code>uint32 timeout = 5 [deprecated = true];</code>
+         */
+        @Deprecated
+        public int getTimeout() {
+            return timeout_;
+        }
+
+        /**
+         * <code>uint32 timeout = 5 [deprecated = true];</code>
+         */
+        @Deprecated
+        public Builder setTimeout(int value) {
+
+            timeout_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint32 timeout = 5 [deprecated = true];</code>
+         */
+        @Deprecated
+        public Builder clearTimeout() {
+
+            timeout_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private int userLevel_;
+
+        /**
+         * <code>uint32 user_level = 6;</code>
+         */
+        public int getUserLevel() {
+            return userLevel_;
+        }
+
+        /**
+         * <code>uint32 user_level = 6;</code>
+         */
+        public Builder setUserLevel(int value) {
+
+            userLevel_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint32 user_level = 6;</code>
+         */
+        public Builder clearUserLevel() {
+
+            userLevel_ = 0;
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.proxy.socks.ServerConfig)
     }
-    /**
-     * <code>uint32 user_level = 6;</code>
-     */
-    public Builder clearUserLevel() {
-      
-      userLevel_ = 0;
-      onChanged();
-      return this;
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.proxy.socks.ServerConfig)
+    private static final ServerConfig DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new ServerConfig();
     }
+
+    public static ServerConfig getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ServerConfig>
+            PARSER = new com.google.protobuf.AbstractParser<ServerConfig>() {
+        @Override
+        public ServerConfig parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new ServerConfig(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<ServerConfig> parser() {
+        return PARSER;
+    }
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<ServerConfig> getParserForType() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public ServerConfig getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.proxy.socks.ServerConfig)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.proxy.socks.ServerConfig)
-  private static final ServerConfig DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new ServerConfig();
-  }
-
-  public static ServerConfig getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<ServerConfig>
-      PARSER = new com.google.protobuf.AbstractParser<ServerConfig>() {
-    @Override
-    public ServerConfig parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ServerConfig(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<ServerConfig> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<ServerConfig> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public ServerConfig getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

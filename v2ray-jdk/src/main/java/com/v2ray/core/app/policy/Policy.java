@@ -6,3179 +6,3414 @@ package com.v2ray.core.app.policy;
 /**
  * Protobuf type {@code v2ray.core.app.policy.Policy}
  */
-public  final class Policy extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy)
-    PolicyOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use Policy.newBuilder() to construct.
-  private Policy(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private Policy() {
-  }
+public final class Policy extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy)
+        PolicyOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private Policy(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use Policy.newBuilder() to construct.
+    private Policy(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            Timeout.Builder subBuilder = null;
-            if (timeout_ != null) {
-              subBuilder = timeout_.toBuilder();
-            }
-            timeout_ = input.readMessage(Timeout.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(timeout_);
-              timeout_ = subBuilder.buildPartial();
-            }
 
-            break;
-          }
-          case 18: {
-            Stats.Builder subBuilder = null;
-            if (stats_ != null) {
-              subBuilder = stats_.toBuilder();
-            }
-            stats_ = input.readMessage(Stats.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(stats_);
-              stats_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 26: {
-            Buffer.Builder subBuilder = null;
-            if (buffer_ != null) {
-              subBuilder = buffer_.toBuilder();
-            }
-            buffer_ = input.readMessage(Buffer.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(buffer_);
-              buffer_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_descriptor;
-  }
-
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            Policy.class, Builder.class);
-  }
-
-  public interface TimeoutOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Policy.Timeout)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-     */
-    boolean hasHandshake();
-    /**
-     * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-     */
-    com.v2ray.core.app.policy.Second getHandshake();
-    /**
-     * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-     */
-    com.v2ray.core.app.policy.SecondOrBuilder getHandshakeOrBuilder();
-
-    /**
-     * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-     */
-    boolean hasConnectionIdle();
-    /**
-     * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-     */
-    com.v2ray.core.app.policy.Second getConnectionIdle();
-    /**
-     * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-     */
-    com.v2ray.core.app.policy.SecondOrBuilder getConnectionIdleOrBuilder();
-
-    /**
-     * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-     */
-    boolean hasUplinkOnly();
-    /**
-     * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-     */
-    com.v2ray.core.app.policy.Second getUplinkOnly();
-    /**
-     * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-     */
-    com.v2ray.core.app.policy.SecondOrBuilder getUplinkOnlyOrBuilder();
-
-    /**
-     * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-     */
-    boolean hasDownlinkOnly();
-    /**
-     * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-     */
-    com.v2ray.core.app.policy.Second getDownlinkOnly();
-    /**
-     * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-     */
-    com.v2ray.core.app.policy.SecondOrBuilder getDownlinkOnlyOrBuilder();
-  }
-  /**
-   * <pre>
-   * Timeout is a message for timeout settings in various stages, in seconds.
-   * </pre>
-   *
-   * Protobuf type {@code v2ray.core.app.policy.Policy.Timeout}
-   */
-  public  static final class Timeout extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy.Timeout)
-      TimeoutOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Timeout.newBuilder() to construct.
-    private Timeout(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Timeout() {
+    private Policy() {
     }
 
     @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+        return this.unknownFields;
     }
-    private Timeout(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              com.v2ray.core.app.policy.Second.Builder subBuilder = null;
-              if (handshake_ != null) {
-                subBuilder = handshake_.toBuilder();
-              }
-              handshake_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(handshake_);
-                handshake_ = subBuilder.buildPartial();
-              }
 
-              break;
-            }
-            case 18: {
-              com.v2ray.core.app.policy.Second.Builder subBuilder = null;
-              if (connectionIdle_ != null) {
-                subBuilder = connectionIdle_.toBuilder();
-              }
-              connectionIdle_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(connectionIdle_);
-                connectionIdle_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 26: {
-              com.v2ray.core.app.policy.Second.Builder subBuilder = null;
-              if (uplinkOnly_ != null) {
-                subBuilder = uplinkOnly_.toBuilder();
-              }
-              uplinkOnly_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(uplinkOnly_);
-                uplinkOnly_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            case 34: {
-              com.v2ray.core.app.policy.Second.Builder subBuilder = null;
-              if (downlinkOnly_ != null) {
-                subBuilder = downlinkOnly_.toBuilder();
-              }
-              downlinkOnly_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(downlinkOnly_);
-                downlinkOnly_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
+    private Policy(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 10: {
+                        Timeout.Builder subBuilder = null;
+                        if (timeout_ != null) {
+                            subBuilder = timeout_.toBuilder();
+                        }
+                        timeout_ = input.readMessage(Timeout.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(timeout_);
+                            timeout_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 18: {
+                        Stats.Builder subBuilder = null;
+                        if (stats_ != null) {
+                            subBuilder = stats_.toBuilder();
+                        }
+                        stats_ = input.readMessage(Stats.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(stats_);
+                            stats_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 26: {
+                        Buffer.Builder subBuilder = null;
+                        if (buffer_ != null) {
+                            subBuilder = buffer_.toBuilder();
+                        }
+                        buffer_ = input.readMessage(Buffer.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(buffer_);
+                            buffer_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_descriptor;
+    getDescriptor() {
+        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Timeout.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Policy.class, Builder.class);
     }
 
-    public static final int HANDSHAKE_FIELD_NUMBER = 1;
-    private com.v2ray.core.app.policy.Second handshake_;
-    /**
-     * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-     */
-    public boolean hasHandshake() {
-      return handshake_ != null;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-     */
-    public com.v2ray.core.app.policy.Second getHandshake() {
-      return handshake_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : handshake_;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-     */
-    public com.v2ray.core.app.policy.SecondOrBuilder getHandshakeOrBuilder() {
-      return getHandshake();
+    public interface TimeoutOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Policy.Timeout)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+         */
+        boolean hasHandshake();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+         */
+        com.v2ray.core.app.policy.Second getHandshake();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+         */
+        com.v2ray.core.app.policy.SecondOrBuilder getHandshakeOrBuilder();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+         */
+        boolean hasConnectionIdle();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+         */
+        com.v2ray.core.app.policy.Second getConnectionIdle();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+         */
+        com.v2ray.core.app.policy.SecondOrBuilder getConnectionIdleOrBuilder();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+         */
+        boolean hasUplinkOnly();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+         */
+        com.v2ray.core.app.policy.Second getUplinkOnly();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+         */
+        com.v2ray.core.app.policy.SecondOrBuilder getUplinkOnlyOrBuilder();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+         */
+        boolean hasDownlinkOnly();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+         */
+        com.v2ray.core.app.policy.Second getDownlinkOnly();
+
+        /**
+         * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+         */
+        com.v2ray.core.app.policy.SecondOrBuilder getDownlinkOnlyOrBuilder();
     }
 
-    public static final int CONNECTION_IDLE_FIELD_NUMBER = 2;
-    private com.v2ray.core.app.policy.Second connectionIdle_;
-    /**
-     * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-     */
-    public boolean hasConnectionIdle() {
-      return connectionIdle_ != null;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-     */
-    public com.v2ray.core.app.policy.Second getConnectionIdle() {
-      return connectionIdle_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : connectionIdle_;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-     */
-    public com.v2ray.core.app.policy.SecondOrBuilder getConnectionIdleOrBuilder() {
-      return getConnectionIdle();
-    }
-
-    public static final int UPLINK_ONLY_FIELD_NUMBER = 3;
-    private com.v2ray.core.app.policy.Second uplinkOnly_;
-    /**
-     * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-     */
-    public boolean hasUplinkOnly() {
-      return uplinkOnly_ != null;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-     */
-    public com.v2ray.core.app.policy.Second getUplinkOnly() {
-      return uplinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : uplinkOnly_;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-     */
-    public com.v2ray.core.app.policy.SecondOrBuilder getUplinkOnlyOrBuilder() {
-      return getUplinkOnly();
-    }
-
-    public static final int DOWNLINK_ONLY_FIELD_NUMBER = 4;
-    private com.v2ray.core.app.policy.Second downlinkOnly_;
-    /**
-     * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-     */
-    public boolean hasDownlinkOnly() {
-      return downlinkOnly_ != null;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-     */
-    public com.v2ray.core.app.policy.Second getDownlinkOnly() {
-      return downlinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : downlinkOnly_;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-     */
-    public com.v2ray.core.app.policy.SecondOrBuilder getDownlinkOnlyOrBuilder() {
-      return getDownlinkOnly();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (handshake_ != null) {
-        output.writeMessage(1, getHandshake());
-      }
-      if (connectionIdle_ != null) {
-        output.writeMessage(2, getConnectionIdle());
-      }
-      if (uplinkOnly_ != null) {
-        output.writeMessage(3, getUplinkOnly());
-      }
-      if (downlinkOnly_ != null) {
-        output.writeMessage(4, getDownlinkOnly());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (handshake_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getHandshake());
-      }
-      if (connectionIdle_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, getConnectionIdle());
-      }
-      if (uplinkOnly_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, getUplinkOnly());
-      }
-      if (downlinkOnly_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, getDownlinkOnly());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof Timeout)) {
-        return super.equals(obj);
-      }
-      Timeout other = (Timeout) obj;
-
-      if (hasHandshake() != other.hasHandshake()) return false;
-      if (hasHandshake()) {
-        if (!getHandshake()
-            .equals(other.getHandshake())) return false;
-      }
-      if (hasConnectionIdle() != other.hasConnectionIdle()) return false;
-      if (hasConnectionIdle()) {
-        if (!getConnectionIdle()
-            .equals(other.getConnectionIdle())) return false;
-      }
-      if (hasUplinkOnly() != other.hasUplinkOnly()) return false;
-      if (hasUplinkOnly()) {
-        if (!getUplinkOnly()
-            .equals(other.getUplinkOnly())) return false;
-      }
-      if (hasDownlinkOnly() != other.hasDownlinkOnly()) return false;
-      if (hasDownlinkOnly()) {
-        if (!getDownlinkOnly()
-            .equals(other.getDownlinkOnly())) return false;
-      }
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasHandshake()) {
-        hash = (37 * hash) + HANDSHAKE_FIELD_NUMBER;
-        hash = (53 * hash) + getHandshake().hashCode();
-      }
-      if (hasConnectionIdle()) {
-        hash = (37 * hash) + CONNECTION_IDLE_FIELD_NUMBER;
-        hash = (53 * hash) + getConnectionIdle().hashCode();
-      }
-      if (hasUplinkOnly()) {
-        hash = (37 * hash) + UPLINK_ONLY_FIELD_NUMBER;
-        hash = (53 * hash) + getUplinkOnly().hashCode();
-      }
-      if (hasDownlinkOnly()) {
-        hash = (37 * hash) + DOWNLINK_ONLY_FIELD_NUMBER;
-        hash = (53 * hash) + getDownlinkOnly().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static Timeout parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Timeout parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Timeout parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Timeout parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Timeout parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Timeout parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Timeout parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Timeout parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Timeout parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static Timeout parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Timeout parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Timeout parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(Timeout prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * <pre>
      * Timeout is a message for timeout settings in various stages, in seconds.
      * </pre>
-     *
+     * <p>
      * Protobuf type {@code v2ray.core.app.policy.Policy.Timeout}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy.Timeout)
-        TimeoutOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_descriptor;
-      }
+    public static final class Timeout extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy.Timeout)
+            TimeoutOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @Override
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Timeout.class, Builder.class);
-      }
-
-      // Construct using com.v2ray.core.app.policy.Policy.Timeout.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @Override
-      public Builder clear() {
-        super.clear();
-        if (handshakeBuilder_ == null) {
-          handshake_ = null;
-        } else {
-          handshake_ = null;
-          handshakeBuilder_ = null;
-        }
-        if (connectionIdleBuilder_ == null) {
-          connectionIdle_ = null;
-        } else {
-          connectionIdle_ = null;
-          connectionIdleBuilder_ = null;
-        }
-        if (uplinkOnlyBuilder_ == null) {
-          uplinkOnly_ = null;
-        } else {
-          uplinkOnly_ = null;
-          uplinkOnlyBuilder_ = null;
-        }
-        if (downlinkOnlyBuilder_ == null) {
-          downlinkOnly_ = null;
-        } else {
-          downlinkOnly_ = null;
-          downlinkOnlyBuilder_ = null;
-        }
-        return this;
-      }
-
-      @Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_descriptor;
-      }
-
-      @Override
-      public Timeout getDefaultInstanceForType() {
-        return Timeout.getDefaultInstance();
-      }
-
-      @Override
-      public Timeout build() {
-        Timeout result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @Override
-      public Timeout buildPartial() {
-        Timeout result = new Timeout(this);
-        if (handshakeBuilder_ == null) {
-          result.handshake_ = handshake_;
-        } else {
-          result.handshake_ = handshakeBuilder_.build();
-        }
-        if (connectionIdleBuilder_ == null) {
-          result.connectionIdle_ = connectionIdle_;
-        } else {
-          result.connectionIdle_ = connectionIdleBuilder_.build();
-        }
-        if (uplinkOnlyBuilder_ == null) {
-          result.uplinkOnly_ = uplinkOnly_;
-        } else {
-          result.uplinkOnly_ = uplinkOnlyBuilder_.build();
-        }
-        if (downlinkOnlyBuilder_ == null) {
-          result.downlinkOnly_ = downlinkOnly_;
-        } else {
-          result.downlinkOnly_ = downlinkOnlyBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      @Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Timeout) {
-          return mergeFrom((Timeout)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(Timeout other) {
-        if (other == Timeout.getDefaultInstance()) return this;
-        if (other.hasHandshake()) {
-          mergeHandshake(other.getHandshake());
-        }
-        if (other.hasConnectionIdle()) {
-          mergeConnectionIdle(other.getConnectionIdle());
-        }
-        if (other.hasUplinkOnly()) {
-          mergeUplinkOnly(other.getUplinkOnly());
-        }
-        if (other.hasDownlinkOnly()) {
-          mergeDownlinkOnly(other.getDownlinkOnly());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Timeout parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Timeout) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private com.v2ray.core.app.policy.Second handshake_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> handshakeBuilder_;
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public boolean hasHandshake() {
-        return handshakeBuilder_ != null || handshake_ != null;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public com.v2ray.core.app.policy.Second getHandshake() {
-        if (handshakeBuilder_ == null) {
-          return handshake_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : handshake_;
-        } else {
-          return handshakeBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public Builder setHandshake(com.v2ray.core.app.policy.Second value) {
-        if (handshakeBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          handshake_ = value;
-          onChanged();
-        } else {
-          handshakeBuilder_.setMessage(value);
+        // Use Timeout.newBuilder() to construct.
+        private Timeout(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
 
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public Builder setHandshake(
-          com.v2ray.core.app.policy.Second.Builder builderForValue) {
-        if (handshakeBuilder_ == null) {
-          handshake_ = builderForValue.build();
-          onChanged();
-        } else {
-          handshakeBuilder_.setMessage(builderForValue.build());
+        private Timeout() {
         }
 
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public Builder mergeHandshake(com.v2ray.core.app.policy.Second value) {
-        if (handshakeBuilder_ == null) {
-          if (handshake_ != null) {
-            handshake_ =
-              com.v2ray.core.app.policy.Second.newBuilder(handshake_).mergeFrom(value).buildPartial();
-          } else {
-            handshake_ = value;
-          }
-          onChanged();
-        } else {
-          handshakeBuilder_.mergeFrom(value);
+        @Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
 
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public Builder clearHandshake() {
-        if (handshakeBuilder_ == null) {
-          handshake_ = null;
-          onChanged();
-        } else {
-          handshake_ = null;
-          handshakeBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public com.v2ray.core.app.policy.Second.Builder getHandshakeBuilder() {
-        
-        onChanged();
-        return getHandshakeFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      public com.v2ray.core.app.policy.SecondOrBuilder getHandshakeOrBuilder() {
-        if (handshakeBuilder_ != null) {
-          return handshakeBuilder_.getMessageOrBuilder();
-        } else {
-          return handshake_ == null ?
-              com.v2ray.core.app.policy.Second.getDefaultInstance() : handshake_;
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> 
-          getHandshakeFieldBuilder() {
-        if (handshakeBuilder_ == null) {
-          handshakeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
-                  getHandshake(),
-                  getParentForChildren(),
-                  isClean());
-          handshake_ = null;
-        }
-        return handshakeBuilder_;
-      }
-
-      private com.v2ray.core.app.policy.Second connectionIdle_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> connectionIdleBuilder_;
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public boolean hasConnectionIdle() {
-        return connectionIdleBuilder_ != null || connectionIdle_ != null;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public com.v2ray.core.app.policy.Second getConnectionIdle() {
-        if (connectionIdleBuilder_ == null) {
-          return connectionIdle_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : connectionIdle_;
-        } else {
-          return connectionIdleBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public Builder setConnectionIdle(com.v2ray.core.app.policy.Second value) {
-        if (connectionIdleBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          connectionIdle_ = value;
-          onChanged();
-        } else {
-          connectionIdleBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public Builder setConnectionIdle(
-          com.v2ray.core.app.policy.Second.Builder builderForValue) {
-        if (connectionIdleBuilder_ == null) {
-          connectionIdle_ = builderForValue.build();
-          onChanged();
-        } else {
-          connectionIdleBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public Builder mergeConnectionIdle(com.v2ray.core.app.policy.Second value) {
-        if (connectionIdleBuilder_ == null) {
-          if (connectionIdle_ != null) {
-            connectionIdle_ =
-              com.v2ray.core.app.policy.Second.newBuilder(connectionIdle_).mergeFrom(value).buildPartial();
-          } else {
-            connectionIdle_ = value;
-          }
-          onChanged();
-        } else {
-          connectionIdleBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public Builder clearConnectionIdle() {
-        if (connectionIdleBuilder_ == null) {
-          connectionIdle_ = null;
-          onChanged();
-        } else {
-          connectionIdle_ = null;
-          connectionIdleBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public com.v2ray.core.app.policy.Second.Builder getConnectionIdleBuilder() {
-        
-        onChanged();
-        return getConnectionIdleFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      public com.v2ray.core.app.policy.SecondOrBuilder getConnectionIdleOrBuilder() {
-        if (connectionIdleBuilder_ != null) {
-          return connectionIdleBuilder_.getMessageOrBuilder();
-        } else {
-          return connectionIdle_ == null ?
-              com.v2ray.core.app.policy.Second.getDefaultInstance() : connectionIdle_;
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> 
-          getConnectionIdleFieldBuilder() {
-        if (connectionIdleBuilder_ == null) {
-          connectionIdleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
-                  getConnectionIdle(),
-                  getParentForChildren(),
-                  isClean());
-          connectionIdle_ = null;
-        }
-        return connectionIdleBuilder_;
-      }
-
-      private com.v2ray.core.app.policy.Second uplinkOnly_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> uplinkOnlyBuilder_;
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public boolean hasUplinkOnly() {
-        return uplinkOnlyBuilder_ != null || uplinkOnly_ != null;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public com.v2ray.core.app.policy.Second getUplinkOnly() {
-        if (uplinkOnlyBuilder_ == null) {
-          return uplinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : uplinkOnly_;
-        } else {
-          return uplinkOnlyBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public Builder setUplinkOnly(com.v2ray.core.app.policy.Second value) {
-        if (uplinkOnlyBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          uplinkOnly_ = value;
-          onChanged();
-        } else {
-          uplinkOnlyBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public Builder setUplinkOnly(
-          com.v2ray.core.app.policy.Second.Builder builderForValue) {
-        if (uplinkOnlyBuilder_ == null) {
-          uplinkOnly_ = builderForValue.build();
-          onChanged();
-        } else {
-          uplinkOnlyBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public Builder mergeUplinkOnly(com.v2ray.core.app.policy.Second value) {
-        if (uplinkOnlyBuilder_ == null) {
-          if (uplinkOnly_ != null) {
-            uplinkOnly_ =
-              com.v2ray.core.app.policy.Second.newBuilder(uplinkOnly_).mergeFrom(value).buildPartial();
-          } else {
-            uplinkOnly_ = value;
-          }
-          onChanged();
-        } else {
-          uplinkOnlyBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public Builder clearUplinkOnly() {
-        if (uplinkOnlyBuilder_ == null) {
-          uplinkOnly_ = null;
-          onChanged();
-        } else {
-          uplinkOnly_ = null;
-          uplinkOnlyBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public com.v2ray.core.app.policy.Second.Builder getUplinkOnlyBuilder() {
-        
-        onChanged();
-        return getUplinkOnlyFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      public com.v2ray.core.app.policy.SecondOrBuilder getUplinkOnlyOrBuilder() {
-        if (uplinkOnlyBuilder_ != null) {
-          return uplinkOnlyBuilder_.getMessageOrBuilder();
-        } else {
-          return uplinkOnly_ == null ?
-              com.v2ray.core.app.policy.Second.getDefaultInstance() : uplinkOnly_;
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> 
-          getUplinkOnlyFieldBuilder() {
-        if (uplinkOnlyBuilder_ == null) {
-          uplinkOnlyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
-                  getUplinkOnly(),
-                  getParentForChildren(),
-                  isClean());
-          uplinkOnly_ = null;
-        }
-        return uplinkOnlyBuilder_;
-      }
-
-      private com.v2ray.core.app.policy.Second downlinkOnly_;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> downlinkOnlyBuilder_;
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public boolean hasDownlinkOnly() {
-        return downlinkOnlyBuilder_ != null || downlinkOnly_ != null;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public com.v2ray.core.app.policy.Second getDownlinkOnly() {
-        if (downlinkOnlyBuilder_ == null) {
-          return downlinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : downlinkOnly_;
-        } else {
-          return downlinkOnlyBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public Builder setDownlinkOnly(com.v2ray.core.app.policy.Second value) {
-        if (downlinkOnlyBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          downlinkOnly_ = value;
-          onChanged();
-        } else {
-          downlinkOnlyBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public Builder setDownlinkOnly(
-          com.v2ray.core.app.policy.Second.Builder builderForValue) {
-        if (downlinkOnlyBuilder_ == null) {
-          downlinkOnly_ = builderForValue.build();
-          onChanged();
-        } else {
-          downlinkOnlyBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public Builder mergeDownlinkOnly(com.v2ray.core.app.policy.Second value) {
-        if (downlinkOnlyBuilder_ == null) {
-          if (downlinkOnly_ != null) {
-            downlinkOnly_ =
-              com.v2ray.core.app.policy.Second.newBuilder(downlinkOnly_).mergeFrom(value).buildPartial();
-          } else {
-            downlinkOnly_ = value;
-          }
-          onChanged();
-        } else {
-          downlinkOnlyBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public Builder clearDownlinkOnly() {
-        if (downlinkOnlyBuilder_ == null) {
-          downlinkOnly_ = null;
-          onChanged();
-        } else {
-          downlinkOnly_ = null;
-          downlinkOnlyBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public com.v2ray.core.app.policy.Second.Builder getDownlinkOnlyBuilder() {
-        
-        onChanged();
-        return getDownlinkOnlyFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      public com.v2ray.core.app.policy.SecondOrBuilder getDownlinkOnlyOrBuilder() {
-        if (downlinkOnlyBuilder_ != null) {
-          return downlinkOnlyBuilder_.getMessageOrBuilder();
-        } else {
-          return downlinkOnly_ == null ?
-              com.v2ray.core.app.policy.Second.getDefaultInstance() : downlinkOnly_;
-        }
-      }
-      /**
-       * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> 
-          getDownlinkOnlyFieldBuilder() {
-        if (downlinkOnlyBuilder_ == null) {
-          downlinkOnlyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
-                  getDownlinkOnly(),
-                  getParentForChildren(),
-                  isClean());
-          downlinkOnly_ = null;
-        }
-        return downlinkOnlyBuilder_;
-      }
-      @Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy.Timeout)
-    }
-
-    // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy.Timeout)
-    private static final Timeout DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new Timeout();
-    }
-
-    public static Timeout getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Timeout>
-        PARSER = new com.google.protobuf.AbstractParser<Timeout>() {
-      @Override
-      public Timeout parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Timeout(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Timeout> parser() {
-      return PARSER;
-    }
-
-    @Override
-    public com.google.protobuf.Parser<Timeout> getParserForType() {
-      return PARSER;
-    }
-
-    @Override
-    public Timeout getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface StatsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Policy.Stats)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bool user_uplink = 1;</code>
-     */
-    boolean getUserUplink();
-
-    /**
-     * <code>bool user_downlink = 2;</code>
-     */
-    boolean getUserDownlink();
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.policy.Policy.Stats}
-   */
-  public  static final class Stats extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy.Stats)
-      StatsOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Stats.newBuilder() to construct.
-    private Stats(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Stats() {
-    }
-
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Stats(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              userUplink_ = input.readBool();
-              break;
+        private Timeout(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new NullPointerException();
             }
-            case 16: {
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 10: {
+                            com.v2ray.core.app.policy.Second.Builder subBuilder = null;
+                            if (handshake_ != null) {
+                                subBuilder = handshake_.toBuilder();
+                            }
+                            handshake_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
+                            if (subBuilder != null) {
+                                subBuilder.mergeFrom(handshake_);
+                                handshake_ = subBuilder.buildPartial();
+                            }
 
-              userDownlink_ = input.readBool();
-              break;
+                            break;
+                        }
+                        case 18: {
+                            com.v2ray.core.app.policy.Second.Builder subBuilder = null;
+                            if (connectionIdle_ != null) {
+                                subBuilder = connectionIdle_.toBuilder();
+                            }
+                            connectionIdle_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
+                            if (subBuilder != null) {
+                                subBuilder.mergeFrom(connectionIdle_);
+                                connectionIdle_ = subBuilder.buildPartial();
+                            }
+
+                            break;
+                        }
+                        case 26: {
+                            com.v2ray.core.app.policy.Second.Builder subBuilder = null;
+                            if (uplinkOnly_ != null) {
+                                subBuilder = uplinkOnly_.toBuilder();
+                            }
+                            uplinkOnly_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
+                            if (subBuilder != null) {
+                                subBuilder.mergeFrom(uplinkOnly_);
+                                uplinkOnly_ = subBuilder.buildPartial();
+                            }
+
+                            break;
+                        }
+                        case 34: {
+                            com.v2ray.core.app.policy.Second.Builder subBuilder = null;
+                            if (downlinkOnly_ != null) {
+                                subBuilder = downlinkOnly_.toBuilder();
+                            }
+                            downlinkOnly_ = input.readMessage(com.v2ray.core.app.policy.Second.parser(), extensionRegistry);
+                            if (subBuilder != null) {
+                                subBuilder.mergeFrom(downlinkOnly_);
+                                downlinkOnly_ = subBuilder.buildPartial();
+                            }
+
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
             }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_descriptor;
-    }
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_descriptor;
+        }
 
-    @Override
-    protected FieldAccessorTable
+        @Override
+        protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Stats.class, Builder.class);
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Timeout.class, Builder.class);
+        }
+
+        public static final int HANDSHAKE_FIELD_NUMBER = 1;
+        private com.v2ray.core.app.policy.Second handshake_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+         */
+        public boolean hasHandshake() {
+            return handshake_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+         */
+        public com.v2ray.core.app.policy.Second getHandshake() {
+            return handshake_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : handshake_;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+         */
+        public com.v2ray.core.app.policy.SecondOrBuilder getHandshakeOrBuilder() {
+            return getHandshake();
+        }
+
+        public static final int CONNECTION_IDLE_FIELD_NUMBER = 2;
+        private com.v2ray.core.app.policy.Second connectionIdle_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+         */
+        public boolean hasConnectionIdle() {
+            return connectionIdle_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+         */
+        public com.v2ray.core.app.policy.Second getConnectionIdle() {
+            return connectionIdle_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : connectionIdle_;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+         */
+        public com.v2ray.core.app.policy.SecondOrBuilder getConnectionIdleOrBuilder() {
+            return getConnectionIdle();
+        }
+
+        public static final int UPLINK_ONLY_FIELD_NUMBER = 3;
+        private com.v2ray.core.app.policy.Second uplinkOnly_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+         */
+        public boolean hasUplinkOnly() {
+            return uplinkOnly_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+         */
+        public com.v2ray.core.app.policy.Second getUplinkOnly() {
+            return uplinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : uplinkOnly_;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+         */
+        public com.v2ray.core.app.policy.SecondOrBuilder getUplinkOnlyOrBuilder() {
+            return getUplinkOnly();
+        }
+
+        public static final int DOWNLINK_ONLY_FIELD_NUMBER = 4;
+        private com.v2ray.core.app.policy.Second downlinkOnly_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+         */
+        public boolean hasDownlinkOnly() {
+            return downlinkOnly_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+         */
+        public com.v2ray.core.app.policy.Second getDownlinkOnly() {
+            return downlinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : downlinkOnly_;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+         */
+        public com.v2ray.core.app.policy.SecondOrBuilder getDownlinkOnlyOrBuilder() {
+            return getDownlinkOnly();
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (handshake_ != null) {
+                output.writeMessage(1, getHandshake());
+            }
+            if (connectionIdle_ != null) {
+                output.writeMessage(2, getConnectionIdle());
+            }
+            if (uplinkOnly_ != null) {
+                output.writeMessage(3, getUplinkOnly());
+            }
+            if (downlinkOnly_ != null) {
+                output.writeMessage(4, getDownlinkOnly());
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (handshake_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(1, getHandshake());
+            }
+            if (connectionIdle_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(2, getConnectionIdle());
+            }
+            if (uplinkOnly_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(3, getUplinkOnly());
+            }
+            if (downlinkOnly_ != null) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(4, getDownlinkOnly());
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Timeout)) {
+                return super.equals(obj);
+            }
+            Timeout other = (Timeout) obj;
+
+            if (hasHandshake() != other.hasHandshake()) return false;
+            if (hasHandshake()) {
+                if (!getHandshake()
+                        .equals(other.getHandshake())) return false;
+            }
+            if (hasConnectionIdle() != other.hasConnectionIdle()) return false;
+            if (hasConnectionIdle()) {
+                if (!getConnectionIdle()
+                        .equals(other.getConnectionIdle())) return false;
+            }
+            if (hasUplinkOnly() != other.hasUplinkOnly()) return false;
+            if (hasUplinkOnly()) {
+                if (!getUplinkOnly()
+                        .equals(other.getUplinkOnly())) return false;
+            }
+            if (hasDownlinkOnly() != other.hasDownlinkOnly()) return false;
+            if (hasDownlinkOnly()) {
+                if (!getDownlinkOnly()
+                        .equals(other.getDownlinkOnly())) return false;
+            }
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            if (hasHandshake()) {
+                hash = (37 * hash) + HANDSHAKE_FIELD_NUMBER;
+                hash = (53 * hash) + getHandshake().hashCode();
+            }
+            if (hasConnectionIdle()) {
+                hash = (37 * hash) + CONNECTION_IDLE_FIELD_NUMBER;
+                hash = (53 * hash) + getConnectionIdle().hashCode();
+            }
+            if (hasUplinkOnly()) {
+                hash = (37 * hash) + UPLINK_ONLY_FIELD_NUMBER;
+                hash = (53 * hash) + getUplinkOnly().hashCode();
+            }
+            if (hasDownlinkOnly()) {
+                hash = (37 * hash) + DOWNLINK_ONLY_FIELD_NUMBER;
+                hash = (53 * hash) + getDownlinkOnly().hashCode();
+            }
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static Timeout parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Timeout parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Timeout parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Timeout parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Timeout parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Timeout parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Timeout parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static Timeout parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static Timeout parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static Timeout parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static Timeout parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static Timeout parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(Timeout prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @Override
+        protected Builder newBuilderForType(
+                BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * <pre>
+         * Timeout is a message for timeout settings in various stages, in seconds.
+         * </pre>
+         * <p>
+         * Protobuf type {@code v2ray.core.app.policy.Policy.Timeout}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy.Timeout)
+                TimeoutOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_descriptor;
+            }
+
+            @Override
+            protected FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                Timeout.class, Builder.class);
+            }
+
+            // Construct using com.v2ray.core.app.policy.Policy.Timeout.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @Override
+            public Builder clear() {
+                super.clear();
+                if (handshakeBuilder_ == null) {
+                    handshake_ = null;
+                } else {
+                    handshake_ = null;
+                    handshakeBuilder_ = null;
+                }
+                if (connectionIdleBuilder_ == null) {
+                    connectionIdle_ = null;
+                } else {
+                    connectionIdle_ = null;
+                    connectionIdleBuilder_ = null;
+                }
+                if (uplinkOnlyBuilder_ == null) {
+                    uplinkOnly_ = null;
+                } else {
+                    uplinkOnly_ = null;
+                    uplinkOnlyBuilder_ = null;
+                }
+                if (downlinkOnlyBuilder_ == null) {
+                    downlinkOnly_ = null;
+                } else {
+                    downlinkOnly_ = null;
+                    downlinkOnlyBuilder_ = null;
+                }
+                return this;
+            }
+
+            @Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Timeout_descriptor;
+            }
+
+            @Override
+            public Timeout getDefaultInstanceForType() {
+                return Timeout.getDefaultInstance();
+            }
+
+            @Override
+            public Timeout build() {
+                Timeout result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @Override
+            public Timeout buildPartial() {
+                Timeout result = new Timeout(this);
+                if (handshakeBuilder_ == null) {
+                    result.handshake_ = handshake_;
+                } else {
+                    result.handshake_ = handshakeBuilder_.build();
+                }
+                if (connectionIdleBuilder_ == null) {
+                    result.connectionIdle_ = connectionIdle_;
+                } else {
+                    result.connectionIdle_ = connectionIdleBuilder_.build();
+                }
+                if (uplinkOnlyBuilder_ == null) {
+                    result.uplinkOnly_ = uplinkOnly_;
+                } else {
+                    result.uplinkOnly_ = uplinkOnlyBuilder_.build();
+                }
+                if (downlinkOnlyBuilder_ == null) {
+                    result.downlinkOnly_ = downlinkOnly_;
+                } else {
+                    result.downlinkOnly_ = downlinkOnlyBuilder_.build();
+                }
+                onBuilt();
+                return result;
+            }
+
+            @Override
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.setField(field, value);
+            }
+
+            @Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+
+            @Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+
+            @Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.addRepeatedField(field, value);
+            }
+
+            @Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof Timeout) {
+                    return mergeFrom((Timeout) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(Timeout other) {
+                if (other == Timeout.getDefaultInstance()) return this;
+                if (other.hasHandshake()) {
+                    mergeHandshake(other.getHandshake());
+                }
+                if (other.hasConnectionIdle()) {
+                    mergeConnectionIdle(other.getConnectionIdle());
+                }
+                if (other.hasUplinkOnly()) {
+                    mergeUplinkOnly(other.getUplinkOnly());
+                }
+                if (other.hasDownlinkOnly()) {
+                    mergeDownlinkOnly(other.getDownlinkOnly());
+                }
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                Timeout parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (Timeout) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private com.v2ray.core.app.policy.Second handshake_;
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> handshakeBuilder_;
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public boolean hasHandshake() {
+                return handshakeBuilder_ != null || handshake_ != null;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public com.v2ray.core.app.policy.Second getHandshake() {
+                if (handshakeBuilder_ == null) {
+                    return handshake_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : handshake_;
+                } else {
+                    return handshakeBuilder_.getMessage();
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public Builder setHandshake(com.v2ray.core.app.policy.Second value) {
+                if (handshakeBuilder_ == null) {
+                    if (value == null) {
+                        throw new NullPointerException();
+                    }
+                    handshake_ = value;
+                    onChanged();
+                } else {
+                    handshakeBuilder_.setMessage(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public Builder setHandshake(
+                    com.v2ray.core.app.policy.Second.Builder builderForValue) {
+                if (handshakeBuilder_ == null) {
+                    handshake_ = builderForValue.build();
+                    onChanged();
+                } else {
+                    handshakeBuilder_.setMessage(builderForValue.build());
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public Builder mergeHandshake(com.v2ray.core.app.policy.Second value) {
+                if (handshakeBuilder_ == null) {
+                    if (handshake_ != null) {
+                        handshake_ =
+                                com.v2ray.core.app.policy.Second.newBuilder(handshake_).mergeFrom(value).buildPartial();
+                    } else {
+                        handshake_ = value;
+                    }
+                    onChanged();
+                } else {
+                    handshakeBuilder_.mergeFrom(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public Builder clearHandshake() {
+                if (handshakeBuilder_ == null) {
+                    handshake_ = null;
+                    onChanged();
+                } else {
+                    handshake_ = null;
+                    handshakeBuilder_ = null;
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public com.v2ray.core.app.policy.Second.Builder getHandshakeBuilder() {
+
+                onChanged();
+                return getHandshakeFieldBuilder().getBuilder();
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            public com.v2ray.core.app.policy.SecondOrBuilder getHandshakeOrBuilder() {
+                if (handshakeBuilder_ != null) {
+                    return handshakeBuilder_.getMessageOrBuilder();
+                } else {
+                    return handshake_ == null ?
+                            com.v2ray.core.app.policy.Second.getDefaultInstance() : handshake_;
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second handshake = 1;</code>
+             */
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>
+            getHandshakeFieldBuilder() {
+                if (handshakeBuilder_ == null) {
+                    handshakeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                            com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
+                            getHandshake(),
+                            getParentForChildren(),
+                            isClean());
+                    handshake_ = null;
+                }
+                return handshakeBuilder_;
+            }
+
+            private com.v2ray.core.app.policy.Second connectionIdle_;
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> connectionIdleBuilder_;
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public boolean hasConnectionIdle() {
+                return connectionIdleBuilder_ != null || connectionIdle_ != null;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public com.v2ray.core.app.policy.Second getConnectionIdle() {
+                if (connectionIdleBuilder_ == null) {
+                    return connectionIdle_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : connectionIdle_;
+                } else {
+                    return connectionIdleBuilder_.getMessage();
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public Builder setConnectionIdle(com.v2ray.core.app.policy.Second value) {
+                if (connectionIdleBuilder_ == null) {
+                    if (value == null) {
+                        throw new NullPointerException();
+                    }
+                    connectionIdle_ = value;
+                    onChanged();
+                } else {
+                    connectionIdleBuilder_.setMessage(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public Builder setConnectionIdle(
+                    com.v2ray.core.app.policy.Second.Builder builderForValue) {
+                if (connectionIdleBuilder_ == null) {
+                    connectionIdle_ = builderForValue.build();
+                    onChanged();
+                } else {
+                    connectionIdleBuilder_.setMessage(builderForValue.build());
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public Builder mergeConnectionIdle(com.v2ray.core.app.policy.Second value) {
+                if (connectionIdleBuilder_ == null) {
+                    if (connectionIdle_ != null) {
+                        connectionIdle_ =
+                                com.v2ray.core.app.policy.Second.newBuilder(connectionIdle_).mergeFrom(value).buildPartial();
+                    } else {
+                        connectionIdle_ = value;
+                    }
+                    onChanged();
+                } else {
+                    connectionIdleBuilder_.mergeFrom(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public Builder clearConnectionIdle() {
+                if (connectionIdleBuilder_ == null) {
+                    connectionIdle_ = null;
+                    onChanged();
+                } else {
+                    connectionIdle_ = null;
+                    connectionIdleBuilder_ = null;
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public com.v2ray.core.app.policy.Second.Builder getConnectionIdleBuilder() {
+
+                onChanged();
+                return getConnectionIdleFieldBuilder().getBuilder();
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            public com.v2ray.core.app.policy.SecondOrBuilder getConnectionIdleOrBuilder() {
+                if (connectionIdleBuilder_ != null) {
+                    return connectionIdleBuilder_.getMessageOrBuilder();
+                } else {
+                    return connectionIdle_ == null ?
+                            com.v2ray.core.app.policy.Second.getDefaultInstance() : connectionIdle_;
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second connection_idle = 2;</code>
+             */
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>
+            getConnectionIdleFieldBuilder() {
+                if (connectionIdleBuilder_ == null) {
+                    connectionIdleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                            com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
+                            getConnectionIdle(),
+                            getParentForChildren(),
+                            isClean());
+                    connectionIdle_ = null;
+                }
+                return connectionIdleBuilder_;
+            }
+
+            private com.v2ray.core.app.policy.Second uplinkOnly_;
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> uplinkOnlyBuilder_;
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public boolean hasUplinkOnly() {
+                return uplinkOnlyBuilder_ != null || uplinkOnly_ != null;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public com.v2ray.core.app.policy.Second getUplinkOnly() {
+                if (uplinkOnlyBuilder_ == null) {
+                    return uplinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : uplinkOnly_;
+                } else {
+                    return uplinkOnlyBuilder_.getMessage();
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public Builder setUplinkOnly(com.v2ray.core.app.policy.Second value) {
+                if (uplinkOnlyBuilder_ == null) {
+                    if (value == null) {
+                        throw new NullPointerException();
+                    }
+                    uplinkOnly_ = value;
+                    onChanged();
+                } else {
+                    uplinkOnlyBuilder_.setMessage(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public Builder setUplinkOnly(
+                    com.v2ray.core.app.policy.Second.Builder builderForValue) {
+                if (uplinkOnlyBuilder_ == null) {
+                    uplinkOnly_ = builderForValue.build();
+                    onChanged();
+                } else {
+                    uplinkOnlyBuilder_.setMessage(builderForValue.build());
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public Builder mergeUplinkOnly(com.v2ray.core.app.policy.Second value) {
+                if (uplinkOnlyBuilder_ == null) {
+                    if (uplinkOnly_ != null) {
+                        uplinkOnly_ =
+                                com.v2ray.core.app.policy.Second.newBuilder(uplinkOnly_).mergeFrom(value).buildPartial();
+                    } else {
+                        uplinkOnly_ = value;
+                    }
+                    onChanged();
+                } else {
+                    uplinkOnlyBuilder_.mergeFrom(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public Builder clearUplinkOnly() {
+                if (uplinkOnlyBuilder_ == null) {
+                    uplinkOnly_ = null;
+                    onChanged();
+                } else {
+                    uplinkOnly_ = null;
+                    uplinkOnlyBuilder_ = null;
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public com.v2ray.core.app.policy.Second.Builder getUplinkOnlyBuilder() {
+
+                onChanged();
+                return getUplinkOnlyFieldBuilder().getBuilder();
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            public com.v2ray.core.app.policy.SecondOrBuilder getUplinkOnlyOrBuilder() {
+                if (uplinkOnlyBuilder_ != null) {
+                    return uplinkOnlyBuilder_.getMessageOrBuilder();
+                } else {
+                    return uplinkOnly_ == null ?
+                            com.v2ray.core.app.policy.Second.getDefaultInstance() : uplinkOnly_;
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second uplink_only = 3;</code>
+             */
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>
+            getUplinkOnlyFieldBuilder() {
+                if (uplinkOnlyBuilder_ == null) {
+                    uplinkOnlyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                            com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
+                            getUplinkOnly(),
+                            getParentForChildren(),
+                            isClean());
+                    uplinkOnly_ = null;
+                }
+                return uplinkOnlyBuilder_;
+            }
+
+            private com.v2ray.core.app.policy.Second downlinkOnly_;
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder> downlinkOnlyBuilder_;
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public boolean hasDownlinkOnly() {
+                return downlinkOnlyBuilder_ != null || downlinkOnly_ != null;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public com.v2ray.core.app.policy.Second getDownlinkOnly() {
+                if (downlinkOnlyBuilder_ == null) {
+                    return downlinkOnly_ == null ? com.v2ray.core.app.policy.Second.getDefaultInstance() : downlinkOnly_;
+                } else {
+                    return downlinkOnlyBuilder_.getMessage();
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public Builder setDownlinkOnly(com.v2ray.core.app.policy.Second value) {
+                if (downlinkOnlyBuilder_ == null) {
+                    if (value == null) {
+                        throw new NullPointerException();
+                    }
+                    downlinkOnly_ = value;
+                    onChanged();
+                } else {
+                    downlinkOnlyBuilder_.setMessage(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public Builder setDownlinkOnly(
+                    com.v2ray.core.app.policy.Second.Builder builderForValue) {
+                if (downlinkOnlyBuilder_ == null) {
+                    downlinkOnly_ = builderForValue.build();
+                    onChanged();
+                } else {
+                    downlinkOnlyBuilder_.setMessage(builderForValue.build());
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public Builder mergeDownlinkOnly(com.v2ray.core.app.policy.Second value) {
+                if (downlinkOnlyBuilder_ == null) {
+                    if (downlinkOnly_ != null) {
+                        downlinkOnly_ =
+                                com.v2ray.core.app.policy.Second.newBuilder(downlinkOnly_).mergeFrom(value).buildPartial();
+                    } else {
+                        downlinkOnly_ = value;
+                    }
+                    onChanged();
+                } else {
+                    downlinkOnlyBuilder_.mergeFrom(value);
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public Builder clearDownlinkOnly() {
+                if (downlinkOnlyBuilder_ == null) {
+                    downlinkOnly_ = null;
+                    onChanged();
+                } else {
+                    downlinkOnly_ = null;
+                    downlinkOnlyBuilder_ = null;
+                }
+
+                return this;
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public com.v2ray.core.app.policy.Second.Builder getDownlinkOnlyBuilder() {
+
+                onChanged();
+                return getDownlinkOnlyFieldBuilder().getBuilder();
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            public com.v2ray.core.app.policy.SecondOrBuilder getDownlinkOnlyOrBuilder() {
+                if (downlinkOnlyBuilder_ != null) {
+                    return downlinkOnlyBuilder_.getMessageOrBuilder();
+                } else {
+                    return downlinkOnly_ == null ?
+                            com.v2ray.core.app.policy.Second.getDefaultInstance() : downlinkOnly_;
+                }
+            }
+
+            /**
+             * <code>.v2ray.core.app.policy.Second downlink_only = 4;</code>
+             */
+            private com.google.protobuf.SingleFieldBuilderV3<
+                    com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>
+            getDownlinkOnlyFieldBuilder() {
+                if (downlinkOnlyBuilder_ == null) {
+                    downlinkOnlyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                            com.v2ray.core.app.policy.Second, com.v2ray.core.app.policy.Second.Builder, com.v2ray.core.app.policy.SecondOrBuilder>(
+                            getDownlinkOnly(),
+                            getParentForChildren(),
+                            isClean());
+                    downlinkOnly_ = null;
+                }
+                return downlinkOnlyBuilder_;
+            }
+
+            @Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy.Timeout)
+        }
+
+        // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy.Timeout)
+        private static final Timeout DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new Timeout();
+        }
+
+        public static Timeout getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<Timeout>
+                PARSER = new com.google.protobuf.AbstractParser<Timeout>() {
+            @Override
+            public Timeout parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new Timeout(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<Timeout> parser() {
+            return PARSER;
+        }
+
+        @Override
+        public com.google.protobuf.Parser<Timeout> getParserForType() {
+            return PARSER;
+        }
+
+        @Override
+        public Timeout getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int USER_UPLINK_FIELD_NUMBER = 1;
-    private boolean userUplink_;
-    /**
-     * <code>bool user_uplink = 1;</code>
-     */
-    public boolean getUserUplink() {
-      return userUplink_;
+    public interface StatsOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Policy.Stats)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>bool user_uplink = 1;</code>
+         */
+        boolean getUserUplink();
+
+        /**
+         * <code>bool user_downlink = 2;</code>
+         */
+        boolean getUserDownlink();
     }
 
-    public static final int USER_DOWNLINK_FIELD_NUMBER = 2;
-    private boolean userDownlink_;
-    /**
-     * <code>bool user_downlink = 2;</code>
-     */
-    public boolean getUserDownlink() {
-      return userDownlink_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (userUplink_ != false) {
-        output.writeBool(1, userUplink_);
-      }
-      if (userDownlink_ != false) {
-        output.writeBool(2, userDownlink_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (userUplink_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, userUplink_);
-      }
-      if (userDownlink_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, userDownlink_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof Stats)) {
-        return super.equals(obj);
-      }
-      Stats other = (Stats) obj;
-
-      if (getUserUplink()
-          != other.getUserUplink()) return false;
-      if (getUserDownlink()
-          != other.getUserDownlink()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + USER_UPLINK_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getUserUplink());
-      hash = (37 * hash) + USER_DOWNLINK_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getUserDownlink());
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static Stats parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Stats parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Stats parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Stats parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Stats parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Stats parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Stats parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Stats parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Stats parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static Stats parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Stats parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Stats parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(Stats prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code v2ray.core.app.policy.Policy.Stats}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy.Stats)
-        StatsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_descriptor;
-      }
+    public static final class Stats extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy.Stats)
+            StatsOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @Override
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Stats.class, Builder.class);
-      }
-
-      // Construct using com.v2ray.core.app.policy.Policy.Stats.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        // Use Stats.newBuilder() to construct.
+        private Stats(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @Override
-      public Builder clear() {
-        super.clear();
-        userUplink_ = false;
 
-        userDownlink_ = false;
-
-        return this;
-      }
-
-      @Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_descriptor;
-      }
-
-      @Override
-      public Stats getDefaultInstanceForType() {
-        return Stats.getDefaultInstance();
-      }
-
-      @Override
-      public Stats build() {
-        Stats result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private Stats() {
         }
-        return result;
-      }
 
-      @Override
-      public Stats buildPartial() {
-        Stats result = new Stats(this);
-        result.userUplink_ = userUplink_;
-        result.userDownlink_ = userDownlink_;
-        onBuilt();
-        return result;
-      }
-
-      @Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      @Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Stats) {
-          return mergeFrom((Stats)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
-      }
 
-      public Builder mergeFrom(Stats other) {
-        if (other == Stats.getDefaultInstance()) return this;
-        if (other.getUserUplink() != false) {
-          setUserUplink(other.getUserUplink());
-        }
-        if (other.getUserDownlink() != false) {
-          setUserDownlink(other.getUserDownlink());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Stats parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Stats) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private boolean userUplink_ ;
-      /**
-       * <code>bool user_uplink = 1;</code>
-       */
-      public boolean getUserUplink() {
-        return userUplink_;
-      }
-      /**
-       * <code>bool user_uplink = 1;</code>
-       */
-      public Builder setUserUplink(boolean value) {
-        
-        userUplink_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool user_uplink = 1;</code>
-       */
-      public Builder clearUserUplink() {
-        
-        userUplink_ = false;
-        onChanged();
-        return this;
-      }
-
-      private boolean userDownlink_ ;
-      /**
-       * <code>bool user_downlink = 2;</code>
-       */
-      public boolean getUserDownlink() {
-        return userDownlink_;
-      }
-      /**
-       * <code>bool user_downlink = 2;</code>
-       */
-      public Builder setUserDownlink(boolean value) {
-        
-        userDownlink_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool user_downlink = 2;</code>
-       */
-      public Builder clearUserDownlink() {
-        
-        userDownlink_ = false;
-        onChanged();
-        return this;
-      }
-      @Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy.Stats)
-    }
-
-    // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy.Stats)
-    private static final Stats DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new Stats();
-    }
-
-    public static Stats getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Stats>
-        PARSER = new com.google.protobuf.AbstractParser<Stats>() {
-      @Override
-      public Stats parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Stats(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Stats> parser() {
-      return PARSER;
-    }
-
-    @Override
-    public com.google.protobuf.Parser<Stats> getParserForType() {
-      return PARSER;
-    }
-
-    @Override
-    public Stats getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface BufferOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Policy.Buffer)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * Buffer size per connection, in bytes. -1 for unlimited buffer.
-     * </pre>
-     *
-     * <code>int32 connection = 1;</code>
-     */
-    int getConnection();
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.policy.Policy.Buffer}
-   */
-  public  static final class Buffer extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy.Buffer)
-      BufferOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Buffer.newBuilder() to construct.
-    private Buffer(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Buffer() {
-    }
-
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Buffer(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              connection_ = input.readInt32();
-              break;
+        private Stats(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new NullPointerException();
             }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+
+                            userUplink_ = input.readBool();
+                            break;
+                        }
+                        case 16: {
+
+                            userDownlink_ = input.readBool();
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
             }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_descriptor;
-    }
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_descriptor;
+        }
 
-    @Override
-    protected FieldAccessorTable
+        @Override
+        protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Buffer.class, Builder.class);
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Stats.class, Builder.class);
+        }
+
+        public static final int USER_UPLINK_FIELD_NUMBER = 1;
+        private boolean userUplink_;
+
+        /**
+         * <code>bool user_uplink = 1;</code>
+         */
+        public boolean getUserUplink() {
+            return userUplink_;
+        }
+
+        public static final int USER_DOWNLINK_FIELD_NUMBER = 2;
+        private boolean userDownlink_;
+
+        /**
+         * <code>bool user_downlink = 2;</code>
+         */
+        public boolean getUserDownlink() {
+            return userDownlink_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (userUplink_ != false) {
+                output.writeBool(1, userUplink_);
+            }
+            if (userDownlink_ != false) {
+                output.writeBool(2, userDownlink_);
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (userUplink_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(1, userUplink_);
+            }
+            if (userDownlink_ != false) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeBoolSize(2, userDownlink_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Stats)) {
+                return super.equals(obj);
+            }
+            Stats other = (Stats) obj;
+
+            if (getUserUplink()
+                    != other.getUserUplink()) return false;
+            if (getUserDownlink()
+                    != other.getUserDownlink()) return false;
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            hash = (37 * hash) + USER_UPLINK_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                    getUserUplink());
+            hash = (37 * hash) + USER_DOWNLINK_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                    getUserDownlink());
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static Stats parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Stats parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Stats parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Stats parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Stats parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Stats parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Stats parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static Stats parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static Stats parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static Stats parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static Stats parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static Stats parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(Stats prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @Override
+        protected Builder newBuilderForType(
+                BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code v2ray.core.app.policy.Policy.Stats}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy.Stats)
+                StatsOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_descriptor;
+            }
+
+            @Override
+            protected FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                Stats.class, Builder.class);
+            }
+
+            // Construct using com.v2ray.core.app.policy.Policy.Stats.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @Override
+            public Builder clear() {
+                super.clear();
+                userUplink_ = false;
+
+                userDownlink_ = false;
+
+                return this;
+            }
+
+            @Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Stats_descriptor;
+            }
+
+            @Override
+            public Stats getDefaultInstanceForType() {
+                return Stats.getDefaultInstance();
+            }
+
+            @Override
+            public Stats build() {
+                Stats result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @Override
+            public Stats buildPartial() {
+                Stats result = new Stats(this);
+                result.userUplink_ = userUplink_;
+                result.userDownlink_ = userDownlink_;
+                onBuilt();
+                return result;
+            }
+
+            @Override
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.setField(field, value);
+            }
+
+            @Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+
+            @Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+
+            @Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.addRepeatedField(field, value);
+            }
+
+            @Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof Stats) {
+                    return mergeFrom((Stats) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(Stats other) {
+                if (other == Stats.getDefaultInstance()) return this;
+                if (other.getUserUplink() != false) {
+                    setUserUplink(other.getUserUplink());
+                }
+                if (other.getUserDownlink() != false) {
+                    setUserDownlink(other.getUserDownlink());
+                }
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                Stats parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (Stats) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private boolean userUplink_;
+
+            /**
+             * <code>bool user_uplink = 1;</code>
+             */
+            public boolean getUserUplink() {
+                return userUplink_;
+            }
+
+            /**
+             * <code>bool user_uplink = 1;</code>
+             */
+            public Builder setUserUplink(boolean value) {
+
+                userUplink_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>bool user_uplink = 1;</code>
+             */
+            public Builder clearUserUplink() {
+
+                userUplink_ = false;
+                onChanged();
+                return this;
+            }
+
+            private boolean userDownlink_;
+
+            /**
+             * <code>bool user_downlink = 2;</code>
+             */
+            public boolean getUserDownlink() {
+                return userDownlink_;
+            }
+
+            /**
+             * <code>bool user_downlink = 2;</code>
+             */
+            public Builder setUserDownlink(boolean value) {
+
+                userDownlink_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>bool user_downlink = 2;</code>
+             */
+            public Builder clearUserDownlink() {
+
+                userDownlink_ = false;
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy.Stats)
+        }
+
+        // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy.Stats)
+        private static final Stats DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new Stats();
+        }
+
+        public static Stats getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<Stats>
+                PARSER = new com.google.protobuf.AbstractParser<Stats>() {
+            @Override
+            public Stats parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new Stats(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<Stats> parser() {
+            return PARSER;
+        }
+
+        @Override
+        public com.google.protobuf.Parser<Stats> getParserForType() {
+            return PARSER;
+        }
+
+        @Override
+        public Stats getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int CONNECTION_FIELD_NUMBER = 1;
-    private int connection_;
-    /**
-     * <pre>
-     * Buffer size per connection, in bytes. -1 for unlimited buffer.
-     * </pre>
-     *
-     * <code>int32 connection = 1;</code>
-     */
-    public int getConnection() {
-      return connection_;
+    public interface BufferOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Policy.Buffer)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <pre>
+         * Buffer size per connection, in bytes. -1 for unlimited buffer.
+         * </pre>
+         *
+         * <code>int32 connection = 1;</code>
+         */
+        int getConnection();
     }
 
-    private byte memoizedIsInitialized = -1;
-    @Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (connection_ != 0) {
-        output.writeInt32(1, connection_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (connection_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, connection_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof Buffer)) {
-        return super.equals(obj);
-      }
-      Buffer other = (Buffer) obj;
-
-      if (getConnection()
-          != other.getConnection()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CONNECTION_FIELD_NUMBER;
-      hash = (53 * hash) + getConnection();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static Buffer parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Buffer parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Buffer parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Buffer parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Buffer parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static Buffer parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static Buffer parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Buffer parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Buffer parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static Buffer parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static Buffer parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static Buffer parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(Buffer prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code v2ray.core.app.policy.Policy.Buffer}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy.Buffer)
-        BufferOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_descriptor;
-      }
+    public static final class Buffer extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:v2ray.core.app.policy.Policy.Buffer)
+            BufferOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @Override
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                Buffer.class, Builder.class);
-      }
-
-      // Construct using com.v2ray.core.app.policy.Policy.Buffer.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        // Use Buffer.newBuilder() to construct.
+        private Buffer(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @Override
-      public Builder clear() {
-        super.clear();
-        connection_ = 0;
 
-        return this;
-      }
-
-      @Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_descriptor;
-      }
-
-      @Override
-      public Buffer getDefaultInstanceForType() {
-        return Buffer.getDefaultInstance();
-      }
-
-      @Override
-      public Buffer build() {
-        Buffer result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private Buffer() {
         }
-        return result;
-      }
 
-      @Override
-      public Buffer buildPartial() {
-        Buffer result = new Buffer(this);
-        result.connection_ = connection_;
-        onBuilt();
-        return result;
-      }
-
-      @Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      @Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof Buffer) {
-          return mergeFrom((Buffer)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
-      }
 
-      public Builder mergeFrom(Buffer other) {
-        if (other == Buffer.getDefaultInstance()) return this;
-        if (other.getConnection() != 0) {
-          setConnection(other.getConnection());
+        private Buffer(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new NullPointerException();
+            }
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+
+                            connection_ = input.readInt32();
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
+            }
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
 
-      @Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        Buffer parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (Buffer) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int connection_ ;
-      /**
-       * <pre>
-       * Buffer size per connection, in bytes. -1 for unlimited buffer.
-       * </pre>
-       *
-       * <code>int32 connection = 1;</code>
-       */
-      public int getConnection() {
-        return connection_;
-      }
-      /**
-       * <pre>
-       * Buffer size per connection, in bytes. -1 for unlimited buffer.
-       * </pre>
-       *
-       * <code>int32 connection = 1;</code>
-       */
-      public Builder setConnection(int value) {
-        
-        connection_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * Buffer size per connection, in bytes. -1 for unlimited buffer.
-       * </pre>
-       *
-       * <code>int32 connection = 1;</code>
-       */
-      public Builder clearConnection() {
-        
-        connection_ = 0;
-        onChanged();
-        return this;
-      }
-      @Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy.Buffer)
-    }
-
-    // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy.Buffer)
-    private static final Buffer DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new Buffer();
-    }
-
-    public static Buffer getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Buffer>
-        PARSER = new com.google.protobuf.AbstractParser<Buffer>() {
-      @Override
-      public Buffer parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Buffer(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Buffer> parser() {
-      return PARSER;
-    }
-
-    @Override
-    public com.google.protobuf.Parser<Buffer> getParserForType() {
-      return PARSER;
-    }
-
-    @Override
-    public Buffer getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public static final int TIMEOUT_FIELD_NUMBER = 1;
-  private Timeout timeout_;
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-   */
-  public boolean hasTimeout() {
-    return timeout_ != null;
-  }
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-   */
-  public Timeout getTimeout() {
-    return timeout_ == null ? Timeout.getDefaultInstance() : timeout_;
-  }
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-   */
-  public TimeoutOrBuilder getTimeoutOrBuilder() {
-    return getTimeout();
-  }
-
-  public static final int STATS_FIELD_NUMBER = 2;
-  private Stats stats_;
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-   */
-  public boolean hasStats() {
-    return stats_ != null;
-  }
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-   */
-  public Stats getStats() {
-    return stats_ == null ? Stats.getDefaultInstance() : stats_;
-  }
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-   */
-  public StatsOrBuilder getStatsOrBuilder() {
-    return getStats();
-  }
-
-  public static final int BUFFER_FIELD_NUMBER = 3;
-  private Buffer buffer_;
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-   */
-  public boolean hasBuffer() {
-    return buffer_ != null;
-  }
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-   */
-  public Buffer getBuffer() {
-    return buffer_ == null ? Buffer.getDefaultInstance() : buffer_;
-  }
-  /**
-   * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-   */
-  public BufferOrBuilder getBufferOrBuilder() {
-    return getBuffer();
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (timeout_ != null) {
-      output.writeMessage(1, getTimeout());
-    }
-    if (stats_ != null) {
-      output.writeMessage(2, getStats());
-    }
-    if (buffer_ != null) {
-      output.writeMessage(3, getBuffer());
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (timeout_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getTimeout());
-    }
-    if (stats_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getStats());
-    }
-    if (buffer_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getBuffer());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof Policy)) {
-      return super.equals(obj);
-    }
-    Policy other = (Policy) obj;
-
-    if (hasTimeout() != other.hasTimeout()) return false;
-    if (hasTimeout()) {
-      if (!getTimeout()
-          .equals(other.getTimeout())) return false;
-    }
-    if (hasStats() != other.hasStats()) return false;
-    if (hasStats()) {
-      if (!getStats()
-          .equals(other.getStats())) return false;
-    }
-    if (hasBuffer() != other.hasBuffer()) return false;
-    if (hasBuffer()) {
-      if (!getBuffer()
-          .equals(other.getBuffer())) return false;
-    }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasTimeout()) {
-      hash = (37 * hash) + TIMEOUT_FIELD_NUMBER;
-      hash = (53 * hash) + getTimeout().hashCode();
-    }
-    if (hasStats()) {
-      hash = (37 * hash) + STATS_FIELD_NUMBER;
-      hash = (53 * hash) + getStats().hashCode();
-    }
-    if (hasBuffer()) {
-      hash = (37 * hash) + BUFFER_FIELD_NUMBER;
-      hash = (53 * hash) + getBuffer().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static Policy parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Policy parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Policy parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Policy parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Policy parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Policy parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Policy parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static Policy parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static Policy parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static Policy parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static Policy parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static Policy parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(Policy prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.policy.Policy}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy)
-      com.v2ray.core.app.policy.PolicyOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_descriptor;
-    }
-
-    @Override
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Policy.class, Builder.class);
-    }
-
-    // Construct using com.v2ray.core.app.policy.Policy.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      if (timeoutBuilder_ == null) {
-        timeout_ = null;
-      } else {
-        timeout_ = null;
-        timeoutBuilder_ = null;
-      }
-      if (statsBuilder_ == null) {
-        stats_ = null;
-      } else {
-        stats_ = null;
-        statsBuilder_ = null;
-      }
-      if (bufferBuilder_ == null) {
-        buffer_ = null;
-      } else {
-        buffer_ = null;
-        bufferBuilder_ = null;
-      }
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_descriptor;
-    }
-
-    @Override
-    public Policy getDefaultInstanceForType() {
-      return Policy.getDefaultInstance();
-    }
-
-    @Override
-    public Policy build() {
-      Policy result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public Policy buildPartial() {
-      Policy result = new Policy(this);
-      if (timeoutBuilder_ == null) {
-        result.timeout_ = timeout_;
-      } else {
-        result.timeout_ = timeoutBuilder_.build();
-      }
-      if (statsBuilder_ == null) {
-        result.stats_ = stats_;
-      } else {
-        result.stats_ = statsBuilder_.build();
-      }
-      if (bufferBuilder_ == null) {
-        result.buffer_ = buffer_;
-      } else {
-        result.buffer_ = bufferBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof Policy) {
-        return mergeFrom((Policy)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(Policy other) {
-      if (other == Policy.getDefaultInstance()) return this;
-      if (other.hasTimeout()) {
-        mergeTimeout(other.getTimeout());
-      }
-      if (other.hasStats()) {
-        mergeStats(other.getStats());
-      }
-      if (other.hasBuffer()) {
-        mergeBuffer(other.getBuffer());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Policy parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (Policy) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_descriptor;
         }
-      }
-      return this;
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Buffer.class, Builder.class);
+        }
+
+        public static final int CONNECTION_FIELD_NUMBER = 1;
+        private int connection_;
+
+        /**
+         * <pre>
+         * Buffer size per connection, in bytes. -1 for unlimited buffer.
+         * </pre>
+         *
+         * <code>int32 connection = 1;</code>
+         */
+        public int getConnection() {
+            return connection_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (connection_ != 0) {
+                output.writeInt32(1, connection_);
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (connection_ != 0) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt32Size(1, connection_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof Buffer)) {
+                return super.equals(obj);
+            }
+            Buffer other = (Buffer) obj;
+
+            if (getConnection()
+                    != other.getConnection()) return false;
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            hash = (37 * hash) + CONNECTION_FIELD_NUMBER;
+            hash = (53 * hash) + getConnection();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static Buffer parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Buffer parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Buffer parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Buffer parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Buffer parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static Buffer parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static Buffer parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static Buffer parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static Buffer parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static Buffer parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static Buffer parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static Buffer parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(Buffer prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @Override
+        protected Builder newBuilderForType(
+                BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code v2ray.core.app.policy.Policy.Buffer}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy.Buffer)
+                BufferOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_descriptor;
+            }
+
+            @Override
+            protected FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                Buffer.class, Builder.class);
+            }
+
+            // Construct using com.v2ray.core.app.policy.Policy.Buffer.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @Override
+            public Builder clear() {
+                super.clear();
+                connection_ = 0;
+
+                return this;
+            }
+
+            @Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_Buffer_descriptor;
+            }
+
+            @Override
+            public Buffer getDefaultInstanceForType() {
+                return Buffer.getDefaultInstance();
+            }
+
+            @Override
+            public Buffer build() {
+                Buffer result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @Override
+            public Buffer buildPartial() {
+                Buffer result = new Buffer(this);
+                result.connection_ = connection_;
+                onBuilt();
+                return result;
+            }
+
+            @Override
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.setField(field, value);
+            }
+
+            @Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+
+            @Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+
+            @Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.addRepeatedField(field, value);
+            }
+
+            @Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof Buffer) {
+                    return mergeFrom((Buffer) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(Buffer other) {
+                if (other == Buffer.getDefaultInstance()) return this;
+                if (other.getConnection() != 0) {
+                    setConnection(other.getConnection());
+                }
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                Buffer parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (Buffer) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int connection_;
+
+            /**
+             * <pre>
+             * Buffer size per connection, in bytes. -1 for unlimited buffer.
+             * </pre>
+             *
+             * <code>int32 connection = 1;</code>
+             */
+            public int getConnection() {
+                return connection_;
+            }
+
+            /**
+             * <pre>
+             * Buffer size per connection, in bytes. -1 for unlimited buffer.
+             * </pre>
+             *
+             * <code>int32 connection = 1;</code>
+             */
+            public Builder setConnection(int value) {
+
+                connection_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Buffer size per connection, in bytes. -1 for unlimited buffer.
+             * </pre>
+             *
+             * <code>int32 connection = 1;</code>
+             */
+            public Builder clearConnection() {
+
+                connection_ = 0;
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy.Buffer)
+        }
+
+        // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy.Buffer)
+        private static final Buffer DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new Buffer();
+        }
+
+        public static Buffer getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<Buffer>
+                PARSER = new com.google.protobuf.AbstractParser<Buffer>() {
+            @Override
+            public Buffer parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new Buffer(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<Buffer> parser() {
+            return PARSER;
+        }
+
+        @Override
+        public com.google.protobuf.Parser<Buffer> getParserForType() {
+            return PARSER;
+        }
+
+        @Override
+        public Buffer getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
+    public static final int TIMEOUT_FIELD_NUMBER = 1;
     private Timeout timeout_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        Timeout, Timeout.Builder, TimeoutOrBuilder> timeoutBuilder_;
+
     /**
      * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
      */
     public boolean hasTimeout() {
-      return timeoutBuilder_ != null || timeout_ != null;
+        return timeout_ != null;
     }
+
     /**
      * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
      */
     public Timeout getTimeout() {
-      if (timeoutBuilder_ == null) {
         return timeout_ == null ? Timeout.getDefaultInstance() : timeout_;
-      } else {
-        return timeoutBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-     */
-    public Builder setTimeout(Timeout value) {
-      if (timeoutBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        timeout_ = value;
-        onChanged();
-      } else {
-        timeoutBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-     */
-    public Builder setTimeout(
-        Timeout.Builder builderForValue) {
-      if (timeoutBuilder_ == null) {
-        timeout_ = builderForValue.build();
-        onChanged();
-      } else {
-        timeoutBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-     */
-    public Builder mergeTimeout(Timeout value) {
-      if (timeoutBuilder_ == null) {
-        if (timeout_ != null) {
-          timeout_ =
-            Timeout.newBuilder(timeout_).mergeFrom(value).buildPartial();
-        } else {
-          timeout_ = value;
-        }
-        onChanged();
-      } else {
-        timeoutBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-     */
-    public Builder clearTimeout() {
-      if (timeoutBuilder_ == null) {
-        timeout_ = null;
-        onChanged();
-      } else {
-        timeout_ = null;
-        timeoutBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-     */
-    public Timeout.Builder getTimeoutBuilder() {
-      
-      onChanged();
-      return getTimeoutFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
      */
     public TimeoutOrBuilder getTimeoutOrBuilder() {
-      if (timeoutBuilder_ != null) {
-        return timeoutBuilder_.getMessageOrBuilder();
-      } else {
-        return timeout_ == null ?
-            Timeout.getDefaultInstance() : timeout_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        Timeout, Timeout.Builder, TimeoutOrBuilder>
-        getTimeoutFieldBuilder() {
-      if (timeoutBuilder_ == null) {
-        timeoutBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            Timeout, Timeout.Builder, TimeoutOrBuilder>(
-                getTimeout(),
-                getParentForChildren(),
-                isClean());
-        timeout_ = null;
-      }
-      return timeoutBuilder_;
+        return getTimeout();
     }
 
+    public static final int STATS_FIELD_NUMBER = 2;
     private Stats stats_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        Stats, Stats.Builder, StatsOrBuilder> statsBuilder_;
+
     /**
      * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
      */
     public boolean hasStats() {
-      return statsBuilder_ != null || stats_ != null;
+        return stats_ != null;
     }
+
     /**
      * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
      */
     public Stats getStats() {
-      if (statsBuilder_ == null) {
         return stats_ == null ? Stats.getDefaultInstance() : stats_;
-      } else {
-        return statsBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-     */
-    public Builder setStats(Stats value) {
-      if (statsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        stats_ = value;
-        onChanged();
-      } else {
-        statsBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-     */
-    public Builder setStats(
-        Stats.Builder builderForValue) {
-      if (statsBuilder_ == null) {
-        stats_ = builderForValue.build();
-        onChanged();
-      } else {
-        statsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-     */
-    public Builder mergeStats(Stats value) {
-      if (statsBuilder_ == null) {
-        if (stats_ != null) {
-          stats_ =
-            Stats.newBuilder(stats_).mergeFrom(value).buildPartial();
-        } else {
-          stats_ = value;
-        }
-        onChanged();
-      } else {
-        statsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-     */
-    public Builder clearStats() {
-      if (statsBuilder_ == null) {
-        stats_ = null;
-        onChanged();
-      } else {
-        stats_ = null;
-        statsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-     */
-    public Stats.Builder getStatsBuilder() {
-      
-      onChanged();
-      return getStatsFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
      */
     public StatsOrBuilder getStatsOrBuilder() {
-      if (statsBuilder_ != null) {
-        return statsBuilder_.getMessageOrBuilder();
-      } else {
-        return stats_ == null ?
-            Stats.getDefaultInstance() : stats_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        Stats, Stats.Builder, StatsOrBuilder>
-        getStatsFieldBuilder() {
-      if (statsBuilder_ == null) {
-        statsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            Stats, Stats.Builder, StatsOrBuilder>(
-                getStats(),
-                getParentForChildren(),
-                isClean());
-        stats_ = null;
-      }
-      return statsBuilder_;
+        return getStats();
     }
 
+    public static final int BUFFER_FIELD_NUMBER = 3;
     private Buffer buffer_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        Buffer, Buffer.Builder, BufferOrBuilder> bufferBuilder_;
+
     /**
      * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
      */
     public boolean hasBuffer() {
-      return bufferBuilder_ != null || buffer_ != null;
+        return buffer_ != null;
     }
+
     /**
      * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
      */
     public Buffer getBuffer() {
-      if (bufferBuilder_ == null) {
         return buffer_ == null ? Buffer.getDefaultInstance() : buffer_;
-      } else {
-        return bufferBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-     */
-    public Builder setBuffer(Buffer value) {
-      if (bufferBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        buffer_ = value;
-        onChanged();
-      } else {
-        bufferBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-     */
-    public Builder setBuffer(
-        Buffer.Builder builderForValue) {
-      if (bufferBuilder_ == null) {
-        buffer_ = builderForValue.build();
-        onChanged();
-      } else {
-        bufferBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-     */
-    public Builder mergeBuffer(Buffer value) {
-      if (bufferBuilder_ == null) {
-        if (buffer_ != null) {
-          buffer_ =
-            Buffer.newBuilder(buffer_).mergeFrom(value).buildPartial();
-        } else {
-          buffer_ = value;
-        }
-        onChanged();
-      } else {
-        bufferBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-     */
-    public Builder clearBuffer() {
-      if (bufferBuilder_ == null) {
-        buffer_ = null;
-        onChanged();
-      } else {
-        buffer_ = null;
-        bufferBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
-     */
-    public Buffer.Builder getBufferBuilder() {
-      
-      onChanged();
-      return getBufferFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
      */
     public BufferOrBuilder getBufferOrBuilder() {
-      if (bufferBuilder_ != null) {
-        return bufferBuilder_.getMessageOrBuilder();
-      } else {
-        return buffer_ == null ?
-            Buffer.getDefaultInstance() : buffer_;
-      }
+        return getBuffer();
     }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (timeout_ != null) {
+            output.writeMessage(1, getTimeout());
+        }
+        if (stats_ != null) {
+            output.writeMessage(2, getStats());
+        }
+        if (buffer_ != null) {
+            output.writeMessage(3, getBuffer());
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (timeout_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(1, getTimeout());
+        }
+        if (stats_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, getStats());
+        }
+        if (buffer_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(3, getBuffer());
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Policy)) {
+            return super.equals(obj);
+        }
+        Policy other = (Policy) obj;
+
+        if (hasTimeout() != other.hasTimeout()) return false;
+        if (hasTimeout()) {
+            if (!getTimeout()
+                    .equals(other.getTimeout())) return false;
+        }
+        if (hasStats() != other.hasStats()) return false;
+        if (hasStats()) {
+            if (!getStats()
+                    .equals(other.getStats())) return false;
+        }
+        if (hasBuffer() != other.hasBuffer()) return false;
+        if (hasBuffer()) {
+            if (!getBuffer()
+                    .equals(other.getBuffer())) return false;
+        }
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        if (hasTimeout()) {
+            hash = (37 * hash) + TIMEOUT_FIELD_NUMBER;
+            hash = (53 * hash) + getTimeout().hashCode();
+        }
+        if (hasStats()) {
+            hash = (37 * hash) + STATS_FIELD_NUMBER;
+            hash = (53 * hash) + getStats().hashCode();
+        }
+        if (hasBuffer()) {
+            hash = (37 * hash) + BUFFER_FIELD_NUMBER;
+            hash = (53 * hash) + getBuffer().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static Policy parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Policy parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Policy parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Policy parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Policy parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Policy parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Policy parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static Policy parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static Policy parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static Policy parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static Policy parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static Policy parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(Policy prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+     * Protobuf type {@code v2ray.core.app.policy.Policy}
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        Buffer, Buffer.Builder, BufferOrBuilder>
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.app.policy.Policy)
+            com.v2ray.core.app.policy.PolicyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Policy.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.app.policy.Policy.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            if (timeoutBuilder_ == null) {
+                timeout_ = null;
+            } else {
+                timeout_ = null;
+                timeoutBuilder_ = null;
+            }
+            if (statsBuilder_ == null) {
+                stats_ = null;
+            } else {
+                stats_ = null;
+                statsBuilder_ = null;
+            }
+            if (bufferBuilder_ == null) {
+                buffer_ = null;
+            } else {
+                buffer_ = null;
+                bufferBuilder_ = null;
+            }
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return com.v2ray.core.app.policy.ConfigOuterClass.internal_static_v2ray_core_app_policy_Policy_descriptor;
+        }
+
+        @Override
+        public Policy getDefaultInstanceForType() {
+            return Policy.getDefaultInstance();
+        }
+
+        @Override
+        public Policy build() {
+            Policy result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public Policy buildPartial() {
+            Policy result = new Policy(this);
+            if (timeoutBuilder_ == null) {
+                result.timeout_ = timeout_;
+            } else {
+                result.timeout_ = timeoutBuilder_.build();
+            }
+            if (statsBuilder_ == null) {
+                result.stats_ = stats_;
+            } else {
+                result.stats_ = statsBuilder_.build();
+            }
+            if (bufferBuilder_ == null) {
+                result.buffer_ = buffer_;
+            } else {
+                result.buffer_ = bufferBuilder_.build();
+            }
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof Policy) {
+                return mergeFrom((Policy) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(Policy other) {
+            if (other == Policy.getDefaultInstance()) return this;
+            if (other.hasTimeout()) {
+                mergeTimeout(other.getTimeout());
+            }
+            if (other.hasStats()) {
+                mergeStats(other.getStats());
+            }
+            if (other.hasBuffer()) {
+                mergeBuffer(other.getBuffer());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            Policy parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (Policy) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private Timeout timeout_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Timeout, Timeout.Builder, TimeoutOrBuilder> timeoutBuilder_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public boolean hasTimeout() {
+            return timeoutBuilder_ != null || timeout_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public Timeout getTimeout() {
+            if (timeoutBuilder_ == null) {
+                return timeout_ == null ? Timeout.getDefaultInstance() : timeout_;
+            } else {
+                return timeoutBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public Builder setTimeout(Timeout value) {
+            if (timeoutBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                timeout_ = value;
+                onChanged();
+            } else {
+                timeoutBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public Builder setTimeout(
+                Timeout.Builder builderForValue) {
+            if (timeoutBuilder_ == null) {
+                timeout_ = builderForValue.build();
+                onChanged();
+            } else {
+                timeoutBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public Builder mergeTimeout(Timeout value) {
+            if (timeoutBuilder_ == null) {
+                if (timeout_ != null) {
+                    timeout_ =
+                            Timeout.newBuilder(timeout_).mergeFrom(value).buildPartial();
+                } else {
+                    timeout_ = value;
+                }
+                onChanged();
+            } else {
+                timeoutBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public Builder clearTimeout() {
+            if (timeoutBuilder_ == null) {
+                timeout_ = null;
+                onChanged();
+            } else {
+                timeout_ = null;
+                timeoutBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public Timeout.Builder getTimeoutBuilder() {
+
+            onChanged();
+            return getTimeoutFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        public TimeoutOrBuilder getTimeoutOrBuilder() {
+            if (timeoutBuilder_ != null) {
+                return timeoutBuilder_.getMessageOrBuilder();
+            } else {
+                return timeout_ == null ?
+                        Timeout.getDefaultInstance() : timeout_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Timeout timeout = 1;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Timeout, Timeout.Builder, TimeoutOrBuilder>
+        getTimeoutFieldBuilder() {
+            if (timeoutBuilder_ == null) {
+                timeoutBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        Timeout, Timeout.Builder, TimeoutOrBuilder>(
+                        getTimeout(),
+                        getParentForChildren(),
+                        isClean());
+                timeout_ = null;
+            }
+            return timeoutBuilder_;
+        }
+
+        private Stats stats_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Stats, Stats.Builder, StatsOrBuilder> statsBuilder_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public boolean hasStats() {
+            return statsBuilder_ != null || stats_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public Stats getStats() {
+            if (statsBuilder_ == null) {
+                return stats_ == null ? Stats.getDefaultInstance() : stats_;
+            } else {
+                return statsBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public Builder setStats(Stats value) {
+            if (statsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                stats_ = value;
+                onChanged();
+            } else {
+                statsBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public Builder setStats(
+                Stats.Builder builderForValue) {
+            if (statsBuilder_ == null) {
+                stats_ = builderForValue.build();
+                onChanged();
+            } else {
+                statsBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public Builder mergeStats(Stats value) {
+            if (statsBuilder_ == null) {
+                if (stats_ != null) {
+                    stats_ =
+                            Stats.newBuilder(stats_).mergeFrom(value).buildPartial();
+                } else {
+                    stats_ = value;
+                }
+                onChanged();
+            } else {
+                statsBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public Builder clearStats() {
+            if (statsBuilder_ == null) {
+                stats_ = null;
+                onChanged();
+            } else {
+                stats_ = null;
+                statsBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public Stats.Builder getStatsBuilder() {
+
+            onChanged();
+            return getStatsFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        public StatsOrBuilder getStatsOrBuilder() {
+            if (statsBuilder_ != null) {
+                return statsBuilder_.getMessageOrBuilder();
+            } else {
+                return stats_ == null ?
+                        Stats.getDefaultInstance() : stats_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Stats stats = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Stats, Stats.Builder, StatsOrBuilder>
+        getStatsFieldBuilder() {
+            if (statsBuilder_ == null) {
+                statsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        Stats, Stats.Builder, StatsOrBuilder>(
+                        getStats(),
+                        getParentForChildren(),
+                        isClean());
+                stats_ = null;
+            }
+            return statsBuilder_;
+        }
+
+        private Buffer buffer_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Buffer, Buffer.Builder, BufferOrBuilder> bufferBuilder_;
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public boolean hasBuffer() {
+            return bufferBuilder_ != null || buffer_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public Buffer getBuffer() {
+            if (bufferBuilder_ == null) {
+                return buffer_ == null ? Buffer.getDefaultInstance() : buffer_;
+            } else {
+                return bufferBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public Builder setBuffer(Buffer value) {
+            if (bufferBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                buffer_ = value;
+                onChanged();
+            } else {
+                bufferBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public Builder setBuffer(
+                Buffer.Builder builderForValue) {
+            if (bufferBuilder_ == null) {
+                buffer_ = builderForValue.build();
+                onChanged();
+            } else {
+                bufferBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public Builder mergeBuffer(Buffer value) {
+            if (bufferBuilder_ == null) {
+                if (buffer_ != null) {
+                    buffer_ =
+                            Buffer.newBuilder(buffer_).mergeFrom(value).buildPartial();
+                } else {
+                    buffer_ = value;
+                }
+                onChanged();
+            } else {
+                bufferBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public Builder clearBuffer() {
+            if (bufferBuilder_ == null) {
+                buffer_ = null;
+                onChanged();
+            } else {
+                buffer_ = null;
+                bufferBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public Buffer.Builder getBufferBuilder() {
+
+            onChanged();
+            return getBufferFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        public BufferOrBuilder getBufferOrBuilder() {
+            if (bufferBuilder_ != null) {
+                return bufferBuilder_.getMessageOrBuilder();
+            } else {
+                return buffer_ == null ?
+                        Buffer.getDefaultInstance() : buffer_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.policy.Policy.Buffer buffer = 3;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                Buffer, Buffer.Builder, BufferOrBuilder>
         getBufferFieldBuilder() {
-      if (bufferBuilder_ == null) {
-        bufferBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            Buffer, Buffer.Builder, BufferOrBuilder>(
-                getBuffer(),
-                getParentForChildren(),
-                isClean());
-        buffer_ = null;
-      }
-      return bufferBuilder_;
+            if (bufferBuilder_ == null) {
+                bufferBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        Buffer, Buffer.Builder, BufferOrBuilder>(
+                        getBuffer(),
+                        getParentForChildren(),
+                        isClean());
+                buffer_ = null;
+            }
+            return bufferBuilder_;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy)
     }
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy)
+    private static final Policy DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new Policy();
+    }
+
+    public static Policy getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Policy>
+            PARSER = new com.google.protobuf.AbstractParser<Policy>() {
+        @Override
+        public Policy parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Policy(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<Policy> parser() {
+        return PARSER;
+    }
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<Policy> getParserForType() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public Policy getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.app.policy.Policy)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.app.policy.Policy)
-  private static final Policy DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new Policy();
-  }
-
-  public static Policy getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Policy>
-      PARSER = new com.google.protobuf.AbstractParser<Policy>() {
-    @Override
-    public Policy parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Policy(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<Policy> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<Policy> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public Policy getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

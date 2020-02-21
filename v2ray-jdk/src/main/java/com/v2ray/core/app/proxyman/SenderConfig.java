@@ -6,630 +6,133 @@ package com.v2ray.core.app.proxyman;
 /**
  * Protobuf type {@code v2ray.core.app.proxyman.SenderConfig}
  */
-public  final class SenderConfig extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.SenderConfig)
-    SenderConfigOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use SenderConfig.newBuilder() to construct.
-  private SenderConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private SenderConfig() {
-  }
+public final class SenderConfig extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.SenderConfig)
+        SenderConfigOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private SenderConfig(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use SenderConfig.newBuilder() to construct.
+    private SenderConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
-            if (via_ != null) {
-              subBuilder = via_.toBuilder();
-            }
-            via_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(via_);
-              via_ = subBuilder.buildPartial();
-            }
 
-            break;
-          }
-          case 18: {
-            com.v2ray.core.transport.internet.StreamConfig.Builder subBuilder = null;
-            if (streamSettings_ != null) {
-              subBuilder = streamSettings_.toBuilder();
-            }
-            streamSettings_ = input.readMessage(com.v2ray.core.transport.internet.StreamConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(streamSettings_);
-              streamSettings_ = subBuilder.buildPartial();
-            }
+    private SenderConfig() {
+    }
 
-            break;
-          }
-          case 26: {
-            com.v2ray.core.transport.internet.ProxyConfig.Builder subBuilder = null;
-            if (proxySettings_ != null) {
-              subBuilder = proxySettings_.toBuilder();
-            }
-            proxySettings_ = input.readMessage(com.v2ray.core.transport.internet.ProxyConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(proxySettings_);
-              proxySettings_ = subBuilder.buildPartial();
-            }
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
 
-            break;
-          }
-          case 34: {
-            com.v2ray.core.app.proxyman.MultiplexingConfig.Builder subBuilder = null;
-            if (multiplexSettings_ != null) {
-              subBuilder = multiplexSettings_.toBuilder();
-            }
-            multiplexSettings_ = input.readMessage(com.v2ray.core.app.proxyman.MultiplexingConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(multiplexSettings_);
-              multiplexSettings_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+    private SenderConfig(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
-  }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 10: {
+                        com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
+                        if (via_ != null) {
+                            subBuilder = via_.toBuilder();
+                        }
+                        via_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(via_);
+                            via_ = subBuilder.buildPartial();
+                        }
 
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            SenderConfig.class, Builder.class);
-  }
+                        break;
+                    }
+                    case 18: {
+                        com.v2ray.core.transport.internet.StreamConfig.Builder subBuilder = null;
+                        if (streamSettings_ != null) {
+                            subBuilder = streamSettings_.toBuilder();
+                        }
+                        streamSettings_ = input.readMessage(com.v2ray.core.transport.internet.StreamConfig.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(streamSettings_);
+                            streamSettings_ = subBuilder.buildPartial();
+                        }
 
-  public static final int VIA_FIELD_NUMBER = 1;
-  private com.v2ray.core.common.net.IPOrDomain via_;
-  /**
-   * <pre>
-   * Send traffic through the given IP. Only IP is allowed.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-   */
-  public boolean hasVia() {
-    return via_ != null;
-  }
-  /**
-   * <pre>
-   * Send traffic through the given IP. Only IP is allowed.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomain getVia() {
-    return via_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : via_;
-  }
-  /**
-   * <pre>
-   * Send traffic through the given IP. Only IP is allowed.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomainOrBuilder getViaOrBuilder() {
-    return getVia();
-  }
+                        break;
+                    }
+                    case 26: {
+                        com.v2ray.core.transport.internet.ProxyConfig.Builder subBuilder = null;
+                        if (proxySettings_ != null) {
+                            subBuilder = proxySettings_.toBuilder();
+                        }
+                        proxySettings_ = input.readMessage(com.v2ray.core.transport.internet.ProxyConfig.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(proxySettings_);
+                            proxySettings_ = subBuilder.buildPartial();
+                        }
 
-  public static final int STREAM_SETTINGS_FIELD_NUMBER = 2;
-  private com.v2ray.core.transport.internet.StreamConfig streamSettings_;
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-   */
-  public boolean hasStreamSettings() {
-    return streamSettings_ != null;
-  }
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-   */
-  public com.v2ray.core.transport.internet.StreamConfig getStreamSettings() {
-    return streamSettings_ == null ? com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
-  }
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-   */
-  public com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder() {
-    return getStreamSettings();
-  }
+                        break;
+                    }
+                    case 34: {
+                        com.v2ray.core.app.proxyman.MultiplexingConfig.Builder subBuilder = null;
+                        if (multiplexSettings_ != null) {
+                            subBuilder = multiplexSettings_.toBuilder();
+                        }
+                        multiplexSettings_ = input.readMessage(com.v2ray.core.app.proxyman.MultiplexingConfig.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(multiplexSettings_);
+                            multiplexSettings_ = subBuilder.buildPartial();
+                        }
 
-  public static final int PROXY_SETTINGS_FIELD_NUMBER = 3;
-  private com.v2ray.core.transport.internet.ProxyConfig proxySettings_;
-  /**
-   * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-   */
-  public boolean hasProxySettings() {
-    return proxySettings_ != null;
-  }
-  /**
-   * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-   */
-  public com.v2ray.core.transport.internet.ProxyConfig getProxySettings() {
-    return proxySettings_ == null ? com.v2ray.core.transport.internet.ProxyConfig.getDefaultInstance() : proxySettings_;
-  }
-  /**
-   * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-   */
-  public com.v2ray.core.transport.internet.ProxyConfigOrBuilder getProxySettingsOrBuilder() {
-    return getProxySettings();
-  }
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
+    }
 
-  public static final int MULTIPLEX_SETTINGS_FIELD_NUMBER = 4;
-  private com.v2ray.core.app.proxyman.MultiplexingConfig multiplexSettings_;
-  /**
-   * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-   */
-  public boolean hasMultiplexSettings() {
-    return multiplexSettings_ != null;
-  }
-  /**
-   * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-   */
-  public com.v2ray.core.app.proxyman.MultiplexingConfig getMultiplexSettings() {
-    return multiplexSettings_ == null ? com.v2ray.core.app.proxyman.MultiplexingConfig.getDefaultInstance() : multiplexSettings_;
-  }
-  /**
-   * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-   */
-  public com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder getMultiplexSettingsOrBuilder() {
-    return getMultiplexSettings();
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (via_ != null) {
-      output.writeMessage(1, getVia());
-    }
-    if (streamSettings_ != null) {
-      output.writeMessage(2, getStreamSettings());
-    }
-    if (proxySettings_ != null) {
-      output.writeMessage(3, getProxySettings());
-    }
-    if (multiplexSettings_ != null) {
-      output.writeMessage(4, getMultiplexSettings());
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (via_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getVia());
-    }
-    if (streamSettings_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getStreamSettings());
-    }
-    if (proxySettings_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getProxySettings());
-    }
-    if (multiplexSettings_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getMultiplexSettings());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof SenderConfig)) {
-      return super.equals(obj);
-    }
-    SenderConfig other = (SenderConfig) obj;
-
-    if (hasVia() != other.hasVia()) return false;
-    if (hasVia()) {
-      if (!getVia()
-          .equals(other.getVia())) return false;
-    }
-    if (hasStreamSettings() != other.hasStreamSettings()) return false;
-    if (hasStreamSettings()) {
-      if (!getStreamSettings()
-          .equals(other.getStreamSettings())) return false;
-    }
-    if (hasProxySettings() != other.hasProxySettings()) return false;
-    if (hasProxySettings()) {
-      if (!getProxySettings()
-          .equals(other.getProxySettings())) return false;
-    }
-    if (hasMultiplexSettings() != other.hasMultiplexSettings()) return false;
-    if (hasMultiplexSettings()) {
-      if (!getMultiplexSettings()
-          .equals(other.getMultiplexSettings())) return false;
-    }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasVia()) {
-      hash = (37 * hash) + VIA_FIELD_NUMBER;
-      hash = (53 * hash) + getVia().hashCode();
-    }
-    if (hasStreamSettings()) {
-      hash = (37 * hash) + STREAM_SETTINGS_FIELD_NUMBER;
-      hash = (53 * hash) + getStreamSettings().hashCode();
-    }
-    if (hasProxySettings()) {
-      hash = (37 * hash) + PROXY_SETTINGS_FIELD_NUMBER;
-      hash = (53 * hash) + getProxySettings().hashCode();
-    }
-    if (hasMultiplexSettings()) {
-      hash = (37 * hash) + MULTIPLEX_SETTINGS_FIELD_NUMBER;
-      hash = (53 * hash) + getMultiplexSettings().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static SenderConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static SenderConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static SenderConfig parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static SenderConfig parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static SenderConfig parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static SenderConfig parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static SenderConfig parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static SenderConfig parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static SenderConfig parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static SenderConfig parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static SenderConfig parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static SenderConfig parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(SenderConfig prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.proxyman.SenderConfig}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.SenderConfig)
-      com.v2ray.core.app.proxyman.SenderConfigOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
+    getDescriptor() {
+        return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              SenderConfig.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        SenderConfig.class, Builder.class);
     }
 
-    // Construct using com.v2ray.core.app.proxyman.SenderConfig.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      if (viaBuilder_ == null) {
-        via_ = null;
-      } else {
-        via_ = null;
-        viaBuilder_ = null;
-      }
-      if (streamSettingsBuilder_ == null) {
-        streamSettings_ = null;
-      } else {
-        streamSettings_ = null;
-        streamSettingsBuilder_ = null;
-      }
-      if (proxySettingsBuilder_ == null) {
-        proxySettings_ = null;
-      } else {
-        proxySettings_ = null;
-        proxySettingsBuilder_ = null;
-      }
-      if (multiplexSettingsBuilder_ == null) {
-        multiplexSettings_ = null;
-      } else {
-        multiplexSettings_ = null;
-        multiplexSettingsBuilder_ = null;
-      }
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
-    }
-
-    @Override
-    public SenderConfig getDefaultInstanceForType() {
-      return SenderConfig.getDefaultInstance();
-    }
-
-    @Override
-    public SenderConfig build() {
-      SenderConfig result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public SenderConfig buildPartial() {
-      SenderConfig result = new SenderConfig(this);
-      if (viaBuilder_ == null) {
-        result.via_ = via_;
-      } else {
-        result.via_ = viaBuilder_.build();
-      }
-      if (streamSettingsBuilder_ == null) {
-        result.streamSettings_ = streamSettings_;
-      } else {
-        result.streamSettings_ = streamSettingsBuilder_.build();
-      }
-      if (proxySettingsBuilder_ == null) {
-        result.proxySettings_ = proxySettings_;
-      } else {
-        result.proxySettings_ = proxySettingsBuilder_.build();
-      }
-      if (multiplexSettingsBuilder_ == null) {
-        result.multiplexSettings_ = multiplexSettings_;
-      } else {
-        result.multiplexSettings_ = multiplexSettingsBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof SenderConfig) {
-        return mergeFrom((SenderConfig)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(SenderConfig other) {
-      if (other == SenderConfig.getDefaultInstance()) return this;
-      if (other.hasVia()) {
-        mergeVia(other.getVia());
-      }
-      if (other.hasStreamSettings()) {
-        mergeStreamSettings(other.getStreamSettings());
-      }
-      if (other.hasProxySettings()) {
-        mergeProxySettings(other.getProxySettings());
-      }
-      if (other.hasMultiplexSettings()) {
-        mergeMultiplexSettings(other.getMultiplexSettings());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      SenderConfig parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (SenderConfig) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
-
+    public static final int VIA_FIELD_NUMBER = 1;
     private com.v2ray.core.common.net.IPOrDomain via_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> viaBuilder_;
+
     /**
      * <pre>
      * Send traffic through the given IP. Only IP is allowed.
@@ -638,8 +141,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
      */
     public boolean hasVia() {
-      return viaBuilder_ != null || via_ != null;
+        return via_ != null;
     }
+
     /**
      * <pre>
      * Send traffic through the given IP. Only IP is allowed.
@@ -648,102 +152,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
      */
     public com.v2ray.core.common.net.IPOrDomain getVia() {
-      if (viaBuilder_ == null) {
         return via_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : via_;
-      } else {
-        return viaBuilder_.getMessage();
-      }
     }
-    /**
-     * <pre>
-     * Send traffic through the given IP. Only IP is allowed.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-     */
-    public Builder setVia(com.v2ray.core.common.net.IPOrDomain value) {
-      if (viaBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        via_ = value;
-        onChanged();
-      } else {
-        viaBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <pre>
-     * Send traffic through the given IP. Only IP is allowed.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-     */
-    public Builder setVia(
-        com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
-      if (viaBuilder_ == null) {
-        via_ = builderForValue.build();
-        onChanged();
-      } else {
-        viaBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Send traffic through the given IP. Only IP is allowed.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-     */
-    public Builder mergeVia(com.v2ray.core.common.net.IPOrDomain value) {
-      if (viaBuilder_ == null) {
-        if (via_ != null) {
-          via_ =
-            com.v2ray.core.common.net.IPOrDomain.newBuilder(via_).mergeFrom(value).buildPartial();
-        } else {
-          via_ = value;
-        }
-        onChanged();
-      } else {
-        viaBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Send traffic through the given IP. Only IP is allowed.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-     */
-    public Builder clearVia() {
-      if (viaBuilder_ == null) {
-        via_ = null;
-        onChanged();
-      } else {
-        via_ = null;
-        viaBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Send traffic through the given IP. Only IP is allowed.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-     */
-    public com.v2ray.core.common.net.IPOrDomain.Builder getViaBuilder() {
-      
-      onChanged();
-      return getViaFieldBuilder().getBuilder();
-    }
     /**
      * <pre>
      * Send traffic through the given IP. Only IP is allowed.
@@ -752,434 +163,1103 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
      */
     public com.v2ray.core.common.net.IPOrDomainOrBuilder getViaOrBuilder() {
-      if (viaBuilder_ != null) {
-        return viaBuilder_.getMessageOrBuilder();
-      } else {
-        return via_ == null ?
-            com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : via_;
-      }
-    }
-    /**
-     * <pre>
-     * Send traffic through the given IP. Only IP is allowed.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> 
-        getViaFieldBuilder() {
-      if (viaBuilder_ == null) {
-        viaBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
-                getVia(),
-                getParentForChildren(),
-                isClean());
-        via_ = null;
-      }
-      return viaBuilder_;
+        return getVia();
     }
 
+    public static final int STREAM_SETTINGS_FIELD_NUMBER = 2;
     private com.v2ray.core.transport.internet.StreamConfig streamSettings_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder> streamSettingsBuilder_;
+
     /**
      * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
      */
     public boolean hasStreamSettings() {
-      return streamSettingsBuilder_ != null || streamSettings_ != null;
+        return streamSettings_ != null;
     }
+
     /**
      * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
      */
     public com.v2ray.core.transport.internet.StreamConfig getStreamSettings() {
-      if (streamSettingsBuilder_ == null) {
         return streamSettings_ == null ? com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
-      } else {
-        return streamSettingsBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-     */
-    public Builder setStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
-      if (streamSettingsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        streamSettings_ = value;
-        onChanged();
-      } else {
-        streamSettingsBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-     */
-    public Builder setStreamSettings(
-        com.v2ray.core.transport.internet.StreamConfig.Builder builderForValue) {
-      if (streamSettingsBuilder_ == null) {
-        streamSettings_ = builderForValue.build();
-        onChanged();
-      } else {
-        streamSettingsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-     */
-    public Builder mergeStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
-      if (streamSettingsBuilder_ == null) {
-        if (streamSettings_ != null) {
-          streamSettings_ =
-            com.v2ray.core.transport.internet.StreamConfig.newBuilder(streamSettings_).mergeFrom(value).buildPartial();
-        } else {
-          streamSettings_ = value;
-        }
-        onChanged();
-      } else {
-        streamSettingsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-     */
-    public Builder clearStreamSettings() {
-      if (streamSettingsBuilder_ == null) {
-        streamSettings_ = null;
-        onChanged();
-      } else {
-        streamSettings_ = null;
-        streamSettingsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-     */
-    public com.v2ray.core.transport.internet.StreamConfig.Builder getStreamSettingsBuilder() {
-      
-      onChanged();
-      return getStreamSettingsFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
      */
     public com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder() {
-      if (streamSettingsBuilder_ != null) {
-        return streamSettingsBuilder_.getMessageOrBuilder();
-      } else {
-        return streamSettings_ == null ?
-            com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder> 
-        getStreamSettingsFieldBuilder() {
-      if (streamSettingsBuilder_ == null) {
-        streamSettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder>(
-                getStreamSettings(),
-                getParentForChildren(),
-                isClean());
-        streamSettings_ = null;
-      }
-      return streamSettingsBuilder_;
+        return getStreamSettings();
     }
 
+    public static final int PROXY_SETTINGS_FIELD_NUMBER = 3;
     private com.v2ray.core.transport.internet.ProxyConfig proxySettings_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.transport.internet.ProxyConfig, com.v2ray.core.transport.internet.ProxyConfig.Builder, com.v2ray.core.transport.internet.ProxyConfigOrBuilder> proxySettingsBuilder_;
+
     /**
      * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
      */
     public boolean hasProxySettings() {
-      return proxySettingsBuilder_ != null || proxySettings_ != null;
+        return proxySettings_ != null;
     }
+
     /**
      * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
      */
     public com.v2ray.core.transport.internet.ProxyConfig getProxySettings() {
-      if (proxySettingsBuilder_ == null) {
         return proxySettings_ == null ? com.v2ray.core.transport.internet.ProxyConfig.getDefaultInstance() : proxySettings_;
-      } else {
-        return proxySettingsBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-     */
-    public Builder setProxySettings(com.v2ray.core.transport.internet.ProxyConfig value) {
-      if (proxySettingsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        proxySettings_ = value;
-        onChanged();
-      } else {
-        proxySettingsBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-     */
-    public Builder setProxySettings(
-        com.v2ray.core.transport.internet.ProxyConfig.Builder builderForValue) {
-      if (proxySettingsBuilder_ == null) {
-        proxySettings_ = builderForValue.build();
-        onChanged();
-      } else {
-        proxySettingsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-     */
-    public Builder mergeProxySettings(com.v2ray.core.transport.internet.ProxyConfig value) {
-      if (proxySettingsBuilder_ == null) {
-        if (proxySettings_ != null) {
-          proxySettings_ =
-            com.v2ray.core.transport.internet.ProxyConfig.newBuilder(proxySettings_).mergeFrom(value).buildPartial();
-        } else {
-          proxySettings_ = value;
-        }
-        onChanged();
-      } else {
-        proxySettingsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-     */
-    public Builder clearProxySettings() {
-      if (proxySettingsBuilder_ == null) {
-        proxySettings_ = null;
-        onChanged();
-      } else {
-        proxySettings_ = null;
-        proxySettingsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-     */
-    public com.v2ray.core.transport.internet.ProxyConfig.Builder getProxySettingsBuilder() {
-      
-      onChanged();
-      return getProxySettingsFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
      */
     public com.v2ray.core.transport.internet.ProxyConfigOrBuilder getProxySettingsOrBuilder() {
-      if (proxySettingsBuilder_ != null) {
-        return proxySettingsBuilder_.getMessageOrBuilder();
-      } else {
-        return proxySettings_ == null ?
-            com.v2ray.core.transport.internet.ProxyConfig.getDefaultInstance() : proxySettings_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.transport.internet.ProxyConfig, com.v2ray.core.transport.internet.ProxyConfig.Builder, com.v2ray.core.transport.internet.ProxyConfigOrBuilder> 
-        getProxySettingsFieldBuilder() {
-      if (proxySettingsBuilder_ == null) {
-        proxySettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.transport.internet.ProxyConfig, com.v2ray.core.transport.internet.ProxyConfig.Builder, com.v2ray.core.transport.internet.ProxyConfigOrBuilder>(
-                getProxySettings(),
-                getParentForChildren(),
-                isClean());
-        proxySettings_ = null;
-      }
-      return proxySettingsBuilder_;
+        return getProxySettings();
     }
 
+    public static final int MULTIPLEX_SETTINGS_FIELD_NUMBER = 4;
     private com.v2ray.core.app.proxyman.MultiplexingConfig multiplexSettings_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.app.proxyman.MultiplexingConfig, com.v2ray.core.app.proxyman.MultiplexingConfig.Builder, com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder> multiplexSettingsBuilder_;
+
     /**
      * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
      */
     public boolean hasMultiplexSettings() {
-      return multiplexSettingsBuilder_ != null || multiplexSettings_ != null;
+        return multiplexSettings_ != null;
     }
+
     /**
      * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
      */
     public com.v2ray.core.app.proxyman.MultiplexingConfig getMultiplexSettings() {
-      if (multiplexSettingsBuilder_ == null) {
         return multiplexSettings_ == null ? com.v2ray.core.app.proxyman.MultiplexingConfig.getDefaultInstance() : multiplexSettings_;
-      } else {
-        return multiplexSettingsBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-     */
-    public Builder setMultiplexSettings(com.v2ray.core.app.proxyman.MultiplexingConfig value) {
-      if (multiplexSettingsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        multiplexSettings_ = value;
-        onChanged();
-      } else {
-        multiplexSettingsBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-     */
-    public Builder setMultiplexSettings(
-        com.v2ray.core.app.proxyman.MultiplexingConfig.Builder builderForValue) {
-      if (multiplexSettingsBuilder_ == null) {
-        multiplexSettings_ = builderForValue.build();
-        onChanged();
-      } else {
-        multiplexSettingsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-     */
-    public Builder mergeMultiplexSettings(com.v2ray.core.app.proxyman.MultiplexingConfig value) {
-      if (multiplexSettingsBuilder_ == null) {
-        if (multiplexSettings_ != null) {
-          multiplexSettings_ =
-            com.v2ray.core.app.proxyman.MultiplexingConfig.newBuilder(multiplexSettings_).mergeFrom(value).buildPartial();
-        } else {
-          multiplexSettings_ = value;
-        }
-        onChanged();
-      } else {
-        multiplexSettingsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-     */
-    public Builder clearMultiplexSettings() {
-      if (multiplexSettingsBuilder_ == null) {
-        multiplexSettings_ = null;
-        onChanged();
-      } else {
-        multiplexSettings_ = null;
-        multiplexSettingsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
-     */
-    public com.v2ray.core.app.proxyman.MultiplexingConfig.Builder getMultiplexSettingsBuilder() {
-      
-      onChanged();
-      return getMultiplexSettingsFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
      */
     public com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder getMultiplexSettingsOrBuilder() {
-      if (multiplexSettingsBuilder_ != null) {
-        return multiplexSettingsBuilder_.getMessageOrBuilder();
-      } else {
-        return multiplexSettings_ == null ?
-            com.v2ray.core.app.proxyman.MultiplexingConfig.getDefaultInstance() : multiplexSettings_;
-      }
+        return getMultiplexSettings();
     }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (via_ != null) {
+            output.writeMessage(1, getVia());
+        }
+        if (streamSettings_ != null) {
+            output.writeMessage(2, getStreamSettings());
+        }
+        if (proxySettings_ != null) {
+            output.writeMessage(3, getProxySettings());
+        }
+        if (multiplexSettings_ != null) {
+            output.writeMessage(4, getMultiplexSettings());
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (via_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(1, getVia());
+        }
+        if (streamSettings_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, getStreamSettings());
+        }
+        if (proxySettings_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(3, getProxySettings());
+        }
+        if (multiplexSettings_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(4, getMultiplexSettings());
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof SenderConfig)) {
+            return super.equals(obj);
+        }
+        SenderConfig other = (SenderConfig) obj;
+
+        if (hasVia() != other.hasVia()) return false;
+        if (hasVia()) {
+            if (!getVia()
+                    .equals(other.getVia())) return false;
+        }
+        if (hasStreamSettings() != other.hasStreamSettings()) return false;
+        if (hasStreamSettings()) {
+            if (!getStreamSettings()
+                    .equals(other.getStreamSettings())) return false;
+        }
+        if (hasProxySettings() != other.hasProxySettings()) return false;
+        if (hasProxySettings()) {
+            if (!getProxySettings()
+                    .equals(other.getProxySettings())) return false;
+        }
+        if (hasMultiplexSettings() != other.hasMultiplexSettings()) return false;
+        if (hasMultiplexSettings()) {
+            if (!getMultiplexSettings()
+                    .equals(other.getMultiplexSettings())) return false;
+        }
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        if (hasVia()) {
+            hash = (37 * hash) + VIA_FIELD_NUMBER;
+            hash = (53 * hash) + getVia().hashCode();
+        }
+        if (hasStreamSettings()) {
+            hash = (37 * hash) + STREAM_SETTINGS_FIELD_NUMBER;
+            hash = (53 * hash) + getStreamSettings().hashCode();
+        }
+        if (hasProxySettings()) {
+            hash = (37 * hash) + PROXY_SETTINGS_FIELD_NUMBER;
+            hash = (53 * hash) + getProxySettings().hashCode();
+        }
+        if (hasMultiplexSettings()) {
+            hash = (37 * hash) + MULTIPLEX_SETTINGS_FIELD_NUMBER;
+            hash = (53 * hash) + getMultiplexSettings().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static SenderConfig parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static SenderConfig parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static SenderConfig parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static SenderConfig parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static SenderConfig parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static SenderConfig parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static SenderConfig parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static SenderConfig parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static SenderConfig parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static SenderConfig parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static SenderConfig parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static SenderConfig parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(SenderConfig prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+     * Protobuf type {@code v2ray.core.app.proxyman.SenderConfig}
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.app.proxyman.MultiplexingConfig, com.v2ray.core.app.proxyman.MultiplexingConfig.Builder, com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder> 
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.SenderConfig)
+            com.v2ray.core.app.proxyman.SenderConfigOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            SenderConfig.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.app.proxyman.SenderConfig.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            if (viaBuilder_ == null) {
+                via_ = null;
+            } else {
+                via_ = null;
+                viaBuilder_ = null;
+            }
+            if (streamSettingsBuilder_ == null) {
+                streamSettings_ = null;
+            } else {
+                streamSettings_ = null;
+                streamSettingsBuilder_ = null;
+            }
+            if (proxySettingsBuilder_ == null) {
+                proxySettings_ = null;
+            } else {
+                proxySettings_ = null;
+                proxySettingsBuilder_ = null;
+            }
+            if (multiplexSettingsBuilder_ == null) {
+                multiplexSettings_ = null;
+            } else {
+                multiplexSettings_ = null;
+                multiplexSettingsBuilder_ = null;
+            }
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return Config.internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
+        }
+
+        @Override
+        public SenderConfig getDefaultInstanceForType() {
+            return SenderConfig.getDefaultInstance();
+        }
+
+        @Override
+        public SenderConfig build() {
+            SenderConfig result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public SenderConfig buildPartial() {
+            SenderConfig result = new SenderConfig(this);
+            if (viaBuilder_ == null) {
+                result.via_ = via_;
+            } else {
+                result.via_ = viaBuilder_.build();
+            }
+            if (streamSettingsBuilder_ == null) {
+                result.streamSettings_ = streamSettings_;
+            } else {
+                result.streamSettings_ = streamSettingsBuilder_.build();
+            }
+            if (proxySettingsBuilder_ == null) {
+                result.proxySettings_ = proxySettings_;
+            } else {
+                result.proxySettings_ = proxySettingsBuilder_.build();
+            }
+            if (multiplexSettingsBuilder_ == null) {
+                result.multiplexSettings_ = multiplexSettings_;
+            } else {
+                result.multiplexSettings_ = multiplexSettingsBuilder_.build();
+            }
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof SenderConfig) {
+                return mergeFrom((SenderConfig) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(SenderConfig other) {
+            if (other == SenderConfig.getDefaultInstance()) return this;
+            if (other.hasVia()) {
+                mergeVia(other.getVia());
+            }
+            if (other.hasStreamSettings()) {
+                mergeStreamSettings(other.getStreamSettings());
+            }
+            if (other.hasProxySettings()) {
+                mergeProxySettings(other.getProxySettings());
+            }
+            if (other.hasMultiplexSettings()) {
+                mergeMultiplexSettings(other.getMultiplexSettings());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            SenderConfig parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (SenderConfig) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private com.v2ray.core.common.net.IPOrDomain via_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> viaBuilder_;
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public boolean hasVia() {
+            return viaBuilder_ != null || via_ != null;
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain getVia() {
+            if (viaBuilder_ == null) {
+                return via_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : via_;
+            } else {
+                return viaBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public Builder setVia(com.v2ray.core.common.net.IPOrDomain value) {
+            if (viaBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                via_ = value;
+                onChanged();
+            } else {
+                viaBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public Builder setVia(
+                com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
+            if (viaBuilder_ == null) {
+                via_ = builderForValue.build();
+                onChanged();
+            } else {
+                viaBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public Builder mergeVia(com.v2ray.core.common.net.IPOrDomain value) {
+            if (viaBuilder_ == null) {
+                if (via_ != null) {
+                    via_ =
+                            com.v2ray.core.common.net.IPOrDomain.newBuilder(via_).mergeFrom(value).buildPartial();
+                } else {
+                    via_ = value;
+                }
+                onChanged();
+            } else {
+                viaBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public Builder clearVia() {
+            if (viaBuilder_ == null) {
+                via_ = null;
+                onChanged();
+            } else {
+                via_ = null;
+                viaBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain.Builder getViaBuilder() {
+
+            onChanged();
+            return getViaFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomainOrBuilder getViaOrBuilder() {
+            if (viaBuilder_ != null) {
+                return viaBuilder_.getMessageOrBuilder();
+            } else {
+                return via_ == null ?
+                        com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : via_;
+            }
+        }
+
+        /**
+         * <pre>
+         * Send traffic through the given IP. Only IP is allowed.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain via = 1;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>
+        getViaFieldBuilder() {
+            if (viaBuilder_ == null) {
+                viaBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
+                        getVia(),
+                        getParentForChildren(),
+                        isClean());
+                via_ = null;
+            }
+            return viaBuilder_;
+        }
+
+        private com.v2ray.core.transport.internet.StreamConfig streamSettings_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder> streamSettingsBuilder_;
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public boolean hasStreamSettings() {
+            return streamSettingsBuilder_ != null || streamSettings_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public com.v2ray.core.transport.internet.StreamConfig getStreamSettings() {
+            if (streamSettingsBuilder_ == null) {
+                return streamSettings_ == null ? com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
+            } else {
+                return streamSettingsBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public Builder setStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
+            if (streamSettingsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                streamSettings_ = value;
+                onChanged();
+            } else {
+                streamSettingsBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public Builder setStreamSettings(
+                com.v2ray.core.transport.internet.StreamConfig.Builder builderForValue) {
+            if (streamSettingsBuilder_ == null) {
+                streamSettings_ = builderForValue.build();
+                onChanged();
+            } else {
+                streamSettingsBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public Builder mergeStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
+            if (streamSettingsBuilder_ == null) {
+                if (streamSettings_ != null) {
+                    streamSettings_ =
+                            com.v2ray.core.transport.internet.StreamConfig.newBuilder(streamSettings_).mergeFrom(value).buildPartial();
+                } else {
+                    streamSettings_ = value;
+                }
+                onChanged();
+            } else {
+                streamSettingsBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public Builder clearStreamSettings() {
+            if (streamSettingsBuilder_ == null) {
+                streamSettings_ = null;
+                onChanged();
+            } else {
+                streamSettings_ = null;
+                streamSettingsBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public com.v2ray.core.transport.internet.StreamConfig.Builder getStreamSettingsBuilder() {
+
+            onChanged();
+            return getStreamSettingsFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        public com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder() {
+            if (streamSettingsBuilder_ != null) {
+                return streamSettingsBuilder_.getMessageOrBuilder();
+            } else {
+                return streamSettings_ == null ?
+                        com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder>
+        getStreamSettingsFieldBuilder() {
+            if (streamSettingsBuilder_ == null) {
+                streamSettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder>(
+                        getStreamSettings(),
+                        getParentForChildren(),
+                        isClean());
+                streamSettings_ = null;
+            }
+            return streamSettingsBuilder_;
+        }
+
+        private com.v2ray.core.transport.internet.ProxyConfig proxySettings_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.transport.internet.ProxyConfig, com.v2ray.core.transport.internet.ProxyConfig.Builder, com.v2ray.core.transport.internet.ProxyConfigOrBuilder> proxySettingsBuilder_;
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public boolean hasProxySettings() {
+            return proxySettingsBuilder_ != null || proxySettings_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public com.v2ray.core.transport.internet.ProxyConfig getProxySettings() {
+            if (proxySettingsBuilder_ == null) {
+                return proxySettings_ == null ? com.v2ray.core.transport.internet.ProxyConfig.getDefaultInstance() : proxySettings_;
+            } else {
+                return proxySettingsBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public Builder setProxySettings(com.v2ray.core.transport.internet.ProxyConfig value) {
+            if (proxySettingsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                proxySettings_ = value;
+                onChanged();
+            } else {
+                proxySettingsBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public Builder setProxySettings(
+                com.v2ray.core.transport.internet.ProxyConfig.Builder builderForValue) {
+            if (proxySettingsBuilder_ == null) {
+                proxySettings_ = builderForValue.build();
+                onChanged();
+            } else {
+                proxySettingsBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public Builder mergeProxySettings(com.v2ray.core.transport.internet.ProxyConfig value) {
+            if (proxySettingsBuilder_ == null) {
+                if (proxySettings_ != null) {
+                    proxySettings_ =
+                            com.v2ray.core.transport.internet.ProxyConfig.newBuilder(proxySettings_).mergeFrom(value).buildPartial();
+                } else {
+                    proxySettings_ = value;
+                }
+                onChanged();
+            } else {
+                proxySettingsBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public Builder clearProxySettings() {
+            if (proxySettingsBuilder_ == null) {
+                proxySettings_ = null;
+                onChanged();
+            } else {
+                proxySettings_ = null;
+                proxySettingsBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public com.v2ray.core.transport.internet.ProxyConfig.Builder getProxySettingsBuilder() {
+
+            onChanged();
+            return getProxySettingsFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        public com.v2ray.core.transport.internet.ProxyConfigOrBuilder getProxySettingsOrBuilder() {
+            if (proxySettingsBuilder_ != null) {
+                return proxySettingsBuilder_.getMessageOrBuilder();
+            } else {
+                return proxySettings_ == null ?
+                        com.v2ray.core.transport.internet.ProxyConfig.getDefaultInstance() : proxySettings_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.ProxyConfig proxy_settings = 3;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.transport.internet.ProxyConfig, com.v2ray.core.transport.internet.ProxyConfig.Builder, com.v2ray.core.transport.internet.ProxyConfigOrBuilder>
+        getProxySettingsFieldBuilder() {
+            if (proxySettingsBuilder_ == null) {
+                proxySettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.transport.internet.ProxyConfig, com.v2ray.core.transport.internet.ProxyConfig.Builder, com.v2ray.core.transport.internet.ProxyConfigOrBuilder>(
+                        getProxySettings(),
+                        getParentForChildren(),
+                        isClean());
+                proxySettings_ = null;
+            }
+            return proxySettingsBuilder_;
+        }
+
+        private com.v2ray.core.app.proxyman.MultiplexingConfig multiplexSettings_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.app.proxyman.MultiplexingConfig, com.v2ray.core.app.proxyman.MultiplexingConfig.Builder, com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder> multiplexSettingsBuilder_;
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public boolean hasMultiplexSettings() {
+            return multiplexSettingsBuilder_ != null || multiplexSettings_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public com.v2ray.core.app.proxyman.MultiplexingConfig getMultiplexSettings() {
+            if (multiplexSettingsBuilder_ == null) {
+                return multiplexSettings_ == null ? com.v2ray.core.app.proxyman.MultiplexingConfig.getDefaultInstance() : multiplexSettings_;
+            } else {
+                return multiplexSettingsBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public Builder setMultiplexSettings(com.v2ray.core.app.proxyman.MultiplexingConfig value) {
+            if (multiplexSettingsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                multiplexSettings_ = value;
+                onChanged();
+            } else {
+                multiplexSettingsBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public Builder setMultiplexSettings(
+                com.v2ray.core.app.proxyman.MultiplexingConfig.Builder builderForValue) {
+            if (multiplexSettingsBuilder_ == null) {
+                multiplexSettings_ = builderForValue.build();
+                onChanged();
+            } else {
+                multiplexSettingsBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public Builder mergeMultiplexSettings(com.v2ray.core.app.proxyman.MultiplexingConfig value) {
+            if (multiplexSettingsBuilder_ == null) {
+                if (multiplexSettings_ != null) {
+                    multiplexSettings_ =
+                            com.v2ray.core.app.proxyman.MultiplexingConfig.newBuilder(multiplexSettings_).mergeFrom(value).buildPartial();
+                } else {
+                    multiplexSettings_ = value;
+                }
+                onChanged();
+            } else {
+                multiplexSettingsBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public Builder clearMultiplexSettings() {
+            if (multiplexSettingsBuilder_ == null) {
+                multiplexSettings_ = null;
+                onChanged();
+            } else {
+                multiplexSettings_ = null;
+                multiplexSettingsBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public com.v2ray.core.app.proxyman.MultiplexingConfig.Builder getMultiplexSettingsBuilder() {
+
+            onChanged();
+            return getMultiplexSettingsFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        public com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder getMultiplexSettingsOrBuilder() {
+            if (multiplexSettingsBuilder_ != null) {
+                return multiplexSettingsBuilder_.getMessageOrBuilder();
+            } else {
+                return multiplexSettings_ == null ?
+                        com.v2ray.core.app.proxyman.MultiplexingConfig.getDefaultInstance() : multiplexSettings_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.MultiplexingConfig multiplex_settings = 4;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.app.proxyman.MultiplexingConfig, com.v2ray.core.app.proxyman.MultiplexingConfig.Builder, com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder>
         getMultiplexSettingsFieldBuilder() {
-      if (multiplexSettingsBuilder_ == null) {
-        multiplexSettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.app.proxyman.MultiplexingConfig, com.v2ray.core.app.proxyman.MultiplexingConfig.Builder, com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder>(
-                getMultiplexSettings(),
-                getParentForChildren(),
-                isClean());
-        multiplexSettings_ = null;
-      }
-      return multiplexSettingsBuilder_;
+            if (multiplexSettingsBuilder_ == null) {
+                multiplexSettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.app.proxyman.MultiplexingConfig, com.v2ray.core.app.proxyman.MultiplexingConfig.Builder, com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder>(
+                        getMultiplexSettings(),
+                        getParentForChildren(),
+                        isClean());
+                multiplexSettings_ = null;
+            }
+            return multiplexSettingsBuilder_;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.SenderConfig)
     }
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.SenderConfig)
+    private static final SenderConfig DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new SenderConfig();
+    }
+
+    public static SenderConfig getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SenderConfig>
+            PARSER = new com.google.protobuf.AbstractParser<SenderConfig>() {
+        @Override
+        public SenderConfig parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new SenderConfig(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<SenderConfig> parser() {
+        return PARSER;
+    }
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<SenderConfig> getParserForType() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public SenderConfig getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.SenderConfig)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.SenderConfig)
-  private static final SenderConfig DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new SenderConfig();
-  }
-
-  public static SenderConfig getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<SenderConfig>
-      PARSER = new com.google.protobuf.AbstractParser<SenderConfig>() {
-    @Override
-    public SenderConfig parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new SenderConfig(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<SenderConfig> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<SenderConfig> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public SenderConfig getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

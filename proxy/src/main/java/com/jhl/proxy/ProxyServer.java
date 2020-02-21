@@ -1,9 +1,9 @@
 package com.jhl.proxy;
 
 
+import com.jhl.constant.ProxyConstant;
 import com.jhl.service.TrafficControllerService;
 import com.jhl.cache.ProxyAccountCache;
-import com.jhl.config.ProxyConfig;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.ChannelOption;
@@ -25,7 +25,7 @@ import javax.annotation.PreDestroy;
 public final class ProxyServer implements Runnable {
 
     @Autowired
-    ProxyConfig proxyConfig;
+    ProxyConstant proxyConstant;
     @Autowired
     ProxyAccountCache proxyAccountCache;
     @Autowired
@@ -35,19 +35,20 @@ public final class ProxyServer implements Runnable {
 
     @Override
     public void run() {
-        log.info("Proxying *:" + proxyConfig.getLocalPort() + " to " + proxyConfig.getRemoteHost() + ':' + proxyConfig.getRemotePort() + " ...");
+        log.info("Proxying *:" + proxyConstant.getLocalPort() + " to " + proxyConstant.getRemoteHost() + ':' + proxyConstant.getRemotePort() + " ...");
 
         // Configure the bootstrap.
         try {
             ServerBootstrap b = new ServerBootstrap();
             b.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
             b.childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-
-             b.group(bossGroup, workerGroup)
+            //ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.ADVANCED);
+            b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .childHandler(new ProxyInitializer(proxyConfig, trafficControllerService, proxyAccountCache))
+                    //    .handler(new LoggingHandler(LogLevel.ERROR))
+                    .childHandler(new ProxyInitializer(proxyConstant, trafficControllerService, proxyAccountCache))
                     .childOption(ChannelOption.AUTO_READ, false)
-                    .bind(proxyConfig.getLocalPort()).sync().channel().closeFuture().sync();
+                    .bind(proxyConstant.getLocalPort()).sync().channel().closeFuture().sync();
 
         } catch (Exception e) {
             log.error("netty start exception:{}", e);
@@ -56,13 +57,13 @@ public final class ProxyServer implements Runnable {
 
     @PostConstruct
     public void initNettyServer() {
-        new Thread(this,"starter thread").start();
+        new Thread(this).start();
     }
 
     @PreDestroy
     public void preDestroy() {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        log.warn("netty 关闭");
+        log.warn("spring 即将关闭，netty 关闭");
     }
 }

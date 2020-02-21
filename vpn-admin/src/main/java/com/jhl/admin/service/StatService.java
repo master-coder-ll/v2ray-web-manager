@@ -5,6 +5,10 @@ import com.jhl.admin.model.Stat;
 import com.jhl.admin.repository.StatRepository;
 import com.jhl.admin.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -31,13 +35,12 @@ public class StatService {
                 Integer cycleNum = account.getCycle();
                 Date maxToDate = account.getToDate();
                 Date nextCycleDate = Utils.getDateBy(fromDate,cycleNum, Calendar.DAY_OF_YEAR);
-             //   Date toDate = maxToDate.after(nextCycleDate) ? nextCycleDate : maxToDate;
                     if (!maxToDate.after(fromDate)) return  null;
                 stat = new Stat();
                  stat.setAccountId(account.getId());
                  stat.setFromDate(fromDate);
                  stat.setToDate(nextCycleDate);
-                 stat.setFlow(0L);
+                 stat.setFlow(0l);
                  statRepository.save(stat);
             }
             return stat;
@@ -78,4 +81,6 @@ public class StatService {
         stat.setFlow(0l);
         statRepository.save(stat);
     }*/
+
+
 }

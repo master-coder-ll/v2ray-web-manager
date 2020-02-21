@@ -1,27 +1,23 @@
 package com.jhl.admin.cron;
 
+import com.jhl.admin.constant.EmailConstant;
+import com.jhl.admin.constant.KVConstant;
+import com.jhl.admin.constant.enumObject.EmailEventEnum;
 import com.jhl.admin.model.Account;
-import com.jhl.admin.model.Stat;
+import com.jhl.admin.model.EmailEventHistory;
+import com.jhl.admin.model.User;
 import com.jhl.admin.repository.AccountRepository;
-import com.jhl.admin.repository.ServerRepository;
-import com.jhl.admin.repository.StatRepository;
+import com.jhl.admin.service.EmailService;
 import com.jhl.admin.service.StatService;
-import com.jhl.admin.service.v2ray.ProxyEvent;
+import com.jhl.admin.service.UserService;
 import com.jhl.admin.service.v2ray.ProxyEventService;
-import com.jhl.admin.service.v2ray.V2RayProxyEvent;
-import com.jhl.admin.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -37,49 +33,62 @@ public class AppCron {
     StatService statService;
     @Autowired
     ProxyEventService proxyEventService;
+    @Autowired
+    EmailService emailService;
+    @Autowired
+    EmailConstant emailConstant;
+    @Autowired
+    UserService userService;
 
     @Async
     @Scheduled(cron = "0 0 */1 * * ?")
     public void createStatTimer() {
         Date today = new Date();
-        log.info("构建下个stat任务。。开始，{}",today);
+        log.info("构建下个stat任务。。开始，{}", today);
         List<Account> accounts = accountRepository.findByToDateAfter(today);
         if (accounts == null) return;
-        accounts.forEach(account -> {
-
-            statService.createStat(account);
-        });
+        accounts.forEach(account -> statService.createStat(account));
 
 
     }
 
-
-
-    // @Scheduled(cron = "0 */1 * * * ?")
-   // public void test() {
-   //     log.info("1分钟执行一次。。。");
-   // }
-    /**
-     * 检查过期的账号 并且发送删除命令
-     */
-    @Deprecated
+    SimpleDateFormat sdf = new SimpleDateFormat(KVConstant.YYYYMMddHHmmss);
     @Async
-   // @Scheduled(cron = "0 0 */1 * * ?")
+    @Scheduled(cron = "0 0 8 * * ?")
+    //@Scheduled(fixedDelay = 60*1000)
     public void checkInvalidAccount() {
-        log.info("检查账号任务。。开始，{}",new Date());
-        List<Account> accountList = accountRepository.findAll(Example.of(Account.builder().status(1).build()));
+        log.info("账号过期提醒任务。。开始，{}", new Date());
+        Date now = new Date();
+        List<Account> accountList = accountRepository.findByToDateAfter(now);
         accountList.forEach(account -> {
-            Date now = new Date();
+
             Date toDate = account.getToDate();
-            if (toDate.after(now)) return;
-          //  account.setStatus(0);
-          //  accountRepository.save(account);
-            try {
-                V2RayProxyEvent v2RayProxyEvent = proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT);
-                 proxyEventService.addProxyEvent(v2RayProxyEvent);
-            } catch (Exception e) {
-                //
+            Integer userId = account.getUserId();
+            if (userId == null) return;
+            if (!toDate.after(now)) return;
+            if (toDate.getTime() - now.getTime() <= KVConstant.MS_OF_DAY * 3) {
+                User user = userService.get(userId);
+                if (user == null) return;
+
+
+                String email = user.getEmail();
+
+                EmailEventHistory latestHistory = emailService.findLatestHistory(email, EmailEventEnum.CHECK_OVERDUE_TO_DATE.name());
+                //检测 事件的 unlock date 如果未到unlock date 跳过
+                if (latestHistory != null && latestHistory.getUnlockDate().after(now)) return;
+
+                emailService.sendEmail(email, "提醒：账号即将到期",
+                        String.format(emailConstant.getOverdueDate(),sdf.format(toDate) ),
+                        EmailEventHistory.builder().event(EmailEventEnum.CHECK_OVERDUE_TO_DATE.name())
+                                .email(email)
+                                .unlockDate(toDate)
+                                .build());
+
+
+
+
             }
+
         });
 
     }

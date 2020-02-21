@@ -4,6 +4,6 @@
 package com.v2ray.core.proxy.http;
 
 public interface ClientConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.http.ClientConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.http.ClientConfig)
+        com.google.protobuf.MessageOrBuilder {
 }

@@ -4,11 +4,11 @@
 package com.v2ray.core.app.policy;
 
 public interface SecondOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Second)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Second)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>uint32 value = 1;</code>
-   */
-  int getValue();
+    /**
+     * <code>uint32 value = 1;</code>
+     */
+    int getValue();
 }

@@ -2,6 +2,8 @@ package com.jhl.admin.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +34,7 @@ public class User extends BaseEntity implements Serializable {
     private Integer status =1;
 
     private String remark;
+
 
 
 }

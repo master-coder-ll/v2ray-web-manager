@@ -1,6 +1,7 @@
 package com.jhl.admin.repository;
 
 import com.jhl.admin.model.Notice;
+import com.jhl.admin.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -4,21 +4,22 @@
 package com.v2ray.core.app.stats.command;
 
 public interface StatOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.command.Stat)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.command.Stat)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>string name = 1;</code>
-   */
-  String getName();
-  /**
-   * <code>string name = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getNameBytes();
+    /**
+     * <code>string name = 1;</code>
+     */
+    String getName();
 
-  /**
-   * <code>int64 value = 2;</code>
-   */
-  long getValue();
+    /**
+     * <code>string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getNameBytes();
+
+    /**
+     * <code>int64 value = 2;</code>
+     */
+    long getValue();
 }

@@ -4,6 +4,6 @@
 package com.v2ray.core.app.proxyman.command;
 
 public interface RemoveOutboundResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.RemoveOutboundResponse)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.RemoveOutboundResponse)
+        com.google.protobuf.MessageOrBuilder {
 }

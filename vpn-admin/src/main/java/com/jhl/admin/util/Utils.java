@@ -1,8 +1,8 @@
 package com.jhl.admin.util;
 
-import com.jhl.admin.constant.KVConst;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import com.google.common.collect.Interner;
+import com.google.common.collect.Interners;
+import com.jhl.admin.constant.KVConstant;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Random;
 
 public final class Utils {
+    private final static Interner<Object> STRING_WEAK_POLL = Interners.newWeakInterner();
 
     public static String generateVCode() {
         Random random = new Random();
@@ -18,6 +19,9 @@ public final class Utils {
 
     }
 
+    public static    Interner<Object> getInternersPoll(){
+        return STRING_WEAK_POLL;
+        }
 
     public static String getCharAndNum(int length) {
 
@@ -55,7 +59,7 @@ public final class Utils {
         return calendar.getTime();
     }
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat(KVConst.YYYYMMddHH);
+    private static SimpleDateFormat sdf = new SimpleDateFormat(KVConstant.YYYYMMddHH);
 
     public static Date formatDate(Date date, SimpleDateFormat simpleDateFormat) {
         SimpleDateFormat thisSDF = sdf;
@@ -70,7 +74,7 @@ public final class Utils {
     }
 
     public static void main(String[] args) {
-        System.out.println(getDateBy(7));
+        System.out.println(formatDate(new Date(), null));
     }
 
 

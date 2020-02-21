@@ -4,15 +4,22 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.jhl.admin.Interceptor.PreAuth;
 import com.jhl.admin.cache.UserCache;
-import com.jhl.admin.constant.KVConst;
+import com.jhl.admin.constant.KVConstant;
+import com.jhl.admin.constant.enumObject.StatusEnum;
+import com.jhl.admin.constant.enumObject.WebsiteConfigEnum;
+import com.jhl.admin.entity.V2rayAccount;
 import com.jhl.admin.model.Account;
 import com.jhl.admin.model.Server;
+import com.jhl.admin.model.ServerConfig;
 import com.jhl.admin.model.User;
 import com.jhl.admin.repository.AccountRepository;
 import com.jhl.admin.repository.ServerRepository;
-import com.jhl.admin.repository.StatRepository;
 import com.jhl.admin.service.AccountService;
-import com.jhl.admin.service.UserService;
+import com.jhl.admin.service.ServerConfigService;
+import com.jhl.admin.service.ServerService;
+import com.jhl.admin.service.SubscriptionService;
+import com.jhl.admin.service.v2ray.V2rayAccountService;
+import com.jhl.admin.util.Validator;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -41,16 +48,19 @@ public class AccountController {
     @Autowired
     UserCache userCache;
     @Autowired
-    StatRepository statRepository;
+    ServerService serverService;
     @Autowired
-    UserService userService;
+    V2rayAccountService v2rayAccountService;
     @Value("${proxy.getConnectionCountUrl}")
     String PROXY_API_CONNECTION_COUNT_URL;
     @Autowired
     ServerRepository serverRepository;
     @Autowired
     RestTemplate restTemplate;
-
+    @Autowired
+    ServerConfigService serverConfigService;
+    @Autowired
+    SubscriptionService subscriptionService;
     /**
      * 创建一个account
      *
@@ -80,6 +90,29 @@ public class AccountController {
         return Result.SUCCESS();
     }
 
+
+    /**
+     * 根据服务器获取一个V2rayAccount
+     *
+     * @param serverId
+     * @return
+     */
+    @PreAuth("vip")
+    @ResponseBody
+    @GetMapping("/account/v2rayAccount")
+    public Result getV2rayAccount(Integer serverId, @CookieValue(KVConstant.COOKIE_NAME) String auth) {
+        Validator.isNotNull(serverId);
+        User user = userCache.getCache(auth);
+        Account account = accountService.getAccount(user.getId());
+        if (account == null) return Result.builder().code(500).message("账号不存在").build();
+
+        Server server = serverService.findByIdAndStatus(serverId, StatusEnum.SUCCESS.code());
+        if (server == null) return Result.builder().code(500).message("服务器不存在").build();
+
+        List<V2rayAccount> v2rayAccounts = v2rayAccountService.buildV2rayAccount(Lists.newArrayList(server), account);
+        return Result.buildSuccess(v2rayAccounts.get(0), null);
+    }
+
     /**
      * 跟换服务器账号
      *
@@ -103,13 +136,19 @@ public class AccountController {
     @PreAuth("vip")
     @ResponseBody
     @GetMapping("/account/{id}")
-    public Result get(@CookieValue(KVConst.COOKIE_NAME) String auth, @PathVariable Integer id) {
+    public Result get(@CookieValue(KVConstant.COOKIE_NAME) String auth, @PathVariable Integer id) {
         if (auth == null || userCache.getCache(auth) == null) return Result.builder().code(500).message("认证失败").build();
-        User cacheUser = (User) userCache.getCache(auth);
+        User cacheUser = userCache.getCache(auth);
         Integer userId = cacheUser.getId();
 
-        List<Account> accounts = accountService.getAccounts(userId);
-        return Result.buildPageObject(accounts.size(), accounts);
+       List<Account> accounts = accountService.getAccounts(userId);
+        Account account = accounts.get(0);
+        String subscriptionUrl = account.getSubscriptionUrl();
+        if (StringUtils.isNoneBlank(subscriptionUrl)){
+            ServerConfig serverConfig = serverConfigService.getServerConfig(WebsiteConfigEnum.SUBSCRIPTION_ADDRESS_PREFIX.getKey());
+            account.setSubscriptionUrl(serverConfig.getValue()+subscriptionUrl);
+        }
+        return Result.buildSuccess(account,null);
     }
 
     /**
@@ -145,13 +184,30 @@ public class AccountController {
         return Result.buildPageObject(total, accounts);
     }
 
+    /**
+     * 生成订阅url
+     *
+     * @param type 0通用 ,1以上备用
+     * @return
+     */
+    @PreAuth("vip")
+    @ResponseBody
+    @GetMapping("/account/generatorSubscriptionUrl")
+    public Result generatorSubscriptionUrl(@CookieValue(KVConstant.COOKIE_NAME) String auth, Integer type) {
+        User user = userCache.getCache(auth);
+        Integer accountId = accountService.getAccount(user.getId()).getId();
+        accountService.generatorSubscriptionUrl(accountId,type);
+        return Result.SUCCESS();
+    }
+
+    @Deprecated
     @PreAuth("vip")
     @ResponseBody
     @GetMapping("/account/connection/{accountId}")
     public Result getConnection(@PathVariable Integer accountId) {
         if (accountId == null) return Result.builder().code(500).message("不能为空").build();
         Account account = accountRepository.findById(accountId).orElse(null);
-        int count =0;
+        int count = 0;
         if (account != null) {
             Integer serverId = account.getServerId();
             if (serverId == null) throw new RuntimeException("未设置服务器");
@@ -164,15 +220,17 @@ public class AccountController {
             for (String url : buildConnectionCountUrl(proxyIps, proxyPort)) {
                 Result remoteConnection = getRemoteConnection(accountId, accountNo, url);
 
-                if (remoteConnection.getCode().equals(200)){
-                    count+= (Integer) remoteConnection.getObj();
+                if (remoteConnection.getCode().equals(200)) {
+                    count += (Integer) remoteConnection.getObj();
                 }
 
             }
         }
-        return Result.buildSuccess(count,null);
+        return Result.buildSuccess(count, null);
     }
 
+
+    @Deprecated
     private Result getRemoteConnection(@PathVariable Integer accountId, String accountNo, String url) {
         try {
             HashMap<String, Object> objectObjectHashMap = Maps.newHashMap();

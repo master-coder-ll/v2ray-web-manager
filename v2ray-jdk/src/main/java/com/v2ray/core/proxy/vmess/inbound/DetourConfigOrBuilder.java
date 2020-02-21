@@ -4,16 +4,17 @@
 package com.v2ray.core.proxy.vmess.inbound;
 
 public interface DetourConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.inbound.DetourConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.inbound.DetourConfig)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>string to = 1;</code>
-   */
-  String getTo();
-  /**
-   * <code>string to = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getToBytes();
+    /**
+     * <code>string to = 1;</code>
+     */
+    String getTo();
+
+    /**
+     * <code>string to = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getToBytes();
 }

@@ -4,19 +4,21 @@
 package com.v2ray.core.app.proxyman.command;
 
 public interface AddUserOperationOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.AddUserOperation)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.AddUserOperation)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.common.protocol.User user = 1;</code>
-   */
-  boolean hasUser();
-  /**
-   * <code>.v2ray.core.common.protocol.User user = 1;</code>
-   */
-  com.v2ray.core.common.protocol.User getUser();
-  /**
-   * <code>.v2ray.core.common.protocol.User user = 1;</code>
-   */
-  com.v2ray.core.common.protocol.UserOrBuilder getUserOrBuilder();
+    /**
+     * <code>.v2ray.core.common.protocol.User user = 1;</code>
+     */
+    boolean hasUser();
+
+    /**
+     * <code>.v2ray.core.common.protocol.User user = 1;</code>
+     */
+    com.v2ray.core.common.protocol.User getUser();
+
+    /**
+     * <code>.v2ray.core.common.protocol.User user = 1;</code>
+     */
+    com.v2ray.core.common.protocol.UserOrBuilder getUserOrBuilder();
 }

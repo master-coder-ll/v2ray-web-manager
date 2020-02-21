@@ -4,38 +4,42 @@
 package com.v2ray.core.proxy.freedom;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.freedom.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.freedom.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.proxy.freedom.Config.DomainStrategy domain_strategy = 1;</code>
-   */
-  int getDomainStrategyValue();
-  /**
-   * <code>.v2ray.core.proxy.freedom.Config.DomainStrategy domain_strategy = 1;</code>
-   */
-  Config.DomainStrategy getDomainStrategy();
+    /**
+     * <code>.v2ray.core.proxy.freedom.Config.DomainStrategy domain_strategy = 1;</code>
+     */
+    int getDomainStrategyValue();
 
-  /**
-   * <code>uint32 timeout = 2 [deprecated = true];</code>
-   */
-  @Deprecated int getTimeout();
+    /**
+     * <code>.v2ray.core.proxy.freedom.Config.DomainStrategy domain_strategy = 1;</code>
+     */
+    Config.DomainStrategy getDomainStrategy();
 
-  /**
-   * <code>.v2ray.core.proxy.freedom.DestinationOverride destination_override = 3;</code>
-   */
-  boolean hasDestinationOverride();
-  /**
-   * <code>.v2ray.core.proxy.freedom.DestinationOverride destination_override = 3;</code>
-   */
-  com.v2ray.core.proxy.freedom.DestinationOverride getDestinationOverride();
-  /**
-   * <code>.v2ray.core.proxy.freedom.DestinationOverride destination_override = 3;</code>
-   */
-  com.v2ray.core.proxy.freedom.DestinationOverrideOrBuilder getDestinationOverrideOrBuilder();
+    /**
+     * <code>uint32 timeout = 2 [deprecated = true];</code>
+     */
+    @Deprecated
+    int getTimeout();
 
-  /**
-   * <code>uint32 user_level = 4;</code>
-   */
-  int getUserLevel();
+    /**
+     * <code>.v2ray.core.proxy.freedom.DestinationOverride destination_override = 3;</code>
+     */
+    boolean hasDestinationOverride();
+
+    /**
+     * <code>.v2ray.core.proxy.freedom.DestinationOverride destination_override = 3;</code>
+     */
+    com.v2ray.core.proxy.freedom.DestinationOverride getDestinationOverride();
+
+    /**
+     * <code>.v2ray.core.proxy.freedom.DestinationOverride destination_override = 3;</code>
+     */
+    com.v2ray.core.proxy.freedom.DestinationOverrideOrBuilder getDestinationOverrideOrBuilder();
+
+    /**
+     * <code>uint32 user_level = 4;</code>
+     */
+    int getUserLevel();
 }

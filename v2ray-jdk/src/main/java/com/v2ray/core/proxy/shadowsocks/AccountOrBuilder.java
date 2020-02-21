@@ -4,34 +4,37 @@
 package com.v2ray.core.proxy.shadowsocks;
 
 public interface AccountOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.shadowsocks.Account)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.shadowsocks.Account)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>string password = 1;</code>
-   */
-  String getPassword();
-  /**
-   * <code>string password = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getPasswordBytes();
+    /**
+     * <code>string password = 1;</code>
+     */
+    String getPassword();
 
-  /**
-   * <code>.v2ray.core.proxy.shadowsocks.CipherType cipher_type = 2;</code>
-   */
-  int getCipherTypeValue();
-  /**
-   * <code>.v2ray.core.proxy.shadowsocks.CipherType cipher_type = 2;</code>
-   */
-  CipherType getCipherType();
+    /**
+     * <code>string password = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getPasswordBytes();
 
-  /**
-   * <code>.v2ray.core.proxy.shadowsocks.Account.OneTimeAuth ota = 3;</code>
-   */
-  int getOtaValue();
-  /**
-   * <code>.v2ray.core.proxy.shadowsocks.Account.OneTimeAuth ota = 3;</code>
-   */
-  Account.OneTimeAuth getOta();
+    /**
+     * <code>.v2ray.core.proxy.shadowsocks.CipherType cipher_type = 2;</code>
+     */
+    int getCipherTypeValue();
+
+    /**
+     * <code>.v2ray.core.proxy.shadowsocks.CipherType cipher_type = 2;</code>
+     */
+    CipherType getCipherType();
+
+    /**
+     * <code>.v2ray.core.proxy.shadowsocks.Account.OneTimeAuth ota = 3;</code>
+     */
+    int getOtaValue();
+
+    /**
+     * <code>.v2ray.core.proxy.shadowsocks.Account.OneTimeAuth ota = 3;</code>
+     */
+    Account.OneTimeAuth getOta();
 }

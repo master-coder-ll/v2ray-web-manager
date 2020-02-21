@@ -7,6 +7,7 @@ import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -92,10 +93,9 @@ public class NoticeController {
                 || StringUtils.isBlank(notice.getName())
                 || notice.getToDate() ==null
                 || notice.getStatus() ==null
-        )
-            {
+        ) {
             log.warn("notice:{}", notice);
-            throw new NullPointerException("不能为空");
+            if (notice == null) throw new NullPointerException("不能为空");
         }
         noticeRepository.save(notice);
     }

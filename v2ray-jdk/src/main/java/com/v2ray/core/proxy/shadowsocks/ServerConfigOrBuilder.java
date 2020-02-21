@@ -4,51 +4,58 @@
 package com.v2ray.core.proxy.shadowsocks;
 
 public interface ServerConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.shadowsocks.ServerConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.shadowsocks.ServerConfig)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <pre>
-   * UdpEnabled specified whether or not to enable UDP for Shadowsocks.
-   * Deprecated. Use 'network' field.
-   * </pre>
-   *
-   * <code>bool udp_enabled = 1 [deprecated = true];</code>
-   */
-  @Deprecated boolean getUdpEnabled();
+    /**
+     * <pre>
+     * UdpEnabled specified whether or not to enable UDP for Shadowsocks.
+     * Deprecated. Use 'network' field.
+     * </pre>
+     *
+     * <code>bool udp_enabled = 1 [deprecated = true];</code>
+     */
+    @Deprecated
+    boolean getUdpEnabled();
 
-  /**
-   * <code>.v2ray.core.common.protocol.User user = 2;</code>
-   */
-  boolean hasUser();
-  /**
-   * <code>.v2ray.core.common.protocol.User user = 2;</code>
-   */
-  com.v2ray.core.common.protocol.User getUser();
-  /**
-   * <code>.v2ray.core.common.protocol.User user = 2;</code>
-   */
-  com.v2ray.core.common.protocol.UserOrBuilder getUserOrBuilder();
+    /**
+     * <code>.v2ray.core.common.protocol.User user = 2;</code>
+     */
+    boolean hasUser();
 
-  /**
-   * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
-   */
-  java.util.List<com.v2ray.core.common.net.Network> getNetworkList();
-  /**
-   * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
-   */
-  int getNetworkCount();
-  /**
-   * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
-   */
-  com.v2ray.core.common.net.Network getNetwork(int index);
-  /**
-   * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
-   */
-  java.util.List<Integer>
-  getNetworkValueList();
-  /**
-   * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
-   */
-  int getNetworkValue(int index);
+    /**
+     * <code>.v2ray.core.common.protocol.User user = 2;</code>
+     */
+    com.v2ray.core.common.protocol.User getUser();
+
+    /**
+     * <code>.v2ray.core.common.protocol.User user = 2;</code>
+     */
+    com.v2ray.core.common.protocol.UserOrBuilder getUserOrBuilder();
+
+    /**
+     * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
+     */
+    java.util.List<com.v2ray.core.common.net.Network> getNetworkList();
+
+    /**
+     * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
+     */
+    int getNetworkCount();
+
+    /**
+     * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
+     */
+    com.v2ray.core.common.net.Network getNetwork(int index);
+
+    /**
+     * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
+     */
+    java.util.List<Integer>
+    getNetworkValueList();
+
+    /**
+     * <code>repeated .v2ray.core.common.net.Network network = 3;</code>
+     */
+    int getNetworkValue(int index);
 }

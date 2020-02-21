@@ -7,738 +7,793 @@ package com.v2ray.core.common.net;
  * <pre>
  * Endpoint of a network connection.
  * </pre>
- *
+ * <p>
  * Protobuf type {@code v2ray.core.common.net.Endpoint}
  */
-public  final class Endpoint extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.common.net.Endpoint)
-    EndpointOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use Endpoint.newBuilder() to construct.
-  private Endpoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private Endpoint() {
-    network_ = 0;
-  }
+public final class Endpoint extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.common.net.Endpoint)
+        EndpointOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private Endpoint(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use Endpoint.newBuilder() to construct.
+    private Endpoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-            int rawValue = input.readEnum();
 
-            network_ = rawValue;
-            break;
-          }
-          case 18: {
-            com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
-            if (address_ != null) {
-              subBuilder = address_.toBuilder();
-            }
-            address_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(address_);
-              address_ = subBuilder.buildPartial();
-            }
+    private Endpoint() {
+        network_ = 0;
+    }
 
-            break;
-          }
-          case 24: {
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
 
-            port_ = input.readUInt32();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+    private Endpoint(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
+                        int rawValue = input.readEnum();
+
+                        network_ = rawValue;
+                        break;
+                    }
+                    case 18: {
+                        com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
+                        if (address_ != null) {
+                            subBuilder = address_.toBuilder();
+                        }
+                        address_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(address_);
+                            address_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 24: {
+
+                        port_ = input.readUInt32();
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_descriptor;
-  }
 
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            Endpoint.class, Builder.class);
-  }
-
-  public static final int NETWORK_FIELD_NUMBER = 1;
-  private int network_;
-  /**
-   * <code>.v2ray.core.common.net.Network network = 1;</code>
-   */
-  public int getNetworkValue() {
-    return network_;
-  }
-  /**
-   * <code>.v2ray.core.common.net.Network network = 1;</code>
-   */
-  public Network getNetwork() {
-    @SuppressWarnings("deprecation")
-    Network result = Network.valueOf(network_);
-    return result == null ? Network.UNRECOGNIZED : result;
-  }
-
-  public static final int ADDRESS_FIELD_NUMBER = 2;
-  private com.v2ray.core.common.net.IPOrDomain address_;
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-   */
-  public boolean hasAddress() {
-    return address_ != null;
-  }
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomain getAddress() {
-    return address_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
-  }
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder() {
-    return getAddress();
-  }
-
-  public static final int PORT_FIELD_NUMBER = 3;
-  private int port_;
-  /**
-   * <code>uint32 port = 3;</code>
-   */
-  public int getPort() {
-    return port_;
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (network_ != Network.Unknown.getNumber()) {
-      output.writeEnum(1, network_);
-    }
-    if (address_ != null) {
-      output.writeMessage(2, getAddress());
-    }
-    if (port_ != 0) {
-      output.writeUInt32(3, port_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (network_ != Network.Unknown.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, network_);
-    }
-    if (address_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getAddress());
-    }
-    if (port_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(3, port_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof Endpoint)) {
-      return super.equals(obj);
-    }
-    Endpoint other = (Endpoint) obj;
-
-    if (network_ != other.network_) return false;
-    if (hasAddress() != other.hasAddress()) return false;
-    if (hasAddress()) {
-      if (!getAddress()
-          .equals(other.getAddress())) return false;
-    }
-    if (getPort()
-        != other.getPort()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + NETWORK_FIELD_NUMBER;
-    hash = (53 * hash) + network_;
-    if (hasAddress()) {
-      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
-      hash = (53 * hash) + getAddress().hashCode();
-    }
-    hash = (37 * hash) + PORT_FIELD_NUMBER;
-    hash = (53 * hash) + getPort();
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static Endpoint parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Endpoint parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Endpoint parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Endpoint parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Endpoint parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static Endpoint parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static Endpoint parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static Endpoint parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static Endpoint parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static Endpoint parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static Endpoint parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static Endpoint parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(Endpoint prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * <pre>
-   * Endpoint of a network connection.
-   * </pre>
-   *
-   * Protobuf type {@code v2ray.core.common.net.Endpoint}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.common.net.Endpoint)
-      com.v2ray.core.common.net.EndpointOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_descriptor;
+    getDescriptor() {
+        return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              Endpoint.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        Endpoint.class, Builder.class);
     }
 
-    // Construct using com.v2ray.core.common.net.Endpoint.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
+    public static final int NETWORK_FIELD_NUMBER = 1;
+    private int network_;
 
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      network_ = 0;
-
-      if (addressBuilder_ == null) {
-        address_ = null;
-      } else {
-        address_ = null;
-        addressBuilder_ = null;
-      }
-      port_ = 0;
-
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_descriptor;
-    }
-
-    @Override
-    public Endpoint getDefaultInstanceForType() {
-      return Endpoint.getDefaultInstance();
-    }
-
-    @Override
-    public Endpoint build() {
-      Endpoint result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public Endpoint buildPartial() {
-      Endpoint result = new Endpoint(this);
-      result.network_ = network_;
-      if (addressBuilder_ == null) {
-        result.address_ = address_;
-      } else {
-        result.address_ = addressBuilder_.build();
-      }
-      result.port_ = port_;
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof Endpoint) {
-        return mergeFrom((Endpoint)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(Endpoint other) {
-      if (other == Endpoint.getDefaultInstance()) return this;
-      if (other.network_ != 0) {
-        setNetworkValue(other.getNetworkValue());
-      }
-      if (other.hasAddress()) {
-        mergeAddress(other.getAddress());
-      }
-      if (other.getPort() != 0) {
-        setPort(other.getPort());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      Endpoint parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (Endpoint) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
-
-    private int network_ = 0;
     /**
      * <code>.v2ray.core.common.net.Network network = 1;</code>
      */
     public int getNetworkValue() {
-      return network_;
+        return network_;
     }
-    /**
-     * <code>.v2ray.core.common.net.Network network = 1;</code>
-     */
-    public Builder setNetworkValue(int value) {
-      network_ = value;
-      onChanged();
-      return this;
-    }
+
     /**
      * <code>.v2ray.core.common.net.Network network = 1;</code>
      */
     public Network getNetwork() {
-      @SuppressWarnings("deprecation")
-      Network result = Network.valueOf(network_);
-      return result == null ? Network.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.v2ray.core.common.net.Network network = 1;</code>
-     */
-    public Builder setNetwork(Network value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      network_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.Network network = 1;</code>
-     */
-    public Builder clearNetwork() {
-      
-      network_ = 0;
-      onChanged();
-      return this;
+        @SuppressWarnings("deprecation")
+        Network result = Network.valueOf(network_);
+        return result == null ? Network.UNRECOGNIZED : result;
     }
 
+    public static final int ADDRESS_FIELD_NUMBER = 2;
     private com.v2ray.core.common.net.IPOrDomain address_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> addressBuilder_;
+
     /**
      * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
      */
     public boolean hasAddress() {
-      return addressBuilder_ != null || address_ != null;
+        return address_ != null;
     }
+
     /**
      * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
      */
     public com.v2ray.core.common.net.IPOrDomain getAddress() {
-      if (addressBuilder_ == null) {
         return address_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
-      } else {
-        return addressBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-     */
-    public Builder setAddress(com.v2ray.core.common.net.IPOrDomain value) {
-      if (addressBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        address_ = value;
-        onChanged();
-      } else {
-        addressBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-     */
-    public Builder setAddress(
-        com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
-      if (addressBuilder_ == null) {
-        address_ = builderForValue.build();
-        onChanged();
-      } else {
-        addressBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-     */
-    public Builder mergeAddress(com.v2ray.core.common.net.IPOrDomain value) {
-      if (addressBuilder_ == null) {
-        if (address_ != null) {
-          address_ =
-            com.v2ray.core.common.net.IPOrDomain.newBuilder(address_).mergeFrom(value).buildPartial();
-        } else {
-          address_ = value;
-        }
-        onChanged();
-      } else {
-        addressBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-     */
-    public Builder clearAddress() {
-      if (addressBuilder_ == null) {
-        address_ = null;
-        onChanged();
-      } else {
-        address_ = null;
-        addressBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-     */
-    public com.v2ray.core.common.net.IPOrDomain.Builder getAddressBuilder() {
-      
-      onChanged();
-      return getAddressFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
      */
     public com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder() {
-      if (addressBuilder_ != null) {
-        return addressBuilder_.getMessageOrBuilder();
-      } else {
-        return address_ == null ?
-            com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> 
-        getAddressFieldBuilder() {
-      if (addressBuilder_ == null) {
-        addressBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
-                getAddress(),
-                getParentForChildren(),
-                isClean());
-        address_ = null;
-      }
-      return addressBuilder_;
+        return getAddress();
     }
 
-    private int port_ ;
+    public static final int PORT_FIELD_NUMBER = 3;
+    private int port_;
+
     /**
      * <code>uint32 port = 3;</code>
      */
     public int getPort() {
-      return port_;
+        return port_;
     }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (network_ != Network.Unknown.getNumber()) {
+            output.writeEnum(1, network_);
+        }
+        if (address_ != null) {
+            output.writeMessage(2, getAddress());
+        }
+        if (port_ != 0) {
+            output.writeUInt32(3, port_);
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (network_ != Network.Unknown.getNumber()) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeEnumSize(1, network_);
+        }
+        if (address_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, getAddress());
+        }
+        if (port_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(3, port_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Endpoint)) {
+            return super.equals(obj);
+        }
+        Endpoint other = (Endpoint) obj;
+
+        if (network_ != other.network_) return false;
+        if (hasAddress() != other.hasAddress()) return false;
+        if (hasAddress()) {
+            if (!getAddress()
+                    .equals(other.getAddress())) return false;
+        }
+        if (getPort()
+                != other.getPort()) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + NETWORK_FIELD_NUMBER;
+        hash = (53 * hash) + network_;
+        if (hasAddress()) {
+            hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+            hash = (53 * hash) + getAddress().hashCode();
+        }
+        hash = (37 * hash) + PORT_FIELD_NUMBER;
+        hash = (53 * hash) + getPort();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static Endpoint parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Endpoint parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Endpoint parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Endpoint parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Endpoint parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static Endpoint parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static Endpoint parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static Endpoint parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static Endpoint parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static Endpoint parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static Endpoint parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static Endpoint parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(Endpoint prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <code>uint32 port = 3;</code>
+     * <pre>
+     * Endpoint of a network connection.
+     * </pre>
+     * <p>
+     * Protobuf type {@code v2ray.core.common.net.Endpoint}
      */
-    public Builder setPort(int value) {
-      
-      port_ = value;
-      onChanged();
-      return this;
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.common.net.Endpoint)
+            com.v2ray.core.common.net.EndpointOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            Endpoint.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.common.net.Endpoint.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            network_ = 0;
+
+            if (addressBuilder_ == null) {
+                address_ = null;
+            } else {
+                address_ = null;
+                addressBuilder_ = null;
+            }
+            port_ = 0;
+
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return com.v2ray.core.common.net.Destination.internal_static_v2ray_core_common_net_Endpoint_descriptor;
+        }
+
+        @Override
+        public Endpoint getDefaultInstanceForType() {
+            return Endpoint.getDefaultInstance();
+        }
+
+        @Override
+        public Endpoint build() {
+            Endpoint result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public Endpoint buildPartial() {
+            Endpoint result = new Endpoint(this);
+            result.network_ = network_;
+            if (addressBuilder_ == null) {
+                result.address_ = address_;
+            } else {
+                result.address_ = addressBuilder_.build();
+            }
+            result.port_ = port_;
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof Endpoint) {
+                return mergeFrom((Endpoint) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(Endpoint other) {
+            if (other == Endpoint.getDefaultInstance()) return this;
+            if (other.network_ != 0) {
+                setNetworkValue(other.getNetworkValue());
+            }
+            if (other.hasAddress()) {
+                mergeAddress(other.getAddress());
+            }
+            if (other.getPort() != 0) {
+                setPort(other.getPort());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            Endpoint parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (Endpoint) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private int network_ = 0;
+
+        /**
+         * <code>.v2ray.core.common.net.Network network = 1;</code>
+         */
+        public int getNetworkValue() {
+            return network_;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.Network network = 1;</code>
+         */
+        public Builder setNetworkValue(int value) {
+            network_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.Network network = 1;</code>
+         */
+        public Network getNetwork() {
+            @SuppressWarnings("deprecation")
+            Network result = Network.valueOf(network_);
+            return result == null ? Network.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.Network network = 1;</code>
+         */
+        public Builder setNetwork(Network value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            network_ = value.getNumber();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.Network network = 1;</code>
+         */
+        public Builder clearNetwork() {
+
+            network_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private com.v2ray.core.common.net.IPOrDomain address_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> addressBuilder_;
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public boolean hasAddress() {
+            return addressBuilder_ != null || address_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain getAddress() {
+            if (addressBuilder_ == null) {
+                return address_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
+            } else {
+                return addressBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public Builder setAddress(com.v2ray.core.common.net.IPOrDomain value) {
+            if (addressBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                address_ = value;
+                onChanged();
+            } else {
+                addressBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public Builder setAddress(
+                com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
+            if (addressBuilder_ == null) {
+                address_ = builderForValue.build();
+                onChanged();
+            } else {
+                addressBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public Builder mergeAddress(com.v2ray.core.common.net.IPOrDomain value) {
+            if (addressBuilder_ == null) {
+                if (address_ != null) {
+                    address_ =
+                            com.v2ray.core.common.net.IPOrDomain.newBuilder(address_).mergeFrom(value).buildPartial();
+                } else {
+                    address_ = value;
+                }
+                onChanged();
+            } else {
+                addressBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public Builder clearAddress() {
+            if (addressBuilder_ == null) {
+                address_ = null;
+                onChanged();
+            } else {
+                address_ = null;
+                addressBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain.Builder getAddressBuilder() {
+
+            onChanged();
+            return getAddressFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder() {
+            if (addressBuilder_ != null) {
+                return addressBuilder_.getMessageOrBuilder();
+            } else {
+                return address_ == null ?
+                        com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : address_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>
+        getAddressFieldBuilder() {
+            if (addressBuilder_ == null) {
+                addressBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
+                        getAddress(),
+                        getParentForChildren(),
+                        isClean());
+                address_ = null;
+            }
+            return addressBuilder_;
+        }
+
+        private int port_;
+
+        /**
+         * <code>uint32 port = 3;</code>
+         */
+        public int getPort() {
+            return port_;
+        }
+
+        /**
+         * <code>uint32 port = 3;</code>
+         */
+        public Builder setPort(int value) {
+
+            port_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint32 port = 3;</code>
+         */
+        public Builder clearPort() {
+
+            port_ = 0;
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.common.net.Endpoint)
     }
-    /**
-     * <code>uint32 port = 3;</code>
-     */
-    public Builder clearPort() {
-      
-      port_ = 0;
-      onChanged();
-      return this;
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.common.net.Endpoint)
+    private static final Endpoint DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new Endpoint();
     }
+
+    public static Endpoint getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<Endpoint>
+            PARSER = new com.google.protobuf.AbstractParser<Endpoint>() {
+        @Override
+        public Endpoint parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Endpoint(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<Endpoint> parser() {
+        return PARSER;
+    }
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<Endpoint> getParserForType() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public Endpoint getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.common.net.Endpoint)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.common.net.Endpoint)
-  private static final Endpoint DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new Endpoint();
-  }
-
-  public static Endpoint getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<Endpoint>
-      PARSER = new com.google.protobuf.AbstractParser<Endpoint>() {
-    @Override
-    public Endpoint parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new Endpoint(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<Endpoint> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<Endpoint> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public Endpoint getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

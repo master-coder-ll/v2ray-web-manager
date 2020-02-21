@@ -4,59 +4,64 @@
 package com.v2ray.core.app.commander;
 
 public final class ConfigOuterClass {
-  private ConfigOuterClass() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    private ConfigOuterClass() {
+    }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_commander_Config_descriptor;
-  static final 
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
+
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
+
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_commander_Config_descriptor;
+    static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_commander_Config_fieldAccessorTable;
+            internal_static_v2ray_core_app_commander_Config_fieldAccessorTable;
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    String[] descriptorData = {
-      "\n)v2ray.com/core/app/commander/config.pr" +
-      "oto\022\030v2ray.core.app.commander\0320v2ray.com" +
-      "/core/common/serial/typed_message.proto\"" +
-      "N\n\006Config\022\013\n\003tag\030\001 \001(\t\0227\n\007service\030\002 \003(\0132" +
-      "&.v2ray.core.common.serial.TypedMessageB" +
-      "F\n\034com.v2ray.core.app.commanderP\001Z\tcomma" +
-      "nder\252\002\030V2Ray.Core.App.Commanderb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        String[] descriptorData = {
+                "\n)v2ray.com/core/app/commander/config.pr" +
+                        "oto\022\030v2ray.core.app.commander\0320v2ray.com" +
+                        "/core/common/serial/typed_message.proto\"" +
+                        "N\n\006Config\022\013\n\003tag\030\001 \001(\t\0227\n\007service\030\002 \003(\0132" +
+                        "&.v2ray.core.common.serial.TypedMessageB" +
+                        "F\n\034com.v2ray.core.app.commanderP\001Z\tcomma" +
+                        "nder\252\002\030V2Ray.Core.App.Commanderb\006proto3"
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor(),
-        }, assigner);
-    internal_static_v2ray_core_app_commander_Config_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_v2ray_core_app_commander_Config_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_commander_Config_descriptor,
-        new String[] { "Tag", "Service", });
-    com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor();
-  }
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                                com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor(),
+                        }, assigner);
+        internal_static_v2ray_core_app_commander_Config_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_v2ray_core_app_commander_Config_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_commander_Config_descriptor,
+                new String[]{"Tag", "Service",});
+        com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor();
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

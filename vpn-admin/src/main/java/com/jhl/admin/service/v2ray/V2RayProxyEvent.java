@@ -36,7 +36,7 @@ public class V2RayProxyEvent implements ProxyEvent {
     }
 
 
-
+    @Deprecated
     public void updateEvent() {
         createEvent();
     }
@@ -63,7 +63,7 @@ public class V2RayProxyEvent implements ProxyEvent {
     }
 
     }
-
+    @Deprecated
     public void createEvent() {
         ProxyAccount proxyAccount = buildProxyAccount();
         List<String> urls  = buildProxyServerUrl();

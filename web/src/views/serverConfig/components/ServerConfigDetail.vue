@@ -14,12 +14,12 @@
         <el-input v-model="postForm.value" />
       </el-form-item>
 
-    <el-form-item>  
+    <el-form-item>
       <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
         提交
       </el-button>
       </el-form-item>
-    
+
     </el-form>
   </div>
 </template>
@@ -28,7 +28,6 @@
 import { addServerConfig, getServerConfig, updateServerConfig } from '@/api/serverConfig'
 const defaultForm = {
   name: '',
-  // v.kxsw2019.cf
   key: '',
   value: 'true',
 
@@ -36,7 +35,7 @@ const defaultForm = {
 const defaultRules = {
   key: { required: true, trigger: 'blur' },
   value: { required: true, trigger: 'blur' },
-  
+
 }
 
 export default {
@@ -53,7 +52,7 @@ export default {
       loading: false,
       rules: Object.assign({}, defaultRules),
       tempRoute: {},
-      
+
 
     }
   },
@@ -76,7 +75,7 @@ export default {
       console.log('server get id ' + id)
       getServerConfig(id).then(response => {
         this.postForm = response.obj
-        
+
       })
     },
     submitForm() {

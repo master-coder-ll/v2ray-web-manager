@@ -6,794 +6,166 @@ package com.v2ray.core.app.proxyman;
 /**
  * Protobuf type {@code v2ray.core.app.proxyman.ReceiverConfig}
  */
-public  final class ReceiverConfig extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.ReceiverConfig)
-    ReceiverConfigOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use ReceiverConfig.newBuilder() to construct.
-  private ReceiverConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private ReceiverConfig() {
-    domainOverride_ = java.util.Collections.emptyList();
-  }
+public final class ReceiverConfig extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.ReceiverConfig)
+        ReceiverConfigOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private ReceiverConfig(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use ReceiverConfig.newBuilder() to construct.
+    private ReceiverConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 10: {
-            com.v2ray.core.common.net.PortRange.Builder subBuilder = null;
-            if (portRange_ != null) {
-              subBuilder = portRange_.toBuilder();
-            }
-            portRange_ = input.readMessage(com.v2ray.core.common.net.PortRange.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(portRange_);
-              portRange_ = subBuilder.buildPartial();
-            }
 
-            break;
-          }
-          case 18: {
-            com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
-            if (listen_ != null) {
-              subBuilder = listen_.toBuilder();
-            }
-            listen_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(listen_);
-              listen_ = subBuilder.buildPartial();
-            }
+    private ReceiverConfig() {
+        domainOverride_ = java.util.Collections.emptyList();
+    }
 
-            break;
-          }
-          case 26: {
-            com.v2ray.core.app.proxyman.AllocationStrategy.Builder subBuilder = null;
-            if (allocationStrategy_ != null) {
-              subBuilder = allocationStrategy_.toBuilder();
-            }
-            allocationStrategy_ = input.readMessage(com.v2ray.core.app.proxyman.AllocationStrategy.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(allocationStrategy_);
-              allocationStrategy_ = subBuilder.buildPartial();
-            }
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
 
-            break;
-          }
-          case 34: {
-            com.v2ray.core.transport.internet.StreamConfig.Builder subBuilder = null;
-            if (streamSettings_ != null) {
-              subBuilder = streamSettings_.toBuilder();
-            }
-            streamSettings_ = input.readMessage(com.v2ray.core.transport.internet.StreamConfig.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(streamSettings_);
-              streamSettings_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 40: {
-
-            receiveOriginalDestination_ = input.readBool();
-            break;
-          }
-          case 56: {
-            int rawValue = input.readEnum();
-            if (!((mutable_bitField0_ & 0x00000020) != 0)) {
-              domainOverride_ = new java.util.ArrayList<Integer>();
-              mutable_bitField0_ |= 0x00000020;
-            }
-            domainOverride_.add(rawValue);
-            break;
-          }
-          case 58: {
-            int length = input.readRawVarint32();
-            int oldLimit = input.pushLimit(length);
-            while(input.getBytesUntilLimit() > 0) {
-              int rawValue = input.readEnum();
-              if (!((mutable_bitField0_ & 0x00000020) != 0)) {
-                domainOverride_ = new java.util.ArrayList<Integer>();
-                mutable_bitField0_ |= 0x00000020;
-              }
-              domainOverride_.add(rawValue);
-            }
-            input.popLimit(oldLimit);
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+    private ReceiverConfig(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      if (((mutable_bitField0_ & 0x00000020) != 0)) {
-        domainOverride_ = java.util.Collections.unmodifiableList(domainOverride_);
-      }
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
-  }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 10: {
+                        com.v2ray.core.common.net.PortRange.Builder subBuilder = null;
+                        if (portRange_ != null) {
+                            subBuilder = portRange_.toBuilder();
+                        }
+                        portRange_ = input.readMessage(com.v2ray.core.common.net.PortRange.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(portRange_);
+                            portRange_ = subBuilder.buildPartial();
+                        }
 
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            ReceiverConfig.class, Builder.class);
-  }
+                        break;
+                    }
+                    case 18: {
+                        com.v2ray.core.common.net.IPOrDomain.Builder subBuilder = null;
+                        if (listen_ != null) {
+                            subBuilder = listen_.toBuilder();
+                        }
+                        listen_ = input.readMessage(com.v2ray.core.common.net.IPOrDomain.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(listen_);
+                            listen_ = subBuilder.buildPartial();
+                        }
 
-  private int bitField0_;
-  public static final int PORT_RANGE_FIELD_NUMBER = 1;
-  private com.v2ray.core.common.net.PortRange portRange_;
-  /**
-   * <pre>
-   * PortRange specifies the ports which the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-   */
-  public boolean hasPortRange() {
-    return portRange_ != null;
-  }
-  /**
-   * <pre>
-   * PortRange specifies the ports which the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-   */
-  public com.v2ray.core.common.net.PortRange getPortRange() {
-    return portRange_ == null ? com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
-  }
-  /**
-   * <pre>
-   * PortRange specifies the ports which the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-   */
-  public com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder() {
-    return getPortRange();
-  }
+                        break;
+                    }
+                    case 26: {
+                        com.v2ray.core.app.proxyman.AllocationStrategy.Builder subBuilder = null;
+                        if (allocationStrategy_ != null) {
+                            subBuilder = allocationStrategy_.toBuilder();
+                        }
+                        allocationStrategy_ = input.readMessage(com.v2ray.core.app.proxyman.AllocationStrategy.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(allocationStrategy_);
+                            allocationStrategy_ = subBuilder.buildPartial();
+                        }
 
-  public static final int LISTEN_FIELD_NUMBER = 2;
-  private com.v2ray.core.common.net.IPOrDomain listen_;
-  /**
-   * <pre>
-   * Listen specifies the IP address that the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-   */
-  public boolean hasListen() {
-    return listen_ != null;
-  }
-  /**
-   * <pre>
-   * Listen specifies the IP address that the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomain getListen() {
-    return listen_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : listen_;
-  }
-  /**
-   * <pre>
-   * Listen specifies the IP address that the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-   */
-  public com.v2ray.core.common.net.IPOrDomainOrBuilder getListenOrBuilder() {
-    return getListen();
-  }
+                        break;
+                    }
+                    case 34: {
+                        com.v2ray.core.transport.internet.StreamConfig.Builder subBuilder = null;
+                        if (streamSettings_ != null) {
+                            subBuilder = streamSettings_.toBuilder();
+                        }
+                        streamSettings_ = input.readMessage(com.v2ray.core.transport.internet.StreamConfig.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(streamSettings_);
+                            streamSettings_ = subBuilder.buildPartial();
+                        }
 
-  public static final int ALLOCATION_STRATEGY_FIELD_NUMBER = 3;
-  private com.v2ray.core.app.proxyman.AllocationStrategy allocationStrategy_;
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-   */
-  public boolean hasAllocationStrategy() {
-    return allocationStrategy_ != null;
-  }
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-   */
-  public com.v2ray.core.app.proxyman.AllocationStrategy getAllocationStrategy() {
-    return allocationStrategy_ == null ? com.v2ray.core.app.proxyman.AllocationStrategy.getDefaultInstance() : allocationStrategy_;
-  }
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-   */
-  public com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder getAllocationStrategyOrBuilder() {
-    return getAllocationStrategy();
-  }
+                        break;
+                    }
+                    case 40: {
 
-  public static final int STREAM_SETTINGS_FIELD_NUMBER = 4;
-  private com.v2ray.core.transport.internet.StreamConfig streamSettings_;
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-   */
-  public boolean hasStreamSettings() {
-    return streamSettings_ != null;
-  }
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-   */
-  public com.v2ray.core.transport.internet.StreamConfig getStreamSettings() {
-    return streamSettings_ == null ? com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
-  }
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-   */
-  public com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder() {
-    return getStreamSettings();
-  }
-
-  public static final int RECEIVE_ORIGINAL_DESTINATION_FIELD_NUMBER = 5;
-  private boolean receiveOriginalDestination_;
-  /**
-   * <code>bool receive_original_destination = 5;</code>
-   */
-  public boolean getReceiveOriginalDestination() {
-    return receiveOriginalDestination_;
-  }
-
-  public static final int DOMAIN_OVERRIDE_FIELD_NUMBER = 7;
-  private java.util.List<Integer> domainOverride_;
-  private static final com.google.protobuf.Internal.ListAdapter.Converter<
-      Integer, KnownProtocols> domainOverride_converter_ =
-          new com.google.protobuf.Internal.ListAdapter.Converter<
-              Integer, KnownProtocols>() {
-            public KnownProtocols convert(Integer from) {
-              @SuppressWarnings("deprecation")
-              KnownProtocols result = KnownProtocols.valueOf(from);
-              return result == null ? KnownProtocols.UNRECOGNIZED : result;
+                        receiveOriginalDestination_ = input.readBool();
+                        break;
+                    }
+                    case 56: {
+                        int rawValue = input.readEnum();
+                        if (!((mutable_bitField0_ & 0x00000020) != 0)) {
+                            domainOverride_ = new java.util.ArrayList<Integer>();
+                            mutable_bitField0_ |= 0x00000020;
+                        }
+                        domainOverride_.add(rawValue);
+                        break;
+                    }
+                    case 58: {
+                        int length = input.readRawVarint32();
+                        int oldLimit = input.pushLimit(length);
+                        while (input.getBytesUntilLimit() > 0) {
+                            int rawValue = input.readEnum();
+                            if (!((mutable_bitField0_ & 0x00000020) != 0)) {
+                                domainOverride_ = new java.util.ArrayList<Integer>();
+                                mutable_bitField0_ |= 0x00000020;
+                            }
+                            domainOverride_.add(rawValue);
+                        }
+                        input.popLimit(oldLimit);
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
             }
-          };
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  public java.util.List<KnownProtocols> getDomainOverrideList() {
-    return new com.google.protobuf.Internal.ListAdapter<
-        Integer, KnownProtocols>(domainOverride_, domainOverride_converter_);
-  }
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  public int getDomainOverrideCount() {
-    return domainOverride_.size();
-  }
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  public KnownProtocols getDomainOverride(int index) {
-    return domainOverride_converter_.convert(domainOverride_.get(index));
-  }
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  public java.util.List<Integer>
-  getDomainOverrideValueList() {
-    return domainOverride_;
-  }
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  public int getDomainOverrideValue(int index) {
-    return domainOverride_.get(index);
-  }
-  private int domainOverrideMemoizedSerializedSize;
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            if (((mutable_bitField0_ & 0x00000020) != 0)) {
+                domainOverride_ = java.util.Collections.unmodifiableList(domainOverride_);
+            }
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
+    }
 
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    getSerializedSize();
-    if (portRange_ != null) {
-      output.writeMessage(1, getPortRange());
-    }
-    if (listen_ != null) {
-      output.writeMessage(2, getListen());
-    }
-    if (allocationStrategy_ != null) {
-      output.writeMessage(3, getAllocationStrategy());
-    }
-    if (streamSettings_ != null) {
-      output.writeMessage(4, getStreamSettings());
-    }
-    if (receiveOriginalDestination_ != false) {
-      output.writeBool(5, receiveOriginalDestination_);
-    }
-    if (getDomainOverrideList().size() > 0) {
-      output.writeUInt32NoTag(58);
-      output.writeUInt32NoTag(domainOverrideMemoizedSerializedSize);
-    }
-    for (int i = 0; i < domainOverride_.size(); i++) {
-      output.writeEnumNoTag(domainOverride_.get(i));
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (portRange_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getPortRange());
-    }
-    if (listen_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getListen());
-    }
-    if (allocationStrategy_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getAllocationStrategy());
-    }
-    if (streamSettings_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getStreamSettings());
-    }
-    if (receiveOriginalDestination_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(5, receiveOriginalDestination_);
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < domainOverride_.size(); i++) {
-        dataSize += com.google.protobuf.CodedOutputStream
-          .computeEnumSizeNoTag(domainOverride_.get(i));
-      }
-      size += dataSize;
-      if (!getDomainOverrideList().isEmpty()) {  size += 1;
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32SizeNoTag(dataSize);
-      }domainOverrideMemoizedSerializedSize = dataSize;
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof ReceiverConfig)) {
-      return super.equals(obj);
-    }
-    ReceiverConfig other = (ReceiverConfig) obj;
-
-    if (hasPortRange() != other.hasPortRange()) return false;
-    if (hasPortRange()) {
-      if (!getPortRange()
-          .equals(other.getPortRange())) return false;
-    }
-    if (hasListen() != other.hasListen()) return false;
-    if (hasListen()) {
-      if (!getListen()
-          .equals(other.getListen())) return false;
-    }
-    if (hasAllocationStrategy() != other.hasAllocationStrategy()) return false;
-    if (hasAllocationStrategy()) {
-      if (!getAllocationStrategy()
-          .equals(other.getAllocationStrategy())) return false;
-    }
-    if (hasStreamSettings() != other.hasStreamSettings()) return false;
-    if (hasStreamSettings()) {
-      if (!getStreamSettings()
-          .equals(other.getStreamSettings())) return false;
-    }
-    if (getReceiveOriginalDestination()
-        != other.getReceiveOriginalDestination()) return false;
-    if (!domainOverride_.equals(other.domainOverride_)) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasPortRange()) {
-      hash = (37 * hash) + PORT_RANGE_FIELD_NUMBER;
-      hash = (53 * hash) + getPortRange().hashCode();
-    }
-    if (hasListen()) {
-      hash = (37 * hash) + LISTEN_FIELD_NUMBER;
-      hash = (53 * hash) + getListen().hashCode();
-    }
-    if (hasAllocationStrategy()) {
-      hash = (37 * hash) + ALLOCATION_STRATEGY_FIELD_NUMBER;
-      hash = (53 * hash) + getAllocationStrategy().hashCode();
-    }
-    if (hasStreamSettings()) {
-      hash = (37 * hash) + STREAM_SETTINGS_FIELD_NUMBER;
-      hash = (53 * hash) + getStreamSettings().hashCode();
-    }
-    hash = (37 * hash) + RECEIVE_ORIGINAL_DESTINATION_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getReceiveOriginalDestination());
-    if (getDomainOverrideCount() > 0) {
-      hash = (37 * hash) + DOMAIN_OVERRIDE_FIELD_NUMBER;
-      hash = (53 * hash) + domainOverride_.hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static ReceiverConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static ReceiverConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static ReceiverConfig parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static ReceiverConfig parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static ReceiverConfig parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static ReceiverConfig parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static ReceiverConfig parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static ReceiverConfig parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static ReceiverConfig parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static ReceiverConfig parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static ReceiverConfig parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static ReceiverConfig parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(ReceiverConfig prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.proxyman.ReceiverConfig}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.ReceiverConfig)
-      com.v2ray.core.app.proxyman.ReceiverConfigOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
+    getDescriptor() {
+        return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              ReceiverConfig.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        ReceiverConfig.class, Builder.class);
     }
 
-    // Construct using com.v2ray.core.app.proxyman.ReceiverConfig.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      if (portRangeBuilder_ == null) {
-        portRange_ = null;
-      } else {
-        portRange_ = null;
-        portRangeBuilder_ = null;
-      }
-      if (listenBuilder_ == null) {
-        listen_ = null;
-      } else {
-        listen_ = null;
-        listenBuilder_ = null;
-      }
-      if (allocationStrategyBuilder_ == null) {
-        allocationStrategy_ = null;
-      } else {
-        allocationStrategy_ = null;
-        allocationStrategyBuilder_ = null;
-      }
-      if (streamSettingsBuilder_ == null) {
-        streamSettings_ = null;
-      } else {
-        streamSettings_ = null;
-        streamSettingsBuilder_ = null;
-      }
-      receiveOriginalDestination_ = false;
-
-      domainOverride_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000020);
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
-    }
-
-    @Override
-    public ReceiverConfig getDefaultInstanceForType() {
-      return ReceiverConfig.getDefaultInstance();
-    }
-
-    @Override
-    public ReceiverConfig build() {
-      ReceiverConfig result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public ReceiverConfig buildPartial() {
-      ReceiverConfig result = new ReceiverConfig(this);
-      int from_bitField0_ = bitField0_;
-      int to_bitField0_ = 0;
-      if (portRangeBuilder_ == null) {
-        result.portRange_ = portRange_;
-      } else {
-        result.portRange_ = portRangeBuilder_.build();
-      }
-      if (listenBuilder_ == null) {
-        result.listen_ = listen_;
-      } else {
-        result.listen_ = listenBuilder_.build();
-      }
-      if (allocationStrategyBuilder_ == null) {
-        result.allocationStrategy_ = allocationStrategy_;
-      } else {
-        result.allocationStrategy_ = allocationStrategyBuilder_.build();
-      }
-      if (streamSettingsBuilder_ == null) {
-        result.streamSettings_ = streamSettings_;
-      } else {
-        result.streamSettings_ = streamSettingsBuilder_.build();
-      }
-      result.receiveOriginalDestination_ = receiveOriginalDestination_;
-      if (((bitField0_ & 0x00000020) != 0)) {
-        domainOverride_ = java.util.Collections.unmodifiableList(domainOverride_);
-        bitField0_ = (bitField0_ & ~0x00000020);
-      }
-      result.domainOverride_ = domainOverride_;
-      result.bitField0_ = to_bitField0_;
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof ReceiverConfig) {
-        return mergeFrom((ReceiverConfig)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(ReceiverConfig other) {
-      if (other == ReceiverConfig.getDefaultInstance()) return this;
-      if (other.hasPortRange()) {
-        mergePortRange(other.getPortRange());
-      }
-      if (other.hasListen()) {
-        mergeListen(other.getListen());
-      }
-      if (other.hasAllocationStrategy()) {
-        mergeAllocationStrategy(other.getAllocationStrategy());
-      }
-      if (other.hasStreamSettings()) {
-        mergeStreamSettings(other.getStreamSettings());
-      }
-      if (other.getReceiveOriginalDestination() != false) {
-        setReceiveOriginalDestination(other.getReceiveOriginalDestination());
-      }
-      if (!other.domainOverride_.isEmpty()) {
-        if (domainOverride_.isEmpty()) {
-          domainOverride_ = other.domainOverride_;
-          bitField0_ = (bitField0_ & ~0x00000020);
-        } else {
-          ensureDomainOverrideIsMutable();
-          domainOverride_.addAll(other.domainOverride_);
-        }
-        onChanged();
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      ReceiverConfig parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ReceiverConfig) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
     private int bitField0_;
-
+    public static final int PORT_RANGE_FIELD_NUMBER = 1;
     private com.v2ray.core.common.net.PortRange portRange_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder> portRangeBuilder_;
+
     /**
      * <pre>
      * PortRange specifies the ports which the Receiver should listen on.
@@ -802,8 +174,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
      */
     public boolean hasPortRange() {
-      return portRangeBuilder_ != null || portRange_ != null;
+        return portRange_ != null;
     }
+
     /**
      * <pre>
      * PortRange specifies the ports which the Receiver should listen on.
@@ -812,102 +185,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
      */
     public com.v2ray.core.common.net.PortRange getPortRange() {
-      if (portRangeBuilder_ == null) {
         return portRange_ == null ? com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
-      } else {
-        return portRangeBuilder_.getMessage();
-      }
     }
-    /**
-     * <pre>
-     * PortRange specifies the ports which the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-     */
-    public Builder setPortRange(com.v2ray.core.common.net.PortRange value) {
-      if (portRangeBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        portRange_ = value;
-        onChanged();
-      } else {
-        portRangeBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <pre>
-     * PortRange specifies the ports which the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-     */
-    public Builder setPortRange(
-        com.v2ray.core.common.net.PortRange.Builder builderForValue) {
-      if (portRangeBuilder_ == null) {
-        portRange_ = builderForValue.build();
-        onChanged();
-      } else {
-        portRangeBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * PortRange specifies the ports which the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-     */
-    public Builder mergePortRange(com.v2ray.core.common.net.PortRange value) {
-      if (portRangeBuilder_ == null) {
-        if (portRange_ != null) {
-          portRange_ =
-            com.v2ray.core.common.net.PortRange.newBuilder(portRange_).mergeFrom(value).buildPartial();
-        } else {
-          portRange_ = value;
-        }
-        onChanged();
-      } else {
-        portRangeBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * PortRange specifies the ports which the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-     */
-    public Builder clearPortRange() {
-      if (portRangeBuilder_ == null) {
-        portRange_ = null;
-        onChanged();
-      } else {
-        portRange_ = null;
-        portRangeBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * PortRange specifies the ports which the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-     */
-    public com.v2ray.core.common.net.PortRange.Builder getPortRangeBuilder() {
-      
-      onChanged();
-      return getPortRangeFieldBuilder().getBuilder();
-    }
     /**
      * <pre>
      * PortRange specifies the ports which the Receiver should listen on.
@@ -916,37 +196,12 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
      */
     public com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder() {
-      if (portRangeBuilder_ != null) {
-        return portRangeBuilder_.getMessageOrBuilder();
-      } else {
-        return portRange_ == null ?
-            com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
-      }
-    }
-    /**
-     * <pre>
-     * PortRange specifies the ports which the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder> 
-        getPortRangeFieldBuilder() {
-      if (portRangeBuilder_ == null) {
-        portRangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder>(
-                getPortRange(),
-                getParentForChildren(),
-                isClean());
-        portRange_ = null;
-      }
-      return portRangeBuilder_;
+        return getPortRange();
     }
 
+    public static final int LISTEN_FIELD_NUMBER = 2;
     private com.v2ray.core.common.net.IPOrDomain listen_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> listenBuilder_;
+
     /**
      * <pre>
      * Listen specifies the IP address that the Receiver should listen on.
@@ -955,8 +210,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
      */
     public boolean hasListen() {
-      return listenBuilder_ != null || listen_ != null;
+        return listen_ != null;
     }
+
     /**
      * <pre>
      * Listen specifies the IP address that the Receiver should listen on.
@@ -965,102 +221,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
      */
     public com.v2ray.core.common.net.IPOrDomain getListen() {
-      if (listenBuilder_ == null) {
         return listen_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : listen_;
-      } else {
-        return listenBuilder_.getMessage();
-      }
     }
-    /**
-     * <pre>
-     * Listen specifies the IP address that the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-     */
-    public Builder setListen(com.v2ray.core.common.net.IPOrDomain value) {
-      if (listenBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        listen_ = value;
-        onChanged();
-      } else {
-        listenBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <pre>
-     * Listen specifies the IP address that the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-     */
-    public Builder setListen(
-        com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
-      if (listenBuilder_ == null) {
-        listen_ = builderForValue.build();
-        onChanged();
-      } else {
-        listenBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Listen specifies the IP address that the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-     */
-    public Builder mergeListen(com.v2ray.core.common.net.IPOrDomain value) {
-      if (listenBuilder_ == null) {
-        if (listen_ != null) {
-          listen_ =
-            com.v2ray.core.common.net.IPOrDomain.newBuilder(listen_).mergeFrom(value).buildPartial();
-        } else {
-          listen_ = value;
-        }
-        onChanged();
-      } else {
-        listenBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Listen specifies the IP address that the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-     */
-    public Builder clearListen() {
-      if (listenBuilder_ == null) {
-        listen_ = null;
-        onChanged();
-      } else {
-        listen_ = null;
-        listenBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Listen specifies the IP address that the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-     */
-    public com.v2ray.core.common.net.IPOrDomain.Builder getListenBuilder() {
-      
-      onChanged();
-      return getListenFieldBuilder().getBuilder();
-    }
     /**
      * <pre>
      * Listen specifies the IP address that the Receiver should listen on.
@@ -1069,461 +232,1404 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
      */
     public com.v2ray.core.common.net.IPOrDomainOrBuilder getListenOrBuilder() {
-      if (listenBuilder_ != null) {
-        return listenBuilder_.getMessageOrBuilder();
-      } else {
-        return listen_ == null ?
-            com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : listen_;
-      }
-    }
-    /**
-     * <pre>
-     * Listen specifies the IP address that the Receiver should listen on.
-     * </pre>
-     *
-     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> 
-        getListenFieldBuilder() {
-      if (listenBuilder_ == null) {
-        listenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
-                getListen(),
-                getParentForChildren(),
-                isClean());
-        listen_ = null;
-      }
-      return listenBuilder_;
+        return getListen();
     }
 
+    public static final int ALLOCATION_STRATEGY_FIELD_NUMBER = 3;
     private com.v2ray.core.app.proxyman.AllocationStrategy allocationStrategy_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.app.proxyman.AllocationStrategy, com.v2ray.core.app.proxyman.AllocationStrategy.Builder, com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder> allocationStrategyBuilder_;
+
     /**
      * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
      */
     public boolean hasAllocationStrategy() {
-      return allocationStrategyBuilder_ != null || allocationStrategy_ != null;
+        return allocationStrategy_ != null;
     }
+
     /**
      * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
      */
     public com.v2ray.core.app.proxyman.AllocationStrategy getAllocationStrategy() {
-      if (allocationStrategyBuilder_ == null) {
         return allocationStrategy_ == null ? com.v2ray.core.app.proxyman.AllocationStrategy.getDefaultInstance() : allocationStrategy_;
-      } else {
-        return allocationStrategyBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-     */
-    public Builder setAllocationStrategy(com.v2ray.core.app.proxyman.AllocationStrategy value) {
-      if (allocationStrategyBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        allocationStrategy_ = value;
-        onChanged();
-      } else {
-        allocationStrategyBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-     */
-    public Builder setAllocationStrategy(
-        com.v2ray.core.app.proxyman.AllocationStrategy.Builder builderForValue) {
-      if (allocationStrategyBuilder_ == null) {
-        allocationStrategy_ = builderForValue.build();
-        onChanged();
-      } else {
-        allocationStrategyBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-     */
-    public Builder mergeAllocationStrategy(com.v2ray.core.app.proxyman.AllocationStrategy value) {
-      if (allocationStrategyBuilder_ == null) {
-        if (allocationStrategy_ != null) {
-          allocationStrategy_ =
-            com.v2ray.core.app.proxyman.AllocationStrategy.newBuilder(allocationStrategy_).mergeFrom(value).buildPartial();
-        } else {
-          allocationStrategy_ = value;
-        }
-        onChanged();
-      } else {
-        allocationStrategyBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-     */
-    public Builder clearAllocationStrategy() {
-      if (allocationStrategyBuilder_ == null) {
-        allocationStrategy_ = null;
-        onChanged();
-      } else {
-        allocationStrategy_ = null;
-        allocationStrategyBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-     */
-    public com.v2ray.core.app.proxyman.AllocationStrategy.Builder getAllocationStrategyBuilder() {
-      
-      onChanged();
-      return getAllocationStrategyFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
      */
     public com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder getAllocationStrategyOrBuilder() {
-      if (allocationStrategyBuilder_ != null) {
-        return allocationStrategyBuilder_.getMessageOrBuilder();
-      } else {
-        return allocationStrategy_ == null ?
-            com.v2ray.core.app.proxyman.AllocationStrategy.getDefaultInstance() : allocationStrategy_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.app.proxyman.AllocationStrategy, com.v2ray.core.app.proxyman.AllocationStrategy.Builder, com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder> 
-        getAllocationStrategyFieldBuilder() {
-      if (allocationStrategyBuilder_ == null) {
-        allocationStrategyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.app.proxyman.AllocationStrategy, com.v2ray.core.app.proxyman.AllocationStrategy.Builder, com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder>(
-                getAllocationStrategy(),
-                getParentForChildren(),
-                isClean());
-        allocationStrategy_ = null;
-      }
-      return allocationStrategyBuilder_;
+        return getAllocationStrategy();
     }
 
+    public static final int STREAM_SETTINGS_FIELD_NUMBER = 4;
     private com.v2ray.core.transport.internet.StreamConfig streamSettings_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder> streamSettingsBuilder_;
+
     /**
      * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
      */
     public boolean hasStreamSettings() {
-      return streamSettingsBuilder_ != null || streamSettings_ != null;
+        return streamSettings_ != null;
     }
+
     /**
      * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
      */
     public com.v2ray.core.transport.internet.StreamConfig getStreamSettings() {
-      if (streamSettingsBuilder_ == null) {
         return streamSettings_ == null ? com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
-      } else {
-        return streamSettingsBuilder_.getMessage();
-      }
     }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-     */
-    public Builder setStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
-      if (streamSettingsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        streamSettings_ = value;
-        onChanged();
-      } else {
-        streamSettingsBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-     */
-    public Builder setStreamSettings(
-        com.v2ray.core.transport.internet.StreamConfig.Builder builderForValue) {
-      if (streamSettingsBuilder_ == null) {
-        streamSettings_ = builderForValue.build();
-        onChanged();
-      } else {
-        streamSettingsBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-     */
-    public Builder mergeStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
-      if (streamSettingsBuilder_ == null) {
-        if (streamSettings_ != null) {
-          streamSettings_ =
-            com.v2ray.core.transport.internet.StreamConfig.newBuilder(streamSettings_).mergeFrom(value).buildPartial();
-        } else {
-          streamSettings_ = value;
-        }
-        onChanged();
-      } else {
-        streamSettingsBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-     */
-    public Builder clearStreamSettings() {
-      if (streamSettingsBuilder_ == null) {
-        streamSettings_ = null;
-        onChanged();
-      } else {
-        streamSettings_ = null;
-        streamSettingsBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-     */
-    public com.v2ray.core.transport.internet.StreamConfig.Builder getStreamSettingsBuilder() {
-      
-      onChanged();
-      return getStreamSettingsFieldBuilder().getBuilder();
-    }
     /**
      * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
      */
     public com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder() {
-      if (streamSettingsBuilder_ != null) {
-        return streamSettingsBuilder_.getMessageOrBuilder();
-      } else {
-        return streamSettings_ == null ?
-            com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
-      }
-    }
-    /**
-     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder> 
-        getStreamSettingsFieldBuilder() {
-      if (streamSettingsBuilder_ == null) {
-        streamSettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder>(
-                getStreamSettings(),
-                getParentForChildren(),
-                isClean());
-        streamSettings_ = null;
-      }
-      return streamSettingsBuilder_;
+        return getStreamSettings();
     }
 
-    private boolean receiveOriginalDestination_ ;
+    public static final int RECEIVE_ORIGINAL_DESTINATION_FIELD_NUMBER = 5;
+    private boolean receiveOriginalDestination_;
+
     /**
      * <code>bool receive_original_destination = 5;</code>
      */
     public boolean getReceiveOriginalDestination() {
-      return receiveOriginalDestination_;
-    }
-    /**
-     * <code>bool receive_original_destination = 5;</code>
-     */
-    public Builder setReceiveOriginalDestination(boolean value) {
-      
-      receiveOriginalDestination_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool receive_original_destination = 5;</code>
-     */
-    public Builder clearReceiveOriginalDestination() {
-      
-      receiveOriginalDestination_ = false;
-      onChanged();
-      return this;
+        return receiveOriginalDestination_;
     }
 
-    private java.util.List<Integer> domainOverride_ =
-      java.util.Collections.emptyList();
-    private void ensureDomainOverrideIsMutable() {
-      if (!((bitField0_ & 0x00000020) != 0)) {
-        domainOverride_ = new java.util.ArrayList<Integer>(domainOverride_);
-        bitField0_ |= 0x00000020;
-      }
-    }
+    public static final int DOMAIN_OVERRIDE_FIELD_NUMBER = 7;
+    private java.util.List<Integer> domainOverride_;
+    private static final com.google.protobuf.Internal.ListAdapter.Converter<
+            Integer, KnownProtocols> domainOverride_converter_ =
+            new com.google.protobuf.Internal.ListAdapter.Converter<
+                    Integer, KnownProtocols>() {
+                public KnownProtocols convert(Integer from) {
+                    @SuppressWarnings("deprecation")
+                    KnownProtocols result = KnownProtocols.valueOf(from);
+                    return result == null ? KnownProtocols.UNRECOGNIZED : result;
+                }
+            };
+
     /**
      * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
      */
     public java.util.List<KnownProtocols> getDomainOverrideList() {
-      return new com.google.protobuf.Internal.ListAdapter<
-          Integer, KnownProtocols>(domainOverride_, domainOverride_converter_);
+        return new com.google.protobuf.Internal.ListAdapter<
+                Integer, KnownProtocols>(domainOverride_, domainOverride_converter_);
     }
+
     /**
      * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
      */
     public int getDomainOverrideCount() {
-      return domainOverride_.size();
+        return domainOverride_.size();
     }
+
     /**
      * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
      */
     public KnownProtocols getDomainOverride(int index) {
-      return domainOverride_converter_.convert(domainOverride_.get(index));
+        return domainOverride_converter_.convert(domainOverride_.get(index));
     }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder setDomainOverride(
-        int index, KnownProtocols value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureDomainOverrideIsMutable();
-      domainOverride_.set(index, value.getNumber());
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder addDomainOverride(KnownProtocols value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureDomainOverrideIsMutable();
-      domainOverride_.add(value.getNumber());
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder addAllDomainOverride(
-        Iterable<? extends KnownProtocols> values) {
-      ensureDomainOverrideIsMutable();
-      for (KnownProtocols value : values) {
-        domainOverride_.add(value.getNumber());
-      }
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder clearDomainOverride() {
-      domainOverride_ = java.util.Collections.emptyList();
-      bitField0_ = (bitField0_ & ~0x00000020);
-      onChanged();
-      return this;
-    }
+
     /**
      * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
      */
     public java.util.List<Integer>
     getDomainOverrideValueList() {
-      return java.util.Collections.unmodifiableList(domainOverride_);
+        return domainOverride_;
     }
+
     /**
      * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
      */
     public int getDomainOverrideValue(int index) {
-      return domainOverride_.get(index);
+        return domainOverride_.get(index);
     }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder setDomainOverrideValue(
-        int index, int value) {
-      ensureDomainOverrideIsMutable();
-      domainOverride_.set(index, value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder addDomainOverrideValue(int value) {
-      ensureDomainOverrideIsMutable();
-      domainOverride_.add(value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-     */
-    public Builder addAllDomainOverrideValue(
-        Iterable<Integer> values) {
-      ensureDomainOverrideIsMutable();
-      for (int value : values) {
-        domainOverride_.add(value);
-      }
-      onChanged();
-      return this;
-    }
+
+    private int domainOverrideMemoizedSerializedSize;
+
+    private byte memoizedIsInitialized = -1;
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        getSerializedSize();
+        if (portRange_ != null) {
+            output.writeMessage(1, getPortRange());
+        }
+        if (listen_ != null) {
+            output.writeMessage(2, getListen());
+        }
+        if (allocationStrategy_ != null) {
+            output.writeMessage(3, getAllocationStrategy());
+        }
+        if (streamSettings_ != null) {
+            output.writeMessage(4, getStreamSettings());
+        }
+        if (receiveOriginalDestination_ != false) {
+            output.writeBool(5, receiveOriginalDestination_);
+        }
+        if (getDomainOverrideList().size() > 0) {
+            output.writeUInt32NoTag(58);
+            output.writeUInt32NoTag(domainOverrideMemoizedSerializedSize);
+        }
+        for (int i = 0; i < domainOverride_.size(); i++) {
+            output.writeEnumNoTag(domainOverride_.get(i));
+        }
+        unknownFields.writeTo(output);
     }
 
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.ReceiverConfig)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.ReceiverConfig)
-  private static final ReceiverConfig DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new ReceiverConfig();
-  }
-
-  public static ReceiverConfig getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<ReceiverConfig>
-      PARSER = new com.google.protobuf.AbstractParser<ReceiverConfig>() {
     @Override
-    public ReceiverConfig parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ReceiverConfig(input, extensionRegistry);
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (portRange_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(1, getPortRange());
+        }
+        if (listen_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, getListen());
+        }
+        if (allocationStrategy_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(3, getAllocationStrategy());
+        }
+        if (streamSettings_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(4, getStreamSettings());
+        }
+        if (receiveOriginalDestination_ != false) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeBoolSize(5, receiveOriginalDestination_);
+        }
+        {
+            int dataSize = 0;
+            for (int i = 0; i < domainOverride_.size(); i++) {
+                dataSize += com.google.protobuf.CodedOutputStream
+                        .computeEnumSizeNoTag(domainOverride_.get(i));
+            }
+            size += dataSize;
+            if (!getDomainOverrideList().isEmpty()) {
+                size += 1;
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt32SizeNoTag(dataSize);
+            }
+            domainOverrideMemoizedSerializedSize = dataSize;
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
     }
-  };
 
-  public static com.google.protobuf.Parser<ReceiverConfig> parser() {
-    return PARSER;
-  }
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof ReceiverConfig)) {
+            return super.equals(obj);
+        }
+        ReceiverConfig other = (ReceiverConfig) obj;
 
-  @Override
-  public com.google.protobuf.Parser<ReceiverConfig> getParserForType() {
-    return PARSER;
-  }
+        if (hasPortRange() != other.hasPortRange()) return false;
+        if (hasPortRange()) {
+            if (!getPortRange()
+                    .equals(other.getPortRange())) return false;
+        }
+        if (hasListen() != other.hasListen()) return false;
+        if (hasListen()) {
+            if (!getListen()
+                    .equals(other.getListen())) return false;
+        }
+        if (hasAllocationStrategy() != other.hasAllocationStrategy()) return false;
+        if (hasAllocationStrategy()) {
+            if (!getAllocationStrategy()
+                    .equals(other.getAllocationStrategy())) return false;
+        }
+        if (hasStreamSettings() != other.hasStreamSettings()) return false;
+        if (hasStreamSettings()) {
+            if (!getStreamSettings()
+                    .equals(other.getStreamSettings())) return false;
+        }
+        if (getReceiveOriginalDestination()
+                != other.getReceiveOriginalDestination()) return false;
+        if (!domainOverride_.equals(other.domainOverride_)) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
 
-  @Override
-  public ReceiverConfig getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        if (hasPortRange()) {
+            hash = (37 * hash) + PORT_RANGE_FIELD_NUMBER;
+            hash = (53 * hash) + getPortRange().hashCode();
+        }
+        if (hasListen()) {
+            hash = (37 * hash) + LISTEN_FIELD_NUMBER;
+            hash = (53 * hash) + getListen().hashCode();
+        }
+        if (hasAllocationStrategy()) {
+            hash = (37 * hash) + ALLOCATION_STRATEGY_FIELD_NUMBER;
+            hash = (53 * hash) + getAllocationStrategy().hashCode();
+        }
+        if (hasStreamSettings()) {
+            hash = (37 * hash) + STREAM_SETTINGS_FIELD_NUMBER;
+            hash = (53 * hash) + getStreamSettings().hashCode();
+        }
+        hash = (37 * hash) + RECEIVE_ORIGINAL_DESTINATION_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                getReceiveOriginalDestination());
+        if (getDomainOverrideCount() > 0) {
+            hash = (37 * hash) + DOMAIN_OVERRIDE_FIELD_NUMBER;
+            hash = (53 * hash) + domainOverride_.hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static ReceiverConfig parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static ReceiverConfig parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static ReceiverConfig parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static ReceiverConfig parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static ReceiverConfig parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static ReceiverConfig parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static ReceiverConfig parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static ReceiverConfig parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ReceiverConfig parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static ReceiverConfig parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static ReceiverConfig parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static ReceiverConfig parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(ReceiverConfig prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
+    /**
+     * Protobuf type {@code v2ray.core.app.proxyman.ReceiverConfig}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.ReceiverConfig)
+            com.v2ray.core.app.proxyman.ReceiverConfigOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            ReceiverConfig.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.app.proxyman.ReceiverConfig.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            if (portRangeBuilder_ == null) {
+                portRange_ = null;
+            } else {
+                portRange_ = null;
+                portRangeBuilder_ = null;
+            }
+            if (listenBuilder_ == null) {
+                listen_ = null;
+            } else {
+                listen_ = null;
+                listenBuilder_ = null;
+            }
+            if (allocationStrategyBuilder_ == null) {
+                allocationStrategy_ = null;
+            } else {
+                allocationStrategy_ = null;
+                allocationStrategyBuilder_ = null;
+            }
+            if (streamSettingsBuilder_ == null) {
+                streamSettings_ = null;
+            } else {
+                streamSettings_ = null;
+                streamSettingsBuilder_ = null;
+            }
+            receiveOriginalDestination_ = false;
+
+            domainOverride_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000020);
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return Config.internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
+        }
+
+        @Override
+        public ReceiverConfig getDefaultInstanceForType() {
+            return ReceiverConfig.getDefaultInstance();
+        }
+
+        @Override
+        public ReceiverConfig build() {
+            ReceiverConfig result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public ReceiverConfig buildPartial() {
+            ReceiverConfig result = new ReceiverConfig(this);
+            int from_bitField0_ = bitField0_;
+            int to_bitField0_ = 0;
+            if (portRangeBuilder_ == null) {
+                result.portRange_ = portRange_;
+            } else {
+                result.portRange_ = portRangeBuilder_.build();
+            }
+            if (listenBuilder_ == null) {
+                result.listen_ = listen_;
+            } else {
+                result.listen_ = listenBuilder_.build();
+            }
+            if (allocationStrategyBuilder_ == null) {
+                result.allocationStrategy_ = allocationStrategy_;
+            } else {
+                result.allocationStrategy_ = allocationStrategyBuilder_.build();
+            }
+            if (streamSettingsBuilder_ == null) {
+                result.streamSettings_ = streamSettings_;
+            } else {
+                result.streamSettings_ = streamSettingsBuilder_.build();
+            }
+            result.receiveOriginalDestination_ = receiveOriginalDestination_;
+            if (((bitField0_ & 0x00000020) != 0)) {
+                domainOverride_ = java.util.Collections.unmodifiableList(domainOverride_);
+                bitField0_ = (bitField0_ & ~0x00000020);
+            }
+            result.domainOverride_ = domainOverride_;
+            result.bitField0_ = to_bitField0_;
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof ReceiverConfig) {
+                return mergeFrom((ReceiverConfig) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(ReceiverConfig other) {
+            if (other == ReceiverConfig.getDefaultInstance()) return this;
+            if (other.hasPortRange()) {
+                mergePortRange(other.getPortRange());
+            }
+            if (other.hasListen()) {
+                mergeListen(other.getListen());
+            }
+            if (other.hasAllocationStrategy()) {
+                mergeAllocationStrategy(other.getAllocationStrategy());
+            }
+            if (other.hasStreamSettings()) {
+                mergeStreamSettings(other.getStreamSettings());
+            }
+            if (other.getReceiveOriginalDestination() != false) {
+                setReceiveOriginalDestination(other.getReceiveOriginalDestination());
+            }
+            if (!other.domainOverride_.isEmpty()) {
+                if (domainOverride_.isEmpty()) {
+                    domainOverride_ = other.domainOverride_;
+                    bitField0_ = (bitField0_ & ~0x00000020);
+                } else {
+                    ensureDomainOverrideIsMutable();
+                    domainOverride_.addAll(other.domainOverride_);
+                }
+                onChanged();
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            ReceiverConfig parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (ReceiverConfig) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private int bitField0_;
+
+        private com.v2ray.core.common.net.PortRange portRange_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder> portRangeBuilder_;
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public boolean hasPortRange() {
+            return portRangeBuilder_ != null || portRange_ != null;
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public com.v2ray.core.common.net.PortRange getPortRange() {
+            if (portRangeBuilder_ == null) {
+                return portRange_ == null ? com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
+            } else {
+                return portRangeBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public Builder setPortRange(com.v2ray.core.common.net.PortRange value) {
+            if (portRangeBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                portRange_ = value;
+                onChanged();
+            } else {
+                portRangeBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public Builder setPortRange(
+                com.v2ray.core.common.net.PortRange.Builder builderForValue) {
+            if (portRangeBuilder_ == null) {
+                portRange_ = builderForValue.build();
+                onChanged();
+            } else {
+                portRangeBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public Builder mergePortRange(com.v2ray.core.common.net.PortRange value) {
+            if (portRangeBuilder_ == null) {
+                if (portRange_ != null) {
+                    portRange_ =
+                            com.v2ray.core.common.net.PortRange.newBuilder(portRange_).mergeFrom(value).buildPartial();
+                } else {
+                    portRange_ = value;
+                }
+                onChanged();
+            } else {
+                portRangeBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public Builder clearPortRange() {
+            if (portRangeBuilder_ == null) {
+                portRange_ = null;
+                onChanged();
+            } else {
+                portRange_ = null;
+                portRangeBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public com.v2ray.core.common.net.PortRange.Builder getPortRangeBuilder() {
+
+            onChanged();
+            return getPortRangeFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        public com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder() {
+            if (portRangeBuilder_ != null) {
+                return portRangeBuilder_.getMessageOrBuilder();
+            } else {
+                return portRange_ == null ?
+                        com.v2ray.core.common.net.PortRange.getDefaultInstance() : portRange_;
+            }
+        }
+
+        /**
+         * <pre>
+         * PortRange specifies the ports which the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder>
+        getPortRangeFieldBuilder() {
+            if (portRangeBuilder_ == null) {
+                portRangeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.PortRange, com.v2ray.core.common.net.PortRange.Builder, com.v2ray.core.common.net.PortRangeOrBuilder>(
+                        getPortRange(),
+                        getParentForChildren(),
+                        isClean());
+                portRange_ = null;
+            }
+            return portRangeBuilder_;
+        }
+
+        private com.v2ray.core.common.net.IPOrDomain listen_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder> listenBuilder_;
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public boolean hasListen() {
+            return listenBuilder_ != null || listen_ != null;
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain getListen() {
+            if (listenBuilder_ == null) {
+                return listen_ == null ? com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : listen_;
+            } else {
+                return listenBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public Builder setListen(com.v2ray.core.common.net.IPOrDomain value) {
+            if (listenBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                listen_ = value;
+                onChanged();
+            } else {
+                listenBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public Builder setListen(
+                com.v2ray.core.common.net.IPOrDomain.Builder builderForValue) {
+            if (listenBuilder_ == null) {
+                listen_ = builderForValue.build();
+                onChanged();
+            } else {
+                listenBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public Builder mergeListen(com.v2ray.core.common.net.IPOrDomain value) {
+            if (listenBuilder_ == null) {
+                if (listen_ != null) {
+                    listen_ =
+                            com.v2ray.core.common.net.IPOrDomain.newBuilder(listen_).mergeFrom(value).buildPartial();
+                } else {
+                    listen_ = value;
+                }
+                onChanged();
+            } else {
+                listenBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public Builder clearListen() {
+            if (listenBuilder_ == null) {
+                listen_ = null;
+                onChanged();
+            } else {
+                listen_ = null;
+                listenBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomain.Builder getListenBuilder() {
+
+            onChanged();
+            return getListenFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        public com.v2ray.core.common.net.IPOrDomainOrBuilder getListenOrBuilder() {
+            if (listenBuilder_ != null) {
+                return listenBuilder_.getMessageOrBuilder();
+            } else {
+                return listen_ == null ?
+                        com.v2ray.core.common.net.IPOrDomain.getDefaultInstance() : listen_;
+            }
+        }
+
+        /**
+         * <pre>
+         * Listen specifies the IP address that the Receiver should listen on.
+         * </pre>
+         *
+         * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>
+        getListenFieldBuilder() {
+            if (listenBuilder_ == null) {
+                listenBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.common.net.IPOrDomain, com.v2ray.core.common.net.IPOrDomain.Builder, com.v2ray.core.common.net.IPOrDomainOrBuilder>(
+                        getListen(),
+                        getParentForChildren(),
+                        isClean());
+                listen_ = null;
+            }
+            return listenBuilder_;
+        }
+
+        private com.v2ray.core.app.proxyman.AllocationStrategy allocationStrategy_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.app.proxyman.AllocationStrategy, com.v2ray.core.app.proxyman.AllocationStrategy.Builder, com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder> allocationStrategyBuilder_;
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public boolean hasAllocationStrategy() {
+            return allocationStrategyBuilder_ != null || allocationStrategy_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public com.v2ray.core.app.proxyman.AllocationStrategy getAllocationStrategy() {
+            if (allocationStrategyBuilder_ == null) {
+                return allocationStrategy_ == null ? com.v2ray.core.app.proxyman.AllocationStrategy.getDefaultInstance() : allocationStrategy_;
+            } else {
+                return allocationStrategyBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public Builder setAllocationStrategy(com.v2ray.core.app.proxyman.AllocationStrategy value) {
+            if (allocationStrategyBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                allocationStrategy_ = value;
+                onChanged();
+            } else {
+                allocationStrategyBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public Builder setAllocationStrategy(
+                com.v2ray.core.app.proxyman.AllocationStrategy.Builder builderForValue) {
+            if (allocationStrategyBuilder_ == null) {
+                allocationStrategy_ = builderForValue.build();
+                onChanged();
+            } else {
+                allocationStrategyBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public Builder mergeAllocationStrategy(com.v2ray.core.app.proxyman.AllocationStrategy value) {
+            if (allocationStrategyBuilder_ == null) {
+                if (allocationStrategy_ != null) {
+                    allocationStrategy_ =
+                            com.v2ray.core.app.proxyman.AllocationStrategy.newBuilder(allocationStrategy_).mergeFrom(value).buildPartial();
+                } else {
+                    allocationStrategy_ = value;
+                }
+                onChanged();
+            } else {
+                allocationStrategyBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public Builder clearAllocationStrategy() {
+            if (allocationStrategyBuilder_ == null) {
+                allocationStrategy_ = null;
+                onChanged();
+            } else {
+                allocationStrategy_ = null;
+                allocationStrategyBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public com.v2ray.core.app.proxyman.AllocationStrategy.Builder getAllocationStrategyBuilder() {
+
+            onChanged();
+            return getAllocationStrategyFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        public com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder getAllocationStrategyOrBuilder() {
+            if (allocationStrategyBuilder_ != null) {
+                return allocationStrategyBuilder_.getMessageOrBuilder();
+            } else {
+                return allocationStrategy_ == null ?
+                        com.v2ray.core.app.proxyman.AllocationStrategy.getDefaultInstance() : allocationStrategy_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.app.proxyman.AllocationStrategy, com.v2ray.core.app.proxyman.AllocationStrategy.Builder, com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder>
+        getAllocationStrategyFieldBuilder() {
+            if (allocationStrategyBuilder_ == null) {
+                allocationStrategyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.app.proxyman.AllocationStrategy, com.v2ray.core.app.proxyman.AllocationStrategy.Builder, com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder>(
+                        getAllocationStrategy(),
+                        getParentForChildren(),
+                        isClean());
+                allocationStrategy_ = null;
+            }
+            return allocationStrategyBuilder_;
+        }
+
+        private com.v2ray.core.transport.internet.StreamConfig streamSettings_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder> streamSettingsBuilder_;
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public boolean hasStreamSettings() {
+            return streamSettingsBuilder_ != null || streamSettings_ != null;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public com.v2ray.core.transport.internet.StreamConfig getStreamSettings() {
+            if (streamSettingsBuilder_ == null) {
+                return streamSettings_ == null ? com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
+            } else {
+                return streamSettingsBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public Builder setStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
+            if (streamSettingsBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                streamSettings_ = value;
+                onChanged();
+            } else {
+                streamSettingsBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public Builder setStreamSettings(
+                com.v2ray.core.transport.internet.StreamConfig.Builder builderForValue) {
+            if (streamSettingsBuilder_ == null) {
+                streamSettings_ = builderForValue.build();
+                onChanged();
+            } else {
+                streamSettingsBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public Builder mergeStreamSettings(com.v2ray.core.transport.internet.StreamConfig value) {
+            if (streamSettingsBuilder_ == null) {
+                if (streamSettings_ != null) {
+                    streamSettings_ =
+                            com.v2ray.core.transport.internet.StreamConfig.newBuilder(streamSettings_).mergeFrom(value).buildPartial();
+                } else {
+                    streamSettings_ = value;
+                }
+                onChanged();
+            } else {
+                streamSettingsBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public Builder clearStreamSettings() {
+            if (streamSettingsBuilder_ == null) {
+                streamSettings_ = null;
+                onChanged();
+            } else {
+                streamSettings_ = null;
+                streamSettingsBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public com.v2ray.core.transport.internet.StreamConfig.Builder getStreamSettingsBuilder() {
+
+            onChanged();
+            return getStreamSettingsFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        public com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder() {
+            if (streamSettingsBuilder_ != null) {
+                return streamSettingsBuilder_.getMessageOrBuilder();
+            } else {
+                return streamSettings_ == null ?
+                        com.v2ray.core.transport.internet.StreamConfig.getDefaultInstance() : streamSettings_;
+            }
+        }
+
+        /**
+         * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder>
+        getStreamSettingsFieldBuilder() {
+            if (streamSettingsBuilder_ == null) {
+                streamSettingsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        com.v2ray.core.transport.internet.StreamConfig, com.v2ray.core.transport.internet.StreamConfig.Builder, com.v2ray.core.transport.internet.StreamConfigOrBuilder>(
+                        getStreamSettings(),
+                        getParentForChildren(),
+                        isClean());
+                streamSettings_ = null;
+            }
+            return streamSettingsBuilder_;
+        }
+
+        private boolean receiveOriginalDestination_;
+
+        /**
+         * <code>bool receive_original_destination = 5;</code>
+         */
+        public boolean getReceiveOriginalDestination() {
+            return receiveOriginalDestination_;
+        }
+
+        /**
+         * <code>bool receive_original_destination = 5;</code>
+         */
+        public Builder setReceiveOriginalDestination(boolean value) {
+
+            receiveOriginalDestination_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>bool receive_original_destination = 5;</code>
+         */
+        public Builder clearReceiveOriginalDestination() {
+
+            receiveOriginalDestination_ = false;
+            onChanged();
+            return this;
+        }
+
+        private java.util.List<Integer> domainOverride_ =
+                java.util.Collections.emptyList();
+
+        private void ensureDomainOverrideIsMutable() {
+            if (!((bitField0_ & 0x00000020) != 0)) {
+                domainOverride_ = new java.util.ArrayList<Integer>(domainOverride_);
+                bitField0_ |= 0x00000020;
+            }
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public java.util.List<KnownProtocols> getDomainOverrideList() {
+            return new com.google.protobuf.Internal.ListAdapter<
+                    Integer, KnownProtocols>(domainOverride_, domainOverride_converter_);
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public int getDomainOverrideCount() {
+            return domainOverride_.size();
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public KnownProtocols getDomainOverride(int index) {
+            return domainOverride_converter_.convert(domainOverride_.get(index));
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder setDomainOverride(
+                int index, KnownProtocols value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureDomainOverrideIsMutable();
+            domainOverride_.set(index, value.getNumber());
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder addDomainOverride(KnownProtocols value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            ensureDomainOverrideIsMutable();
+            domainOverride_.add(value.getNumber());
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder addAllDomainOverride(
+                Iterable<? extends KnownProtocols> values) {
+            ensureDomainOverrideIsMutable();
+            for (KnownProtocols value : values) {
+                domainOverride_.add(value.getNumber());
+            }
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder clearDomainOverride() {
+            domainOverride_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000020);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public java.util.List<Integer>
+        getDomainOverrideValueList() {
+            return java.util.Collections.unmodifiableList(domainOverride_);
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public int getDomainOverrideValue(int index) {
+            return domainOverride_.get(index);
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder setDomainOverrideValue(
+                int index, int value) {
+            ensureDomainOverrideIsMutable();
+            domainOverride_.set(index, value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder addDomainOverrideValue(int value) {
+            ensureDomainOverrideIsMutable();
+            domainOverride_.add(value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+         */
+        public Builder addAllDomainOverrideValue(
+                Iterable<Integer> values) {
+            ensureDomainOverrideIsMutable();
+            for (int value : values) {
+                domainOverride_.add(value);
+            }
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.ReceiverConfig)
+    }
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.ReceiverConfig)
+    private static final ReceiverConfig DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new ReceiverConfig();
+    }
+
+    public static ReceiverConfig getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReceiverConfig>
+            PARSER = new com.google.protobuf.AbstractParser<ReceiverConfig>() {
+        @Override
+        public ReceiverConfig parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new ReceiverConfig(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<ReceiverConfig> parser() {
+        return PARSER;
+    }
+
+    @Override
+    public com.google.protobuf.Parser<ReceiverConfig> getParserForType() {
+        return PARSER;
+    }
+
+    @Override
+    public ReceiverConfig getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+    }
 
 }
 

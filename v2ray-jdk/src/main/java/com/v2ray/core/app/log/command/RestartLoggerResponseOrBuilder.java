@@ -4,6 +4,6 @@
 package com.v2ray.core.app.log.command;
 
 public interface RestartLoggerResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.log.command.RestartLoggerResponse)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.log.command.RestartLoggerResponse)
+        com.google.protobuf.MessageOrBuilder {
 }

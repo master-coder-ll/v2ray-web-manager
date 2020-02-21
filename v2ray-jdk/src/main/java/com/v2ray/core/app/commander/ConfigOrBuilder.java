@@ -4,68 +4,73 @@
 package com.v2ray.core.app.commander;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.commander.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.commander.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <pre>
-   * Tag of the outbound handler that handles grpc connections.
-   * </pre>
-   *
-   * <code>string tag = 1;</code>
-   */
-  String getTag();
-  /**
-   * <pre>
-   * Tag of the outbound handler that handles grpc connections.
-   * </pre>
-   *
-   * <code>string tag = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getTagBytes();
+    /**
+     * <pre>
+     * Tag of the outbound handler that handles grpc connections.
+     * </pre>
+     *
+     * <code>string tag = 1;</code>
+     */
+    String getTag();
 
-  /**
-   * <pre>
-   * Services that supported by this server. All services must implement Service interface.
-   * </pre>
-   *
-   * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
-   */
-  java.util.List<com.v2ray.core.common.serial.TypedMessage> 
-      getServiceList();
-  /**
-   * <pre>
-   * Services that supported by this server. All services must implement Service interface.
-   * </pre>
-   *
-   * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessage getService(int index);
-  /**
-   * <pre>
-   * Services that supported by this server. All services must implement Service interface.
-   * </pre>
-   *
-   * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
-   */
-  int getServiceCount();
-  /**
-   * <pre>
-   * Services that supported by this server. All services must implement Service interface.
-   * </pre>
-   *
-   * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
-   */
-  java.util.List<? extends com.v2ray.core.common.serial.TypedMessageOrBuilder> 
-      getServiceOrBuilderList();
-  /**
-   * <pre>
-   * Services that supported by this server. All services must implement Service interface.
-   * </pre>
-   *
-   * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessageOrBuilder getServiceOrBuilder(
-          int index);
+    /**
+     * <pre>
+     * Tag of the outbound handler that handles grpc connections.
+     * </pre>
+     *
+     * <code>string tag = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getTagBytes();
+
+    /**
+     * <pre>
+     * Services that supported by this server. All services must implement Service interface.
+     * </pre>
+     *
+     * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
+     */
+    java.util.List<com.v2ray.core.common.serial.TypedMessage>
+    getServiceList();
+
+    /**
+     * <pre>
+     * Services that supported by this server. All services must implement Service interface.
+     * </pre>
+     *
+     * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessage getService(int index);
+
+    /**
+     * <pre>
+     * Services that supported by this server. All services must implement Service interface.
+     * </pre>
+     *
+     * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
+     */
+    int getServiceCount();
+
+    /**
+     * <pre>
+     * Services that supported by this server. All services must implement Service interface.
+     * </pre>
+     *
+     * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
+     */
+    java.util.List<? extends com.v2ray.core.common.serial.TypedMessageOrBuilder>
+    getServiceOrBuilderList();
+
+    /**
+     * <pre>
+     * Services that supported by this server. All services must implement Service interface.
+     * </pre>
+     *
+     * <code>repeated .v2ray.core.common.serial.TypedMessage service = 2;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessageOrBuilder getServiceOrBuilder(
+            int index);
 }

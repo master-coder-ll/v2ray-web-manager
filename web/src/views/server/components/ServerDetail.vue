@@ -52,6 +52,17 @@
       <el-form-item label="服务描述">
         <el-input v-model="postForm.desc" />
       </el-form-item>
+
+        <el-form-item label="服务器等级" prop="level">
+        <el-select v-model="postForm.level">
+          <el-option
+            v-for="item in levelOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
       <el-form-item label="服务器状态" prop="status">
         <el-select v-model="postForm.status">
           <el-option
@@ -74,7 +85,6 @@
 import { addServer, getServer, updateServer } from '@/api/server'
 const defaultForm = {
   serverName: '',
-  // v.kxsw2019.cf
   clientDomain: '',
   clientPort: 443,
   supportTLS: true,
@@ -94,7 +104,7 @@ const defaultForm = {
   desc: '',
   // 服务器状态
   status: 1,
-
+  level:0,
   inboundTag: '',
   // 单账号最大连接数
   maxConnection: 100,
@@ -144,7 +154,8 @@ export default {
       loading: false,
       rules: Object.assign({}, defaultRules),
       tempRoute: {},
-      statusOptions: [{ value: 1, label: '上线' }, { value: 0, label: '下线' }]
+      statusOptions: [{ value: 1, label: '上线' }, { value: 0, label: '下线' }],
+      levelOptions: [{ value: 0, label: '等级0' }, { value: 1, label: '等级1' },{ value: 2, label: '等级2' },{ value: 3, label: '等级3' }]
 
     }
   },

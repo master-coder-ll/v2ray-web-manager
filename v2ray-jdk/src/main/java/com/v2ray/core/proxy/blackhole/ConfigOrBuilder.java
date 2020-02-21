@@ -4,19 +4,21 @@
 package com.v2ray.core.proxy.blackhole;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.blackhole.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.blackhole.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage response = 1;</code>
-   */
-  boolean hasResponse();
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage response = 1;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessage getResponse();
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage response = 1;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessageOrBuilder getResponseOrBuilder();
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage response = 1;</code>
+     */
+    boolean hasResponse();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage response = 1;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessage getResponse();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage response = 1;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessageOrBuilder getResponseOrBuilder();
 }

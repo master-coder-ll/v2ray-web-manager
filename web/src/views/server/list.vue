@@ -32,7 +32,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="80px" align="center" label="服务描述">
+        <el-table-column width="80px" align="center" label="服务器等级">
+        <template slot-scope="{row}">
+           <span>{{ row.level | levelFilter}}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column width="200px" align="center" label="服务描述">
         <template slot-scope="scope">
           <span>{{ scope.row.desc }}</span>
         </template>
@@ -84,6 +90,15 @@ export default {
         '0': '下线'
       }
       return statusMap[status]
+    },
+    levelFilter(level) {
+      const levelMap = {
+        '0': '等级0',
+        '1': '等级1',
+        '2': '等级2',
+        '3': '等级3',
+      }
+      return levelMap[level]
     }
   },
   data() {

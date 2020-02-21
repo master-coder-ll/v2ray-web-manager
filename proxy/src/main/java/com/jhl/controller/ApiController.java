@@ -20,24 +20,24 @@ public class ApiController {
     ProxyAccountCache proxyAccountCache;
     @Autowired
     TrafficControllerService trafficControllerService;
+
     @ResponseBody
     @PostMapping(value = "/account/del")
     public Result rmAccount(@RequestBody ProxyAccount proxyAccount) {
         try {
             if (proxyAccount == null) return Result.builder().code(405).message("accountNo 为空").build();
             String accountNo = proxyAccount.getAccountNo();
-            proxyAccountCache.rmProxyAccountCache(accountNo);
+            proxyAccountCache.rmProxyAccountCache(accountNo,proxyAccount.getHost());
             v2rayService.rmProxyAccount(proxyAccount.getV2rayHost(), proxyAccount.getV2rayManagerPort(), proxyAccount);
         } catch (Exception e) {
             log.error("rmAccount error :{}", e.getLocalizedMessage());
             return Result.builder().code(500).message(e.getMessage()).build();
         }
-        Result success = Result.SUCCESS();
-        return success ;
+        return Result.SUCCESS();
 
     }
 
-    @ResponseBody
+    /*@ResponseBody
     @PostMapping(value = "/account")
     public Result addAccount(@RequestBody ProxyAccount proxyAccount) {
         try {
@@ -50,9 +50,9 @@ public class ApiController {
         }
 
         return Result.SUCCESS();
-    }
+    }*/
 
-
+    @Deprecated
     @ResponseBody
     @GetMapping(value = "/connection/{accountNo}")
     public Result getConnection(@PathVariable String accountNo) {
@@ -60,13 +60,11 @@ public class ApiController {
 
             Result success = Result.SUCCESS();
             success.setObj(trafficControllerService.getChannelCount(accountNo));
-            return  success;
+            return success;
         } catch (Exception e) {
             log.error("getConnection error :{}", e.getLocalizedMessage());
             return Result.builder().code(500).message(e.getMessage()).build();
         }
-
-
     }
 
 /*

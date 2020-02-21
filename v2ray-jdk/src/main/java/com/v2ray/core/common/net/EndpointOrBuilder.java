@@ -4,33 +4,36 @@
 package com.v2ray.core.common.net;
 
 public interface EndpointOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.common.net.Endpoint)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.common.net.Endpoint)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.common.net.Network network = 1;</code>
-   */
-  int getNetworkValue();
-  /**
-   * <code>.v2ray.core.common.net.Network network = 1;</code>
-   */
-  Network getNetwork();
+    /**
+     * <code>.v2ray.core.common.net.Network network = 1;</code>
+     */
+    int getNetworkValue();
 
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-   */
-  boolean hasAddress();
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-   */
-  IPOrDomain getAddress();
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
-   */
-  com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder();
+    /**
+     * <code>.v2ray.core.common.net.Network network = 1;</code>
+     */
+    Network getNetwork();
 
-  /**
-   * <code>uint32 port = 3;</code>
-   */
-  int getPort();
+    /**
+     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+     */
+    boolean hasAddress();
+
+    /**
+     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+     */
+    IPOrDomain getAddress();
+
+    /**
+     * <code>.v2ray.core.common.net.IPOrDomain address = 2;</code>
+     */
+    com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder();
+
+    /**
+     * <code>uint32 port = 3;</code>
+     */
+    int getPort();
 }

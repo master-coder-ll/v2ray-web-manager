@@ -4,189 +4,194 @@
 package com.v2ray.core.app.proxyman;
 
 public final class Config {
-  private Config() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    private Config() {
+    }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_InboundConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_InboundConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_OutboundConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_OutboundConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    String[] descriptorData = {
-      "\n(v2ray.com/core/app/proxyman/config.pro" +
-      "to\022\027v2ray.core.app.proxyman\032\'v2ray.com/c" +
-      "ore/common/net/address.proto\032$v2ray.com/" +
-      "core/common/net/port.proto\032.v2ray.com/co" +
-      "re/transport/internet/config.proto\0320v2ra" +
-      "y.com/core/common/serial/typed_message.p" +
-      "roto\"\017\n\rInboundConfig\"\226\003\n\022AllocationStra" +
-      "tegy\022>\n\004type\030\001 \001(\01620.v2ray.core.app.prox" +
-      "yman.AllocationStrategy.Type\022^\n\013concurre" +
-      "ncy\030\002 \001(\0132I.v2ray.core.app.proxyman.Allo" +
-      "cationStrategy.AllocationStrategyConcurr" +
-      "ency\022V\n\007refresh\030\003 \001(\0132E.v2ray.core.app.p" +
-      "roxyman.AllocationStrategy.AllocationStr" +
-      "ategyRefresh\032.\n\035AllocationStrategyConcur" +
-      "rency\022\r\n\005value\030\001 \001(\r\032*\n\031AllocationStrate" +
-      "gyRefresh\022\r\n\005value\030\001 \001(\r\",\n\004Type\022\n\n\006Alwa" +
-      "ys\020\000\022\n\n\006Random\020\001\022\014\n\010External\020\002\"\367\002\n\016Recei" +
-      "verConfig\0224\n\nport_range\030\001 \001(\0132 .v2ray.co" +
-      "re.common.net.PortRange\0221\n\006listen\030\002 \001(\0132" +
-      "!.v2ray.core.common.net.IPOrDomain\022H\n\023al" +
-      "location_strategy\030\003 \001(\0132+.v2ray.core.app" +
-      ".proxyman.AllocationStrategy\022D\n\017stream_s" +
-      "ettings\030\004 \001(\0132+.v2ray.core.transport.int" +
-      "ernet.StreamConfig\022$\n\034receive_original_d" +
-      "estination\030\005 \001(\010\022@\n\017domain_override\030\007 \003(" +
-      "\0162\'.v2ray.core.app.proxyman.KnownProtoco" +
-      "lsJ\004\010\006\020\007\"\246\001\n\024InboundHandlerConfig\022\013\n\003tag" +
-      "\030\001 \001(\t\022A\n\021receiver_settings\030\002 \001(\0132&.v2ra" +
-      "y.core.common.serial.TypedMessage\022>\n\016pro" +
-      "xy_settings\030\003 \001(\0132&.v2ray.core.common.se" +
-      "rial.TypedMessage\"\020\n\016OutboundConfig\"\221\002\n\014" +
-      "SenderConfig\022.\n\003via\030\001 \001(\0132!.v2ray.core.c" +
-      "ommon.net.IPOrDomain\022D\n\017stream_settings\030" +
-      "\002 \001(\0132+.v2ray.core.transport.internet.St" +
-      "reamConfig\022B\n\016proxy_settings\030\003 \001(\0132*.v2r" +
-      "ay.core.transport.internet.ProxyConfig\022G" +
-      "\n\022multiplex_settings\030\004 \001(\0132+.v2ray.core." +
-      "app.proxyman.MultiplexingConfig\":\n\022Multi" +
-      "plexingConfig\022\017\n\007enabled\030\001 \001(\010\022\023\n\013concur" +
-      "rency\030\002 \001(\r*#\n\016KnownProtocols\022\010\n\004HTTP\020\000\022" +
-      "\007\n\003TLS\020\001BC\n\033com.v2ray.core.app.proxymanP" +
-      "\001Z\010proxyman\252\002\027V2Ray.Core.App.Proxymanb\006p" +
-      "roto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
+
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_InboundConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_InboundConfig_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_OutboundConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_OutboundConfig_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        String[] descriptorData = {
+                "\n(v2ray.com/core/app/proxyman/config.pro" +
+                        "to\022\027v2ray.core.app.proxyman\032\'v2ray.com/c" +
+                        "ore/common/net/address.proto\032$v2ray.com/" +
+                        "core/common/net/port.proto\032.v2ray.com/co" +
+                        "re/transport/internet/config.proto\0320v2ra" +
+                        "y.com/core/common/serial/typed_message.p" +
+                        "roto\"\017\n\rInboundConfig\"\226\003\n\022AllocationStra" +
+                        "tegy\022>\n\004type\030\001 \001(\01620.v2ray.core.app.prox" +
+                        "yman.AllocationStrategy.Type\022^\n\013concurre" +
+                        "ncy\030\002 \001(\0132I.v2ray.core.app.proxyman.Allo" +
+                        "cationStrategy.AllocationStrategyConcurr" +
+                        "ency\022V\n\007refresh\030\003 \001(\0132E.v2ray.core.app.p" +
+                        "roxyman.AllocationStrategy.AllocationStr" +
+                        "ategyRefresh\032.\n\035AllocationStrategyConcur" +
+                        "rency\022\r\n\005value\030\001 \001(\r\032*\n\031AllocationStrate" +
+                        "gyRefresh\022\r\n\005value\030\001 \001(\r\",\n\004Type\022\n\n\006Alwa" +
+                        "ys\020\000\022\n\n\006Random\020\001\022\014\n\010External\020\002\"\367\002\n\016Recei" +
+                        "verConfig\0224\n\nport_range\030\001 \001(\0132 .v2ray.co" +
+                        "re.common.net.PortRange\0221\n\006listen\030\002 \001(\0132" +
+                        "!.v2ray.core.common.net.IPOrDomain\022H\n\023al" +
+                        "location_strategy\030\003 \001(\0132+.v2ray.core.app" +
+                        ".proxyman.AllocationStrategy\022D\n\017stream_s" +
+                        "ettings\030\004 \001(\0132+.v2ray.core.transport.int" +
+                        "ernet.StreamConfig\022$\n\034receive_original_d" +
+                        "estination\030\005 \001(\010\022@\n\017domain_override\030\007 \003(" +
+                        "\0162\'.v2ray.core.app.proxyman.KnownProtoco" +
+                        "lsJ\004\010\006\020\007\"\246\001\n\024InboundHandlerConfig\022\013\n\003tag" +
+                        "\030\001 \001(\t\022A\n\021receiver_settings\030\002 \001(\0132&.v2ra" +
+                        "y.core.common.serial.TypedMessage\022>\n\016pro" +
+                        "xy_settings\030\003 \001(\0132&.v2ray.core.common.se" +
+                        "rial.TypedMessage\"\020\n\016OutboundConfig\"\221\002\n\014" +
+                        "SenderConfig\022.\n\003via\030\001 \001(\0132!.v2ray.core.c" +
+                        "ommon.net.IPOrDomain\022D\n\017stream_settings\030" +
+                        "\002 \001(\0132+.v2ray.core.transport.internet.St" +
+                        "reamConfig\022B\n\016proxy_settings\030\003 \001(\0132*.v2r" +
+                        "ay.core.transport.internet.ProxyConfig\022G" +
+                        "\n\022multiplex_settings\030\004 \001(\0132+.v2ray.core." +
+                        "app.proxyman.MultiplexingConfig\":\n\022Multi" +
+                        "plexingConfig\022\017\n\007enabled\030\001 \001(\010\022\023\n\013concur" +
+                        "rency\030\002 \001(\r*#\n\016KnownProtocols\022\010\n\004HTTP\020\000\022" +
+                        "\007\n\003TLS\020\001BC\n\033com.v2ray.core.app.proxymanP" +
+                        "\001Z\010proxyman\252\002\027V2Ray.Core.App.Proxymanb\006p" +
+                        "roto3"
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.v2ray.core.common.net.Address.getDescriptor(),
-          com.v2ray.core.common.net.Port.getDescriptor(),
-          com.v2ray.core.transport.internet.Config.getDescriptor(),
-          com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor(),
-        }, assigner);
-    internal_static_v2ray_core_app_proxyman_InboundConfig_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_v2ray_core_app_proxyman_InboundConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_InboundConfig_descriptor,
-        new String[] { });
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor,
-        new String[] { "Type", "Concurrency", "Refresh", });
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor =
-      internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor.getNestedTypes().get(0);
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor,
-        new String[] { "Value", });
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor =
-      internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor.getNestedTypes().get(1);
-    internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor,
-        new String[] { "Value", });
-    internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor,
-        new String[] { "PortRange", "Listen", "AllocationStrategy", "StreamSettings", "ReceiveOriginalDestination", "DomainOverride", });
-    internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_descriptor,
-        new String[] { "Tag", "ReceiverSettings", "ProxySettings", });
-    internal_static_v2ray_core_app_proxyman_OutboundConfig_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_v2ray_core_app_proxyman_OutboundConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_OutboundConfig_descriptor,
-        new String[] { });
-    internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor,
-        new String[] { "Via", "StreamSettings", "ProxySettings", "MultiplexSettings", });
-    internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor,
-        new String[] { "Enabled", "Concurrency", });
-    com.v2ray.core.common.net.Address.getDescriptor();
-    com.v2ray.core.common.net.Port.getDescriptor();
-    com.v2ray.core.transport.internet.Config.getDescriptor();
-    com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor();
-  }
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                                com.v2ray.core.common.net.Address.getDescriptor(),
+                                com.v2ray.core.common.net.Port.getDescriptor(),
+                                com.v2ray.core.transport.internet.Config.getDescriptor(),
+                                com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor(),
+                        }, assigner);
+        internal_static_v2ray_core_app_proxyman_InboundConfig_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_v2ray_core_app_proxyman_InboundConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_InboundConfig_descriptor,
+                new String[]{});
+        internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor,
+                new String[]{"Type", "Concurrency", "Refresh",});
+        internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor =
+                internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor.getNestedTypes().get(0);
+        internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor,
+                new String[]{"Value",});
+        internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor =
+                internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor.getNestedTypes().get(1);
+        internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor,
+                new String[]{"Value",});
+        internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor =
+                getDescriptor().getMessageTypes().get(2);
+        internal_static_v2ray_core_app_proxyman_ReceiverConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_ReceiverConfig_descriptor,
+                new String[]{"PortRange", "Listen", "AllocationStrategy", "StreamSettings", "ReceiveOriginalDestination", "DomainOverride",});
+        internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_descriptor =
+                getDescriptor().getMessageTypes().get(3);
+        internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_InboundHandlerConfig_descriptor,
+                new String[]{"Tag", "ReceiverSettings", "ProxySettings",});
+        internal_static_v2ray_core_app_proxyman_OutboundConfig_descriptor =
+                getDescriptor().getMessageTypes().get(4);
+        internal_static_v2ray_core_app_proxyman_OutboundConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_OutboundConfig_descriptor,
+                new String[]{});
+        internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor =
+                getDescriptor().getMessageTypes().get(5);
+        internal_static_v2ray_core_app_proxyman_SenderConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_SenderConfig_descriptor,
+                new String[]{"Via", "StreamSettings", "ProxySettings", "MultiplexSettings",});
+        internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor =
+                getDescriptor().getMessageTypes().get(6);
+        internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor,
+                new String[]{"Enabled", "Concurrency",});
+        com.v2ray.core.common.net.Address.getDescriptor();
+        com.v2ray.core.common.net.Port.getDescriptor();
+        com.v2ray.core.transport.internet.Config.getDescriptor();
+        com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor();
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

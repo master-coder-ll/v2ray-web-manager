@@ -4,33 +4,34 @@
 package com.v2ray.core.app.stats.command;
 
 public interface GetStatsRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.command.GetStatsRequest)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.command.GetStatsRequest)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <pre>
-   * Name of the stat counter.
-   * </pre>
-   *
-   * <code>string name = 1;</code>
-   */
-  String getName();
-  /**
-   * <pre>
-   * Name of the stat counter.
-   * </pre>
-   *
-   * <code>string name = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getNameBytes();
+    /**
+     * <pre>
+     * Name of the stat counter.
+     * </pre>
+     *
+     * <code>string name = 1;</code>
+     */
+    String getName();
 
-  /**
-   * <pre>
-   * Whether or not to reset the counter to fetching its value.
-   * </pre>
-   *
-   * <code>bool reset = 2;</code>
-   */
-  boolean getReset();
+    /**
+     * <pre>
+     * Name of the stat counter.
+     * </pre>
+     *
+     * <code>string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getNameBytes();
+
+    /**
+     * <pre>
+     * Whether or not to reset the counter to fetching its value.
+     * </pre>
+     *
+     * <code>bool reset = 2;</code>
+     */
+    boolean getReset();
 }

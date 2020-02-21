@@ -7,116 +7,124 @@ package com.v2ray.core.common.net;
  * Protobuf enum {@code v2ray.core.common.net.Network}
  */
 public enum Network
-    implements com.google.protobuf.ProtocolMessageEnum {
-  /**
-   * <code>Unknown = 0;</code>
-   */
-  Unknown(0),
-  /**
-   * <code>RawTCP = 1 [deprecated = true];</code>
-   */
-  @Deprecated
-  RawTCP(1),
-  /**
-   * <code>TCP = 2;</code>
-   */
-  TCP(2),
-  /**
-   * <code>UDP = 3;</code>
-   */
-  UDP(3),
-  UNRECOGNIZED(-1),
-  ;
+        implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>Unknown = 0;</code>
+     */
+    Unknown(0),
+    /**
+     * <code>RawTCP = 1 [deprecated = true];</code>
+     */
+    @Deprecated
+    RawTCP(1),
+    /**
+     * <code>TCP = 2;</code>
+     */
+    TCP(2),
+    /**
+     * <code>UDP = 3;</code>
+     */
+    UDP(3),
+    UNRECOGNIZED(-1),
+    ;
 
-  /**
-   * <code>Unknown = 0;</code>
-   */
-  public static final int Unknown_VALUE = 0;
-  /**
-   * <code>RawTCP = 1 [deprecated = true];</code>
-   */
-  public static final int RawTCP_VALUE = 1;
-  /**
-   * <code>TCP = 2;</code>
-   */
-  public static final int TCP_VALUE = 2;
-  /**
-   * <code>UDP = 3;</code>
-   */
-  public static final int UDP_VALUE = 3;
+    /**
+     * <code>Unknown = 0;</code>
+     */
+    public static final int Unknown_VALUE = 0;
+    /**
+     * <code>RawTCP = 1 [deprecated = true];</code>
+     */
+    public static final int RawTCP_VALUE = 1;
+    /**
+     * <code>TCP = 2;</code>
+     */
+    public static final int TCP_VALUE = 2;
+    /**
+     * <code>UDP = 3;</code>
+     */
+    public static final int UDP_VALUE = 3;
 
 
-  public final int getNumber() {
-    if (this == UNRECOGNIZED) {
-      throw new IllegalArgumentException(
-          "Can't get the number of an unknown enum value.");
+    public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+            throw new IllegalArgumentException(
+                    "Can't get the number of an unknown enum value.");
+        }
+        return value;
     }
-    return value;
-  }
 
-  /**
-   * @deprecated Use {@link #forNumber(int)} instead.
-   */
-  @Deprecated
-  public static Network valueOf(int value) {
-    return forNumber(value);
-  }
-
-  public static Network forNumber(int value) {
-    switch (value) {
-      case 0: return Unknown;
-      case 1: return RawTCP;
-      case 2: return TCP;
-      case 3: return UDP;
-      default: return null;
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static Network valueOf(int value) {
+        return forNumber(value);
     }
-  }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<Network>
-      internalGetValueMap() {
-    return internalValueMap;
-  }
-  private static final com.google.protobuf.Internal.EnumLiteMap<
-      Network> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<Network>() {
-          public Network findValueByNumber(int number) {
-            return Network.forNumber(number);
-          }
-        };
-
-  public final com.google.protobuf.Descriptors.EnumValueDescriptor
-      getValueDescriptor() {
-    return getDescriptor().getValues().get(ordinal());
-  }
-  public final com.google.protobuf.Descriptors.EnumDescriptor
-      getDescriptorForType() {
-    return getDescriptor();
-  }
-  public static final com.google.protobuf.Descriptors.EnumDescriptor
-      getDescriptor() {
-    return com.v2ray.core.common.net.NetworkOuterClass.getDescriptor().getEnumTypes().get(0);
-  }
-
-  private static final Network[] VALUES = values();
-
-  public static Network valueOf(
-      com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-    if (desc.getType() != getDescriptor()) {
-      throw new IllegalArgumentException(
-        "EnumValueDescriptor is not for this type.");
+    public static Network forNumber(int value) {
+        switch (value) {
+            case 0:
+                return Unknown;
+            case 1:
+                return RawTCP;
+            case 2:
+                return TCP;
+            case 3:
+                return UDP;
+            default:
+                return null;
+        }
     }
-    if (desc.getIndex() == -1) {
-      return UNRECOGNIZED;
+
+    public static com.google.protobuf.Internal.EnumLiteMap<Network>
+    internalGetValueMap() {
+        return internalValueMap;
     }
-    return VALUES[desc.getIndex()];
-  }
 
-  private final int value;
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+            Network> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Network>() {
+                public Network findValueByNumber(int number) {
+                    return Network.forNumber(number);
+                }
+            };
 
-  private Network(int value) {
-    this.value = value;
-  }
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+    getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+    }
 
-  // @@protoc_insertion_point(enum_scope:v2ray.core.common.net.Network)
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+    getDescriptorForType() {
+        return getDescriptor();
+    }
+
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    getDescriptor() {
+        return com.v2ray.core.common.net.NetworkOuterClass.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final Network[] VALUES = values();
+
+    public static Network valueOf(
+            com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+            throw new IllegalArgumentException(
+                    "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+            return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private Network(int value) {
+        this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:v2ray.core.common.net.Network)
 }
 

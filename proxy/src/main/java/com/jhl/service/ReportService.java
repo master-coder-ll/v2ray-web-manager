@@ -1,7 +1,9 @@
 package com.jhl.service;
 
-import com.jhl.config.ManagerConfig;
+import com.jhl.constant.ManagerConstant;
+import com.jhl.pojo.ConnectionLimit;
 import com.jhl.pojo.Report;
+import com.ljh.common.model.FlowStat;
 import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -18,43 +20,44 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.DelayQueue;
 
-/**
+
+ /**
  * singleton
  * 主动push模式的队列
  */
 @Slf4j
 @Component
-public class ReportService {
+public class ReportService<T extends Report> {
     @Autowired
-    ManagerConfig managerConfig;
+    ManagerConstant managerConstant;
 
     private static DelayQueue<Report> REPORT_QUEUE = new DelayQueue<>();
     @Autowired
     RestTemplate restTemplate;
 
-    private static boolean IS_SHUTDOWN = false;
-
-
-    public static void addQueue(Report flowStat) {
-        if (flowStat == null) return;
-        if (IS_SHUTDOWN) throw new IllegalStateException(" the report service is closed");
-        REPORT_QUEUE.offer(flowStat);
+    public static <T extends Report> void addQueue(T t) {
+        if (t == null) return;
+        if (IS_SHUTDOWN) throw  new IllegalStateException(" the report service is closed");
+        REPORT_QUEUE.offer(t);
     }
+
 
     private Thread workerThread = null;
-
+    private   static  boolean IS_SHUTDOWN=false;
     @PostConstruct
     public void start() {
-        workerThread = new Thread(() -> startReport(), "report thread");
+        workerThread = new Thread(() -> {
+            startQueue();
+        }, "report thread");
+        workerThread.start();
 
     }
 
-    private void startReport() {
+    private void startQueue() {
         while (true) {
             Report take = null;
-
             try {
-                if (IS_SHUTDOWN && REPORT_QUEUE.size() <= 0) break;
+                if (IS_SHUTDOWN && REPORT_QUEUE.size()<=0) break;
                 take = REPORT_QUEUE.take();
                 //超过最大努力值不继续
                 if (take.getFailureTimes() > 80) {
@@ -64,30 +67,53 @@ public class ReportService {
 
                 HttpHeaders headers = new HttpHeaders();
                 headers.setContentType(MediaType.APPLICATION_JSON);
-                HttpEntity<ProxyAccount> entity = new HttpEntity(take, headers);
-                ResponseEntity<Result> resultEt = restTemplate.postForEntity(managerConfig.getReportFlowUrl(), entity, Result.class);
+                Object value = take.getT();
+
+                ResponseEntity<Result> resultEt = null;
+
+                if (value instanceof FlowStat) {
+
+                    HttpEntity<ProxyAccount> entity = new HttpEntity(value, headers);
+                    resultEt = restTemplate.postForEntity(managerConstant.getReportFlowUrl(), entity, Result.class);
+
+                } else if (value instanceof ConnectionLimit) {
+                    resultEt = restTemplate.getForEntity(managerConstant.getReportOverConnectionLimitUrl(),
+                            Result.class, ((ConnectionLimit) value).getAccountNo());
+                }
+
+                if (resultEt == null) {
+                    log.warn("不支持的上报类型");
+                    continue;
+                }
                 if (!resultEt.getStatusCode().is2xxSuccessful()) {
-                    log.warn("上报流量失败:{}", resultEt);
+                    log.warn("上报失败:{}", resultEt);
                     tryAgain(take);
                 } else {
                     Result result = resultEt.getBody();
 
                     if (result.getCode() != 200) { //系统内部错误
-                        log.error("上报流量失败：{},{},error:{}", managerConfig.getReportFlowUrl(), take, result);
+                        log.error("上报失败：{},{},error:{}", managerConstant.getReportFlowUrl(), take, result);
                         tryAgain(take);
 
                     } else {
-                        log.info("上报流量成功");
+                        log.info("上报成功");
                     }
                 }
 
 
             } catch (RestClientException e) { //网络错误
-                log.error("上报流量失败：{}", e.getLocalizedMessage());
+                log.error("上报失败：{}", e.getLocalizedMessage());
                 tryAgain(take);
 
             } catch (InterruptedException e) {
-
+             /*   log.warn("InterruptedException：", e);
+                //如果是系统关闭事件，并且size<1 ?
+                if (REPORT_QUEUE.size() < 1) {
+                    break;
+                } else {
+                    log.error("上报队列还有数据，但是系统发出了中断指令。忽略中断。。。");
+                }
+*/
             } catch (Exception e) {
                 log.error("FS_QUEUE error :{}", e);
                 tryAgain(take);
@@ -106,17 +132,16 @@ public class ReportService {
         log.warn("上报失败 等待：{}ms,{}", sleepTime, REPORT_QUEUE.offer(take));
     }
 
-
     @PreDestroy
     public void destroy() throws InterruptedException {
-        IS_SHUTDOWN = true;
+
+        IS_SHUTDOWN=true;
         workerThread.interrupt();
-        if (REPORT_QUEUE.size() > 0) {
+        if (REPORT_QUEUE.size()>0) {
             Thread.sleep(5000);
             REPORT_QUEUE.clear();
             workerThread.interrupt();
         }
-
     }
 
 //    public static void main(String[] args) throws InterruptedException {

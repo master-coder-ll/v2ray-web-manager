@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -50,9 +49,9 @@ public class ProxyAccount implements Serializable {
      */
     private Integer maxConnection = 30;
 
-    private String v2rayHost ="127.0.0.1";
-    private  int v2rayPort=6001;
-    private  int v2rayManagerPort=62789;
+    private String v2rayHost = "127.0.0.1";
+    private int v2rayPort = 6001;
+    private int v2rayManagerPort = 62789;
 
 
 }

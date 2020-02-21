@@ -7,6 +7,6 @@ public final class Validator {
     }
 
     public static void isNotNull(Object o) {
-        isNotNull(o, "obj is null");
+        isNotNull(o, "Can not be null");
     }
 }

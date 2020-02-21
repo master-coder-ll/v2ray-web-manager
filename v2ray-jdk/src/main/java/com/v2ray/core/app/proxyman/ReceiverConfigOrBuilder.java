@@ -4,109 +4,121 @@
 package com.v2ray.core.app.proxyman;
 
 public interface ReceiverConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.ReceiverConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.ReceiverConfig)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <pre>
-   * PortRange specifies the ports which the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-   */
-  boolean hasPortRange();
-  /**
-   * <pre>
-   * PortRange specifies the ports which the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-   */
-  com.v2ray.core.common.net.PortRange getPortRange();
-  /**
-   * <pre>
-   * PortRange specifies the ports which the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
-   */
-  com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder();
+    /**
+     * <pre>
+     * PortRange specifies the ports which the Receiver should listen on.
+     * </pre>
+     *
+     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+     */
+    boolean hasPortRange();
 
-  /**
-   * <pre>
-   * Listen specifies the IP address that the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-   */
-  boolean hasListen();
-  /**
-   * <pre>
-   * Listen specifies the IP address that the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-   */
-  com.v2ray.core.common.net.IPOrDomain getListen();
-  /**
-   * <pre>
-   * Listen specifies the IP address that the Receiver should listen on.
-   * </pre>
-   *
-   * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
-   */
-  com.v2ray.core.common.net.IPOrDomainOrBuilder getListenOrBuilder();
+    /**
+     * <pre>
+     * PortRange specifies the ports which the Receiver should listen on.
+     * </pre>
+     *
+     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+     */
+    com.v2ray.core.common.net.PortRange getPortRange();
 
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-   */
-  boolean hasAllocationStrategy();
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-   */
-  AllocationStrategy getAllocationStrategy();
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
-   */
-  com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder getAllocationStrategyOrBuilder();
+    /**
+     * <pre>
+     * PortRange specifies the ports which the Receiver should listen on.
+     * </pre>
+     *
+     * <code>.v2ray.core.common.net.PortRange port_range = 1;</code>
+     */
+    com.v2ray.core.common.net.PortRangeOrBuilder getPortRangeOrBuilder();
 
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-   */
-  boolean hasStreamSettings();
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-   */
-  com.v2ray.core.transport.internet.StreamConfig getStreamSettings();
-  /**
-   * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
-   */
-  com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder();
+    /**
+     * <pre>
+     * Listen specifies the IP address that the Receiver should listen on.
+     * </pre>
+     *
+     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+     */
+    boolean hasListen();
 
-  /**
-   * <code>bool receive_original_destination = 5;</code>
-   */
-  boolean getReceiveOriginalDestination();
+    /**
+     * <pre>
+     * Listen specifies the IP address that the Receiver should listen on.
+     * </pre>
+     *
+     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+     */
+    com.v2ray.core.common.net.IPOrDomain getListen();
 
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  java.util.List<KnownProtocols> getDomainOverrideList();
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  int getDomainOverrideCount();
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  KnownProtocols getDomainOverride(int index);
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  java.util.List<Integer>
-  getDomainOverrideValueList();
-  /**
-   * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
-   */
-  int getDomainOverrideValue(int index);
+    /**
+     * <pre>
+     * Listen specifies the IP address that the Receiver should listen on.
+     * </pre>
+     *
+     * <code>.v2ray.core.common.net.IPOrDomain listen = 2;</code>
+     */
+    com.v2ray.core.common.net.IPOrDomainOrBuilder getListenOrBuilder();
+
+    /**
+     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+     */
+    boolean hasAllocationStrategy();
+
+    /**
+     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+     */
+    AllocationStrategy getAllocationStrategy();
+
+    /**
+     * <code>.v2ray.core.app.proxyman.AllocationStrategy allocation_strategy = 3;</code>
+     */
+    com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder getAllocationStrategyOrBuilder();
+
+    /**
+     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+     */
+    boolean hasStreamSettings();
+
+    /**
+     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+     */
+    com.v2ray.core.transport.internet.StreamConfig getStreamSettings();
+
+    /**
+     * <code>.v2ray.core.transport.internet.StreamConfig stream_settings = 4;</code>
+     */
+    com.v2ray.core.transport.internet.StreamConfigOrBuilder getStreamSettingsOrBuilder();
+
+    /**
+     * <code>bool receive_original_destination = 5;</code>
+     */
+    boolean getReceiveOriginalDestination();
+
+    /**
+     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+     */
+    java.util.List<KnownProtocols> getDomainOverrideList();
+
+    /**
+     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+     */
+    int getDomainOverrideCount();
+
+    /**
+     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+     */
+    KnownProtocols getDomainOverride(int index);
+
+    /**
+     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+     */
+    java.util.List<Integer>
+    getDomainOverrideValueList();
+
+    /**
+     * <code>repeated .v2ray.core.app.proxyman.KnownProtocols domain_override = 7;</code>
+     */
+    int getDomainOverrideValue(int index);
 }

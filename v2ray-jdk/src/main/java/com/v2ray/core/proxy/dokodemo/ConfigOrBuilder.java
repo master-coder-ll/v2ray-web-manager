@@ -4,52 +4,57 @@
 package com.v2ray.core.proxy.dokodemo;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.dokodemo.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.dokodemo.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 1;</code>
-   */
-  boolean hasAddress();
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 1;</code>
-   */
-  com.v2ray.core.common.net.IPOrDomain getAddress();
-  /**
-   * <code>.v2ray.core.common.net.IPOrDomain address = 1;</code>
-   */
-  com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder();
+    /**
+     * <code>.v2ray.core.common.net.IPOrDomain address = 1;</code>
+     */
+    boolean hasAddress();
 
-  /**
-   * <code>uint32 port = 2;</code>
-   */
-  int getPort();
+    /**
+     * <code>.v2ray.core.common.net.IPOrDomain address = 1;</code>
+     */
+    com.v2ray.core.common.net.IPOrDomain getAddress();
 
-  /**
-   * <code>.v2ray.core.common.net.NetworkList network_list = 3;</code>
-   */
-  boolean hasNetworkList();
-  /**
-   * <code>.v2ray.core.common.net.NetworkList network_list = 3;</code>
-   */
-  com.v2ray.core.common.net.NetworkList getNetworkList();
-  /**
-   * <code>.v2ray.core.common.net.NetworkList network_list = 3;</code>
-   */
-  com.v2ray.core.common.net.NetworkListOrBuilder getNetworkListOrBuilder();
+    /**
+     * <code>.v2ray.core.common.net.IPOrDomain address = 1;</code>
+     */
+    com.v2ray.core.common.net.IPOrDomainOrBuilder getAddressOrBuilder();
 
-  /**
-   * <code>uint32 timeout = 4 [deprecated = true];</code>
-   */
-  @Deprecated int getTimeout();
+    /**
+     * <code>uint32 port = 2;</code>
+     */
+    int getPort();
 
-  /**
-   * <code>bool follow_redirect = 5;</code>
-   */
-  boolean getFollowRedirect();
+    /**
+     * <code>.v2ray.core.common.net.NetworkList network_list = 3;</code>
+     */
+    boolean hasNetworkList();
 
-  /**
-   * <code>uint32 user_level = 6;</code>
-   */
-  int getUserLevel();
+    /**
+     * <code>.v2ray.core.common.net.NetworkList network_list = 3;</code>
+     */
+    com.v2ray.core.common.net.NetworkList getNetworkList();
+
+    /**
+     * <code>.v2ray.core.common.net.NetworkList network_list = 3;</code>
+     */
+    com.v2ray.core.common.net.NetworkListOrBuilder getNetworkListOrBuilder();
+
+    /**
+     * <code>uint32 timeout = 4 [deprecated = true];</code>
+     */
+    @Deprecated
+    int getTimeout();
+
+    /**
+     * <code>bool follow_redirect = 5;</code>
+     */
+    boolean getFollowRedirect();
+
+    /**
+     * <code>uint32 user_level = 6;</code>
+     */
+    int getUserLevel();
 }

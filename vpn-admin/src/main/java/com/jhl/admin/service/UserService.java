@@ -106,11 +106,22 @@ public class UserService {
 
 
     public User get(Integer id) {
-        return userRepository.getOne(id);
+
+        return userRepository.findById(id).orElse(null);
     }
 
-    public  void addRemark(Integer userId, String remark){
-        User user =  new User();
+
+    public User getUserButRemovePW(
+            Integer id  ) {
+
+        User user = get(id);
+        if (user !=null)
+        user.setPassword(null);
+        return user;
+    }
+
+    public void addRemark(Integer userId, String remark) {
+        User user = new User();
         user.setId(userId);
         user.setRemark(remark);
         userRepository.save(user);

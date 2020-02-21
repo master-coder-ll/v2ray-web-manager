@@ -1,160 +1,150 @@
 <template>
   <div class="dashboard-editor-container">
-    <el-form size="mini">
-    <el-row v-for=" (row,index) in list" :key="index" :gutter="20">
+    <el-form size="mini" v-if="account">
+    <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :lg="24" class="card-panel-col">
         <el-card>
         <div slot="header" >
           
-       账号: {{ row.accountNo }}  
+       账号: {{ account.accountNo }}  
          <!-- <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button> -->
        </div>
           
 
+            <el-form-item label="等级:" >
+            {{ account.level |levelFilter }}
+            </el-form-item>
           <el-form-item label=" 有效时间:" >
-              <!--  {{ row.fromDate | parseTime('{y}-{m}-{d} {h}:{i}') }} - -->
+              <!--  {{ account.fromDate | parseTime('{y}-{m}-{d} {h}:{i}') }} - -->
         
             <span>
-              <font v-if="row.toDate>new Date().getTime()">  {{ row.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
-              <font v-else color="red">  {{ row.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
+              <font v-if="account.toDate>new Date().getTime()">  {{ account.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
+              <font v-else color="red">  {{ account.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
             </span>
           </el-form-item>
 
-            <el-form-item label=" 结算时间:" v-if="row.stat">
-              <span>{{row.stat.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+            <el-form-item label=" 结算时间:" v-if="account.stat">
+              <span>{{account.stat.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
             </el-form-item>
           <el-form-item label="速率:" >
             <span></span>
-            <span>{{ row.speed | speedFilter }}</span>
+            <span>{{ account.speed | speedFilter }}</span>
             </el-form-item>
           <el-form-item label="周期:" >
             <!-- <span>周期：</span> -->
-            {{ row.cycle }}天/周期
+            {{ account.cycle }}天/周期
             </el-form-item>
-          <el-form-item label="流量:" >
+          <el-form-item label="流量:">
             
        
             <span>
-              <font v-if="(row.stat?(row.stat.flow/1024/1024/1024).toFixed(2) : 0)<row.bandwidth">{{ row.stat?(row.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
-              <font v-else color="red">{{ row.stat?(row.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
-              /{{ row.bandwidth }}GB/周期</span>
+              <font v-if="(account.stat?(account.stat.flow/1024/1024/1024).toFixed(2) : 0)<account.bandwidth">{{ account.stat?(account.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
+              <font v-else color="red">{{ account.stat?(account.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
+              /{{ account.bandwidth }}GB/周期</span>
           </el-form-item>
-          <el-form-item label="连接数:">{{connections}} /{{ row.maxConnection }}/账号
-              <el-link icon="el-icon-view" type="primary" @click="getConnection(row,row.id)" v-show="row.server" >获取连接数</el-link>
-          </el-form-item>
+          <el-form-item label="连接数:">{{ account.maxConnection }}/账号
+             </el-form-item>
+        
+           
+            <el-form-item label="订阅地址(推荐):">
+                 <el-col :xs="24" :sm="6" :lg="6" >
+               <el-input v-model="account.subscriptionUrl" >  <el-button slot="prepend" @click="generatorNewSubscriptionUrl()">
+                 <div v-if="!account.subscriptionUrl">生成</div><div v-if="account.subscriptionUrl">更新</div>
+               </el-button> <el-button slot="append" @click="handlerCopy(account.subscriptionUrl,$event)">复制</el-button> </el-input>
+           
+             </el-col >
+             
+               </el-form-item>
+            
+          
+   
         </el-card>
       </el-col>
 
-      <el-col :xs="24" :sm="24" :lg="24" class="card-panel-col">
+      <!-- <el-col :xs="24" :sm="24" :lg="24" class="card-panel-col">
         <el-card>
           <div slot="header" >
           服务器信息
           </div>
-          <div v-if="row.server">
-           <el-form-item label="服务器名称:">   {{ row.server.serverName  }}  </el-form-item>
-            <el-form-item label="服务器地址:">{{ row.server.clientDomain }}</el-form-item>
-            <el-form-item label="流量倍数:">{{ row.server.multiple }}</el-form-item>
-            <el-form-item label="服务器状态:">{{ row.server.status |statusFilter2 }}</el-form-item>
-            <div> <el-link icon="el-icon-edit" type="primary" @click="changeServerDidlog(row.id)">更改服务器</el-link> </div>
+          <div v-if="account.server">
+           <el-form-item label="服务器名称:">   {{ account.server.serverName  }}  </el-form-item>
+            <el-form-item label="服务器地址:">{{ account.server.clientDomain }}</el-form-item>
+            <el-form-item label="流量倍数:">{{ account.server.multiple }}</el-form-item>
+            <el-form-item label="服务器状态:">{{ account.server.status |statusFilter2 }}</el-form-item>
+            <div> <el-link icon="el-icon-edit" type="primary" @click="changeServerDidlog(account.id)">更改服务器</el-link> </div>
           </div>
-          <div v-else><el-link icon="el-icon-edit" type="primary" @click="changeServerDidlog(row.id)">选择你的服务器</el-link> </div>
+          <div v-else><el-link icon="el-icon-edit" type="primary" @click="changeServerDidlog(account.id)">选择你的服务器</el-link> </div>
         </el-card>
-      </el-col>
+      </el-col> -->
 
       <el-col :xs="24" :sm="24" :lg="24" class="card-panel-col">
         <el-card>
             <div slot="header" >
             v2ray账号
           </div>
-          <div v-if="row.content.add">
+
+        
             <el-row >
+             
              <el-col :xs="24" :sm="24" :lg="12">
-            <el-form-item label="地址:">{{ row.content.add }}</el-form-item>
-            <el-form-item label="端口:">{{ row.content.port }}</el-form-item>
-            <el-form-item label="用户Id:">{{ row.content.id }}</el-form-item>
-            <el-form-item label="额外Id(alterId):">{{ row.content.aid }}</el-form-item>
+               
+                  <el-form-item label="服务器:">
+                    <el-select v-model="serverId" @change="serverChange" placeholder="请选择服务器">
+                         <el-option
+                        v-for="item in serverList"
+                        :key="item.value"
+                          :label="item.label"
+                         :value="item.value">
+                       </el-option>
+                  
+                      </el-select>
+                    </el-form-item>  
+             <div v-if="v2rayAccount">       
+            <el-form-item label="地址:">{{ v2rayAccount.add }}</el-form-item>
+            <el-form-item label="端口:">{{ v2rayAccount.port }}</el-form-item>
+            <el-form-item label="用户Id:">{{ v2rayAccount.id }}</el-form-item>
+            <el-form-item label="额外Id(alterId):">{{ v2rayAccount.aid }}</el-form-item>
             <el-form-item label="加密方式:">auto</el-form-item>
-            <el-form-item label="传输协议:">{{ row.content.net }}</el-form-item>
-            <el-form-item label="伪装类型:">{{ row.content.type }}</el-form-item>
-            <el-form-item label="传输域名(host):">{{ row.content.host }}</el-form-item>
-            <el-form-item label="路径(path):">{{ row.content.path }}</el-form-item>
-            <el-form-item label="底层传输安全(tls):">{{ row.content.tls }}</el-form-item>
+            <el-form-item label="传输协议:">{{ v2rayAccount.net }}</el-form-item>
+            <el-form-item label="伪装类型:">{{ v2rayAccount.type }}</el-form-item>
+            <el-form-item label="传输域名(host):">{{ v2rayAccount.host }}</el-form-item>
+            <el-form-item label="路径(path):">{{ v2rayAccount.path }}</el-form-item>
+            <el-form-item label="底层传输安全(tls):">{{ v2rayAccount.tls }}</el-form-item>
+            <el-form-item label="服务器描述:">{{ server.desc }}</el-form-item>
+             </div>
                </el-col> 
+            
               <el-col :xs="24" :sm="24" :lg="12" >
+                   <div v-if="v2rayAccount">
               <el-form-item label="" >
               <el-col :xs="24" :sm="24" :lg="6">
-                   <el-input v-model="row.toColip"> <el-button slot="append" @click="handlerCopy(row.toColip,$event)">复制</el-button> </el-input>
+                   <el-input v-model="toColip"> <el-button slot="append" @click="handlerCopy(toColip,$event)">复制</el-button> </el-input>
               </el-col>
             </el-form-item>
             <el-form-item label="">
-              <vue-qr :text="row.toColip" qid="qrcode" />
+              <vue-qr :text="toColip" qid="qrcode" />
             </el-form-item>
 
+            
+                    </div>
               </el-col>
+        
             </el-row>
            
          
-          </div>
+         
         </el-card>
       </el-col>
   
 
     </el-row>
-    <!-- <el-table v-loading="listLoading" :data="list"  fit highlight-current-row style="width: 100%"> -->
-
-    <!-- 服务器列表 -->
-    <el-row>
-      <el-col :xs="24" :sm="24" :lg="12">
-
-        <el-dialog title="服务器列表" :width="dialogWidth" :visible.sync="serverDialog" :before-close="handlerServerCloseDialog">
-
-          <el-table ref="multipleTable" :data="serverList" fit highlight-current-row style="width: 100%" @selection-change="handleCurrentChange">
-
-            <el-table-column
-              type="selection"
-            />
-
-            <el-table-column align="center" label="服务器">
-              <template slot-scope="scope">
-                <el-col :span="24">
-                  <span>{{ scope.row.serverName }}</span>
-                </el-col>
-                <el-col :span="24">
-                  <span>{{ scope.row.clientDomain }}</span>
-                </el-col>
-
-              </template>
-            </el-table-column>
-
-            <el-table-column align="center" label="描述">
-              <template slot-scope="scope">
-                <span>{{ scope.row.desc }}</span>
-              </template>
-            </el-table-column>
-
-            <el-table-column align="center" label="状态">
-              <template slot-scope="{row}">
-                <el-tag :type="row.status | statusFilter">
-                  {{ row.status |statusFilter2 }}
-                </el-tag>
-
-              </template>
-            </el-table-column>
-          </el-table>
-          <div style="margin-top: 20px">
-            <el-button @click="submitUpdateServer">提交</el-button>
-          </div>
-          <pagination v-show="total>0" :total="serverTotal" :page.sync="serverListQuery.page" :limit.sync="serverListQuery.pageSize" @pagination="getServerList" />
-        </el-dialog>
-      </el-col>
-
-    </el-row>
+    
     </el-form>
   </div>
 </template>
 <script>
-import { getAccounts, accountsList, updateAccountServer, updateAccount,getConnection } from '@/api/account'
-import { serverList } from '@/api/server'
+import { getAccount, accountsList,  updateAccount,getConnection,getV2rayAccount,generatorSubscriptionUrl} from '@/api/account'
+import { availableServers,getServer} from '@/api/server'
 import Pagination from '@/components/Pagination'
 import clip from '@/utils/clipboard'
 import { Base64 } from 'js-base64'
@@ -169,6 +159,16 @@ export default {
   components: { Pagination, VueQr },
   directives: { permission },
   filters: {
+    levelFilter(status) {
+      const statusMap = {
+        0: '等级0',
+        1: '等级1',
+        2: '等级2',
+        3: '等级3'
+      }
+      return statusMap[status]
+    }
+    ,
     speedFilter: function(v) {
       if (v <= 1024) { return '流畅' } else if (v > 1024 && v <= 2024) {
         return '高速'
@@ -194,6 +194,8 @@ export default {
   },
   data() {
     return {
+      serverId:null,
+      server:null,
       accountFormOptions: [{
         value: 1,
         label: '正常'
@@ -218,6 +220,7 @@ export default {
       accountDialog: false,
 
       roles: store.getters.roles,
+      v2rayAccount:null,
       toColip: '',
       opAccountId: null,
       serverTotal: 0,
@@ -226,10 +229,9 @@ export default {
         page: 1,
         pageSize: 10
       },
-      dialogWidth: 0,
-      serverDialog: false,
+      isEdit:false,
       serverList: null,
-      list: null,
+      account: null,
       total: 0,
       listLoading: true,
       listQuery: {
@@ -242,102 +244,68 @@ export default {
   computed: {
 
   },
-  mounted() {
-    window.onresize = () => {
-      return (() => {
-        this.setDialogWidth()
-      })()
-    }
-  },
   created() {
-    this.getList()
-    this.setDialogWidth()
+    this.getRemoteAccount()
+    this.getServerList()
   },
   methods: {
-    getConnection(row,id){
-      getConnection(id).then(response =>{
-        this.connections=response.obj;
-          this.$message.success('成功')
-      })
-    },
-    setDialogWidth() {
-      console.log(document.body.clientWidth)
-      var val = document.body.clientWidth
-      const def = 800 // 默认宽度
-      if (val < def) {
-        this.dialogWidth = '100%'
-      } else {
-        this.dialogWidth = def + 'px'
-      }
-    },
-    addToDate() {
-      var toTime = this.accountForm.toDate
-      this.accountForm.toDate = toTime + oneDayms * this.accountForm.addDay
-    },
-    handlerAccountCloseDialog(done) {
-      done()
-    },
-    openAccountDidlog(row) {
-      this.accountForm = row
-      this.accountDialog = true
-    //  console.log(row)
-    //  this.accountForm.rangeDate= [new Date().setTime(this.accountForm.fromDate),new Date().setTime(this.accountForm.toDate)]
-    },
+   generatorNewSubscriptionUrl(){
+
+   
+     if(this.isEdit){
+      this.$confirm('确认更新操作？成功原订阅地址将失效。', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          roundButton:true,
+          center:false
+        }).then(() => {
+            this.trueGeneratorSubscriptionUrl()
+    
+        }).catch(() => {
+            
+        });
+     }else{
+       this.trueGeneratorSubscriptionUrl()
+     }
+     
+      
+    
+   },
+   trueGeneratorSubscriptionUrl(){
+       generatorSubscriptionUrl().then(response =>{
+        this.getRemoteAccount();
+        this.$message.success('更新订阅地址成功，原地址已经失效')
+   })
+   },
     handlerCopy(text, event) {
       //   console.log(Base64.encode('dankogai'))
       clip(text, event)
-    },
-    submitUpdateAccount() {
-      console.log(this.accountForm)
-      this.accountForm.content = null
-      updateAccount(this.accountForm).then(_ => {
-        this.$message.success('提交成功')
-        this.getList()
-      })
-    },
-    submitUpdateServer() {
-      if (!this.chooseServerId) {
-        this.$message.error('请选择服务器')
-        this.$refs.multipleTable.clearSelection()
-        return
-      }
-      var data = { 'id': this.opAccountId, 'serverId': this.chooseServerId }
-      updateAccountServer(data).then(response => {
-        this.$message.success('提交成功,原账号将失效,请使用新账号')
-        this.getList()
-      })
-    },
-    handlerServerCloseDialog(done) {
-      this.$refs.multipleTable.clearSelection()
-      this.chooseServerId = null
-      this.opAccountId = null
-      done()
-    },
-    handleCurrentChange(rows) {
-      this.chooseServerId = null
-      if (rows.length > 1) {
-        this.$message.error('只能选择一个服务器')
-
-        return
-      }
-      if (rows.length < 1) {
-        return
-      }
-      var row = rows[0]
-      this.chooseServerId = row && row.id ? row.id : null
-      console.log(this.chooseServerId)
-    },
+    }
+   ,serverChange(){
+     getServer(this.serverId).then(response =>{
+       this.server=response.obj
+     })
+     getV2rayAccount({'serverId':this.serverId}).then(response =>{
+        this.v2rayAccount=response.obj
+        this.toColip = 'vmess://' + Base64.encode(JSON.stringify(this.v2rayAccount))
+     })
+   },
     getServerList() {
-      serverList(this.serverListQuery).then(response => {
-        this.serverList = response.obj.content
-        this.serverTotal = response.obj.total
+      availableServers().then(response => {
+        this.serverList=[]
+  
+         
+        for( var i in response.obj){
+         var server= response.obj[i]
+            var localserver={}
+            localserver.value=server.id
+            localserver.label=server.serverName
+            this.serverList[i]=localserver
+          
+        }
+        
       })
-    },
-
-    changeServerDidlog(accountId) {
-      this.serverDialog = true
-      this.opAccountId = accountId
-      this.getServerList()
     },
     formatDate(date) {
       if (!date) return ''
@@ -349,20 +317,20 @@ export default {
       var second = date.getSeconds()
       return year + '-' + month + '-' + date + ' ' + hour + ':' + minute + ':' + second
     },
-    getList() {
+    getRemoteAccount() {
     // var isAdmin=this.roles.indexOf('admin')>-1;
-      this.listLoading = true
 
-      getAccounts(1).then(response => {
-        this.list = response.obj.content
-        for (var i = 0; i < this.list.length; i++) {
-          var content = this.list[i].content
-          this.list[i].content = content ? JSON.parse(content) : {}
-          this.list[i].toColip = 'vmess://' + Base64.encode(content)
-        }
+
+      getAccount(1).then(response => {
+      this.account = response.obj
+        this.isEdit= this.account.subscriptionUrl?true:false
+        // for (var i = 0; i < this.list.length; i++) {
+        //   var content = this.list[i].content
+        //   this.list[i].content = content ? JSON.parse(content) : {}
+        //   this.list[i].toColip = 'vmess://' + Base64.encode(content)
+        // }
         // console.log(this.list);
-        this.total = response.obj.total
-        this.listLoading = false
+
       })
     }
   }

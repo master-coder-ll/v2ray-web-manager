@@ -7,97 +7,103 @@ package com.v2ray.core.proxy.socks;
  * Protobuf enum {@code v2ray.core.proxy.socks.AuthType}
  */
 public enum AuthType
-    implements com.google.protobuf.ProtocolMessageEnum {
-  /**
-   * <code>NO_AUTH = 0;</code>
-   */
-  NO_AUTH(0),
-  /**
-   * <code>PASSWORD = 1;</code>
-   */
-  PASSWORD(1),
-  UNRECOGNIZED(-1),
-  ;
+        implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>NO_AUTH = 0;</code>
+     */
+    NO_AUTH(0),
+    /**
+     * <code>PASSWORD = 1;</code>
+     */
+    PASSWORD(1),
+    UNRECOGNIZED(-1),
+    ;
 
-  /**
-   * <code>NO_AUTH = 0;</code>
-   */
-  public static final int NO_AUTH_VALUE = 0;
-  /**
-   * <code>PASSWORD = 1;</code>
-   */
-  public static final int PASSWORD_VALUE = 1;
+    /**
+     * <code>NO_AUTH = 0;</code>
+     */
+    public static final int NO_AUTH_VALUE = 0;
+    /**
+     * <code>PASSWORD = 1;</code>
+     */
+    public static final int PASSWORD_VALUE = 1;
 
 
-  public final int getNumber() {
-    if (this == UNRECOGNIZED) {
-      throw new IllegalArgumentException(
-          "Can't get the number of an unknown enum value.");
+    public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+            throw new IllegalArgumentException(
+                    "Can't get the number of an unknown enum value.");
+        }
+        return value;
     }
-    return value;
-  }
 
-  /**
-   * @deprecated Use {@link #forNumber(int)} instead.
-   */
-  @Deprecated
-  public static AuthType valueOf(int value) {
-    return forNumber(value);
-  }
-
-  public static AuthType forNumber(int value) {
-    switch (value) {
-      case 0: return NO_AUTH;
-      case 1: return PASSWORD;
-      default: return null;
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @Deprecated
+    public static AuthType valueOf(int value) {
+        return forNumber(value);
     }
-  }
 
-  public static com.google.protobuf.Internal.EnumLiteMap<AuthType>
-      internalGetValueMap() {
-    return internalValueMap;
-  }
-  private static final com.google.protobuf.Internal.EnumLiteMap<
-      AuthType> internalValueMap =
-        new com.google.protobuf.Internal.EnumLiteMap<AuthType>() {
-          public AuthType findValueByNumber(int number) {
-            return AuthType.forNumber(number);
-          }
-        };
-
-  public final com.google.protobuf.Descriptors.EnumValueDescriptor
-      getValueDescriptor() {
-    return getDescriptor().getValues().get(ordinal());
-  }
-  public final com.google.protobuf.Descriptors.EnumDescriptor
-      getDescriptorForType() {
-    return getDescriptor();
-  }
-  public static final com.google.protobuf.Descriptors.EnumDescriptor
-      getDescriptor() {
-    return Config.getDescriptor().getEnumTypes().get(0);
-  }
-
-  private static final AuthType[] VALUES = values();
-
-  public static AuthType valueOf(
-      com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-    if (desc.getType() != getDescriptor()) {
-      throw new IllegalArgumentException(
-        "EnumValueDescriptor is not for this type.");
+    public static AuthType forNumber(int value) {
+        switch (value) {
+            case 0:
+                return NO_AUTH;
+            case 1:
+                return PASSWORD;
+            default:
+                return null;
+        }
     }
-    if (desc.getIndex() == -1) {
-      return UNRECOGNIZED;
+
+    public static com.google.protobuf.Internal.EnumLiteMap<AuthType>
+    internalGetValueMap() {
+        return internalValueMap;
     }
-    return VALUES[desc.getIndex()];
-  }
 
-  private final int value;
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+            AuthType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<AuthType>() {
+                public AuthType findValueByNumber(int number) {
+                    return AuthType.forNumber(number);
+                }
+            };
 
-  private AuthType(int value) {
-    this.value = value;
-  }
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+    getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+    }
 
-  // @@protoc_insertion_point(enum_scope:v2ray.core.proxy.socks.AuthType)
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+    getDescriptorForType() {
+        return getDescriptor();
+    }
+
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+    getDescriptor() {
+        return Config.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final AuthType[] VALUES = values();
+
+    public static AuthType valueOf(
+            com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+            throw new IllegalArgumentException(
+                    "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+            return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private AuthType(int value) {
+        this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:v2ray.core.proxy.socks.AuthType)
 }
 

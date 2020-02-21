@@ -145,7 +145,7 @@ func TestProxy(t *testing.T) {
 
 	proxyUserID := protocol.NewID(uuid.New())
 	proxyPort := tcp.PickPort()
-	proxyConfig := &core.Config{
+	proxyConstant := &core.Config{
 		Inbound: []*core.InboundHandlerConfig{
 			{
 				ReceiverSettings: serial.ToTypedMessage(&proxyman.ReceiverConfig{
@@ -231,7 +231,7 @@ func TestProxy(t *testing.T) {
 		},
 	}
 
-	servers, err := InitializeServerConfigs(serverConfig, proxyConfig, clientConfig)
+	servers, err := InitializeServerConfigs(serverConfig, proxyConstant, clientConfig)
 	assert(err, IsNil)
 
 	conn, err := net.DialTCP("tcp", nil, &net.TCPAddr{
@@ -296,7 +296,7 @@ func TestProxyOverKCP(t *testing.T) {
 
 	proxyUserID := protocol.NewID(uuid.New())
 	proxyPort := tcp.PickPort()
-	proxyConfig := &core.Config{
+	proxyConstant := &core.Config{
 		Inbound: []*core.InboundHandlerConfig{
 			{
 				ReceiverSettings: serial.ToTypedMessage(&proxyman.ReceiverConfig{
@@ -390,7 +390,7 @@ func TestProxyOverKCP(t *testing.T) {
 		},
 	}
 
-	servers, err := InitializeServerConfigs(serverConfig, proxyConfig, clientConfig)
+	servers, err := InitializeServerConfigs(serverConfig, proxyConstant, clientConfig)
 	assert(err, IsNil)
 
 	conn, err := net.DialTCP("tcp", nil, &net.TCPAddr{

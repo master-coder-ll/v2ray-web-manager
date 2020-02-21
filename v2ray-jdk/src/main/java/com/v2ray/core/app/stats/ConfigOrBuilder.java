@@ -4,6 +4,6 @@
 package com.v2ray.core.app.stats;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.Config)
+        com.google.protobuf.MessageOrBuilder {
 }

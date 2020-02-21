@@ -1,15 +1,28 @@
 <template>
   <div class="app-container ">
 
+        <el-row :gutter="15">
+         
+          <el-col :span="3" > <el-input v-model="listQuery.userEmail" placeholder="email" /> </el-col>
+          <el-col :span="2">  <el-button @click="getList">搜索</el-button> </el-col>
+        
+        </el-row>
+     
     <el-table v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%">
 
-      <el-table-column width="400px" align="left" label="基本信息">
+      <el-table-column  align="left" label="账号信息">
         <template slot-scope="scope">
-          <div><span>用户：{{ scope.row.email }}</span></div>
+          <div><span>用户：{{ scope.row.user?scope.row.user.email:'' }}</span></div>
+            <div><span>备注：{{ scope.row.user?scope.row.user.remark:'' }}</span></div>
           <div><span>账号：{{ scope.row.accountNo }}</span></div>
-
-          <div>
-            <span> 有效时间： {{ scope.row.fromDate | parseTime('{y}-{m}-{d} {h}:{i}') }} - </span>
+         
+        </template>
+      </el-table-column>
+      
+ <el-table-column  align="left" label="">
+      <template slot-scope="scope">
+    <div>
+            <span> 有效时间： </span>
             <span>
               <font v-if="scope.row.toDate>new Date().getTime()">  {{ scope.row.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
               <font v-else color="red">  {{ scope.row.toDate | parseTime('{y}-{m}-{d} {h}:{i}') }}</font>
@@ -19,81 +32,41 @@
 
             <span>结算时间：{{scope.row.stat.toDate  | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
           </div>
+            </template>
+  </el-table-column>
 
-          <div> <span>速率：{{ scope.row.speed | speedFilter }}</span></div>
+ <el-table-column  align="left" label="">
+    <template slot-scope="scope">
+  <div> <span>速率：{{ scope.row.speed | speedFilter }}</span></div>
           <div>周期：{{ scope.row.cycle }}天/周期</div>
           <div>流量：<span>
             <font v-if="(scope.row.stat?(scope.row.stat.flow/1024/1024/1024).toFixed(2) : 0)<scope.row.bandwidth">{{ scope.row.stat?(scope.row.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
             <font v-else color="red">{{ scope.row.stat?(scope.row.stat.flow/1024/1024/1024).toFixed(2) : 0 }}</font>
             /{{ scope.row.bandwidth }}GB/周期</span>
           </div>
-          <div>连接数：{{ scope.row.maxConnection }}/账号</div>
-          <el-tag v-permission="['admin']">
-            <div> <el-link icon="el-icon-edit" type="primary" @click="openAccountDidlog(scope.row)">编辑账号</el-link> </div>
-          </el-tag>
-        </template>
-      </el-table-column>
+            </template>
+ </el-table-column>
 
-      <el-table-column width="400px" align="left" label="服务器信息">
-        <template slot-scope="scope">
-          <div v-if="scope.row.server">
-
-            <div>服务器名称：{{ scope.row.server.serverName }}</div>
-            <div>服务器地址：{{ scope.row.server.clientDomain }}</div>
-            <div>流量倍数：{{ scope.row.server.multiple }}</div>
-            <div>服务器状态：{{ scope.row.server.status |statusFilter2 }}</div>
-            <div> <el-link icon="el-icon-edit" type="primary" @click="changeServerDidlog(scope.row.id)">更改服务器</el-link> </div>
-          </div>
-          <div v-else><el-link icon="el-icon-edit" type="primary" @click="changeServerDidlog(scope.row.id)">选择你的服务器</el-link> </div>
-
-        </template>
-      </el-table-column>
-
-      <el-table-column width="400px" align="left" label="v2ray账号信息">
-        <template slot-scope="scope">
-          <div v-if="scope.row.content.add">
-            <div>地址:{{ scope.row.content.add }}</div>
-            <div>端口:{{ scope.row.content.port }}</div>
-            <div>用户Id:{{ scope.row.content.id }}</div>
-            <div>额外Id:{{ scope.row.content.aid }}</div>
-            <div>加密方式:auto</div>
-            <div>传输协议:{{ scope.row.content.net }}</div>
-            <div>伪装类型:{{ scope.row.content.type }}</div>
-            <div>传输域名(host):{{ scope.row.content.host }}</div>
-            <div>路径(path):{{ scope.row.content.path }}</div>
-            <div>底层传输安全(tls):{{ scope.row.content.tls }}</div>
-          </div>
-          <div v-else />
-        </template>
-      </el-table-column>
-
-      <el-table-column width="400px" align="left" label="操作">
-        <template slot-scope="scope">
-          <div v-if="scope.row.content.add">
-            <el-row>
-              <el-col :span="12"><el-input v-model="scope.row.toColip" /></el-col>
-              <el-col :span="12" class="margin-left:10px"><el-button @click="handlerCopy(scope.row.toColip,$event)">复制</el-button></el-col>
-            </el-row>
-            <vue-qr :text="scope.row.toColip" qid="qrcode" />
-
-          </div>
-          <div v-else />
-        </template>
-      </el-table-column>
-
+  <el-table-column  align="left" label="">
+     <template slot-scope="scope">
+    <div>单服务器连接数：{{ scope.row.maxConnection }}/账号</div>
+    <div>账号等级:{{scope.row.level |levelFilter}}</div>      
+   
+          </template>
+ </el-table-column>
+     
+     <el-table-column  align="left" label="">
+     <template slot-scope="scope">
+   
+   <div> <el-link icon="el-icon-edit" type="primary" @click="openAccountDidlog(scope.row)">编辑账号</el-link> </div>
+          </template>
+ </el-table-column>
     </el-table>
-    <div class="margin-left:10px; margin-top:20px; margin-bottom:10px">
-      <el-tag v-permission="['admin']">
-
-        <el-row>
-          <el-input v-model="listQuery.userEmail" placeholder="email" />  <el-button @click="getList">搜索</el-button>
-        </el-row>
-      </el-tag>
-    </div>
+    
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
     <!-- 账号管理 -->
-    <el-dialog title="服务器列表" :visible.sync="accountDialog" :before-close="handlerAccountCloseDialog">
+    <el-dialog title="修改" :visible.sync="accountDialog" :before-close="handlerAccountCloseDialog">
       <el-form ref="accountForm" :model="accountForm" label-width="80px">
         <el-form-item label="账号">
           <el-input v-model="accountForm.accountNo" />
@@ -102,26 +75,25 @@
           <el-input v-model="accountForm.cycle" />
         </el-form-item>
         <el-form-item label="有效期">
-          <el-col :span="12">
             <el-date-picker
               v-model="accountForm.fromDate"
               value-format="timestamp"
               type="datetime"
             />
-          </el-col>
-          <el-col :span="11" :push="1">
+            <span>to</span>
             <el-date-picker
               v-model="accountForm.toDate"
               value-format="timestamp"
               type="datetime"
             />
-          </el-col>
           <!-- <el-input v-model="accountForm.fromDate"></el-input> -->
         </el-form-item>
-        <el-form-item label="to">
-
-          <el-col :span="16"> <el-input v-model="accountForm.addDay" /></el-col>
-          <el-col :span="7" :push="1">    <el-link type="primary" @click="addToDate">增加N天</el-link></el-col>
+        <el-form-item label="增加N天">
+          
+          <el-input v-model="accountForm.addDay" size="medium" >
+             <el-button slot="append" @click="addToDate">增加</el-button>
+          </el-input>
+       
 
         </el-form-item>
         <el-form-item label="速率">
@@ -133,6 +105,17 @@
         <el-form-item label="连接数">
           <el-input v-model="accountForm.maxConnection" />
         </el-form-item>
+        
+        <el-form-item label="账号等级" prop="level">
+        <el-select v-model="accountForm.level">
+          <el-option
+            v-for="item in levelOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
         <el-form-item label="状态">
           <el-select v-model="accountForm.status" placeholder="状态">
             <el-option
@@ -151,48 +134,7 @@
       </el-form>
 
     </el-dialog>
-    <!-- 服务器列表 -->
-    <el-dialog title="服务器列表" :visible.sync="serverDialog" :before-close="handlerServerCloseDialog">
-
-      <el-table ref="multipleTable" :data="serverList" fit highlight-current-row style="width: 100%" @selection-change="handleCurrentChange">
-
-        <el-table-column
-          type="selection"
-          width="55"
-        />
-
-        <el-table-column width="150px" align="center" label="服务器名称">
-          <template slot-scope="scope">
-            <span>{{ scope.row.serverName }}</span>
-          </template>
-        </el-table-column>
-
-        <el-table-column width="150px" align="center" label="域名">
-          <template slot-scope="scope">
-            <span>{{ scope.row.clientDomain }}</span>
-          </template>
-        </el-table-column>
-
-        <el-table-column width="200px" max-width="100%" align="center" label="描述">
-          <template slot-scope="scope">
-            <span>{{ scope.row.desc }}</span>
-          </template>
-        </el-table-column>
-
-        <el-table-column width="80px" align="center" label="状态">
-          <template slot-scope="{row}">
-            <el-tag :type="row.status | statusFilter">
-              {{ row.status |statusFilter2 }}
-            </el-tag>
-
-          </template>
-        </el-table-column>
-      </el-table>
-      <div style="margin-top: 20px">
-        <el-button @click="submitUpdateServer">提交</el-button>
-      </div>
-      <pagination v-show="total>0" :total="serverTotal" :page.sync="serverListQuery.page" :limit.sync="serverListQuery.pageSize" @pagination="getServerList" />
-    </el-dialog>
+    
   </div>
 </template>
 
@@ -220,6 +162,15 @@ export default {
         return '极速'
       }
     },
+    levelFilter(status) {
+      const statusMap = {
+        0: '等级0',
+        1: '等级1',
+        2: '等级2',
+        3: '等级3'
+      }
+      return statusMap[status]
+    },
     statusFilter(status) {
       const statusMap = {
         '1': 'success',
@@ -238,6 +189,7 @@ export default {
   },
   data() {
     return {
+       levelOptions: [{ value: 0, label: '等级0' }, { value: 1, label: '等级1' },{ value: 2, label: '等级2' },{ value: 3, label: '等级3' }],
       accountFormOptions: [{
         value: 1,
         label: '正常'
@@ -256,7 +208,8 @@ export default {
         fromDate: null,
         fromDate: null,
         status: '1',
-        addDay: 0
+        addDay: 0,
+        level:0
       },
 
       accountDialog: false,

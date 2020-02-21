@@ -2,6 +2,7 @@ package com.jhl.admin.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
@@ -15,7 +16,6 @@ public class Server extends BaseEntity implements Serializable {
 
 
     private String serverName;
-    //v.kxsw2019.cf
     private String clientDomain;
     private Integer clientPort = 443;
     private Boolean supportTLS = true;
@@ -43,6 +43,13 @@ public class Server extends BaseEntity implements Serializable {
     private Integer status;
 
     private String inboundTag;
+
+    /**
+     * 服务器等级
+     */
+    @Column(  columnDefinition="smallint default 0")
+    private  Short level;
+
 
     //ws路径
     private String wsPath ="/ws/%s/";

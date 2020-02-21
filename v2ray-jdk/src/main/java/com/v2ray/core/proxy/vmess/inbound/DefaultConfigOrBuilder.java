@@ -4,16 +4,16 @@
 package com.v2ray.core.proxy.vmess.inbound;
 
 public interface DefaultConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.inbound.DefaultConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.inbound.DefaultConfig)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>uint32 alter_id = 1;</code>
-   */
-  int getAlterId();
+    /**
+     * <code>uint32 alter_id = 1;</code>
+     */
+    int getAlterId();
 
-  /**
-   * <code>uint32 level = 2;</code>
-   */
-  int getLevel();
+    /**
+     * <code>uint32 level = 2;</code>
+     */
+    int getLevel();
 }

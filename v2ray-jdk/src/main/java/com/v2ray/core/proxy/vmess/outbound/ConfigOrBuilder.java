@@ -4,30 +4,34 @@
 package com.v2ray.core.proxy.vmess.outbound;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.outbound.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.vmess.outbound.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
-   */
-  java.util.List<com.v2ray.core.common.protocol.ServerEndpoint> 
-      getReceiverList();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
-   */
-  com.v2ray.core.common.protocol.ServerEndpoint getReceiver(int index);
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
-   */
-  int getReceiverCount();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
-   */
-  java.util.List<? extends com.v2ray.core.common.protocol.ServerEndpointOrBuilder> 
-      getReceiverOrBuilderList();
-  /**
-   * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
-   */
-  com.v2ray.core.common.protocol.ServerEndpointOrBuilder getReceiverOrBuilder(
-          int index);
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
+     */
+    java.util.List<com.v2ray.core.common.protocol.ServerEndpoint>
+    getReceiverList();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
+     */
+    com.v2ray.core.common.protocol.ServerEndpoint getReceiver(int index);
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
+     */
+    int getReceiverCount();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
+     */
+    java.util.List<? extends com.v2ray.core.common.protocol.ServerEndpointOrBuilder>
+    getReceiverOrBuilderList();
+
+    /**
+     * <code>repeated .v2ray.core.common.protocol.ServerEndpoint Receiver = 1;</code>
+     */
+    com.v2ray.core.common.protocol.ServerEndpointOrBuilder getReceiverOrBuilder(
+            int index);
 }

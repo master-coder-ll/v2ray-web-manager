@@ -42,12 +42,12 @@ func NewHandler(ctx context.Context, config *core.OutboundHandlerConfig) (core.O
 		}
 	}
 
-	proxyConfig, err := config.ProxySettings.GetInstance()
+	proxyConstant, err := config.ProxySettings.GetInstance()
 	if err != nil {
 		return nil, err
 	}
 
-	rawProxyHandler, err := common.CreateObject(ctx, proxyConfig)
+	rawProxyHandler, err := common.CreateObject(ctx, proxyConstant)
 	if err != nil {
 		return nil, err
 	}

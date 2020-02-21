@@ -17,7 +17,7 @@ import (
 type DynamicInboundHandler struct {
 	tag            string
 	v              *core.Instance
-	proxyConfig    interface{}
+	proxyConstant    interface{}
 	receiverConfig *proxyman.ReceiverConfig
 	portMutex      sync.Mutex
 	portsInUse     map[net.Port]bool
@@ -28,11 +28,11 @@ type DynamicInboundHandler struct {
 	task           *task.Periodic
 }
 
-func NewDynamicInboundHandler(ctx context.Context, tag string, receiverConfig *proxyman.ReceiverConfig, proxyConfig interface{}) (*DynamicInboundHandler, error) {
+func NewDynamicInboundHandler(ctx context.Context, tag string, receiverConfig *proxyman.ReceiverConfig, proxyConstant interface{}) (*DynamicInboundHandler, error) {
 	v := core.MustFromContext(ctx)
 	h := &DynamicInboundHandler{
 		tag:            tag,
-		proxyConfig:    proxyConfig,
+		proxyConstant:    proxyConstant,
 		receiverConfig: receiverConfig,
 		portsInUse:     make(map[net.Port]bool),
 		mux:            mux.NewServer(ctx),
@@ -97,7 +97,7 @@ func (h *DynamicInboundHandler) refresh() error {
 
 	for i := uint32(0); i < concurrency; i++ {
 		port := h.allocatePort()
-		rawProxy, err := core.CreateObject(h.v, h.proxyConfig)
+		rawProxy, err := core.CreateObject(h.v, h.proxyConstant)
 		if err != nil {
 			newError("failed to create proxy instance").Base(err).AtWarning().WriteToLog()
 			continue

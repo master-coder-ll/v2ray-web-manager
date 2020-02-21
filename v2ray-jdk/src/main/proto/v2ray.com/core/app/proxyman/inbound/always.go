@@ -44,8 +44,8 @@ type AlwaysOnInboundHandler struct {
 	tag     string
 }
 
-func NewAlwaysOnInboundHandler(ctx context.Context, tag string, receiverConfig *proxyman.ReceiverConfig, proxyConfig interface{}) (*AlwaysOnInboundHandler, error) {
-	rawProxy, err := common.CreateObject(ctx, proxyConfig)
+func NewAlwaysOnInboundHandler(ctx context.Context, tag string, receiverConfig *proxyman.ReceiverConfig, proxyConstant interface{}) (*AlwaysOnInboundHandler, error) {
+	rawProxy, err := common.CreateObject(ctx, proxyConstant)
 	if err != nil {
 		return nil, err
 	}

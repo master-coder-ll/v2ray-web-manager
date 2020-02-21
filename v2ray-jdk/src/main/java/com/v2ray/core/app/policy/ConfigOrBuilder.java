@@ -4,53 +4,60 @@
 package com.v2ray.core.app.policy;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.policy.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
-   */
-  int getLevelCount();
-  /**
-   * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
-   */
-  boolean containsLevel(
-          int key);
-  /**
-   * Use {@link #getLevelMap()} instead.
-   */
-  @Deprecated
-  java.util.Map<Integer, Policy>
-  getLevel();
-  /**
-   * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
-   */
-  java.util.Map<Integer, Policy>
-  getLevelMap();
-  /**
-   * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
-   */
+    /**
+     * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
+     */
+    int getLevelCount();
 
-  Policy getLevelOrDefault(
-          int key,
-          Policy defaultValue);
-  /**
-   * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
-   */
+    /**
+     * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
+     */
+    boolean containsLevel(
+            int key);
 
-  Policy getLevelOrThrow(
-          int key);
+    /**
+     * Use {@link #getLevelMap()} instead.
+     */
+    @Deprecated
+    java.util.Map<Integer, Policy>
+    getLevel();
 
-  /**
-   * <code>.v2ray.core.app.policy.SystemPolicy system = 2;</code>
-   */
-  boolean hasSystem();
-  /**
-   * <code>.v2ray.core.app.policy.SystemPolicy system = 2;</code>
-   */
-  SystemPolicy getSystem();
-  /**
-   * <code>.v2ray.core.app.policy.SystemPolicy system = 2;</code>
-   */
-  com.v2ray.core.app.policy.SystemPolicyOrBuilder getSystemOrBuilder();
+    /**
+     * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
+     */
+    java.util.Map<Integer, Policy>
+    getLevelMap();
+
+    /**
+     * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
+     */
+
+    Policy getLevelOrDefault(
+            int key,
+            Policy defaultValue);
+
+    /**
+     * <code>map&lt;uint32, .v2ray.core.app.policy.Policy&gt; level = 1;</code>
+     */
+
+    Policy getLevelOrThrow(
+            int key);
+
+    /**
+     * <code>.v2ray.core.app.policy.SystemPolicy system = 2;</code>
+     */
+    boolean hasSystem();
+
+    /**
+     * <code>.v2ray.core.app.policy.SystemPolicy system = 2;</code>
+     */
+    SystemPolicy getSystem();
+
+    /**
+     * <code>.v2ray.core.app.policy.SystemPolicy system = 2;</code>
+     */
+    com.v2ray.core.app.policy.SystemPolicyOrBuilder getSystemOrBuilder();
 }

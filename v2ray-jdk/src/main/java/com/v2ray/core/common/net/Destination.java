@@ -4,63 +4,68 @@
 package com.v2ray.core.common.net;
 
 public final class Destination {
-  private Destination() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    private Destination() {
+    }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_common_net_Endpoint_descriptor;
-  static final 
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
+
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
+
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_common_net_Endpoint_descriptor;
+    static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable;
+            internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable;
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    String[] descriptorData = {
-      "\n+v2ray.com/core/common/net/destination." +
-      "proto\022\025v2ray.core.common.net\032\'v2ray.com/" +
-      "core/common/net/network.proto\032\'v2ray.com" +
-      "/core/common/net/address.proto\"}\n\010Endpoi" +
-      "nt\022/\n\007network\030\001 \001(\0162\036.v2ray.core.common." +
-      "net.Network\0222\n\007address\030\002 \001(\0132!.v2ray.cor" +
-      "e.common.net.IPOrDomain\022\014\n\004port\030\003 \001(\rB:\n" +
-      "\031com.v2ray.core.common.netP\001Z\003net\252\002\025V2Ra" +
-      "y.Core.Common.Netb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        String[] descriptorData = {
+                "\n+v2ray.com/core/common/net/destination." +
+                        "proto\022\025v2ray.core.common.net\032\'v2ray.com/" +
+                        "core/common/net/network.proto\032\'v2ray.com" +
+                        "/core/common/net/address.proto\"}\n\010Endpoi" +
+                        "nt\022/\n\007network\030\001 \001(\0162\036.v2ray.core.common." +
+                        "net.Network\0222\n\007address\030\002 \001(\0132!.v2ray.cor" +
+                        "e.common.net.IPOrDomain\022\014\n\004port\030\003 \001(\rB:\n" +
+                        "\031com.v2ray.core.common.netP\001Z\003net\252\002\025V2Ra" +
+                        "y.Core.Common.Netb\006proto3"
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.v2ray.core.common.net.NetworkOuterClass.getDescriptor(),
-          Address.getDescriptor(),
-        }, assigner);
-    internal_static_v2ray_core_common_net_Endpoint_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_common_net_Endpoint_descriptor,
-        new String[] { "Network", "Address", "Port", });
-    com.v2ray.core.common.net.NetworkOuterClass.getDescriptor();
-    Address.getDescriptor();
-  }
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                                com.v2ray.core.common.net.NetworkOuterClass.getDescriptor(),
+                                Address.getDescriptor(),
+                        }, assigner);
+        internal_static_v2ray_core_common_net_Endpoint_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_v2ray_core_common_net_Endpoint_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_common_net_Endpoint_descriptor,
+                new String[]{"Network", "Address", "Port",});
+        com.v2ray.core.common.net.NetworkOuterClass.getDescriptor();
+        Address.getDescriptor();
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

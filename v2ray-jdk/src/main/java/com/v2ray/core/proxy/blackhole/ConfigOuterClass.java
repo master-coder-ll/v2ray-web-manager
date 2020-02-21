@@ -4,82 +4,87 @@
 package com.v2ray.core.proxy.blackhole;
 
 public final class ConfigOuterClass {
-  private ConfigOuterClass() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    private ConfigOuterClass() {
+    }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_proxy_blackhole_NoneResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_proxy_blackhole_NoneResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_proxy_blackhole_HTTPResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_proxy_blackhole_HTTPResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_v2ray_core_proxy_blackhole_Config_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_v2ray_core_proxy_blackhole_Config_fieldAccessorTable;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    String[] descriptorData = {
-      "\n+v2ray.com/core/proxy/blackhole/config." +
-      "proto\022\032v2ray.core.proxy.blackhole\0320v2ray" +
-      ".com/core/common/serial/typed_message.pr" +
-      "oto\"\016\n\014NoneResponse\"\016\n\014HTTPResponse\"B\n\006C" +
-      "onfig\0228\n\010response\030\001 \001(\0132&.v2ray.core.com" +
-      "mon.serial.TypedMessageBJ\n\036com.v2ray.cor" +
-      "e.proxy.blackholeP\001Z\tblackhole\252\002\032V2Ray.C" +
-      "ore.Proxy.Blackholeb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
+
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_proxy_blackhole_NoneResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_proxy_blackhole_NoneResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_proxy_blackhole_HTTPResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_proxy_blackhole_HTTPResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_v2ray_core_proxy_blackhole_Config_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_v2ray_core_proxy_blackhole_Config_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        String[] descriptorData = {
+                "\n+v2ray.com/core/proxy/blackhole/config." +
+                        "proto\022\032v2ray.core.proxy.blackhole\0320v2ray" +
+                        ".com/core/common/serial/typed_message.pr" +
+                        "oto\"\016\n\014NoneResponse\"\016\n\014HTTPResponse\"B\n\006C" +
+                        "onfig\0228\n\010response\030\001 \001(\0132&.v2ray.core.com" +
+                        "mon.serial.TypedMessageBJ\n\036com.v2ray.cor" +
+                        "e.proxy.blackholeP\001Z\tblackhole\252\002\032V2Ray.C" +
+                        "ore.Proxy.Blackholeb\006proto3"
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor(),
-        }, assigner);
-    internal_static_v2ray_core_proxy_blackhole_NoneResponse_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_v2ray_core_proxy_blackhole_NoneResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_proxy_blackhole_NoneResponse_descriptor,
-        new String[] { });
-    internal_static_v2ray_core_proxy_blackhole_HTTPResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_v2ray_core_proxy_blackhole_HTTPResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_proxy_blackhole_HTTPResponse_descriptor,
-        new String[] { });
-    internal_static_v2ray_core_proxy_blackhole_Config_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_v2ray_core_proxy_blackhole_Config_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_v2ray_core_proxy_blackhole_Config_descriptor,
-        new String[] { "Response", });
-    com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor();
-  }
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                                com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor(),
+                        }, assigner);
+        internal_static_v2ray_core_proxy_blackhole_NoneResponse_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_v2ray_core_proxy_blackhole_NoneResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_proxy_blackhole_NoneResponse_descriptor,
+                new String[]{});
+        internal_static_v2ray_core_proxy_blackhole_HTTPResponse_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_v2ray_core_proxy_blackhole_HTTPResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_proxy_blackhole_HTTPResponse_descriptor,
+                new String[]{});
+        internal_static_v2ray_core_proxy_blackhole_Config_descriptor =
+                getDescriptor().getMessageTypes().get(2);
+        internal_static_v2ray_core_proxy_blackhole_Config_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_v2ray_core_proxy_blackhole_Config_descriptor,
+                new String[]{"Response",});
+        com.v2ray.core.common.serial.TypedMessageOuterClass.getDescriptor();
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

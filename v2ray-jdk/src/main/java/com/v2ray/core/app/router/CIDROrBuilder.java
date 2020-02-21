@@ -4,24 +4,24 @@
 package com.v2ray.core.app.router;
 
 public interface CIDROrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.router.CIDR)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.router.CIDR)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <pre>
-   * IP address, should be either 4 or 16 bytes.
-   * </pre>
-   *
-   * <code>bytes ip = 1;</code>
-   */
-  com.google.protobuf.ByteString getIp();
+    /**
+     * <pre>
+     * IP address, should be either 4 or 16 bytes.
+     * </pre>
+     *
+     * <code>bytes ip = 1;</code>
+     */
+    com.google.protobuf.ByteString getIp();
 
-  /**
-   * <pre>
-   * Number of leading ones in the network mask.
-   * </pre>
-   *
-   * <code>uint32 prefix = 2;</code>
-   */
-  int getPrefix();
+    /**
+     * <pre>
+     * Number of leading ones in the network mask.
+     * </pre>
+     *
+     * <code>uint32 prefix = 2;</code>
+     */
+    int getPrefix();
 }

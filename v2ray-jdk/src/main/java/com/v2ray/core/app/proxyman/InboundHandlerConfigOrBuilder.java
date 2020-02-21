@@ -4,42 +4,47 @@
 package com.v2ray.core.app.proxyman;
 
 public interface InboundHandlerConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.InboundHandlerConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.InboundHandlerConfig)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>string tag = 1;</code>
-   */
-  String getTag();
-  /**
-   * <code>string tag = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getTagBytes();
+    /**
+     * <code>string tag = 1;</code>
+     */
+    String getTag();
 
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage receiver_settings = 2;</code>
-   */
-  boolean hasReceiverSettings();
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage receiver_settings = 2;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessage getReceiverSettings();
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage receiver_settings = 2;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessageOrBuilder getReceiverSettingsOrBuilder();
+    /**
+     * <code>string tag = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getTagBytes();
 
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage proxy_settings = 3;</code>
-   */
-  boolean hasProxySettings();
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage proxy_settings = 3;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessage getProxySettings();
-  /**
-   * <code>.v2ray.core.common.serial.TypedMessage proxy_settings = 3;</code>
-   */
-  com.v2ray.core.common.serial.TypedMessageOrBuilder getProxySettingsOrBuilder();
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage receiver_settings = 2;</code>
+     */
+    boolean hasReceiverSettings();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage receiver_settings = 2;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessage getReceiverSettings();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage receiver_settings = 2;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessageOrBuilder getReceiverSettingsOrBuilder();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage proxy_settings = 3;</code>
+     */
+    boolean hasProxySettings();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage proxy_settings = 3;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessage getProxySettings();
+
+    /**
+     * <code>.v2ray.core.common.serial.TypedMessage proxy_settings = 3;</code>
+     */
+    com.v2ray.core.common.serial.TypedMessageOrBuilder getProxySettingsOrBuilder();
 }

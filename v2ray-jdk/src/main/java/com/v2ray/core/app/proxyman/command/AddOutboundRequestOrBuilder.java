@@ -4,19 +4,21 @@
 package com.v2ray.core.app.proxyman.command;
 
 public interface AddOutboundRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.AddOutboundRequest)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.AddOutboundRequest)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.OutboundHandlerConfig outbound = 1;</code>
-   */
-  boolean hasOutbound();
-  /**
-   * <code>.v2ray.core.OutboundHandlerConfig outbound = 1;</code>
-   */
-  com.v2ray.core.OutboundHandlerConfig getOutbound();
-  /**
-   * <code>.v2ray.core.OutboundHandlerConfig outbound = 1;</code>
-   */
-  com.v2ray.core.OutboundHandlerConfigOrBuilder getOutboundOrBuilder();
+    /**
+     * <code>.v2ray.core.OutboundHandlerConfig outbound = 1;</code>
+     */
+    boolean hasOutbound();
+
+    /**
+     * <code>.v2ray.core.OutboundHandlerConfig outbound = 1;</code>
+     */
+    com.v2ray.core.OutboundHandlerConfig getOutbound();
+
+    /**
+     * <code>.v2ray.core.OutboundHandlerConfig outbound = 1;</code>
+     */
+    com.v2ray.core.OutboundHandlerConfigOrBuilder getOutboundOrBuilder();
 }

@@ -4,26 +4,28 @@
 package com.v2ray.core.proxy.socks;
 
 public interface AccountOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.socks.Account)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.socks.Account)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>string username = 1;</code>
-   */
-  String getUsername();
-  /**
-   * <code>string username = 1;</code>
-   */
-  com.google.protobuf.ByteString
-      getUsernameBytes();
+    /**
+     * <code>string username = 1;</code>
+     */
+    String getUsername();
 
-  /**
-   * <code>string password = 2;</code>
-   */
-  String getPassword();
-  /**
-   * <code>string password = 2;</code>
-   */
-  com.google.protobuf.ByteString
-      getPasswordBytes();
+    /**
+     * <code>string username = 1;</code>
+     */
+    com.google.protobuf.ByteString
+    getUsernameBytes();
+
+    /**
+     * <code>string password = 2;</code>
+     */
+    String getPassword();
+
+    /**
+     * <code>string password = 2;</code>
+     */
+    com.google.protobuf.ByteString
+    getPasswordBytes();
 }

@@ -4,39 +4,44 @@
 package com.v2ray.core.app.router;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.router.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.router.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.app.router.Config.DomainStrategy domain_strategy = 1;</code>
-   */
-  int getDomainStrategyValue();
-  /**
-   * <code>.v2ray.core.app.router.Config.DomainStrategy domain_strategy = 1;</code>
-   */
-  Config.DomainStrategy getDomainStrategy();
+    /**
+     * <code>.v2ray.core.app.router.Config.DomainStrategy domain_strategy = 1;</code>
+     */
+    int getDomainStrategyValue();
 
-  /**
-   * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
-   */
-  java.util.List<RoutingRule>
-      getRuleList();
-  /**
-   * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
-   */
-  RoutingRule getRule(int index);
-  /**
-   * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
-   */
-  int getRuleCount();
-  /**
-   * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
-   */
-  java.util.List<? extends com.v2ray.core.app.router.RoutingRuleOrBuilder> 
-      getRuleOrBuilderList();
-  /**
-   * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
-   */
-  com.v2ray.core.app.router.RoutingRuleOrBuilder getRuleOrBuilder(
-          int index);
+    /**
+     * <code>.v2ray.core.app.router.Config.DomainStrategy domain_strategy = 1;</code>
+     */
+    Config.DomainStrategy getDomainStrategy();
+
+    /**
+     * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
+     */
+    java.util.List<RoutingRule>
+    getRuleList();
+
+    /**
+     * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
+     */
+    RoutingRule getRule(int index);
+
+    /**
+     * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
+     */
+    int getRuleCount();
+
+    /**
+     * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
+     */
+    java.util.List<? extends com.v2ray.core.app.router.RoutingRuleOrBuilder>
+    getRuleOrBuilderList();
+
+    /**
+     * <code>repeated .v2ray.core.app.router.RoutingRule rule = 2;</code>
+     */
+    com.v2ray.core.app.router.RoutingRuleOrBuilder getRuleOrBuilder(
+            int index);
 }

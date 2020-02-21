@@ -1,9 +1,10 @@
 package com.jhl.interceptor;
 
 import com.alibaba.fastjson.JSON;
-import com.jhl.config.ProxyConfig;
+import com.jhl.constant.ProxyConstant;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -16,18 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 
- @Autowired
-    ProxyConfig proxyConfig;
+    @Autowired
+    ProxyConstant proxyConstant;
 
- private  static  final  String AUTH_NAME= "Authorization";
+    private static final String AUTH_NAME = "Authorization";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String auth = proxyConfig.getAuth();
-        String reqAuth = request.getHeader(AUTH_NAME);
-        if (!StringUtils.hasLength(reqAuth) ||  !auth.equals(reqAuth)){
+        String authPassword = DigestUtils.md5Hex(proxyConstant.getAuthPassword());
+        String reqAuthPassword = request.getHeader(AUTH_NAME);
+        if (!StringUtils.hasLength(reqAuthPassword) || !authPassword.equals(reqAuthPassword)) {
             Result result = Result.builder().code(401).message("认证失败").build();
-            response.setHeader("content-type","application/json;charset=UTF-8");
+            response.setHeader("content-type", "application/json;charset=UTF-8");
             response.getOutputStream().write(JSON.toJSONBytes(result));
             return false;
         }
@@ -36,9 +37,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     }
 
 
-
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
     }
 
 }

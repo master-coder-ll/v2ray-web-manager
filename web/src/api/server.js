@@ -30,7 +30,7 @@ export function getServer(id) {
   })
 }
 /**
- * list
+ * list admin
  * @param {int}} page
  * @param {int} pageSize
  */
@@ -41,7 +41,16 @@ export function serverList(page) {
     params: page
   })
 }
+/**
+ * 获取可用的服务器列表 vip
 
+ */
+export function availableServers() {
+  return request({
+    url: `/server/findServersForAccount`,
+    method: 'get',
+  })
+}
 /**
  * 删除
  * @param {*} id

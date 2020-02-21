@@ -4,6 +4,6 @@
 package com.v2ray.core.proxy.blackhole;
 
 public interface HTTPResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.blackhole.HTTPResponse)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.proxy.blackhole.HTTPResponse)
+        com.google.protobuf.MessageOrBuilder {
 }

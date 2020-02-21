@@ -39,13 +39,26 @@ public class Account extends BaseEntity implements Serializable {
     private Integer serverId;
     //单账号最大连接数
     private Integer maxConnection;
+    /**
+     * 0~9
+     * 9最大，上一级应该可以获取下一级的数据
+     */
+    @Column(  columnDefinition="smallint default 0")
+    private Short level;
+
+    private  String subscriptionUrl;
+
+    /**
+     * v2rayAccount中的id
+     */
+    private String uuid;
     @Transient
     //最近的流量统计
     private Stat stat;
     @Transient
     private Server server;
     @Transient
-    private String email;
+    private User user;
 
 
 

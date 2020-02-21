@@ -4,19 +4,21 @@
 package com.v2ray.core.app.proxyman.command;
 
 public interface AddInboundRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.AddInboundRequest)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.command.AddInboundRequest)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.InboundHandlerConfig inbound = 1;</code>
-   */
-  boolean hasInbound();
-  /**
-   * <code>.v2ray.core.InboundHandlerConfig inbound = 1;</code>
-   */
-  com.v2ray.core.InboundHandlerConfig getInbound();
-  /**
-   * <code>.v2ray.core.InboundHandlerConfig inbound = 1;</code>
-   */
-  com.v2ray.core.InboundHandlerConfigOrBuilder getInboundOrBuilder();
+    /**
+     * <code>.v2ray.core.InboundHandlerConfig inbound = 1;</code>
+     */
+    boolean hasInbound();
+
+    /**
+     * <code>.v2ray.core.InboundHandlerConfig inbound = 1;</code>
+     */
+    com.v2ray.core.InboundHandlerConfig getInbound();
+
+    /**
+     * <code>.v2ray.core.InboundHandlerConfig inbound = 1;</code>
+     */
+    com.v2ray.core.InboundHandlerConfigOrBuilder getInboundOrBuilder();
 }

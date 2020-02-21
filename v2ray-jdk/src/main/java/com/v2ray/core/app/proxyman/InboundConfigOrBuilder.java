@@ -4,6 +4,6 @@
 package com.v2ray.core.app.proxyman;
 
 public interface InboundConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.InboundConfig)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.InboundConfig)
+        com.google.protobuf.MessageOrBuilder {
 }

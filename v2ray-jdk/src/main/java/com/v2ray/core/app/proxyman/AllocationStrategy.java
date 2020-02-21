@@ -6,1684 +6,1293 @@ package com.v2ray.core.app.proxyman;
 /**
  * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy}
  */
-public  final class AllocationStrategy extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.AllocationStrategy)
-    AllocationStrategyOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use AllocationStrategy.newBuilder() to construct.
-  private AllocationStrategy(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private AllocationStrategy() {
-    type_ = 0;
-  }
+public final class AllocationStrategy extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.AllocationStrategy)
+        AllocationStrategyOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private AllocationStrategy(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
-    }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
-            int rawValue = input.readEnum();
-
-            type_ = rawValue;
-            break;
-          }
-          case 18: {
-            AllocationStrategyConcurrency.Builder subBuilder = null;
-            if (concurrency_ != null) {
-              subBuilder = concurrency_.toBuilder();
-            }
-            concurrency_ = input.readMessage(AllocationStrategyConcurrency.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(concurrency_);
-              concurrency_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 26: {
-            AllocationStrategyRefresh.Builder subBuilder = null;
-            if (refresh_ != null) {
-              subBuilder = refresh_.toBuilder();
-            }
-            refresh_ = input.readMessage(AllocationStrategyRefresh.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(refresh_);
-              refresh_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
-    }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
-  }
-
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            AllocationStrategy.class, Builder.class);
-  }
-
-  /**
-   * Protobuf enum {@code v2ray.core.app.proxyman.AllocationStrategy.Type}
-   */
-  public enum Type
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <pre>
-     * Always allocate all connection handlers.
-     * </pre>
-     *
-     * <code>Always = 0;</code>
-     */
-    Always(0),
-    /**
-     * <pre>
-     * Randomly allocate specific range of handlers.
-     * </pre>
-     *
-     * <code>Random = 1;</code>
-     */
-    Random(1),
-    /**
-     * <pre>
-     * External. Not supported yet.
-     * </pre>
-     *
-     * <code>External = 2;</code>
-     */
-    External(2),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <pre>
-     * Always allocate all connection handlers.
-     * </pre>
-     *
-     * <code>Always = 0;</code>
-     */
-    public static final int Always_VALUE = 0;
-    /**
-     * <pre>
-     * Randomly allocate specific range of handlers.
-     * </pre>
-     *
-     * <code>Random = 1;</code>
-     */
-    public static final int Random_VALUE = 1;
-    /**
-     * <pre>
-     * External. Not supported yet.
-     * </pre>
-     *
-     * <code>External = 2;</code>
-     */
-    public static final int External_VALUE = 2;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
+    // Use AllocationStrategy.newBuilder() to construct.
+    private AllocationStrategy(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
 
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @Deprecated
-    public static Type valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static Type forNumber(int value) {
-      switch (value) {
-        case 0: return Always;
-        case 1: return Random;
-        case 2: return External;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<Type>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        Type> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-            public Type findValueByNumber(int number) {
-              return Type.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return AllocationStrategy.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final Type[] VALUES = values();
-
-    public static Type valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private Type(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:v2ray.core.app.proxyman.AllocationStrategy.Type)
-  }
-
-  public interface AllocationStrategyConcurrencyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>uint32 value = 1;</code>
-     */
-    int getValue();
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency}
-   */
-  public  static final class AllocationStrategyConcurrency extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
-      AllocationStrategyConcurrencyOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use AllocationStrategyConcurrency.newBuilder() to construct.
-    private AllocationStrategyConcurrency(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private AllocationStrategyConcurrency() {
+    private AllocationStrategy() {
+        type_ = 0;
     }
 
     @Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
-      return this.unknownFields;
+        return this.unknownFields;
     }
-    private AllocationStrategyConcurrency(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
 
-              value_ = input.readUInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
+    private AllocationStrategy(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
+                        int rawValue = input.readEnum();
+
+                        type_ = rawValue;
+                        break;
+                    }
+                    case 18: {
+                        AllocationStrategyConcurrency.Builder subBuilder = null;
+                        if (concurrency_ != null) {
+                            subBuilder = concurrency_.toBuilder();
+                        }
+                        concurrency_ = input.readMessage(AllocationStrategyConcurrency.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(concurrency_);
+                            concurrency_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    case 26: {
+                        AllocationStrategyRefresh.Builder subBuilder = null;
+                        if (refresh_ != null) {
+                            subBuilder = refresh_.toBuilder();
+                        }
+                        refresh_ = input.readMessage(AllocationStrategyRefresh.parser(), extensionRegistry);
+                        if (subBuilder != null) {
+                            subBuilder.mergeFrom(refresh_);
+                            refresh_ = subBuilder.buildPartial();
+                        }
+
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
+
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
+    getDescriptor() {
+        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              AllocationStrategyConcurrency.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        AllocationStrategy.class, Builder.class);
     }
 
-    public static final int VALUE_FIELD_NUMBER = 1;
-    private int value_;
     /**
-     * <code>uint32 value = 1;</code>
+     * Protobuf enum {@code v2ray.core.app.proxyman.AllocationStrategy.Type}
      */
-    public int getValue() {
-      return value_;
+    public enum Type
+            implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <pre>
+         * Always allocate all connection handlers.
+         * </pre>
+         *
+         * <code>Always = 0;</code>
+         */
+        Always(0),
+        /**
+         * <pre>
+         * Randomly allocate specific range of handlers.
+         * </pre>
+         *
+         * <code>Random = 1;</code>
+         */
+        Random(1),
+        /**
+         * <pre>
+         * External. Not supported yet.
+         * </pre>
+         *
+         * <code>External = 2;</code>
+         */
+        External(2),
+        UNRECOGNIZED(-1),
+        ;
+
+        /**
+         * <pre>
+         * Always allocate all connection handlers.
+         * </pre>
+         *
+         * <code>Always = 0;</code>
+         */
+        public static final int Always_VALUE = 0;
+        /**
+         * <pre>
+         * Randomly allocate specific range of handlers.
+         * </pre>
+         *
+         * <code>Random = 1;</code>
+         */
+        public static final int Random_VALUE = 1;
+        /**
+         * <pre>
+         * External. Not supported yet.
+         * </pre>
+         *
+         * <code>External = 2;</code>
+         */
+        public static final int External_VALUE = 2;
+
+
+        public final int getNumber() {
+            if (this == UNRECOGNIZED) {
+                throw new IllegalArgumentException(
+                        "Can't get the number of an unknown enum value.");
+            }
+            return value;
+        }
+
+        /**
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @Deprecated
+        public static Type valueOf(int value) {
+            return forNumber(value);
+        }
+
+        public static Type forNumber(int value) {
+            switch (value) {
+                case 0:
+                    return Always;
+                case 1:
+                    return Random;
+                case 2:
+                    return External;
+                default:
+                    return null;
+            }
+        }
+
+        public static com.google.protobuf.Internal.EnumLiteMap<Type>
+        internalGetValueMap() {
+            return internalValueMap;
+        }
+
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+                Type> internalValueMap =
+                new com.google.protobuf.Internal.EnumLiteMap<Type>() {
+                    public Type findValueByNumber(int number) {
+                        return Type.forNumber(number);
+                    }
+                };
+
+        public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+            return getDescriptor().getValues().get(ordinal());
+        }
+
+        public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+            return getDescriptor();
+        }
+
+        public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+            return AllocationStrategy.getDescriptor().getEnumTypes().get(0);
+        }
+
+        private static final Type[] VALUES = values();
+
+        public static Type valueOf(
+                com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+            if (desc.getType() != getDescriptor()) {
+                throw new IllegalArgumentException(
+                        "EnumValueDescriptor is not for this type.");
+            }
+            if (desc.getIndex() == -1) {
+                return UNRECOGNIZED;
+            }
+            return VALUES[desc.getIndex()];
+        }
+
+        private final int value;
+
+        private Type(int value) {
+            this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:v2ray.core.app.proxyman.AllocationStrategy.Type)
     }
 
-    private byte memoizedIsInitialized = -1;
-    @Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
+    public interface AllocationStrategyConcurrencyOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
+            com.google.protobuf.MessageOrBuilder {
 
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (value_ != 0) {
-        output.writeUInt32(1, value_);
-      }
-      unknownFields.writeTo(output);
+        /**
+         * <code>uint32 value = 1;</code>
+         */
+        int getValue();
     }
 
-    @Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (value_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, value_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof AllocationStrategyConcurrency)) {
-        return super.equals(obj);
-      }
-      AllocationStrategyConcurrency other = (AllocationStrategyConcurrency) obj;
-
-      if (getValue()
-          != other.getValue()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValue();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static AllocationStrategyConcurrency parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static AllocationStrategyConcurrency parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static AllocationStrategyConcurrency parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static AllocationStrategyConcurrency parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static AllocationStrategyConcurrency parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static AllocationStrategyConcurrency parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(AllocationStrategyConcurrency prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
-        AllocationStrategyConcurrencyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
-      }
+    public static final class AllocationStrategyConcurrency extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
+            AllocationStrategyConcurrencyOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @Override
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                AllocationStrategyConcurrency.class, Builder.class);
-      }
-
-      // Construct using com.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        // Use AllocationStrategyConcurrency.newBuilder() to construct.
+        private AllocationStrategyConcurrency(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @Override
-      public Builder clear() {
-        super.clear();
-        value_ = 0;
 
-        return this;
-      }
-
-      @Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
-      }
-
-      @Override
-      public AllocationStrategyConcurrency getDefaultInstanceForType() {
-        return AllocationStrategyConcurrency.getDefaultInstance();
-      }
-
-      @Override
-      public AllocationStrategyConcurrency build() {
-        AllocationStrategyConcurrency result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private AllocationStrategyConcurrency() {
         }
-        return result;
-      }
 
-      @Override
-      public AllocationStrategyConcurrency buildPartial() {
-        AllocationStrategyConcurrency result = new AllocationStrategyConcurrency(this);
-        result.value_ = value_;
-        onBuilt();
-        return result;
-      }
-
-      @Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      @Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof AllocationStrategyConcurrency) {
-          return mergeFrom((AllocationStrategyConcurrency)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
-      }
 
-      public Builder mergeFrom(AllocationStrategyConcurrency other) {
-        if (other == AllocationStrategyConcurrency.getDefaultInstance()) return this;
-        if (other.getValue() != 0) {
-          setValue(other.getValue());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        AllocationStrategyConcurrency parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (AllocationStrategyConcurrency) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int value_ ;
-      /**
-       * <code>uint32 value = 1;</code>
-       */
-      public int getValue() {
-        return value_;
-      }
-      /**
-       * <code>uint32 value = 1;</code>
-       */
-      public Builder setValue(int value) {
-        
-        value_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>uint32 value = 1;</code>
-       */
-      public Builder clearValue() {
-        
-        value_ = 0;
-        onChanged();
-        return this;
-      }
-      @Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
-    }
-
-    // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
-    private static final AllocationStrategyConcurrency DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new AllocationStrategyConcurrency();
-    }
-
-    public static AllocationStrategyConcurrency getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<AllocationStrategyConcurrency>
-        PARSER = new com.google.protobuf.AbstractParser<AllocationStrategyConcurrency>() {
-      @Override
-      public AllocationStrategyConcurrency parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AllocationStrategyConcurrency(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<AllocationStrategyConcurrency> parser() {
-      return PARSER;
-    }
-
-    @Override
-    public com.google.protobuf.Parser<AllocationStrategyConcurrency> getParserForType() {
-      return PARSER;
-    }
-
-    @Override
-    public AllocationStrategyConcurrency getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface AllocationStrategyRefreshOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>uint32 value = 1;</code>
-     */
-    int getValue();
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh}
-   */
-  public  static final class AllocationStrategyRefresh extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
-      AllocationStrategyRefreshOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use AllocationStrategyRefresh.newBuilder() to construct.
-    private AllocationStrategyRefresh(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private AllocationStrategyRefresh() {
-    }
-
-    @Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AllocationStrategyRefresh(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              value_ = input.readUInt32();
-              break;
+        private AllocationStrategyConcurrency(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new NullPointerException();
             }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+
+                            value_ = input.readUInt32();
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
             }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
-    }
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
+        }
 
-    @Override
-    protected FieldAccessorTable
+        @Override
+        protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              AllocationStrategyRefresh.class, Builder.class);
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            AllocationStrategyConcurrency.class, Builder.class);
+        }
+
+        public static final int VALUE_FIELD_NUMBER = 1;
+        private int value_;
+
+        /**
+         * <code>uint32 value = 1;</code>
+         */
+        public int getValue() {
+            return value_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (value_ != 0) {
+                output.writeUInt32(1, value_);
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (value_ != 0) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt32Size(1, value_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof AllocationStrategyConcurrency)) {
+                return super.equals(obj);
+            }
+            AllocationStrategyConcurrency other = (AllocationStrategyConcurrency) obj;
+
+            if (getValue()
+                    != other.getValue()) return false;
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            hash = (37 * hash) + VALUE_FIELD_NUMBER;
+            hash = (53 * hash) + getValue();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static AllocationStrategyConcurrency parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static AllocationStrategyConcurrency parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static AllocationStrategyConcurrency parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(AllocationStrategyConcurrency prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @Override
+        protected Builder newBuilderForType(
+                BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
+                AllocationStrategyConcurrencyOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
+            }
+
+            @Override
+            protected FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                AllocationStrategyConcurrency.class, Builder.class);
+            }
+
+            // Construct using com.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @Override
+            public Builder clear() {
+                super.clear();
+                value_ = 0;
+
+                return this;
+            }
+
+            @Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyConcurrency_descriptor;
+            }
+
+            @Override
+            public AllocationStrategyConcurrency getDefaultInstanceForType() {
+                return AllocationStrategyConcurrency.getDefaultInstance();
+            }
+
+            @Override
+            public AllocationStrategyConcurrency build() {
+                AllocationStrategyConcurrency result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @Override
+            public AllocationStrategyConcurrency buildPartial() {
+                AllocationStrategyConcurrency result = new AllocationStrategyConcurrency(this);
+                result.value_ = value_;
+                onBuilt();
+                return result;
+            }
+
+            @Override
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.setField(field, value);
+            }
+
+            @Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+
+            @Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+
+            @Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.addRepeatedField(field, value);
+            }
+
+            @Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof AllocationStrategyConcurrency) {
+                    return mergeFrom((AllocationStrategyConcurrency) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(AllocationStrategyConcurrency other) {
+                if (other == AllocationStrategyConcurrency.getDefaultInstance()) return this;
+                if (other.getValue() != 0) {
+                    setValue(other.getValue());
+                }
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                AllocationStrategyConcurrency parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (AllocationStrategyConcurrency) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int value_;
+
+            /**
+             * <code>uint32 value = 1;</code>
+             */
+            public int getValue() {
+                return value_;
+            }
+
+            /**
+             * <code>uint32 value = 1;</code>
+             */
+            public Builder setValue(int value) {
+
+                value_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>uint32 value = 1;</code>
+             */
+            public Builder clearValue() {
+
+                value_ = 0;
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
+        }
+
+        // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency)
+        private static final AllocationStrategyConcurrency DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new AllocationStrategyConcurrency();
+        }
+
+        public static AllocationStrategyConcurrency getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<AllocationStrategyConcurrency>
+                PARSER = new com.google.protobuf.AbstractParser<AllocationStrategyConcurrency>() {
+            @Override
+            public AllocationStrategyConcurrency parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new AllocationStrategyConcurrency(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<AllocationStrategyConcurrency> parser() {
+            return PARSER;
+        }
+
+        @Override
+        public com.google.protobuf.Parser<AllocationStrategyConcurrency> getParserForType() {
+            return PARSER;
+        }
+
+        @Override
+        public AllocationStrategyConcurrency getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int VALUE_FIELD_NUMBER = 1;
-    private int value_;
-    /**
-     * <code>uint32 value = 1;</code>
-     */
-    public int getValue() {
-      return value_;
+    public interface AllocationStrategyRefreshOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>uint32 value = 1;</code>
+         */
+        int getValue();
     }
 
-    private byte memoizedIsInitialized = -1;
-    @Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (value_ != 0) {
-        output.writeUInt32(1, value_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (value_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, value_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof AllocationStrategyRefresh)) {
-        return super.equals(obj);
-      }
-      AllocationStrategyRefresh other = (AllocationStrategyRefresh) obj;
-
-      if (getValue()
-          != other.getValue()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValue();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static AllocationStrategyRefresh parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static AllocationStrategyRefresh parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static AllocationStrategyRefresh parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static AllocationStrategyRefresh parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static AllocationStrategyRefresh parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static AllocationStrategyRefresh parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(AllocationStrategyRefresh prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @Override
-    protected Builder newBuilderForType(
-        BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
-        AllocationStrategyRefreshOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
-      }
+    public static final class AllocationStrategyRefresh extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
+            AllocationStrategyRefreshOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @Override
-      protected FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                AllocationStrategyRefresh.class, Builder.class);
-      }
-
-      // Construct using com.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        // Use AllocationStrategyRefresh.newBuilder() to construct.
+        private AllocationStrategyRefresh(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @Override
-      public Builder clear() {
-        super.clear();
-        value_ = 0;
 
-        return this;
-      }
-
-      @Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
-      }
-
-      @Override
-      public AllocationStrategyRefresh getDefaultInstanceForType() {
-        return AllocationStrategyRefresh.getDefaultInstance();
-      }
-
-      @Override
-      public AllocationStrategyRefresh build() {
-        AllocationStrategyRefresh result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private AllocationStrategyRefresh() {
         }
-        return result;
-      }
 
-      @Override
-      public AllocationStrategyRefresh buildPartial() {
-        AllocationStrategyRefresh result = new AllocationStrategyRefresh(this);
-        result.value_ = value_;
-        onBuilt();
-        return result;
-      }
-
-      @Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.setField(field, value);
-      }
-      @Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof AllocationStrategyRefresh) {
-          return mergeFrom((AllocationStrategyRefresh)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
-      }
 
-      public Builder mergeFrom(AllocationStrategyRefresh other) {
-        if (other == AllocationStrategyRefresh.getDefaultInstance()) return this;
-        if (other.getValue() != 0) {
-          setValue(other.getValue());
+        private AllocationStrategyRefresh(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new NullPointerException();
+            }
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+
+                            value_ = input.readUInt32();
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownField(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
+            }
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
 
-      @Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        AllocationStrategyRefresh parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (AllocationStrategyRefresh) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int value_ ;
-      /**
-       * <code>uint32 value = 1;</code>
-       */
-      public int getValue() {
-        return value_;
-      }
-      /**
-       * <code>uint32 value = 1;</code>
-       */
-      public Builder setValue(int value) {
-        
-        value_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>uint32 value = 1;</code>
-       */
-      public Builder clearValue() {
-        
-        value_ = 0;
-        onChanged();
-        return this;
-      }
-      @Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
-    }
-
-    // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
-    private static final AllocationStrategyRefresh DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new AllocationStrategyRefresh();
-    }
-
-    public static AllocationStrategyRefresh getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<AllocationStrategyRefresh>
-        PARSER = new com.google.protobuf.AbstractParser<AllocationStrategyRefresh>() {
-      @Override
-      public AllocationStrategyRefresh parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AllocationStrategyRefresh(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<AllocationStrategyRefresh> parser() {
-      return PARSER;
-    }
-
-    @Override
-    public com.google.protobuf.Parser<AllocationStrategyRefresh> getParserForType() {
-      return PARSER;
-    }
-
-    @Override
-    public AllocationStrategyRefresh getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public static final int TYPE_FIELD_NUMBER = 1;
-  private int type_;
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
-   */
-  public int getTypeValue() {
-    return type_;
-  }
-  /**
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
-   */
-  public Type getType() {
-    @SuppressWarnings("deprecation")
-    Type result = Type.valueOf(type_);
-    return result == null ? Type.UNRECOGNIZED : result;
-  }
-
-  public static final int CONCURRENCY_FIELD_NUMBER = 2;
-  private AllocationStrategyConcurrency concurrency_;
-  /**
-   * <pre>
-   * Number of handlers (ports) running in parallel.
-   * Default value is 3 if unset.
-   * </pre>
-   *
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-   */
-  public boolean hasConcurrency() {
-    return concurrency_ != null;
-  }
-  /**
-   * <pre>
-   * Number of handlers (ports) running in parallel.
-   * Default value is 3 if unset.
-   * </pre>
-   *
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-   */
-  public AllocationStrategyConcurrency getConcurrency() {
-    return concurrency_ == null ? AllocationStrategyConcurrency.getDefaultInstance() : concurrency_;
-  }
-  /**
-   * <pre>
-   * Number of handlers (ports) running in parallel.
-   * Default value is 3 if unset.
-   * </pre>
-   *
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-   */
-  public AllocationStrategyConcurrencyOrBuilder getConcurrencyOrBuilder() {
-    return getConcurrency();
-  }
-
-  public static final int REFRESH_FIELD_NUMBER = 3;
-  private AllocationStrategyRefresh refresh_;
-  /**
-   * <pre>
-   * Number of minutes before a handler is regenerated.
-   * Default value is 5 if unset.
-   * </pre>
-   *
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-   */
-  public boolean hasRefresh() {
-    return refresh_ != null;
-  }
-  /**
-   * <pre>
-   * Number of minutes before a handler is regenerated.
-   * Default value is 5 if unset.
-   * </pre>
-   *
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-   */
-  public AllocationStrategyRefresh getRefresh() {
-    return refresh_ == null ? AllocationStrategyRefresh.getDefaultInstance() : refresh_;
-  }
-  /**
-   * <pre>
-   * Number of minutes before a handler is regenerated.
-   * Default value is 5 if unset.
-   * </pre>
-   *
-   * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-   */
-  public AllocationStrategyRefreshOrBuilder getRefreshOrBuilder() {
-    return getRefresh();
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (type_ != Type.Always.getNumber()) {
-      output.writeEnum(1, type_);
-    }
-    if (concurrency_ != null) {
-      output.writeMessage(2, getConcurrency());
-    }
-    if (refresh_ != null) {
-      output.writeMessage(3, getRefresh());
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (type_ != Type.Always.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(1, type_);
-    }
-    if (concurrency_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, getConcurrency());
-    }
-    if (refresh_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getRefresh());
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof AllocationStrategy)) {
-      return super.equals(obj);
-    }
-    AllocationStrategy other = (AllocationStrategy) obj;
-
-    if (type_ != other.type_) return false;
-    if (hasConcurrency() != other.hasConcurrency()) return false;
-    if (hasConcurrency()) {
-      if (!getConcurrency()
-          .equals(other.getConcurrency())) return false;
-    }
-    if (hasRefresh() != other.hasRefresh()) return false;
-    if (hasRefresh()) {
-      if (!getRefresh()
-          .equals(other.getRefresh())) return false;
-    }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + type_;
-    if (hasConcurrency()) {
-      hash = (37 * hash) + CONCURRENCY_FIELD_NUMBER;
-      hash = (53 * hash) + getConcurrency().hashCode();
-    }
-    if (hasRefresh()) {
-      hash = (37 * hash) + REFRESH_FIELD_NUMBER;
-      hash = (53 * hash) + getRefresh().hashCode();
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static AllocationStrategy parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static AllocationStrategy parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static AllocationStrategy parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static AllocationStrategy parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static AllocationStrategy parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static AllocationStrategy parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static AllocationStrategy parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static AllocationStrategy parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static AllocationStrategy parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static AllocationStrategy parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static AllocationStrategy parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static AllocationStrategy parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(AllocationStrategy prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.AllocationStrategy)
-      com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
-    }
-
-    @Override
-    protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              AllocationStrategy.class, Builder.class);
-    }
-
-    // Construct using com.v2ray.core.app.proxyman.AllocationStrategy.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
-
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      type_ = 0;
-
-      if (concurrencyBuilder_ == null) {
-        concurrency_ = null;
-      } else {
-        concurrency_ = null;
-        concurrencyBuilder_ = null;
-      }
-      if (refreshBuilder_ == null) {
-        refresh_ = null;
-      } else {
-        refresh_ = null;
-        refreshBuilder_ = null;
-      }
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
-    }
-
-    @Override
-    public AllocationStrategy getDefaultInstanceForType() {
-      return AllocationStrategy.getDefaultInstance();
-    }
-
-    @Override
-    public AllocationStrategy build() {
-      AllocationStrategy result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public AllocationStrategy buildPartial() {
-      AllocationStrategy result = new AllocationStrategy(this);
-      result.type_ = type_;
-      if (concurrencyBuilder_ == null) {
-        result.concurrency_ = concurrency_;
-      } else {
-        result.concurrency_ = concurrencyBuilder_.build();
-      }
-      if (refreshBuilder_ == null) {
-        result.refresh_ = refresh_;
-      } else {
-        result.refresh_ = refreshBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof AllocationStrategy) {
-        return mergeFrom((AllocationStrategy)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(AllocationStrategy other) {
-      if (other == AllocationStrategy.getDefaultInstance()) return this;
-      if (other.type_ != 0) {
-        setTypeValue(other.getTypeValue());
-      }
-      if (other.hasConcurrency()) {
-        mergeConcurrency(other.getConcurrency());
-      }
-      if (other.hasRefresh()) {
-        mergeRefresh(other.getRefresh());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      AllocationStrategy parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (AllocationStrategy) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
         }
-      }
-      return this;
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            AllocationStrategyRefresh.class, Builder.class);
+        }
+
+        public static final int VALUE_FIELD_NUMBER = 1;
+        private int value_;
+
+        /**
+         * <code>uint32 value = 1;</code>
+         */
+        public int getValue() {
+            return value_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (value_ != 0) {
+                output.writeUInt32(1, value_);
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (value_ != 0) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt32Size(1, value_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @Override
+        public boolean equals(final Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof AllocationStrategyRefresh)) {
+                return super.equals(obj);
+            }
+            AllocationStrategyRefresh other = (AllocationStrategyRefresh) obj;
+
+            if (getValue()
+                    != other.getValue()) return false;
+            if (!unknownFields.equals(other.unknownFields)) return false;
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            hash = (37 * hash) + VALUE_FIELD_NUMBER;
+            hash = (53 * hash) + getValue();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static AllocationStrategyRefresh parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static AllocationStrategyRefresh parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static AllocationStrategyRefresh parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(AllocationStrategyRefresh prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @Override
+        protected Builder newBuilderForType(
+                BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
+                AllocationStrategyRefreshOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
+            }
+
+            @Override
+            protected FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                AllocationStrategyRefresh.class, Builder.class);
+            }
+
+            // Construct using com.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @Override
+            public Builder clear() {
+                super.clear();
+                value_ = 0;
+
+                return this;
+            }
+
+            @Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_AllocationStrategyRefresh_descriptor;
+            }
+
+            @Override
+            public AllocationStrategyRefresh getDefaultInstanceForType() {
+                return AllocationStrategyRefresh.getDefaultInstance();
+            }
+
+            @Override
+            public AllocationStrategyRefresh build() {
+                AllocationStrategyRefresh result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @Override
+            public AllocationStrategyRefresh buildPartial() {
+                AllocationStrategyRefresh result = new AllocationStrategyRefresh(this);
+                result.value_ = value_;
+                onBuilt();
+                return result;
+            }
+
+            @Override
+            public Builder clone() {
+                return super.clone();
+            }
+
+            @Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.setField(field, value);
+            }
+
+            @Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return super.clearField(field);
+            }
+
+            @Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return super.clearOneof(oneof);
+            }
+
+            @Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, Object value) {
+                return super.setRepeatedField(field, index, value);
+            }
+
+            @Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    Object value) {
+                return super.addRepeatedField(field, value);
+            }
+
+            @Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof AllocationStrategyRefresh) {
+                    return mergeFrom((AllocationStrategyRefresh) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(AllocationStrategyRefresh other) {
+                if (other == AllocationStrategyRefresh.getDefaultInstance()) return this;
+                if (other.getValue() != 0) {
+                    setValue(other.getValue());
+                }
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                AllocationStrategyRefresh parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (AllocationStrategyRefresh) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int value_;
+
+            /**
+             * <code>uint32 value = 1;</code>
+             */
+            public int getValue() {
+                return value_;
+            }
+
+            /**
+             * <code>uint32 value = 1;</code>
+             */
+            public Builder setValue(int value) {
+
+                value_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <code>uint32 value = 1;</code>
+             */
+            public Builder clearValue() {
+
+                value_ = 0;
+                onChanged();
+                return this;
+            }
+
+            @Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFields(unknownFields);
+            }
+
+            @Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
+        }
+
+        // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh)
+        private static final AllocationStrategyRefresh DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new AllocationStrategyRefresh();
+        }
+
+        public static AllocationStrategyRefresh getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<AllocationStrategyRefresh>
+                PARSER = new com.google.protobuf.AbstractParser<AllocationStrategyRefresh>() {
+            @Override
+            public AllocationStrategyRefresh parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new AllocationStrategyRefresh(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<AllocationStrategyRefresh> parser() {
+            return PARSER;
+        }
+
+        @Override
+        public com.google.protobuf.Parser<AllocationStrategyRefresh> getParserForType() {
+            return PARSER;
+        }
+
+        @Override
+        public AllocationStrategyRefresh getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    private int type_ = 0;
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+
     /**
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
      */
     public int getTypeValue() {
-      return type_;
+        return type_;
     }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
-     */
-    public Builder setTypeValue(int value) {
-      type_ = value;
-      onChanged();
-      return this;
-    }
+
     /**
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
      */
     public Type getType() {
-      @SuppressWarnings("deprecation")
-      Type result = Type.valueOf(type_);
-      return result == null ? Type.UNRECOGNIZED : result;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
-     */
-    public Builder setType(Type value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      type_ = value.getNumber();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
-     */
-    public Builder clearType() {
-      
-      type_ = 0;
-      onChanged();
-      return this;
+        @SuppressWarnings("deprecation")
+        Type result = Type.valueOf(type_);
+        return result == null ? Type.UNRECOGNIZED : result;
     }
 
+    public static final int CONCURRENCY_FIELD_NUMBER = 2;
     private AllocationStrategyConcurrency concurrency_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        AllocationStrategyConcurrency, AllocationStrategyConcurrency.Builder, AllocationStrategyConcurrencyOrBuilder> concurrencyBuilder_;
+
     /**
      * <pre>
      * Number of handlers (ports) running in parallel.
@@ -1693,8 +1302,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
      */
     public boolean hasConcurrency() {
-      return concurrencyBuilder_ != null || concurrency_ != null;
+        return concurrency_ != null;
     }
+
     /**
      * <pre>
      * Number of handlers (ports) running in parallel.
@@ -1704,107 +1314,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
      */
     public AllocationStrategyConcurrency getConcurrency() {
-      if (concurrencyBuilder_ == null) {
         return concurrency_ == null ? AllocationStrategyConcurrency.getDefaultInstance() : concurrency_;
-      } else {
-        return concurrencyBuilder_.getMessage();
-      }
     }
-    /**
-     * <pre>
-     * Number of handlers (ports) running in parallel.
-     * Default value is 3 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-     */
-    public Builder setConcurrency(AllocationStrategyConcurrency value) {
-      if (concurrencyBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        concurrency_ = value;
-        onChanged();
-      } else {
-        concurrencyBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of handlers (ports) running in parallel.
-     * Default value is 3 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-     */
-    public Builder setConcurrency(
-        AllocationStrategyConcurrency.Builder builderForValue) {
-      if (concurrencyBuilder_ == null) {
-        concurrency_ = builderForValue.build();
-        onChanged();
-      } else {
-        concurrencyBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of handlers (ports) running in parallel.
-     * Default value is 3 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-     */
-    public Builder mergeConcurrency(AllocationStrategyConcurrency value) {
-      if (concurrencyBuilder_ == null) {
-        if (concurrency_ != null) {
-          concurrency_ =
-            AllocationStrategyConcurrency.newBuilder(concurrency_).mergeFrom(value).buildPartial();
-        } else {
-          concurrency_ = value;
-        }
-        onChanged();
-      } else {
-        concurrencyBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of handlers (ports) running in parallel.
-     * Default value is 3 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-     */
-    public Builder clearConcurrency() {
-      if (concurrencyBuilder_ == null) {
-        concurrency_ = null;
-        onChanged();
-      } else {
-        concurrency_ = null;
-        concurrencyBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of handlers (ports) running in parallel.
-     * Default value is 3 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-     */
-    public AllocationStrategyConcurrency.Builder getConcurrencyBuilder() {
-      
-      onChanged();
-      return getConcurrencyFieldBuilder().getBuilder();
-    }
     /**
      * <pre>
      * Number of handlers (ports) running in parallel.
@@ -1814,38 +1326,12 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
      */
     public AllocationStrategyConcurrencyOrBuilder getConcurrencyOrBuilder() {
-      if (concurrencyBuilder_ != null) {
-        return concurrencyBuilder_.getMessageOrBuilder();
-      } else {
-        return concurrency_ == null ?
-            AllocationStrategyConcurrency.getDefaultInstance() : concurrency_;
-      }
-    }
-    /**
-     * <pre>
-     * Number of handlers (ports) running in parallel.
-     * Default value is 3 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        AllocationStrategyConcurrency, AllocationStrategyConcurrency.Builder, AllocationStrategyConcurrencyOrBuilder>
-        getConcurrencyFieldBuilder() {
-      if (concurrencyBuilder_ == null) {
-        concurrencyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            AllocationStrategyConcurrency, AllocationStrategyConcurrency.Builder, AllocationStrategyConcurrencyOrBuilder>(
-                getConcurrency(),
-                getParentForChildren(),
-                isClean());
-        concurrency_ = null;
-      }
-      return concurrencyBuilder_;
+        return getConcurrency();
     }
 
+    public static final int REFRESH_FIELD_NUMBER = 3;
     private AllocationStrategyRefresh refresh_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        AllocationStrategyRefresh, AllocationStrategyRefresh.Builder, AllocationStrategyRefreshOrBuilder> refreshBuilder_;
+
     /**
      * <pre>
      * Number of minutes before a handler is regenerated.
@@ -1855,8 +1341,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
      */
     public boolean hasRefresh() {
-      return refreshBuilder_ != null || refresh_ != null;
+        return refresh_ != null;
     }
+
     /**
      * <pre>
      * Number of minutes before a handler is regenerated.
@@ -1866,107 +1353,9 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
      */
     public AllocationStrategyRefresh getRefresh() {
-      if (refreshBuilder_ == null) {
         return refresh_ == null ? AllocationStrategyRefresh.getDefaultInstance() : refresh_;
-      } else {
-        return refreshBuilder_.getMessage();
-      }
     }
-    /**
-     * <pre>
-     * Number of minutes before a handler is regenerated.
-     * Default value is 5 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-     */
-    public Builder setRefresh(AllocationStrategyRefresh value) {
-      if (refreshBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        refresh_ = value;
-        onChanged();
-      } else {
-        refreshBuilder_.setMessage(value);
-      }
 
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of minutes before a handler is regenerated.
-     * Default value is 5 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-     */
-    public Builder setRefresh(
-        AllocationStrategyRefresh.Builder builderForValue) {
-      if (refreshBuilder_ == null) {
-        refresh_ = builderForValue.build();
-        onChanged();
-      } else {
-        refreshBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of minutes before a handler is regenerated.
-     * Default value is 5 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-     */
-    public Builder mergeRefresh(AllocationStrategyRefresh value) {
-      if (refreshBuilder_ == null) {
-        if (refresh_ != null) {
-          refresh_ =
-            AllocationStrategyRefresh.newBuilder(refresh_).mergeFrom(value).buildPartial();
-        } else {
-          refresh_ = value;
-        }
-        onChanged();
-      } else {
-        refreshBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of minutes before a handler is regenerated.
-     * Default value is 5 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-     */
-    public Builder clearRefresh() {
-      if (refreshBuilder_ == null) {
-        refresh_ = null;
-        onChanged();
-      } else {
-        refresh_ = null;
-        refreshBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <pre>
-     * Number of minutes before a handler is regenerated.
-     * Default value is 5 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
-     */
-    public AllocationStrategyRefresh.Builder getRefreshBuilder() {
-      
-      onChanged();
-      return getRefreshFieldBuilder().getBuilder();
-    }
     /**
      * <pre>
      * Number of minutes before a handler is regenerated.
@@ -1976,84 +1365,839 @@ private static final long serialVersionUID = 0L;
      * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
      */
     public AllocationStrategyRefreshOrBuilder getRefreshOrBuilder() {
-      if (refreshBuilder_ != null) {
-        return refreshBuilder_.getMessageOrBuilder();
-      } else {
-        return refresh_ == null ?
-            AllocationStrategyRefresh.getDefaultInstance() : refresh_;
-      }
+        return getRefresh();
     }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (type_ != Type.Always.getNumber()) {
+            output.writeEnum(1, type_);
+        }
+        if (concurrency_ != null) {
+            output.writeMessage(2, getConcurrency());
+        }
+        if (refresh_ != null) {
+            output.writeMessage(3, getRefresh());
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (type_ != Type.Always.getNumber()) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeEnumSize(1, type_);
+        }
+        if (concurrency_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(2, getConcurrency());
+        }
+        if (refresh_ != null) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeMessageSize(3, getRefresh());
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof AllocationStrategy)) {
+            return super.equals(obj);
+        }
+        AllocationStrategy other = (AllocationStrategy) obj;
+
+        if (type_ != other.type_) return false;
+        if (hasConcurrency() != other.hasConcurrency()) return false;
+        if (hasConcurrency()) {
+            if (!getConcurrency()
+                    .equals(other.getConcurrency())) return false;
+        }
+        if (hasRefresh() != other.hasRefresh()) return false;
+        if (hasRefresh()) {
+            if (!getRefresh()
+                    .equals(other.getRefresh())) return false;
+        }
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + TYPE_FIELD_NUMBER;
+        hash = (53 * hash) + type_;
+        if (hasConcurrency()) {
+            hash = (37 * hash) + CONCURRENCY_FIELD_NUMBER;
+            hash = (53 * hash) + getConcurrency().hashCode();
+        }
+        if (hasRefresh()) {
+            hash = (37 * hash) + REFRESH_FIELD_NUMBER;
+            hash = (53 * hash) + getRefresh().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static AllocationStrategy parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static AllocationStrategy parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static AllocationStrategy parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static AllocationStrategy parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static AllocationStrategy parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static AllocationStrategy parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static AllocationStrategy parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static AllocationStrategy parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static AllocationStrategy parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static AllocationStrategy parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static AllocationStrategy parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static AllocationStrategy parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(AllocationStrategy prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <pre>
-     * Number of minutes before a handler is regenerated.
-     * Default value is 5 if unset.
-     * </pre>
-     *
-     * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+     * Protobuf type {@code v2ray.core.app.proxyman.AllocationStrategy}
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        AllocationStrategyRefresh, AllocationStrategyRefresh.Builder, AllocationStrategyRefreshOrBuilder>
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.AllocationStrategy)
+            com.v2ray.core.app.proxyman.AllocationStrategyOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            AllocationStrategy.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.app.proxyman.AllocationStrategy.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            type_ = 0;
+
+            if (concurrencyBuilder_ == null) {
+                concurrency_ = null;
+            } else {
+                concurrency_ = null;
+                concurrencyBuilder_ = null;
+            }
+            if (refreshBuilder_ == null) {
+                refresh_ = null;
+            } else {
+                refresh_ = null;
+                refreshBuilder_ = null;
+            }
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return Config.internal_static_v2ray_core_app_proxyman_AllocationStrategy_descriptor;
+        }
+
+        @Override
+        public AllocationStrategy getDefaultInstanceForType() {
+            return AllocationStrategy.getDefaultInstance();
+        }
+
+        @Override
+        public AllocationStrategy build() {
+            AllocationStrategy result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public AllocationStrategy buildPartial() {
+            AllocationStrategy result = new AllocationStrategy(this);
+            result.type_ = type_;
+            if (concurrencyBuilder_ == null) {
+                result.concurrency_ = concurrency_;
+            } else {
+                result.concurrency_ = concurrencyBuilder_.build();
+            }
+            if (refreshBuilder_ == null) {
+                result.refresh_ = refresh_;
+            } else {
+                result.refresh_ = refreshBuilder_.build();
+            }
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof AllocationStrategy) {
+                return mergeFrom((AllocationStrategy) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(AllocationStrategy other) {
+            if (other == AllocationStrategy.getDefaultInstance()) return this;
+            if (other.type_ != 0) {
+                setTypeValue(other.getTypeValue());
+            }
+            if (other.hasConcurrency()) {
+                mergeConcurrency(other.getConcurrency());
+            }
+            if (other.hasRefresh()) {
+                mergeRefresh(other.getRefresh());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            AllocationStrategy parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (AllocationStrategy) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private int type_ = 0;
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
+         */
+        public int getTypeValue() {
+            return type_;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
+         */
+        public Builder setTypeValue(int value) {
+            type_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
+         */
+        public Type getType() {
+            @SuppressWarnings("deprecation")
+            Type result = Type.valueOf(type_);
+            return result == null ? Type.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
+         */
+        public Builder setType(Type value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            type_ = value.getNumber();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.Type type = 1;</code>
+         */
+        public Builder clearType() {
+
+            type_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private AllocationStrategyConcurrency concurrency_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                AllocationStrategyConcurrency, AllocationStrategyConcurrency.Builder, AllocationStrategyConcurrencyOrBuilder> concurrencyBuilder_;
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public boolean hasConcurrency() {
+            return concurrencyBuilder_ != null || concurrency_ != null;
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public AllocationStrategyConcurrency getConcurrency() {
+            if (concurrencyBuilder_ == null) {
+                return concurrency_ == null ? AllocationStrategyConcurrency.getDefaultInstance() : concurrency_;
+            } else {
+                return concurrencyBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public Builder setConcurrency(AllocationStrategyConcurrency value) {
+            if (concurrencyBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                concurrency_ = value;
+                onChanged();
+            } else {
+                concurrencyBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public Builder setConcurrency(
+                AllocationStrategyConcurrency.Builder builderForValue) {
+            if (concurrencyBuilder_ == null) {
+                concurrency_ = builderForValue.build();
+                onChanged();
+            } else {
+                concurrencyBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public Builder mergeConcurrency(AllocationStrategyConcurrency value) {
+            if (concurrencyBuilder_ == null) {
+                if (concurrency_ != null) {
+                    concurrency_ =
+                            AllocationStrategyConcurrency.newBuilder(concurrency_).mergeFrom(value).buildPartial();
+                } else {
+                    concurrency_ = value;
+                }
+                onChanged();
+            } else {
+                concurrencyBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public Builder clearConcurrency() {
+            if (concurrencyBuilder_ == null) {
+                concurrency_ = null;
+                onChanged();
+            } else {
+                concurrency_ = null;
+                concurrencyBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public AllocationStrategyConcurrency.Builder getConcurrencyBuilder() {
+
+            onChanged();
+            return getConcurrencyFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        public AllocationStrategyConcurrencyOrBuilder getConcurrencyOrBuilder() {
+            if (concurrencyBuilder_ != null) {
+                return concurrencyBuilder_.getMessageOrBuilder();
+            } else {
+                return concurrency_ == null ?
+                        AllocationStrategyConcurrency.getDefaultInstance() : concurrency_;
+            }
+        }
+
+        /**
+         * <pre>
+         * Number of handlers (ports) running in parallel.
+         * Default value is 3 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyConcurrency concurrency = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                AllocationStrategyConcurrency, AllocationStrategyConcurrency.Builder, AllocationStrategyConcurrencyOrBuilder>
+        getConcurrencyFieldBuilder() {
+            if (concurrencyBuilder_ == null) {
+                concurrencyBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        AllocationStrategyConcurrency, AllocationStrategyConcurrency.Builder, AllocationStrategyConcurrencyOrBuilder>(
+                        getConcurrency(),
+                        getParentForChildren(),
+                        isClean());
+                concurrency_ = null;
+            }
+            return concurrencyBuilder_;
+        }
+
+        private AllocationStrategyRefresh refresh_;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                AllocationStrategyRefresh, AllocationStrategyRefresh.Builder, AllocationStrategyRefreshOrBuilder> refreshBuilder_;
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public boolean hasRefresh() {
+            return refreshBuilder_ != null || refresh_ != null;
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public AllocationStrategyRefresh getRefresh() {
+            if (refreshBuilder_ == null) {
+                return refresh_ == null ? AllocationStrategyRefresh.getDefaultInstance() : refresh_;
+            } else {
+                return refreshBuilder_.getMessage();
+            }
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public Builder setRefresh(AllocationStrategyRefresh value) {
+            if (refreshBuilder_ == null) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                refresh_ = value;
+                onChanged();
+            } else {
+                refreshBuilder_.setMessage(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public Builder setRefresh(
+                AllocationStrategyRefresh.Builder builderForValue) {
+            if (refreshBuilder_ == null) {
+                refresh_ = builderForValue.build();
+                onChanged();
+            } else {
+                refreshBuilder_.setMessage(builderForValue.build());
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public Builder mergeRefresh(AllocationStrategyRefresh value) {
+            if (refreshBuilder_ == null) {
+                if (refresh_ != null) {
+                    refresh_ =
+                            AllocationStrategyRefresh.newBuilder(refresh_).mergeFrom(value).buildPartial();
+                } else {
+                    refresh_ = value;
+                }
+                onChanged();
+            } else {
+                refreshBuilder_.mergeFrom(value);
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public Builder clearRefresh() {
+            if (refreshBuilder_ == null) {
+                refresh_ = null;
+                onChanged();
+            } else {
+                refresh_ = null;
+                refreshBuilder_ = null;
+            }
+
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public AllocationStrategyRefresh.Builder getRefreshBuilder() {
+
+            onChanged();
+            return getRefreshFieldBuilder().getBuilder();
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        public AllocationStrategyRefreshOrBuilder getRefreshOrBuilder() {
+            if (refreshBuilder_ != null) {
+                return refreshBuilder_.getMessageOrBuilder();
+            } else {
+                return refresh_ == null ?
+                        AllocationStrategyRefresh.getDefaultInstance() : refresh_;
+            }
+        }
+
+        /**
+         * <pre>
+         * Number of minutes before a handler is regenerated.
+         * Default value is 5 if unset.
+         * </pre>
+         *
+         * <code>.v2ray.core.app.proxyman.AllocationStrategy.AllocationStrategyRefresh refresh = 3;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                AllocationStrategyRefresh, AllocationStrategyRefresh.Builder, AllocationStrategyRefreshOrBuilder>
         getRefreshFieldBuilder() {
-      if (refreshBuilder_ == null) {
-        refreshBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            AllocationStrategyRefresh, AllocationStrategyRefresh.Builder, AllocationStrategyRefreshOrBuilder>(
-                getRefresh(),
-                getParentForChildren(),
-                isClean());
-        refresh_ = null;
-      }
-      return refreshBuilder_;
+            if (refreshBuilder_ == null) {
+                refreshBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        AllocationStrategyRefresh, AllocationStrategyRefresh.Builder, AllocationStrategyRefreshOrBuilder>(
+                        getRefresh(),
+                        getParentForChildren(),
+                        isClean());
+                refresh_ = null;
+            }
+            return refreshBuilder_;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.AllocationStrategy)
     }
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.AllocationStrategy)
+    private static final AllocationStrategy DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new AllocationStrategy();
+    }
+
+    public static AllocationStrategy getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AllocationStrategy>
+            PARSER = new com.google.protobuf.AbstractParser<AllocationStrategy>() {
+        @Override
+        public AllocationStrategy parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new AllocationStrategy(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<AllocationStrategy> parser() {
+        return PARSER;
+    }
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<AllocationStrategy> getParserForType() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public AllocationStrategy getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.AllocationStrategy)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.AllocationStrategy)
-  private static final AllocationStrategy DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new AllocationStrategy();
-  }
-
-  public static AllocationStrategy getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<AllocationStrategy>
-      PARSER = new com.google.protobuf.AbstractParser<AllocationStrategy>() {
-    @Override
-    public AllocationStrategy parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new AllocationStrategy(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<AllocationStrategy> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<AllocationStrategy> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public AllocationStrategy getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

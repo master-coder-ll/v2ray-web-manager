@@ -2,12 +2,11 @@ package com.jhl.admin.controller;
 
 import com.jhl.admin.Interceptor.PreAuth;
 import com.jhl.admin.cache.UserCache;
-import com.jhl.admin.constant.WebsiteConfigKV;
+import com.jhl.admin.constant.enumObject.WebsiteConfigEnum;
 import com.jhl.admin.model.InvitationCode;
 import com.jhl.admin.model.User;
 import com.jhl.admin.repository.InvitationCodeRepository;
 import com.jhl.admin.service.ServerConfigService;
-import com.jhl.admin.util.Utils;
 import com.ljh.common.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -16,6 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 public class InvitationCodeController {
@@ -33,19 +34,19 @@ public class InvitationCodeController {
     @PreAuth("vip")
     @ResponseBody
     @PostMapping("/invite-code")
-    public Result generateInviteCode(@CookieValue(value = UserController.COOKIE_NAME, defaultValue = "") String auth) {
+    public Result generateInviteCode( @CookieValue(value = UserController.COOKIE_NAME, defaultValue = "") String auth) {
 
         if (auth == null) throw new NullPointerException("获取不到用户");
 
 
         User user = userCache.getCache(auth);
-        if ( !user.getRole().equals("admin") && !serverConfigService.checkKey(WebsiteConfigKV.VIP_CAN_INVITE.getKey())){
+        if ( !user.getRole().equals("admin") && !serverConfigService.checkKey(WebsiteConfigEnum.VIP_CAN_INVITE.getKey())){
                 throw  new RuntimeException("管理员不允许用户邀请其他人");
         }
         Integer userId = user.getId();
         long count = invitationCodeRepository.count(Example.of(InvitationCode.builder().generateUserId(userId).status(0).build()));
         if (count>0) throw  new RuntimeException("存在未使用的邀请码。");
-        InvitationCode code = InvitationCode.builder().generateUserId(userId).inviteCode(Utils.getCharAndNum(7)).build();
+        InvitationCode code = InvitationCode.builder().generateUserId(userId).inviteCode(UUID.randomUUID().toString()).build();
             code.setStatus(0);
         invitationCodeRepository.save(code);
         return Result.SUCCESS();

@@ -4,19 +4,21 @@
 package com.v2ray.core.app.dispatcher;
 
 public interface ConfigOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.dispatcher.Config)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.dispatcher.Config)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.app.dispatcher.SessionConfig settings = 1;</code>
-   */
-  boolean hasSettings();
-  /**
-   * <code>.v2ray.core.app.dispatcher.SessionConfig settings = 1;</code>
-   */
-  SessionConfig getSettings();
-  /**
-   * <code>.v2ray.core.app.dispatcher.SessionConfig settings = 1;</code>
-   */
-  com.v2ray.core.app.dispatcher.SessionConfigOrBuilder getSettingsOrBuilder();
+    /**
+     * <code>.v2ray.core.app.dispatcher.SessionConfig settings = 1;</code>
+     */
+    boolean hasSettings();
+
+    /**
+     * <code>.v2ray.core.app.dispatcher.SessionConfig settings = 1;</code>
+     */
+    SessionConfig getSettings();
+
+    /**
+     * <code>.v2ray.core.app.dispatcher.SessionConfig settings = 1;</code>
+     */
+    com.v2ray.core.app.dispatcher.SessionConfigOrBuilder getSettingsOrBuilder();
 }

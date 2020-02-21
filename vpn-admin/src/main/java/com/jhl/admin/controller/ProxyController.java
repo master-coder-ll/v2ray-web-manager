@@ -8,6 +8,7 @@ import com.jhl.admin.repository.AccountRepository;
 import com.jhl.admin.repository.ServerRepository;
 import com.jhl.admin.repository.StatRepository;
 import com.jhl.admin.repository.UserRepository;
+import com.jhl.admin.service.ServerService;
 import com.jhl.admin.service.StatService;
 import com.jhl.admin.service.v2ray.ProxyEvent;
 import com.jhl.admin.service.v2ray.ProxyEventService;
@@ -36,27 +37,26 @@ public class ProxyController {
     @Autowired
     AccountRepository accountRepository;
     @Autowired
-    StatService statService;
+    ServerService serverService;
 
     @Autowired
     ServerRepository serverRepository;
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    ProxyEventService proxyEventService;
     private long G = 1024 * 1024 * 1024;
     /**
      * 获取一个proxyAccount
      *
      * @param accountNo
+     * @param domain  域名/ip
      * @return
      */
     @ResponseBody
     @GetMapping("/proxyAccount/ac")
-    public Result getPAccount(String accountNo) {
+    public Result getPAccount(String accountNo,String domain) {
        // log.info("account no is:,{}", accountNo);
-        if (accountNo == null || StringUtils.isBlank(accountNo)) {
-            return Result.builder().code(500).message("accountNo is null").build();
+        if ( StringUtils.isBlank(accountNo)||StringUtils.isBlank(domain) ) {
+            return Result.builder().code(500).message("accountNo/domain is null").build();
         }
 
         Account account = accountRepository.findOne(Example.of(Account.builder().accountNo(accountNo).status(1).build())).orElse(null);
@@ -79,10 +79,14 @@ public class ProxyController {
         }
 
         Integer userId = account.getUserId();
-        Integer serverId = account.getServerId();
-        if (serverId == null) return Result.builder().code(500).message("serverId is null").build();
+
+        //新版应该根据域名查找服务器
+
+        Server server=  serverService.findByDomain(domain,account.getLevel());
+        //Integer serverId = account.getServerId();
+
         User user = userRepository.findById(userId).orElse(null);
-        Server server = serverRepository.findById(serverId).orElse(null);
+
         V2RayProxyEvent v2RayProxyEvent = new V2RayProxyEvent(null, server, account, user.getEmail(), null);
         ProxyAccount proxyAccount = v2RayProxyEvent.buildProxyAccount();
         return Result.builder().code(Result.CODE_SUCCESS).obj(proxyAccount).build();

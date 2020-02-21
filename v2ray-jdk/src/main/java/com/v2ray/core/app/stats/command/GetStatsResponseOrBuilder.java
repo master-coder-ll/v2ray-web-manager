@@ -4,19 +4,21 @@
 package com.v2ray.core.app.stats.command;
 
 public interface GetStatsResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.command.GetStatsResponse)
-    com.google.protobuf.MessageOrBuilder {
+        // @@protoc_insertion_point(interface_extends:v2ray.core.app.stats.command.GetStatsResponse)
+        com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.v2ray.core.app.stats.command.Stat stat = 1;</code>
-   */
-  boolean hasStat();
-  /**
-   * <code>.v2ray.core.app.stats.command.Stat stat = 1;</code>
-   */
-  Stat getStat();
-  /**
-   * <code>.v2ray.core.app.stats.command.Stat stat = 1;</code>
-   */
-  StatOrBuilder getStatOrBuilder();
+    /**
+     * <code>.v2ray.core.app.stats.command.Stat stat = 1;</code>
+     */
+    boolean hasStat();
+
+    /**
+     * <code>.v2ray.core.app.stats.command.Stat stat = 1;</code>
+     */
+    Stat getStat();
+
+    /**
+     * <code>.v2ray.core.app.stats.command.Stat stat = 1;</code>
+     */
+    StatOrBuilder getStatOrBuilder();
 }

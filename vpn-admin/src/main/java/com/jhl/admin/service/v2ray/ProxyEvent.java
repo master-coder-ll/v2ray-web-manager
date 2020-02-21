@@ -12,6 +12,5 @@ public interface ProxyEvent {
     void updateEvent();
 
     void rmEvent();
-
-    void createEvent();
+    //void createEvent();
 }

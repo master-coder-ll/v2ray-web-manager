@@ -6,431 +6,91 @@ package com.v2ray.core.app.proxyman;
 /**
  * Protobuf type {@code v2ray.core.app.proxyman.MultiplexingConfig}
  */
-public  final class MultiplexingConfig extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.MultiplexingConfig)
-    MultiplexingConfigOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use MultiplexingConfig.newBuilder() to construct.
-  private MultiplexingConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private MultiplexingConfig() {
-  }
+public final class MultiplexingConfig extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:v2ray.core.app.proxyman.MultiplexingConfig)
+        MultiplexingConfigOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private MultiplexingConfig(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new NullPointerException();
+    // Use MultiplexingConfig.newBuilder() to construct.
+    private MultiplexingConfig(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    int mutable_bitField0_ = 0;
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
 
-            enabled_ = input.readBool();
-            break;
-          }
-          case 16: {
+    private MultiplexingConfig() {
+    }
 
-            concurrency_ = input.readUInt32();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-            break;
-          }
+    @Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    private MultiplexingConfig(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new NullPointerException();
         }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
+
+                        enabled_ = input.readBool();
+                        break;
+                    }
+                    case 16: {
+
+                        concurrency_ = input.readUInt32();
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
-  }
 
-  @Override
-  protected FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            MultiplexingConfig.class, Builder.class);
-  }
-
-  public static final int ENABLED_FIELD_NUMBER = 1;
-  private boolean enabled_;
-  /**
-   * <pre>
-   * Whether or not Mux is enabled.
-   * </pre>
-   *
-   * <code>bool enabled = 1;</code>
-   */
-  public boolean getEnabled() {
-    return enabled_;
-  }
-
-  public static final int CONCURRENCY_FIELD_NUMBER = 2;
-  private int concurrency_;
-  /**
-   * <pre>
-   * Max number of concurrent connections that one Mux connection can handle.
-   * </pre>
-   *
-   * <code>uint32 concurrency = 2;</code>
-   */
-  public int getConcurrency() {
-    return concurrency_;
-  }
-
-  private byte memoizedIsInitialized = -1;
-  @Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (enabled_ != false) {
-      output.writeBool(1, enabled_);
-    }
-    if (concurrency_ != 0) {
-      output.writeUInt32(2, concurrency_);
-    }
-    unknownFields.writeTo(output);
-  }
-
-  @Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (enabled_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(1, enabled_);
-    }
-    if (concurrency_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(2, concurrency_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof MultiplexingConfig)) {
-      return super.equals(obj);
-    }
-    MultiplexingConfig other = (MultiplexingConfig) obj;
-
-    if (getEnabled()
-        != other.getEnabled()) return false;
-    if (getConcurrency()
-        != other.getConcurrency()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + ENABLED_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getEnabled());
-    hash = (37 * hash) + CONCURRENCY_FIELD_NUMBER;
-    hash = (53 * hash) + getConcurrency();
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  public static MultiplexingConfig parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static MultiplexingConfig parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static MultiplexingConfig parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static MultiplexingConfig parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static MultiplexingConfig parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static MultiplexingConfig parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static MultiplexingConfig parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static MultiplexingConfig parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static MultiplexingConfig parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-  public static MultiplexingConfig parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-  public static MultiplexingConfig parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-  public static MultiplexingConfig parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  @Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(MultiplexingConfig prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @Override
-  protected Builder newBuilderForType(
-      BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code v2ray.core.app.proxyman.MultiplexingConfig}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.MultiplexingConfig)
-      com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
+    getDescriptor() {
+        return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
     }
 
     @Override
     protected FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              MultiplexingConfig.class, Builder.class);
+    internalGetFieldAccessorTable() {
+        return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        MultiplexingConfig.class, Builder.class);
     }
 
-    // Construct using com.v2ray.core.app.proxyman.MultiplexingConfig.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
+    public static final int ENABLED_FIELD_NUMBER = 1;
+    private boolean enabled_;
 
-    private Builder(
-        BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-      if (com.google.protobuf.GeneratedMessageV3
-              .alwaysUseFieldBuilders) {
-      }
-    }
-    @Override
-    public Builder clear() {
-      super.clear();
-      enabled_ = false;
-
-      concurrency_ = 0;
-
-      return this;
-    }
-
-    @Override
-    public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-      return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
-    }
-
-    @Override
-    public MultiplexingConfig getDefaultInstanceForType() {
-      return MultiplexingConfig.getDefaultInstance();
-    }
-
-    @Override
-    public MultiplexingConfig build() {
-      MultiplexingConfig result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @Override
-    public MultiplexingConfig buildPartial() {
-      MultiplexingConfig result = new MultiplexingConfig(this);
-      result.enabled_ = enabled_;
-      result.concurrency_ = concurrency_;
-      onBuilt();
-      return result;
-    }
-
-    @Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.setField(field, value);
-    }
-    @Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @Override
-    public Builder setRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-    @Override
-    public Builder addRepeatedField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        Object value) {
-      return super.addRepeatedField(field, value);
-    }
-    @Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof MultiplexingConfig) {
-        return mergeFrom((MultiplexingConfig)other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(MultiplexingConfig other) {
-      if (other == MultiplexingConfig.getDefaultInstance()) return this;
-      if (other.getEnabled() != false) {
-        setEnabled(other.getEnabled());
-      }
-      if (other.getConcurrency() != 0) {
-        setConcurrency(other.getConcurrency());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
-
-    @Override
-    public final boolean isInitialized() {
-      return true;
-    }
-
-    @Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      MultiplexingConfig parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (MultiplexingConfig) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
-      } finally {
-        if (parsedMessage != null) {
-          mergeFrom(parsedMessage);
-        }
-      }
-      return this;
-    }
-
-    private boolean enabled_ ;
     /**
      * <pre>
      * Whether or not Mux is enabled.
@@ -439,36 +99,12 @@ private static final long serialVersionUID = 0L;
      * <code>bool enabled = 1;</code>
      */
     public boolean getEnabled() {
-      return enabled_;
-    }
-    /**
-     * <pre>
-     * Whether or not Mux is enabled.
-     * </pre>
-     *
-     * <code>bool enabled = 1;</code>
-     */
-    public Builder setEnabled(boolean value) {
-      
-      enabled_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * Whether or not Mux is enabled.
-     * </pre>
-     *
-     * <code>bool enabled = 1;</code>
-     */
-    public Builder clearEnabled() {
-      
-      enabled_ = false;
-      onChanged();
-      return this;
+        return enabled_;
     }
 
-    private int concurrency_ ;
+    public static final int CONCURRENCY_FIELD_NUMBER = 2;
+    private int concurrency_;
+
     /**
      * <pre>
      * Max number of concurrent connections that one Mux connection can handle.
@@ -477,84 +113,488 @@ private static final long serialVersionUID = 0L;
      * <code>uint32 concurrency = 2;</code>
      */
     public int getConcurrency() {
-      return concurrency_;
+        return concurrency_;
     }
+
+    private byte memoizedIsInitialized = -1;
+
+    @Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (enabled_ != false) {
+            output.writeBool(1, enabled_);
+        }
+        if (concurrency_ != 0) {
+            output.writeUInt32(2, concurrency_);
+        }
+        unknownFields.writeTo(output);
+    }
+
+    @Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (enabled_ != false) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeBoolSize(1, enabled_);
+        }
+        if (concurrency_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(2, concurrency_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof MultiplexingConfig)) {
+            return super.equals(obj);
+        }
+        MultiplexingConfig other = (MultiplexingConfig) obj;
+
+        if (getEnabled()
+                != other.getEnabled()) return false;
+        if (getConcurrency()
+                != other.getConcurrency()) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + ENABLED_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                getEnabled());
+        hash = (37 * hash) + CONCURRENCY_FIELD_NUMBER;
+        hash = (53 * hash) + getConcurrency();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static MultiplexingConfig parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static MultiplexingConfig parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static MultiplexingConfig parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static MultiplexingConfig parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static MultiplexingConfig parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static MultiplexingConfig parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(MultiplexingConfig prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @Override
+    protected Builder newBuilderForType(
+            BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <pre>
-     * Max number of concurrent connections that one Mux connection can handle.
-     * </pre>
-     *
-     * <code>uint32 concurrency = 2;</code>
+     * Protobuf type {@code v2ray.core.app.proxyman.MultiplexingConfig}
      */
-    public Builder setConcurrency(int value) {
-      
-      concurrency_ = value;
-      onChanged();
-      return this;
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:v2ray.core.app.proxyman.MultiplexingConfig)
+            com.v2ray.core.app.proxyman.MultiplexingConfigOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
+        }
+
+        @Override
+        protected FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            MultiplexingConfig.class, Builder.class);
+        }
+
+        // Construct using com.v2ray.core.app.proxyman.MultiplexingConfig.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @Override
+        public Builder clear() {
+            super.clear();
+            enabled_ = false;
+
+            concurrency_ = 0;
+
+            return this;
+        }
+
+        @Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return Config.internal_static_v2ray_core_app_proxyman_MultiplexingConfig_descriptor;
+        }
+
+        @Override
+        public MultiplexingConfig getDefaultInstanceForType() {
+            return MultiplexingConfig.getDefaultInstance();
+        }
+
+        @Override
+        public MultiplexingConfig build() {
+            MultiplexingConfig result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @Override
+        public MultiplexingConfig buildPartial() {
+            MultiplexingConfig result = new MultiplexingConfig(this);
+            result.enabled_ = enabled_;
+            result.concurrency_ = concurrency_;
+            onBuilt();
+            return result;
+        }
+
+        @Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.setField(field, value);
+        }
+
+        @Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof MultiplexingConfig) {
+                return mergeFrom((MultiplexingConfig) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(MultiplexingConfig other) {
+            if (other == MultiplexingConfig.getDefaultInstance()) return this;
+            if (other.getEnabled() != false) {
+                setEnabled(other.getEnabled());
+            }
+            if (other.getConcurrency() != 0) {
+                setConcurrency(other.getConcurrency());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            MultiplexingConfig parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (MultiplexingConfig) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        private boolean enabled_;
+
+        /**
+         * <pre>
+         * Whether or not Mux is enabled.
+         * </pre>
+         *
+         * <code>bool enabled = 1;</code>
+         */
+        public boolean getEnabled() {
+            return enabled_;
+        }
+
+        /**
+         * <pre>
+         * Whether or not Mux is enabled.
+         * </pre>
+         *
+         * <code>bool enabled = 1;</code>
+         */
+        public Builder setEnabled(boolean value) {
+
+            enabled_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Whether or not Mux is enabled.
+         * </pre>
+         *
+         * <code>bool enabled = 1;</code>
+         */
+        public Builder clearEnabled() {
+
+            enabled_ = false;
+            onChanged();
+            return this;
+        }
+
+        private int concurrency_;
+
+        /**
+         * <pre>
+         * Max number of concurrent connections that one Mux connection can handle.
+         * </pre>
+         *
+         * <code>uint32 concurrency = 2;</code>
+         */
+        public int getConcurrency() {
+            return concurrency_;
+        }
+
+        /**
+         * <pre>
+         * Max number of concurrent connections that one Mux connection can handle.
+         * </pre>
+         *
+         * <code>uint32 concurrency = 2;</code>
+         */
+        public Builder setConcurrency(int value) {
+
+            concurrency_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * Max number of concurrent connections that one Mux connection can handle.
+         * </pre>
+         *
+         * <code>uint32 concurrency = 2;</code>
+         */
+        public Builder clearConcurrency() {
+
+            concurrency_ = 0;
+            onChanged();
+            return this;
+        }
+
+        @Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.MultiplexingConfig)
     }
-    /**
-     * <pre>
-     * Max number of concurrent connections that one Mux connection can handle.
-     * </pre>
-     *
-     * <code>uint32 concurrency = 2;</code>
-     */
-    public Builder clearConcurrency() {
-      
-      concurrency_ = 0;
-      onChanged();
-      return this;
+
+    // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.MultiplexingConfig)
+    private static final MultiplexingConfig DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new MultiplexingConfig();
     }
+
+    public static MultiplexingConfig getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<MultiplexingConfig>
+            PARSER = new com.google.protobuf.AbstractParser<MultiplexingConfig>() {
+        @Override
+        public MultiplexingConfig parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return new MultiplexingConfig(input, extensionRegistry);
+        }
+    };
+
+    public static com.google.protobuf.Parser<MultiplexingConfig> parser() {
+        return PARSER;
+    }
+
     @Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+    public com.google.protobuf.Parser<MultiplexingConfig> getParserForType() {
+        return PARSER;
     }
 
     @Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+    public MultiplexingConfig getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
-
-
-    // @@protoc_insertion_point(builder_scope:v2ray.core.app.proxyman.MultiplexingConfig)
-  }
-
-  // @@protoc_insertion_point(class_scope:v2ray.core.app.proxyman.MultiplexingConfig)
-  private static final MultiplexingConfig DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new MultiplexingConfig();
-  }
-
-  public static MultiplexingConfig getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<MultiplexingConfig>
-      PARSER = new com.google.protobuf.AbstractParser<MultiplexingConfig>() {
-    @Override
-    public MultiplexingConfig parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MultiplexingConfig(input, extensionRegistry);
-    }
-  };
-
-  public static com.google.protobuf.Parser<MultiplexingConfig> parser() {
-    return PARSER;
-  }
-
-  @Override
-  public com.google.protobuf.Parser<MultiplexingConfig> getParserForType() {
-    return PARSER;
-  }
-
-  @Override
-  public MultiplexingConfig getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
 
 }
 

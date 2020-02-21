@@ -30,7 +30,6 @@ public class V2RayApiClient {
     });
 
 
-
     public static V2RayApiClient getInstance(String host, int port) {
         String key = host + port;
         if (concurrentHashMap.containsKey(key)) return concurrentHashMap.get(key);

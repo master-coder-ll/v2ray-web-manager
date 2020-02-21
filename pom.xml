@@ -12,7 +12,7 @@
     <scm>
         <url>https://github.com/master-coder-ll/v2ray-web-manager</url>
         <connection>
-            scm:git:git://kxsw@github.com/master-coder-ll/v2ray-web-manager.git
+            scm:git:git://github.com/master-coder-ll/v2ray-web-manager.git
         </connection>
         <developerConnection>
             scm:git:git://kxsw@github.com/master-coder-ll/v2ray-web-manager.git

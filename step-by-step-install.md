@@ -38,12 +38,12 @@
          }
       # nginx -s reload  没有报错，配置成功
      ```
-  3. 下载文件releases文件
+  3. 下载文件releases文件-[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
     
      ```
      # mkdir /opt/v2ray-manager -p  创建目录
      # cd /opt/v2ray-manager 
-     下载releases 包,应该选择最新的release进行下载`wget -c [url] `
+     下载releases 包,选择最新的release进行下载`wget -c [url] `,下面地址为自动获取最新的release,特定版本访问releases页面下载
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
@@ -76,8 +76,8 @@
                 
                 #发送验证码模板
                 email.vCodeTemplate=你的验证码为: %s,请在10分钟内使用.
-                #和proxy端通讯的认证密码.
-                proxy.api.auth=
+                #proxy访问认证密码和admin端相同
+                proxy.authPassword=
                 
                 #admin 初始化生成的账号
                 admin.email=admin@admin.com
@@ -86,15 +86,11 @@
       2. proxy.properties 需要你手动配置的如下：
          
               proxy访问认证密码和admin端相同
-              proxy.auth=
+              proxy.authPassword=
               #admin 管理地址和端口，如果admin端也在本机不需要修改
               manager.address=http://127.0.0.1:9091
-              #adminApi 地址端口改变这也需要修改
-              manager.getProxyAccountUrl=http://127.0.0.1:9091/proxy/proxyAccount/ac?accountNo={accountNo}
-              #adminApi 地址端口改变这也需要修改
-              manager.reportFlowUrl=http://127.0.0.1:9091/report/flowStat
      
-     我这里不需要注册用户，并且admin和proxy 都在本机 ，我只需要修改`proxy.api.auth` 和 `proxy.auth` 。并且管理员账号密码我也使用默认。
+     我这里不需要注册用户，并且admin和proxy 都在本机 ，我只需要修改2个配置文件的`proxy.authPassword`为一个随机的字符串如`1234abc` 。并且管理员账号密码我也使用默认。
      
      配置v2ray
     

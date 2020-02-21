@@ -70,14 +70,8 @@
     # kill [进程号]
  ```
 
-+ 下载最新的release包
++ 下载最新的release包，访问[releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
 
-```
-    https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
-    https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   
-    https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
-
-```
 + 重新启动
 
 

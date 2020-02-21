@@ -9,6 +9,16 @@
     <version>1.0</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
+    <scm>
+        <url>https://github.com/master-coder-ll/v2ray-web-manager</url>
+        <connection>
+            scm:git:git://github.com/master-coder-ll/v2ray-web-manager.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://github.com/master-coder-ll/v2ray-web-manager.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -20,6 +30,18 @@
     </modules>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.11.2</version>
+                <configuration>
+                    <connectionType>developerConnection</connectionType>
+                </configuration>
+            </plugin>
+
+
+
+
 
             <plugin>
                 <groupId>org.jacoco</groupId>

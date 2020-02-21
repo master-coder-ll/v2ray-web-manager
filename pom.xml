@@ -13,7 +13,7 @@
             scm:git:git://github.com/master-coder-ll/v2ray-web-manager.git
         </connection>
         <developerConnection>
-            scm:git:ssh://git@github.com/master-coder-ll/v2ray-web-manager
+            scm:git:ssh://git@kxsw/master-coder-ll/v2ray-web-manager
         </developerConnection>
         <tag>1.1</tag>
     </scm>

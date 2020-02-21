@@ -15,7 +15,12 @@
  
  原理:proxy工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，现适配了ws协议。 
  
- #### 如果能帮助到你，请`watch` `star` `Fork`
+#### 如果能帮助到你，请`watch` `star` `Fork`
+  
+ ## 前端项目
+   [web-console](https://github.com/master-coder-ll/web-console)
+ 
+
  
  ## 简要视图
  服务器配置

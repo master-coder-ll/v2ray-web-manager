@@ -45,7 +45,7 @@
      # cd /opt/v2ray-manager 
      下载releases 包,选择最新的release进行下载`wget -c [url] `,下面地址为自动获取最新的release,特定版本访问releases页面下载
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin-1.0.jar
-     # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/dist.zip   
+     # wget -c https://glare.now.sh/master-coder-ll/web-console/dist.zip   
      # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy-1.0.jar
      
      # unzip dist.zip  -d web  先解压web

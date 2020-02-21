@@ -51,8 +51,6 @@ public class AccountController {
     ServerService serverService;
     @Autowired
     V2rayAccountService v2rayAccountService;
-    @Value("${proxy.getConnectionCountUrl}")
-    String PROXY_API_CONNECTION_COUNT_URL;
     @Autowired
     ServerRepository serverRepository;
     @Autowired
@@ -200,7 +198,7 @@ public class AccountController {
         return Result.SUCCESS();
     }
 
-    @Deprecated
+    /*@Deprecated
     @PreAuth("vip")
     @ResponseBody
     @GetMapping("/account/connection/{accountId}")
@@ -227,7 +225,7 @@ public class AccountController {
             }
         }
         return Result.buildSuccess(count, null);
-    }
+    }*/
 
 
     @Deprecated
@@ -251,13 +249,13 @@ public class AccountController {
     }
 
 
-    private List<String> buildConnectionCountUrl(String ips, Integer port) {
-
-        List<String> list = new ArrayList<>();
-        for (String ip : ips.split(",")) {
-            String to = ip + ":" + port;
-            list.add(String.format(PROXY_API_CONNECTION_COUNT_URL, to));
-        }
-        return list;
-    }
+//    private List<String> buildConnectionCountUrl(String ips, Integer port) {
+//
+//        List<String> list = new ArrayList<>();
+//        for (String ip : ips.split(",")) {
+//            String to = ip + ":" + port;
+//            list.add(String.format(PROXY_API_CONNECTION_COUNT_URL, to));
+//        }
+//        return list;
+//    }
 }

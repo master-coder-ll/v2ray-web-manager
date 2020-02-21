@@ -15,7 +15,7 @@ public class EmailConstant {
     private String host;
     //验证码消息模板
     private String vCodeTemplate;
-    private  int port;
+    private  Integer port;
     private  String overdueDate;
     private  String exceedConnections;
 }

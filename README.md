@@ -2,14 +2,18 @@
  [![Build Status](https://travis-ci.com/master-coder-ll/v2ray-web-manager.svg?branch=master)](https://travis-ci.com/master-coder-ll/v2ray-web-manager) 
 
  v2ray-web-manager 项目包含admin管理端和proxy端，admin端提供管理功能。proxy端提供核心的流量控制、账号识别、流量转发功能，
- 同时支持多种转发流量模型（1对1，1对多）。项目有以下的特征：
- * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制
- * 账号管理
- * 流量管理-到期自动、流量超标断开连接
- * 服务器管理 
- * 公告管理
- * 分权限
- * 邀请码注册
+ 同时支持多种转发流量模型（1对1，1对多）。
+ 
+  ## 特征：
+  * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制
+  * 账号管理
+  * 流量管理-到期自动、流量超标断开连接
+  * 服务器管理 
+  * 公告管理
+  * 分权限
+  * 邀请码注册
+  * 订阅
+  * 等级
  
  v2ray-web-manager 现阶段只支持v2ray-ws+vemss的模式。tls（https/wss）需要nginx，caddy等提供支持。
  
@@ -59,11 +63,23 @@
 
 ## 2.维护与治理 
 
-#### 数据库
+### 数据库
 
    数据库-默认情况下会在 `/opt/jar/db` 生成admin.db 定时保存就好
 
-#### 更新/升级
+### 更新/升级
+
+  #### [更新日志](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/updated-log.md)
+
+
+### 旧版升级到V3.0+ 特别注意说明
+
+#### 4.增强了ws接口的安全性。`原来的v2ray账号将失效`。
+
+#### 5. 配置文件的更新，统一/和新增了参数 ,`旧版配置文件需要升级到新版`，要不通讯出错、程序不能运行。
+
+
+
 
 + 关闭java服务
 
@@ -87,7 +103,7 @@
 
 
      
-#### 优化
+### 优化
    #### 减少java 内存占用
    
    1. 使用其他jre 如：[openj9-eclipse](https://www.eclipse.org/openj9/),
@@ -99,14 +115,14 @@
         
      
   ## 参数说明
-  #### 服务器配置参数
+  ### 服务器配置参数
    1.  访问域名 如：test.com ,v2ray客户端显示的名称，可以是域名/IP
     
    2. 访问端口  https tls ->443 ,或者其他80 etc
    
    3. v2rayTag  当前v2ray config.json下默认`6001` 
     
-  #### 账号参数
+  ### 账号参数
    1. 周期  结算周期 30 表示每30天，重置用户的流量统计
    
    2. 速率  1024KB/s ,单位KB/S
@@ -115,14 +131,14 @@
    
    4. 流量 周期内可用流量数，单位GB
   
-  #### 开启邀请码注册(release 大于 v2.0)
+  ### 开启邀请码注册(release 大于 v2.0)
    管理员登录->参数列表->需要邀请码才能注册吗？默认 `false` ，开启 `true`  
    
        次要选项: 用户能邀请其他人注册吗？默认 false ，开启 true 
         
 ## 测试
 
-#### 限速测试
+### 限速测试
     
    说明: 本地带宽下行50Mpbs,上行约8Mpbs。admin端限速2MB/S, 测试结果如图：
     

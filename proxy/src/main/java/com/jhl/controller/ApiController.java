@@ -52,20 +52,20 @@ public class ApiController {
         return Result.SUCCESS();
     }*/
 
-    @Deprecated
-    @ResponseBody
-    @GetMapping(value = "/connection/{accountNo}")
-    public Result getConnection(@PathVariable String accountNo) {
-        try {
-
-            Result success = Result.SUCCESS();
-            success.setObj(trafficControllerService.getChannelCount(accountNo));
-            return success;
-        } catch (Exception e) {
-            log.error("getConnection error :{}", e.getLocalizedMessage());
-            return Result.builder().code(500).message(e.getMessage()).build();
-        }
-    }
+//    @Deprecated
+//    @ResponseBody
+//    @GetMapping(value = "/connection/{accountNo}")
+//    public Result getConnection(@PathVariable String accountNo) {
+//        try {
+//
+//            Result success = Result.SUCCESS();
+//            success.setObj(trafficControllerService.getChannelCount(accountNo));
+//            return success;
+//        } catch (Exception e) {
+//            log.error("getConnection error :{}", e.getLocalizedMessage());
+//            return Result.builder().code(500).message(e.getMessage()).build();
+//        }
+//    }
 
 /*
     @PostConstruct

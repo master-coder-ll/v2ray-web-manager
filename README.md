@@ -87,9 +87,9 @@
 
 ```
     关闭 admin
-    # ps -ef | grep admin-1.0.jar
+    # ps -ef | grep admin-
     # kill [进程号]
-    # ps -ef | grep v2ray-proxy-1.0.jar
+    # ps -ef | grep v2ray-proxy-
     # kill [进程号]
  ```
 

@@ -1,0 +1,25 @@
+
+proxy:
+  authPassword: ''
+  localPort: 8081
+  maxConnections: 300
+
+
+
+logging:
+  file: /opt/jar/logs/v2ray-proxy.log
+  file.max-history: 7
+  level:
+    root: info
+manager:
+  #如果admin端不在本机需要修改
+  address: http://127.0.0.1:9091
+  getProxyAccountUrl: ${manager.address}/proxy/proxyAccount/ac?accountNo={accountNo}&domain={domain}
+  reportFlowUrl: ${manager.address}/report/flowStat
+  reportOverConnectionLimitUrl: ${manager.address}/report/connectionLimit?accountNo={accountNo}
+
+server:
+  port: 8091
+  tomcat:
+    max-threads: 1
+    min-threads: 1

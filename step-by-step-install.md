@@ -62,38 +62,41 @@
     
       下载配置文件->https://github.com/master-coder-ll/v2ray-web-manager/tree/master/conf
       使用 `wget -c 下载 conf目录下的3个配置文件`,下载完成 
-      # wget -c  https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/admin.properties
-      # wget -c https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/proxy.properties
+      # wget -c  https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/admin.yaml
+      # wget -c https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/admin.yaml
       # wget -c https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/config.json
        ```  
       按自己的情况，配置admin/proxy 配置文件,可以下载到你电脑修改后在上传`/opt/v2ray-manager/`,并且保持UTF-8的编码。
       
-      1. admin.properties 需要你手动配置的如下：
+      1. admin.yaml 需要你手动配置的如下：
         
-                #邮箱用户名
-                email.userName=
-                #密码
-                email.password=
-                #smtp地址
-                email.host=
-                #端口
-                email.port=465
+                email:
+                  #stmp地址
+                  host:
+                  #用户名称
+                  userName:
+                  #密码
+                  password:
+                  #端口
+                  port:
                 
-                #发送验证码模板
-                email.vCodeTemplate=你的验证码为: %s,请在10分钟内使用.
-                #proxy访问认证密码和admin端相同
-                proxy.authPassword=
+                proxy:
+                 #与porxy交互的密码，也是各种token的私钥
+                 authPassword: ''
+                 
+                admin:
+                  #第一次启动时候的账号和密码
+                  email: admin@admin.com
+                  password: 123456
                 
-                #admin 初始化生成的账号
-                admin.email=admin@admin.com
-                admin.password=1234567
-                
-      2. proxy.properties 需要你手动配置的如下：
+      2. proxy.yaml 需要你手动配置的如下：
          
-              proxy访问认证密码和admin端相同
-              proxy.authPassword=
-              #admin 管理地址和端口，如果admin端也在本机不需要修改
-              manager.address=http://127.0.0.1:9091
+            proxy:
+              authPassword: ''
+              
+            manager:
+                #如果admin端不在本机需要修改
+                address: http://127.0.0.1:9091
      
      我这里不需要注册用户，并且admin和proxy 都在本机 ，我只需要修改2个配置文件的`proxy.authPassword`为一个随机的字符串如`1234abc` 。并且管理员账号密码我也使用默认。
      

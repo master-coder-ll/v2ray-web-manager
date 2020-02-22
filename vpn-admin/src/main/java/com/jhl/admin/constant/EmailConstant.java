@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @ConfigurationProperties(prefix = "email")
-@PropertySource(value = {"classpath:application.properties"}, encoding = "utf-8")
 public class EmailConstant {
     private String userName;
     private String password;
@@ -18,4 +17,5 @@ public class EmailConstant {
     private  Integer port;
     private  String overdueDate;
     private  String exceedConnections;
+    private  Boolean startTlsEnabled;
 }

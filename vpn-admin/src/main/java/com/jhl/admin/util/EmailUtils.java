@@ -19,8 +19,12 @@ public class EmailUtils {
 
             HtmlEmail email = new HtmlEmail();
 
-        //    email.setSslSmtpPort(port+"");
+            // email.setSslSmtpPort(emailConstant.getPort()+"");
+            email.setSSLOnConnect(!emailConstant.getStartTlsEnabled());
+            email.setStartTLSEnabled(emailConstant.getStartTlsEnabled());
             email.setSmtpPort(emailConstant.getPort());
+            email.setDebug(true);
+
             email.setCharset("UTF-8");
             email.setHostName(emailConstant.getHost());
             email.setFrom(emailConstant.getUserName());
@@ -29,8 +33,8 @@ public class EmailUtils {
             email.setSubject(mailContent.getSubject());
             email.setTextMsg(mailContent.getMsg());
             // 不校验ssl
-            email.setSSLCheckServerIdentity(false);
-            email.setStartTLSEnabled(true);
+           // email.setSSLCheckServerIdentity(false);
+
             email.send();
 
         } catch (Exception e) {

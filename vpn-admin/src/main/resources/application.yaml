@@ -1,0 +1,59 @@
+admin:
+  email: admin@admin.com
+  password: 123456
+
+proxy:
+  authPassword: ''
+  subscriptionTemplate: /subscribe/%s?type=%s&timestamp=%s&token=%s
+
+email:
+  #stmp地址
+  host:
+  #用户名称
+  userName:
+  #密码
+  password:
+  #端口
+  port:
+  #默认false ,邮件不支持startTls不要开启
+  startTlsEnabled: false
+
+  exceedConnections: 你当前的连接数已经超过账号最大限制，当前风险系统自动降低你一半的连接数，并且持续一个小时;如果你在一个小时后，不在触发监控指标，你的账号连接数将恢复。
+  vCodeTemplate: '你的验证码为: %s,请在10分钟内使用'
+  overdueDate: 你的账号即将于：%s 过期，请留意续费。
+
+
+
+logging:
+  file: /opt/jar/logs/admin.log
+  file.max-history: 7
+  level:
+    root: info
+
+server:
+  port: 9091
+  tomcat:
+    max-threads: 5
+    min-threads: 2
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+    password: ''
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:sqlite:/opt/jar/db/admin.db
+    username: ''
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: com.jhl.admin.util.SQLiteDialect
+        enable_lazy_load_no_trans: true
+        format_sql: ''
+        show_sql: true

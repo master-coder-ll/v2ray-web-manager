@@ -114,10 +114,10 @@
      ```
       运行 admin
       #  mkdir /opt/jar/db -p  创建默认数据库目录
-      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m  /opt/v2ray-manager/admin-版本号.jar --spring.config.location=/opt/v2ray-manager/admin.properties > /dev/null 2>&1 &
+      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m  /opt/v2ray-manager/admin-版本号.jar --spring.config.location=/opt/v2ray-manager/admin.yaml > /dev/null 2>&1 &
       --- 
       运行 v2ray-proxy
-      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m /opt/v2ray-manager/v2ray-proxy-版本号.jar --spring.config.location=/opt/v2ray-manager/proxy.properties > /dev/null 2>&1 &
+      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m /opt/v2ray-manager/v2ray-proxy-版本号.jar --spring.config.location=/opt/v2ray-manager/proxy.yaml > /dev/null 2>&1 &
       
      ```
      

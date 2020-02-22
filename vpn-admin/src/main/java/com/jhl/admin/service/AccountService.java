@@ -96,10 +96,8 @@ public class AccountService {
         //判断是否需要生成新的stat
         statService.createStat(accountRepository.getOne(account.getId()));
         //删除事件
-        if (serverId != null) {
             proxyEventService.addProxyEvent(
                     proxyEventService.buildV2RayProxyEvent(old, ProxyEvent.RM_EVENT));
-        }
     }
     @Deprecated
     @Transactional

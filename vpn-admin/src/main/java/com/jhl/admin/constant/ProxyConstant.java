@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @ConfigurationProperties(prefix = "proxy")
-@PropertySource(value = {"classpath:application.properties"}, encoding = "utf-8")
 public class ProxyConstant {
     String authPassword;
     String subscriptionTemplate;

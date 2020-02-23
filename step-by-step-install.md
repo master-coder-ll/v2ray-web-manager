@@ -86,7 +86,7 @@
    ```  
   按自己的情况，配置admin/proxy 配置文件,可以下载到你电脑修改后在上传`/opt/jar/`,并且保持UTF-8的编码。
   
-  1. admin.yaml 需要你手动配置(`注意 host: 127.0.0.1 ，所有参数 key: value :都有一个空格 `) ：
+  1. admin.yaml 需要你手动配置(`注意，如：host: 127.0.0.1 ，所有参数 key: value ":"后面都有一个空格 `) ：
      
             email:
               #stmp地址

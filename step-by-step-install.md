@@ -29,7 +29,7 @@
        
 ####  2. 配置nginx
   ```  
-      # /etc/nginx/conf.d 进入到nginx配置文件夹
+      # cd /etc/nginx/conf.d 进入到nginx配置文件夹
       # vi v2ray-manager.conf  复制下面的配置 ,`i编辑`,`右键粘贴`各个ssh客户端可能不同。
       # `ESC ` `:wq` 退出并保存
          server {

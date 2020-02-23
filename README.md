@@ -66,27 +66,20 @@
 
    数据库-默认情况下会在 `/opt/jar/db` 生成admin.db 定时保存就好
 
-### 更新/升级
-
+### 升级
+   升级前先看更新日志
   #### [更新日志](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/updated-log.md)
 
 
-### 旧版升级到V3.0+ 特别注意说明
 
-#### 4.增强了ws接口的安全性。`原来的v2ray账号将失效`。
-
-#### 5. 配置文件的更新，统一/和新增了参数 ,`旧版配置文件需要升级到新版`，要不通讯出错、程序不能运行。
-
-
-
-1. 下载最新的release包
+   * 下载对应的release包
 
      [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
          
      [前端服务-releases页面](https://github.com/master-coder-ll/v2ray-manager-console/releases)
        
 
-2. 关闭java服务
+   * 关闭java服务
 
 ```
     关闭 admin
@@ -96,9 +89,8 @@
     # kill [进程号]
  ```
 
- 
-
-3. 重新启动服务
+   * [重新启动服务](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-install.md#5-%E8%BF%90%E8%A1%8Cjava)
+    
 
 
 

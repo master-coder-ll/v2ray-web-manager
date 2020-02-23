@@ -48,9 +48,9 @@
      # mkdir /opt/v2ray-manager -p  创建目录
      # cd /opt/v2ray-manager 
      下载releases 包,选择最新的release进行下载`wget -c [url] `,下面地址为自动获取最新的release,特定版本访问releases页面下载
-     # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin
-     # wget -c https://glare.now.sh/master-coder-ll/v2ray-manager-console/dist
-     # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy
+     # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin -O admin.jar
+     # wget -c https://glare.now.sh/master-coder-ll/v2ray-manager-console/dist -O dist.zip
+     # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy -O proxy.jar
       
      # unzip dist.zip  -d web  先解压web
       前端项目部署完成
@@ -114,10 +114,10 @@
      ```
       运行 admin
       #  mkdir /opt/jar/db -p  创建默认数据库目录
-      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m  /opt/v2ray-manager/admin-版本号.jar --spring.config.location=/opt/v2ray-manager/admin.yaml > /dev/null 2>&1 &
+      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m  /opt/v2ray-manager/admin.jar --spring.config.location=/opt/v2ray-manager/admin.yaml > /dev/null 2>&1 &
       --- 
       运行 v2ray-proxy
-      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m /opt/v2ray-manager/v2ray-proxy-版本号.jar --spring.config.location=/opt/v2ray-manager/proxy.yaml > /dev/null 2>&1 &
+      # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m /opt/v2ray-manager/v2ray-proxy.jar --spring.config.location=/opt/v2ray-manager/proxy.yaml > /dev/null 2>&1 &
       
      ```
      

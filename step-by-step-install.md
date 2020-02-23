@@ -38,34 +38,36 @@
           ```             
        
         * CentOS
-        ```
-            # /etc/nginx/conf.d 进入到nginx配置文件夹
-        ```
-        相同部分
-        ```
-          # vi v2ray-manager.conf  复制下面的配置 ,`i编辑`,`右键粘贴`各个ssh客户端可能不同。
-          # `ESC ` `:wq` 退出并保存
-             server {
-                     listen 80 ;
-                     server_name 127.0.0.1; #修改为自己的IP/域名 
-                      root /opt/jar/web;
-                    
-                     location /api {
-                                      proxy_pass http://127.0.0.1:9091/;
-                                    }
-                     location /ws/ {
-                                  proxy_redirect off;
-                                  proxy_pass http://127.0.0.1:8081;
-                                  proxy_http_version 1.1;
-                                  proxy_set_header Upgrade $http_upgrade;
-                                  proxy_set_header Connection "upgrade";
-                                  proxy_set_header Host $http_host;
-                                  proxy_set_header X-Real-IP $remote_addr;
-                                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                             } 
-             }
-          # nginx -s reload  没有报错，配置成功
-        ```
+            ```
+                # /etc/nginx/conf.d 进入到nginx配置文件夹
+            ```
+        * 相同部分
+            ```
+                          # vi v2ray-manager.conf  复制下面的配置 ,`i编辑`,`右键粘贴`各个ssh客户端可能不同。
+                          # `ESC ` `:wq` 退出并保存
+                             server {
+                                     listen 80 ;
+                                     server_name 127.0.0.1; #修改为自己的IP/域名 
+                                      root /opt/jar/web;
+                                    
+                                     location /api {
+                                                      proxy_pass http://127.0.0.1:9091/;
+                                                    }
+                                     location /ws/ {
+                                                  proxy_redirect off;
+                                                  proxy_pass http://127.0.0.1:8081;
+                                                  proxy_http_version 1.1;
+                                                  proxy_set_header Upgrade $http_upgrade;
+                                                  proxy_set_header Connection "upgrade";
+                                                  proxy_set_header Host $http_host;
+                                                  proxy_set_header X-Real-IP $remote_addr;
+                                                  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                                             } 
+                             }
+                          # nginx -s reload  没有报错，配置成功
+                        ```
+         
+            
   3. 下载文件releases文件
   
      [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)

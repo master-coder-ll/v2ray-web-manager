@@ -35,7 +35,7 @@
           # `ESC ` `:wq` 退出并保存
              server {
                      listen 80 ;
-                     server_name 127.0.0.1; #修改为自己的IP/域名 
+                     server_name 127.0.0.1; #--》修改为自己的IP/域名《-- 
                       root /opt/jar/web;
                     
                      location /api {

@@ -63,7 +63,7 @@
       下载配置文件->https://github.com/master-coder-ll/v2ray-web-manager/tree/master/conf
       使用 `wget -c 下载 conf目录下的3个配置文件`,下载完成 
       # wget -c  https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/admin.yaml
-      # wget -c https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/admin.yaml
+      # wget -c https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/proxy.yaml
       # wget -c https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/config.json
        ```  
       按自己的情况，配置admin/proxy 配置文件,可以下载到你电脑修改后在上传`/opt/v2ray-manager/`,并且保持UTF-8的编码。

@@ -89,7 +89,7 @@
     # kill [进程号]
  ```
 
-   * [重新启动服务](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-install.md#5-%E8%BF%90%E8%A1%8Cjava)
+   * [重新启动服务](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-install.md#6-%E8%BF%90%E8%A1%8Cjava)
     
 
 

@@ -2,7 +2,7 @@
 
  仅在CentOS7/ ubuntu 16 + 测试如下安装过程
 
-  1. 必要软件安装
+ #### 1. 必要软件安装
   
       * ubuntu    
         ```
@@ -27,7 +27,7 @@
          ```
        
        
-  2. 配置nginx
+####  2. 配置nginx
   
         ```  
           # /etc/nginx/conf.d 进入到nginx配置文件夹
@@ -56,7 +56,7 @@
         ```
          
             
-  3. 下载文件releases文件
+####  3. 下载文件releases文件
   
      [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
      
@@ -74,7 +74,7 @@
       前端项目部署完成
      
      ```
-  4. 配置
+####  4. 配置
      
         ```
     
@@ -127,7 +127,7 @@
         # service v2ray start   重启v2ray
        ```
      
-  5. 运行java
+####  5. 运行java
      
      ```
       运行 admin
@@ -138,7 +138,7 @@
       # nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=80m /opt/jar/v2ray-proxy.jar --spring.config.location=/opt/jar/proxy.yaml > /dev/null 2>&1 &
       
      ```
-  6. 查看日志
+####  6. 查看日志
     
     查看admin日志
     

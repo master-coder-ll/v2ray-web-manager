@@ -79,8 +79,14 @@
 
 
 
+1. 下载最新的release包
 
-+ 关闭java服务
+     [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
+         
+     [前端服务-releases页面](https://github.com/master-coder-ll/v2ray-manager-console/releases)
+       
+
+2. 关闭java服务
 
 ```
     关闭 admin
@@ -90,14 +96,9 @@
     # kill [进程号]
  ```
 
-+ 下载最新的release包
+ 
 
-     [java服务-releases页面](https://github.com/master-coder-ll/v2ray-web-manager/releases)
-         
-     [前端服务-releases页面](https://github.com/master-coder-ll/v2ray-manager-console/releases)
-        
-
-+ 重新启动
+3. 重新启动服务
 
 
 

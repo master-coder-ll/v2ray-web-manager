@@ -68,7 +68,7 @@
  下载releases 包,选择最新的release进行下载`wget -c [url] `,下面地址为自动获取最新的release,特定版本访问releases页面下载
  # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin -O admin.jar
  # wget -c https://glare.now.sh/master-coder-ll/v2ray-manager-console/dist -O dist.zip
- # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy -O proxy.jar
+ # wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy -O v2ray-proxy.jar
   
  # unzip dist.zip  -d web  先解压web
   前端项目部署完成
@@ -86,17 +86,20 @@
    ```  
   按自己的情况，配置admin/proxy 配置文件,可以下载到你电脑修改后在上传`/opt/jar/`,并且保持UTF-8的编码。
   
-  1. admin.yaml 需要你手动配置(`注意，如：host: 127.0.0.1 ，所有参数 key: value ":"后面都有一个空格 `) ：
-     
+  1. admin.yaml 需要你手动配置：
+         
+          # 所有参数:（冒号）后面都要有空格 
             email:
-              #stmp地址
-              host:
-              #用户名称
-              userName:
-              #密码
-              password:
-              #端口
-              port:
+               #stmp地址
+               host:
+               #用户名称
+               userName:
+               #密码
+               password:
+               #端口
+               port:
+               #默认false ,邮件不支持startTls不要开启
+               startTlsEnabled: false
             
             proxy:
              #与porxy交互的密码，也是各种token的私钥

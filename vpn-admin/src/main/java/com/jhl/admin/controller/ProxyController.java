@@ -13,6 +13,7 @@ import com.jhl.admin.service.StatService;
 import com.jhl.admin.service.v2ray.ProxyEvent;
 import com.jhl.admin.service.v2ray.ProxyEventService;
 import com.jhl.admin.service.v2ray.V2RayProxyEvent;
+import com.jhl.admin.service.v2ray.V2rayAccountService;
 import com.jhl.admin.util.Utils;
 import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
@@ -44,6 +45,8 @@ public class ProxyController {
     @Autowired
     UserRepository userRepository;
     private long G = 1024 * 1024 * 1024;
+    @Autowired
+    V2rayAccountService v2rayAccountService;
     /**
      * 获取一个proxyAccount
      *
@@ -87,8 +90,9 @@ public class ProxyController {
 
         User user = userRepository.findById(userId).orElse(null);
 
-        V2RayProxyEvent v2RayProxyEvent = new V2RayProxyEvent(null, server, account, user.getEmail(), null);
+        V2RayProxyEvent v2RayProxyEvent = new V2RayProxyEvent(null, server, account, user.getEmail(), null,v2rayAccountService);
         ProxyAccount proxyAccount = v2RayProxyEvent.buildProxyAccount();
+
         return Result.builder().code(Result.CODE_SUCCESS).obj(proxyAccount).build();
     }
 

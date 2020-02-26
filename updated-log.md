@@ -1,3 +1,8 @@
+## v3.0.4
+
+#### 1. 修复构建ProxyAccount 为空的情况 issue #25
+
+
 ## v3.0.3
 
 #### 1. 修复startTLS引起的邮件bug

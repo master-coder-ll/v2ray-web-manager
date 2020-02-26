@@ -1,6 +1,7 @@
 package com.jhl.admin.service.v2ray;
 
 import com.alibaba.fastjson.JSON;
+import com.jhl.admin.entity.V2rayAccount;
 import com.jhl.admin.model.Account;
 import com.jhl.admin.model.Server;
 import com.jhl.admin.model.User;
@@ -33,6 +34,9 @@ public class ProxyEventService {
     UserRepository userRepository;
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    V2rayAccountService v2rayAccountService;
 
     private LinkedBlockingQueue<ProxyEvent> queue = new LinkedBlockingQueue<>();
 
@@ -111,7 +115,7 @@ public class ProxyEventService {
         List<Server> servers = serverService.listByLevel(account.getLevel());
         List<V2RayProxyEvent> v2RayProxyEvents = new ArrayList<>(servers.size());
         for (Server server : servers)
-            v2RayProxyEvents.add(new V2RayProxyEvent(restTemplate, server, account, user.getEmail(), opName));
+            v2RayProxyEvents.add(new V2RayProxyEvent(restTemplate, server, account, user.getEmail(), opName, v2rayAccountService));
         return v2RayProxyEvents;
 
     }

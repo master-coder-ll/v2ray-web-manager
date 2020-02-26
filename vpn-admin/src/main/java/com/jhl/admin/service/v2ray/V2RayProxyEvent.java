@@ -1,7 +1,6 @@
 package com.jhl.admin.service.v2ray;
 
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.jhl.admin.entity.V2rayAccount;
 import com.jhl.admin.model.Account;
@@ -15,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import java.util.List;
 
@@ -88,13 +86,13 @@ public class V2RayProxyEvent implements ProxyEvent {
 
     public  ProxyAccount buildProxyAccount() {
         ProxyAccount proxyAccount = new ProxyAccount();
-        V2rayAccount v2rayAccount = JSON.parseObject(account.getContent(), V2rayAccount.class);
+        //V2rayAccount v2rayAccount = JSON.parseObject(account.getContent(), V2rayAccount.class);
         proxyAccount.setAccountId(account.getId());
         proxyAccount.setAccountNo(account.getAccountNo());
-        proxyAccount.setAlterId(Integer.valueOf(v2rayAccount.getAid()));
+      //  proxyAccount.setAlterId(64);
         proxyAccount.setDownTrafficLimit(account.getSpeed());
         proxyAccount.setEmail(email);
-        proxyAccount.setId(v2rayAccount.getId());
+        proxyAccount.setId(account.getUuid());
         proxyAccount.setInBoundTag(server.getInboundTag());
         proxyAccount.setMaxConnection(account.getMaxConnection());
         proxyAccount.setUpTrafficLimit(account.getSpeed());
@@ -115,6 +113,13 @@ public class V2RayProxyEvent implements ProxyEvent {
         }
 
         return urls;
+    }
+
+
+    public static void main(String[] args) {
+         V2rayAccount v2rayAccount =new V2rayAccount();
+
+        System.out.println(v2rayAccount.getAid());
     }
 
 }

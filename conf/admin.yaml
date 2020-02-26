@@ -9,14 +9,14 @@ proxy:
   subscriptionTemplate: /subscribe/%s?type=%s&timestamp=%s&token=%s
 
 email:
-  #stmp地址
-  host:
+  #smtp地址
+  host: 
   #用户名称
-  userName:
+  userName: 
   #密码
-  password:
+  password: 
   #端口
-  port:
+  port: 
   #默认false ,邮件不支持startTls不要开启
   startTlsEnabled: false
 

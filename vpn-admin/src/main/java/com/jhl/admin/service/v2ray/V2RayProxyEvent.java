@@ -9,6 +9,7 @@ import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -26,6 +27,7 @@ public class V2RayProxyEvent implements ProxyEvent {
     private Account account;
     private String email;
     private String event;
+    private V2rayAccountService v2rayAccountService;
 
 
     @Override
@@ -85,14 +87,18 @@ public class V2RayProxyEvent implements ProxyEvent {
     }
 
     public  ProxyAccount buildProxyAccount() {
+
+
         ProxyAccount proxyAccount = new ProxyAccount();
         //V2rayAccount v2rayAccount = JSON.parseObject(account.getContent(), V2rayAccount.class);
+        String id
+                =account.getUuid() ==null? v2rayAccountService.buildV2rayAccount(Lists.newArrayList(server), account).get(0).getId():account.getUuid();
         proxyAccount.setAccountId(account.getId());
         proxyAccount.setAccountNo(account.getAccountNo());
-      //  proxyAccount.setAlterId(64);
+        proxyAccount.setAlterId( 64);
         proxyAccount.setDownTrafficLimit(account.getSpeed());
         proxyAccount.setEmail(email);
-        proxyAccount.setId(account.getUuid());
+        proxyAccount.setId(id);
         proxyAccount.setInBoundTag(server.getInboundTag());
         proxyAccount.setMaxConnection(account.getMaxConnection());
         proxyAccount.setUpTrafficLimit(account.getSpeed());

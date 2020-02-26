@@ -86,17 +86,20 @@
    ```  
   按自己的情况，配置admin/proxy 配置文件,可以下载到你电脑修改后在上传`/opt/jar/`,并且保持UTF-8的编码。
   
-  1. admin.yaml 需要你手动配置(`注意，如：host: 127.0.0.1 ，所有参数 key: value ":"后面都有一个空格 `) ：
-     
+  1. admin.yaml 需要你手动配置：
+         
+          # 所有参数:（冒号）后面都要有空格 
             email:
-              #stmp地址
-              host:
-              #用户名称
-              userName:
-              #密码
-              password:
-              #端口
-              port:
+               #stmp地址
+               host:
+               #用户名称
+               userName:
+               #密码
+               password:
+               #端口
+               port:
+               #默认false ,邮件不支持startTls不要开启
+               startTlsEnabled: false
             
             proxy:
              #与porxy交互的密码，也是各种token的私钥

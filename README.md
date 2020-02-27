@@ -118,6 +118,12 @@
 ![测试1](https://www.speedtest.net/result/8927382635.png)
    
    测试结果：下行16.36/8=2.1 刚刚好是admin端配置的2MB/S。
+## 参与项目
+  * 查看项目的 [todo-list](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/todo-list.md),如果你有能力并且有时间可以实现 欢迎 pull request
+  * 任何issue/文档错误，你都可以pull request
+  * 想法/优化/新功能，先讨论在pull request 
+                
+
    
 ## 架构
 现在架构：

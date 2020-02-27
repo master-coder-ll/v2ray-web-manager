@@ -1,4 +1,4 @@
-[TOC]
+
 
 # 教程：使 V2ray 支持 WebService + TLS 模式
 
@@ -24,7 +24,9 @@
 
  略...
  
-#### 2.1.2 Linux命令行下使用acme.sh申请配置免费证书
+#### 2.1.2 私自颁发证书，套cloudflareCDN
+代教程-PR
+#### 2.1.3 Linux命令行下使用acme.sh申请配置免费证书
 
 **1. 安装 acme.sh**
 
@@ -110,7 +112,7 @@ server {
 server {
     listen 80;
     server_name XXXX.com;
-    return 301 https://XXXX.com$request_uri;
+    return 301 https:///$http_host$request_uri;
 }
 ```
 
@@ -127,7 +129,15 @@ nginx -s reload
 
 左菜单栏：【服务器】--【服务器列表】，
 
-寻找ip对应的服务器，将“访问域名”的值由 IP 修改为域名：XXXX.com
+寻找ip对应的服务器
+
+   * 访问域名-修改为：XXXX.com
+   * 访问端口-修改为：443
+   * 支持TLS-修改为： 是
+
+
+
+
 
 ## 4. 最后使用
 
@@ -136,6 +146,9 @@ nginx -s reload
 获取你的v2ray链接 或 订阅地址 吧！
 
 此时可以发现你的v2ray配置已经为 ws + tls 模式了！
+
+RP by @xifanu
+
 
 
 

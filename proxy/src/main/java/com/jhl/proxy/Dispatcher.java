@@ -94,19 +94,19 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 }
 
                 if (host == null) throw new NullPointerException("获取不到host信息");
-                String[] s = split[0].split(" ");
+                String[] path = split[0].split(" ");
 
-                String[] accountNoAndToken = s[1].split("/")[2].split(":");;
+                String[] accountNoAndToken = path[1].split("/")[2].split(":");;
 
                  accountNo= accountNoAndToken[0];
                 String requestToken=accountNoAndToken[1];
                 String  token= V2RayPathEncoder.encoder(accountNo, host, proxyConstant.getAuthPassword());
                 if (!requestToken.equals(token))throw new IllegalAccessException("非法访问,token检测不通过");
-                String path = s[1];
-                int pathLen = path.length();
+                String directory = path[1];
+                int directoryLen = directory.length();
                 //+1 因为 :占1
                 int length = requestToken.length()+accountNo.length() +1;
-                String rep = heads.replaceAll(path, path.substring(0, pathLen - (length + 1)));
+                String rep = heads.replaceAll(directory, directory.substring(0, directoryLen - (length + 1)));
                 //整形后的握手数据
 
                 handshakeByteBuf.writeBytes(rep.getBytes());
@@ -126,7 +126,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 log.info("当前连接数account:{},{}", getAccountId(), connections);
 
 
-                ProxyAccount proxyAccount = proxyAccountCache.get(accountNo,host);
+                ProxyAccount proxyAccount = proxyAccountCache.getOrRemoteAccess(accountNo,host);
                 if (proxyAccount == null) {
                     log.warn("获取不到账号");
                     ReferenceCountUtil.release(handshakeByteBuf);
@@ -228,8 +228,14 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
+                //todo 测试对正常连接的影响
+                if(proxyAccountCache.getOrRemoteAccess(accountNo, host)==null){
+                       closeOnFlush(ctx.channel());
+                }else {
+                    ctx.channel().read();
+                }
                 // was able to flush out data, start to read the next chunk
-                ctx.channel().read();
+
 
             } else {
                 future.channel().close();

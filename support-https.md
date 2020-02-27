@@ -147,7 +147,6 @@ nginx -s reload
 
 此时可以发现你的v2ray配置已经为 ws + tls 模式了！
 
-RP by @xifanu
 
 
 

@@ -90,14 +90,14 @@ public class AccountService {
         Validator.isNotNull(account.getId());
         account.setContent(null);
         account.setServerId(null);
-        Account old = accountRepository.findById(account.getId()).orElse(null);
-        Integer serverId = old.getServerId();
+
         accountRepository.save(account);
+        Account account1 = accountRepository.findById(account.getId()).orElse(null);
         //判断是否需要生成新的stat
         statService.createStat(accountRepository.getOne(account.getId()));
         //删除事件
             proxyEventService.addProxyEvent(
-                    proxyEventService.buildV2RayProxyEvent(old, ProxyEvent.RM_EVENT));
+                    proxyEventService.buildV2RayProxyEvent(account1, ProxyEvent.RM_EVENT));
     }
     @Deprecated
     @Transactional

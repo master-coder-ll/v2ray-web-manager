@@ -96,7 +96,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 if (host == null) throw new NullPointerException("获取不到host信息");
                 String[] path = split[0].split(" ");
 
-                String[] accountNoAndToken = path[1].split("/")[2].split(":");;
+                String[] accountNoAndToken = path[1].split("/")[2].split(":");
 
                  accountNo= accountNoAndToken[0];
                 String requestToken=accountNoAndToken[1];
@@ -187,7 +187,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 });
 
             } catch (Exception e) {
-                log.error("建立与v2ray连接阶段发送错误:{},e:{}", e);
+                log.error("建立与v2ray连接阶段发送错误e:{}", e);
                 if (handshakeByteBuf.refCnt() > 0) {
                     handshakeByteBuf.release(handshakeByteBuf.refCnt());
                 }
@@ -228,9 +228,8 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                //todo 测试对正常连接的影响
                 if(proxyAccountCache.getOrRemoteAccess(accountNo, host)==null){
-                       closeOnFlush(ctx.channel());
+                    future.channel().close();
                 }else {
                     ctx.channel().read();
                 }

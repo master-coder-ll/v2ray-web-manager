@@ -1,3 +1,8 @@
+## next versions
+
+#### 1.修复 issue #30
+
+
 ## v3.0.4
 
 #### 1. 修复构建ProxyAccount 为空的情况 issue #25

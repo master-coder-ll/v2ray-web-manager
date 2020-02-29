@@ -47,19 +47,19 @@ public class ProxyAccountCache {
         PA_MAP.put(getKey(proxyAccount.getAccountNo(), proxyAccount.getHost()), proxyAccount);
     }
 
-    public ProxyAccount get(String accountNo,String host) {
+    public ProxyAccount getOrRemoteAccess(String accountNo, String host) {
         ProxyAccount proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
 
         AtomicInteger reqCountObj = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
         int reqCount = reqCountObj == null ? 0 : reqCountObj.get();
         if (proxyAccount == null && reqCount < BEGIN_BLOCK) {
 
-            synchronized (SynchronizedInternerUtils.getInterner().intern(getKey(accountNo, host+":getRemotePAccount"))) {
+            synchronized (SynchronizedInternerUtils.getInterner().intern(getKey(accountNo, host + ":getRemotePAccount"))) {
 
                 proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
                 if (proxyAccount != null) return proxyAccount;
                 //远程请求，获取信息
-                proxyAccount = getRemotePAccount(accountNo,host);
+                proxyAccount = getRemotePAccount(accountNo, host);
 
                 //如果获取不到账号，增加错误次数
                 if (proxyAccount == null) {
@@ -92,7 +92,7 @@ public class ProxyAccountCache {
     }
 
 
-    private ProxyAccount getRemotePAccount(String accountNo,String host) {
+    private ProxyAccount getRemotePAccount(String accountNo, String host) {
         log.info("getRemotePAccount:{}", getKey(accountNo, host));
         HashMap<String, Object> kvMap = Maps.newHashMap();
         kvMap.put("accountNo", accountNo);
@@ -111,12 +111,17 @@ public class ProxyAccountCache {
         return JSON.parseObject(JSON.toJSONString(result.getObj()), ProxyAccount.class);
     }
 
-    public void rmProxyAccountCache(String accountNo,String host) {
+    public void rmProxyAccountCache(String accountNo, String host) {
         PA_MAP.invalidate(getKey(accountNo, host));
     }
 
     private String getKey(String accountNo, String host) {
-        return accountNo + ":"+host;
+        return accountNo + ":" + host;
+    }
+
+
+    public boolean containKey(String accountNo, String host) {
+        return PA_MAP.getIfPresent(getKey(accountNo, host)) != null;
     }
 
 }

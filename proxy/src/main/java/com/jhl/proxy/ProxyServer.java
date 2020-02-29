@@ -1,14 +1,18 @@
 package com.jhl.proxy;
 
 
-import com.jhl.constant.ProxyConstant;
-import com.jhl.service.TrafficControllerService;
 import com.jhl.cache.ProxyAccountCache;
+import com.jhl.constant.ProxyConstant;
+import com.jhl.service.ConnectionStatsService;
+import com.jhl.service.ReportService;
+import com.jhl.service.TrafficControllerService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +34,15 @@ public final class ProxyServer implements Runnable {
     ProxyAccountCache proxyAccountCache;
     @Autowired
     TrafficControllerService trafficControllerService;
+    @Autowired
+    ConnectionStatsService connectionStatsService;
     private static EventLoopGroup bossGroup = new NioEventLoopGroup(1);
     private static EventLoopGroup workerGroup = new NioEventLoopGroup();
 
+
     @Override
     public void run() {
-        log.info("Proxying *:" + proxyConstant.getLocalPort() + " to " + proxyConstant.getRemoteHost() + ':' + proxyConstant.getRemotePort() + " ...");
+        log.info("Proxying *:" + proxyConstant.getLocalPort() +  " ...");
 
         // Configure the bootstrap.
         try {
@@ -46,7 +53,11 @@ public final class ProxyServer implements Runnable {
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     //    .handler(new LoggingHandler(LogLevel.ERROR))
-                    .childHandler(new ProxyInitializer(proxyConstant, trafficControllerService, proxyAccountCache))
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                        protected void initChannel(SocketChannel ch) {
+                            ch.pipeline().addLast(new Dispatcher(proxyConstant,trafficControllerService,proxyAccountCache, connectionStatsService));
+                        }
+                    })
                     .childOption(ChannelOption.AUTO_READ, false)
                     .bind(proxyConstant.getLocalPort()).sync().channel().closeFuture().sync();
 
@@ -61,9 +72,13 @@ public final class ProxyServer implements Runnable {
     }
 
     @PreDestroy
-    public void preDestroy() {
+    public void preDestroy() throws InterruptedException {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
-        log.warn("spring 即将关闭，netty 关闭");
+        log.warn("netty 已经关闭....");
+
+        ReportService.destroy();
+        log.warn("ReportService 已经关闭....");
+
     }
 }

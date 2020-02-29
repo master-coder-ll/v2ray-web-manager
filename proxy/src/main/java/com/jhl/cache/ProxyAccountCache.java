@@ -47,7 +47,14 @@ public class ProxyAccountCache {
         PA_MAP.put(getKey(proxyAccount.getAccountNo(), proxyAccount.getHost()), proxyAccount);
     }
 
-    public ProxyAccount getOrRemoteAccess(String accountNo, String host) {
+    /**
+     * 如何缓存没有需要获得账号基本的锁，然后向远程请求数据。
+     *
+     * @param accountNo
+     * @param host
+     * @return  ProxyAccount or null
+     */
+    public ProxyAccount get(String accountNo, String host) {
         ProxyAccount proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
 
         AtomicInteger reqCountObj = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
@@ -73,9 +80,9 @@ public class ProxyAccountCache {
 
 
                 } else {
-                    //确保存在账号
                     addOrUpdate(proxyAccount);
                     try {
+                        //确保存在账号
                         v2rayService.addProxyAccount(proxyAccount.getV2rayHost(), proxyAccount.getV2rayManagerPort(), proxyAccount);
                     } catch (Exception e) {
                         log.warn("增加失败:{}", e.getLocalizedMessage());

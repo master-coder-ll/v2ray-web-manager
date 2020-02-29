@@ -42,7 +42,7 @@ public class ReportService<T extends Report> {
     }
 
 
-    private Thread workerThread = null;
+    private static Thread workerThread = null;
     private   static  boolean IS_SHUTDOWN=false;
     @PostConstruct
     public void start() {
@@ -57,7 +57,9 @@ public class ReportService<T extends Report> {
         while (true) {
             Report take = null;
             try {
+
                 if (IS_SHUTDOWN && REPORT_QUEUE.size()<=0) break;
+
                 take = REPORT_QUEUE.take();
                 //超过最大努力值不继续
                 if (take.getFailureTimes() > 80) {
@@ -79,10 +81,13 @@ public class ReportService<T extends Report> {
                 } else if (value instanceof ConnectionLimit) {
                     resultEt = restTemplate.getForEntity(managerConstant.getReportOverConnectionLimitUrl(),
                             Result.class, ((ConnectionLimit) value).getAccountNo());
+                }else {
+                    log.warn("不支持的上报类型");
+                    continue;
                 }
 
+
                 if (resultEt == null) {
-                    log.warn("不支持的上报类型");
                     continue;
                 }
                 if (!resultEt.getStatusCode().is2xxSuccessful()) {
@@ -132,11 +137,11 @@ public class ReportService<T extends Report> {
         log.warn("上报失败 等待：{}ms,{}", sleepTime, REPORT_QUEUE.offer(take));
     }
 
-    @PreDestroy
-    public void destroy() throws InterruptedException {
+    public static void destroy() throws InterruptedException {
 
         IS_SHUTDOWN=true;
         workerThread.interrupt();
+        Thread.sleep(100);
         if (REPORT_QUEUE.size()>0) {
             Thread.sleep(5000);
             REPORT_QUEUE.clear();

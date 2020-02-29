@@ -80,6 +80,7 @@ nginx -s reload
 # 创建目录
 mkdir /opt/jar -p
 cd /opt/jar 
+
 # 下载releases包
 wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/admin -O admin.jar
 wget -c https://glare.now.sh/master-coder-ll/v2ray-manager-console/dist -O dist.zip
@@ -87,19 +88,21 @@ wget -c https://glare.now.sh/master-coder-ll/v2ray-web-manager/v2ray-proxy -O v2
 
 # 解压前端到web文件夹
 unzip dist.zip  -d web
+
 #前端项目部署完成
 ```
 
 
 ####  4. 配置
      
-```
-# 下载配置文件
-# 管理服务配置文件
+```bash
+# 下载管理服务的配置文件
 wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/admin.yaml
-# 代理服务配置文件
+
+# 下载代理服务的配置文件
 wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/proxy.yaml
-# v2ray专用配置文件
+
+# 下载v2ra的y专用配置文件
 wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/config.json
 ```  
 
@@ -145,8 +148,10 @@ wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll
 ```bash
 # 备份默认v2ray默认配置
 mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
+
 # 复制配置到v2ray目录
 cp /opt/jar/config.json /etc/v2ray/
+
 # 重启v2ray
 service v2ray stop
 service v2ray start

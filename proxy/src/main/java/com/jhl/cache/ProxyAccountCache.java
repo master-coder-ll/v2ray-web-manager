@@ -5,10 +5,10 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Maps;
 import com.jhl.constant.ManagerConstant;
+import com.jhl.pojo.ProxyAccountWrapper;
 import com.jhl.service.ConnectionStatsService;
 import com.jhl.utils.SynchronizedInternerUtils;
 import com.jhl.v2ray.service.V2rayService;
-import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,20 +41,15 @@ public class ProxyAccountCache {
      * key:getKey(accountNo, host)
      * value: ProxyAccount
      */
-    private final Cache<String, ProxyAccount> PA_MAP = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(1, TimeUnit.HOURS).build();
+    private final Cache<String, ProxyAccountWrapper> PA_MAP = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(1, TimeUnit.HOURS).build();
     /**
      * 屏蔽无限刷admin端
      */
     private final Cache<String, AtomicInteger> REQUEST_ERROR_COUNT = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(2, TimeUnit.MINUTES).build();
-    /**
-     * 中断事件缓存，对连接中的连接，软响应rm事件
-     */
-    private final static Cache<String, Long>  INTERRUPT_CACHE = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.SECONDS).build();
 
-
-    public void addOrUpdate(ProxyAccount proxyAccount) {
+    public void addOrUpdate(ProxyAccountWrapper proxyAccount) {
         if (null == proxyAccount || proxyAccount.getAccountId() == null
-        ) throw new NullPointerException("ProxyAccount is null");
+        ) throw new NullPointerException("ProxyAccountWrapper is null");
 
         PA_MAP.put(getKey(proxyAccount.getAccountNo(), proxyAccount.getHost()), proxyAccount);
     }
@@ -66,8 +61,8 @@ public class ProxyAccountCache {
      * @param host
      * @return ProxyAccount or null
      */
-    public ProxyAccount getProxyAccount(String accountNo, String host) {
-        ProxyAccount proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
+    public ProxyAccountWrapper getProxyAccount(String accountNo, String host) {
+        ProxyAccountWrapper proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
 
         AtomicInteger reqCountObj = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
         int reqCount = reqCountObj == null ? 0 : reqCountObj.get();
@@ -79,7 +74,7 @@ public class ProxyAccountCache {
                 if (proxyAccount != null) return proxyAccount;
                 //远程请求，获取信息
                 proxyAccount = getRemotePAccount(accountNo, host);
-
+                proxyAccount.setVersion(System.currentTimeMillis());
                 //如果获取不到账号，增加错误次数
                 if (proxyAccount == null) {
                     AtomicInteger counter = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
@@ -111,7 +106,7 @@ public class ProxyAccountCache {
     }
 
 
-    private ProxyAccount getRemotePAccount(String accountNo, String host) {
+    private ProxyAccountWrapper getRemotePAccount(String accountNo, String host) {
         log.info("getRemotePAccount:{}", getKey(accountNo, host));
         HashMap<String, Object> kvMap = Maps.newHashMap();
         kvMap.put("accountNo", accountNo);
@@ -127,12 +122,11 @@ public class ProxyAccountCache {
             log.warn("getRemotePAccount  error:{}", JSON.toJSONString(result));
             return null;
         }
-        return JSON.parseObject(JSON.toJSONString(result.getObj()), ProxyAccount.class);
+        return JSON.parseObject(JSON.toJSONString(result.getObj()), ProxyAccountWrapper.class);
     }
 
     public void rmProxyAccountCache(String accountNo, String host) {
         String key = getKey(accountNo, host);
-        INTERRUPT_CACHE.put(key,System.currentTimeMillis());
         PA_MAP.invalidate(key);
     }
 
@@ -145,16 +139,18 @@ public class ProxyAccountCache {
         return PA_MAP.getIfPresent(getKey(accountNo, host)) != null;
     }
 
-    public  boolean isInterrupt(String accountNo, String host,Long createTime){
-/*        log.info("isInterrupt,accountNo:{},host:{},createTime:{},get(accountNo, host):{}"
-                ,accountNo,  host, createTime,INTERRUPT_CACHE.getIfPresent(get(accountNo, host)));*/
+    public boolean interrupted(String accountNo, String host, Long ctxContextVersion) {
 
-        if (accountNo==null || host==null) return true;
-        Long time = INTERRUPT_CACHE.getIfPresent(getKey(accountNo, host));
-        if (time ==null || time<createTime) return false;
+        ProxyAccountWrapper proxyAccountWrapper = PA_MAP.getIfPresent(getKey(accountNo, host));
+
+        if (proxyAccountWrapper == null) return true;
+
+        Long pxVersion = proxyAccountWrapper.getVersion();
+
+        if (pxVersion != null && pxVersion.equals(ctxContextVersion)) return false;
+
         return true;
     }
-
 
 
 }

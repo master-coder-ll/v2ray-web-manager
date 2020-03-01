@@ -1,8 +1,9 @@
 ## next versions
 
 #### 1.修复 issue #30
-
-
+#### 2.优化 report服务关闭应在netty关闭之后
+#### 3.优化快速响应admin端的事件
+#### 4.优化快速响应damin端速率修改的变化
 ## v3.0.4
 
 #### 1. 修复构建ProxyAccount 为空的情况 issue #25

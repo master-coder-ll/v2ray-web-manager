@@ -4,6 +4,7 @@ import com.jhl.cache.ConnectionLimitCache;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.constant.ProxyConstant;
 import com.jhl.pojo.ConnectionLimit;
+import com.jhl.pojo.ProxyAccountWrapper;
 import com.jhl.pojo.Report;
 import com.jhl.service.ConnectionStatsService;
 import com.jhl.service.ReportService;
@@ -50,7 +51,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     private boolean isHandshaking = true;
 
-    private Long createTime = null;
+    private Long version = null;
 
     private ConnectionStatsService connectionStatsService;
 
@@ -61,22 +62,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         this.proxyAccountCache = proxyAccountCache;
         this.connectionStatsService = connectionStatsService;
 
-    }
-
-    /**
-     * Closes the specified channel after all queued write requests are flushed.
-     */
-    static void closeOnFlush(Channel ch) {
-        if (ch.isActive()) {
-            ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
-        }
-    }
-
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        log.debug("active");
-        ctx.read();
-        createTime = System.currentTimeMillis();
     }
 
     @Override
@@ -113,9 +98,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
             try {
                 // 获取proxyAccount
-                ProxyAccount proxyAccount = getProxyAccount();
+                ProxyAccountWrapper proxyAccount = getProxyAccount();
 
-                if (proxyAccount == null || isConnectionFull(proxyAccount, ctx.channel())) {
+                if (proxyAccount == null || isConnectionFull(proxyAccount)) {
                     ReferenceCountUtil.release(handshakeByteBuf);
                     closeOnFlush(ctx.channel());
                     return;
@@ -191,7 +176,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param proxyAccount ProxyAccount
      * @return true is full
      */
-    private boolean isConnectionFull(ProxyAccount proxyAccount, Channel channel) {
+    private boolean isConnectionFull(ProxyAccount proxyAccount) {
         int connections = connectionStatsService.incrementAndGet(getAccountId());
         log.info("当前连接数account:{},{}", getAccountId(), connections);
         int maxConnection = ConnectionLimitCache.containKey(getAccountId()) ? Integer.valueOf(proxyAccount.getMaxConnection() / 2) : proxyAccount.getMaxConnection();
@@ -205,14 +190,15 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         return false;
     }
 
-    private ProxyAccount getProxyAccount() {
-        ProxyAccount proxyAccount = proxyAccountCache.getProxyAccount(accountNo, host);
+    private ProxyAccountWrapper getProxyAccount() {
+        ProxyAccountWrapper proxyAccount = proxyAccountCache.getProxyAccount(accountNo, host);
         if (proxyAccount == null) {
             log.warn("获取不到账号。。。");
             //ReferenceCountUtil.release(handshakeByteBuf);
             //  closeOnFlush(ctx.channel());
             return null;
         }
+         version=proxyAccount.getVersion();
         return proxyAccount;
     }
 
@@ -222,7 +208,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param ctx          ChannelHandlerContext
      * @param proxyAccount ProxyAccount
      */
-    private void attachTrafficController(ChannelHandlerContext ctx, ProxyAccount proxyAccount) {
+    private void attachTrafficController(ChannelHandlerContext ctx, ProxyAccountWrapper proxyAccount) {
         Long readLimit = proxyAccount.getUpTrafficLimit() * 1000;
         Long writeLimit = proxyAccount.getDownTrafficLimit() * 1000;
         //触发最大连接数，惩罚性减低连接数1小时
@@ -293,7 +279,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
     private String getAccountId() {
-        return accountNo + ":" + host;
+        return accountNo + ":" + host+":"+version;
     }
 
     private void reportConnectionLimit() {
@@ -310,7 +296,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
-        if (proxyAccountCache.isInterrupt(accountNo, host, createTime)) {
+        if (proxyAccountCache.interrupted(accountNo, host, version)) {
             log.info("当前连接因 rm事件中断...");
             closeOnFlush(ctx.channel());
             return;
@@ -385,6 +371,21 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         if (!(cause instanceof IOException)) log.error("exceptionCaught:", cause);
 
         closeOnFlush(ctx.channel());
+    }
+
+    /**
+     * Closes the specified channel after all queued write requests are flushed.
+     */
+    static void closeOnFlush(Channel ch) {
+        if (ch.isActive()) {
+            ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+        }
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        log.debug("active");
+        ctx.read();
     }
 
    /* public String convertByteBufToString(ByteBuf buf) {

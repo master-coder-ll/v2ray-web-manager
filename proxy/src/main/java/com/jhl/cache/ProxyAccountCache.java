@@ -5,6 +5,7 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Maps;
 import com.jhl.constant.ManagerConstant;
+import com.jhl.service.ConnectionStatsService;
 import com.jhl.utils.SynchronizedInternerUtils;
 import com.jhl.v2ray.service.V2rayService;
 import com.ljh.common.model.ProxyAccount;
@@ -32,12 +33,23 @@ public class ProxyAccountCache {
     RestTemplate restTemplate;
     @Autowired
     V2rayService v2rayService;
-
+    @Autowired
+    ConnectionStatsService connectionStatsService;
     private static final Short BEGIN_BLOCK = 3;
-    Cache<String, ProxyAccount> PA_MAP = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(1, TimeUnit.HOURS).build();
-    //  CacheBuilder<String, Object> block_account =    CacheBuilder<String, Object>.CacheBuilder
-    //accountno ,int
-    Cache<String, AtomicInteger> REQUEST_ERROR_COUNT = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(2, TimeUnit.MINUTES).build();
+    /**
+     * 缓存 ProxyAccount
+     * key:getKey(accountNo, host)
+     * value: ProxyAccount
+     */
+    private final Cache<String, ProxyAccount> PA_MAP = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(1, TimeUnit.HOURS).build();
+    /**
+     * 屏蔽无限刷admin端
+     */
+    private final Cache<String, AtomicInteger> REQUEST_ERROR_COUNT = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(2, TimeUnit.MINUTES).build();
+    /**
+     * 中断事件缓存，对连接中的连接，软响应rm事件
+     */
+    private final static Cache<String, Long>  INTERRUPT_CACHE = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.SECONDS).build();
 
 
     public void addOrUpdate(ProxyAccount proxyAccount) {
@@ -52,9 +64,9 @@ public class ProxyAccountCache {
      *
      * @param accountNo
      * @param host
-     * @return  ProxyAccount or null
+     * @return ProxyAccount or null
      */
-    public ProxyAccount get(String accountNo, String host) {
+    public ProxyAccount getProxyAccount(String accountNo, String host) {
         ProxyAccount proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
 
         AtomicInteger reqCountObj = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
@@ -119,7 +131,9 @@ public class ProxyAccountCache {
     }
 
     public void rmProxyAccountCache(String accountNo, String host) {
-        PA_MAP.invalidate(getKey(accountNo, host));
+        String key = getKey(accountNo, host);
+        INTERRUPT_CACHE.put(key,System.currentTimeMillis());
+        PA_MAP.invalidate(key);
     }
 
     private String getKey(String accountNo, String host) {
@@ -130,5 +144,17 @@ public class ProxyAccountCache {
     public boolean containKey(String accountNo, String host) {
         return PA_MAP.getIfPresent(getKey(accountNo, host)) != null;
     }
+
+    public  boolean isInterrupt(String accountNo, String host,Long createTime){
+/*        log.info("isInterrupt,accountNo:{},host:{},createTime:{},get(accountNo, host):{}"
+                ,accountNo,  host, createTime,INTERRUPT_CACHE.getIfPresent(get(accountNo, host)));*/
+
+        if (accountNo==null || host==null) return true;
+        Long time = INTERRUPT_CACHE.getIfPresent(getKey(accountNo, host));
+        if (time ==null || time<createTime) return false;
+        return true;
+    }
+
+
 
 }

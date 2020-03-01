@@ -1,5 +1,6 @@
 package com.jhl.service;
 
+import com.jhl.cache.ProxyAccountCache;
 import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +12,7 @@ import java.util.concurrent.ScheduledExecutorService;
 /**
  * TrafficControllerService 提供流量控制，
  * 每个账号持有生命周期内全局的  {@link GlobalTrafficShapingHandler}
- * todo 分布式流量控制 -never-分布式协调？
+ * todo 分布式流量控制
  */
 @Component
 public class TrafficControllerService {
@@ -20,9 +21,11 @@ public class TrafficControllerService {
 
     @Autowired
     ConnectionStatsService connectionStatsService;
-
+    @Autowired
+    ProxyAccountCache proxyAccountCache;
     /**
-     * 为每个账号增加或者获取又给 {@GlobalTrafficShapingHandler}
+     * 为每个账号增加或者获取旧的 {@GlobalTrafficShapingHandler}，
+     *
      * @param accountId accountId
      * @param executor   可定时的线程池
      * @param readLimit   读限制速度
@@ -31,6 +34,8 @@ public class TrafficControllerService {
      */
     public GlobalTrafficShapingHandler putIfAbsent(Object accountId, ScheduledExecutorService executor, Long readLimit, Long writeLimit) {
         Assert.notNull(accountId,"accountId must not be null");
+
+
         if (ACCOUNT_TRAFFIC_HANDLER_MAP.containsKey(accountId)) return ACCOUNT_TRAFFIC_HANDLER_MAP.get(accountId);
 
 
@@ -56,7 +61,7 @@ public class TrafficControllerService {
     public void releaseGroupGlobalTrafficShapingHandler(Object accountId) {
         Assert.notNull(accountId,"accountId must not be null");
         int connections = connectionStatsService.get(accountId);
-        if (connections == 0) return;
+        if (connections < 1) return;
         synchronized (accountId) {
 
             if (connections < 1) {

@@ -32,6 +32,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     private static final String HOST = "HOST";
     private static final Long MAX_INTERVAL_REPORT_TIME_MS = 1000 * 60 * 5L;
+
     /**
      * proxy端配置数据
      */
@@ -48,6 +49,8 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private String host;
 
     private boolean isHandshaking = true;
+
+    private Long createTime = null;
 
     private ConnectionStatsService connectionStatsService;
 
@@ -73,6 +76,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) {
         log.debug("active");
         ctx.read();
+        createTime = System.currentTimeMillis();
     }
 
     @Override
@@ -111,7 +115,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 // 获取proxyAccount
                 ProxyAccount proxyAccount = getProxyAccount();
 
-                if (proxyAccount == null || isConnectionFull(proxyAccount)) {
+                if (proxyAccount == null || isConnectionFull(proxyAccount, ctx.channel())) {
                     ReferenceCountUtil.release(handshakeByteBuf);
                     closeOnFlush(ctx.channel());
                     return;
@@ -145,7 +149,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     /**
      * 解析握手数据，并且生成新的握手数据
      *
-     * @param ctx  ChannelHandlerContext
+     * @param ctx ChannelHandlerContext
      * @param msg ByteBuf
      * @return newHeadPackage
      * @throws Exception
@@ -187,7 +191,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param proxyAccount ProxyAccount
      * @return true is full
      */
-    private boolean isConnectionFull(ProxyAccount proxyAccount) {
+    private boolean isConnectionFull(ProxyAccount proxyAccount, Channel channel) {
         int connections = connectionStatsService.incrementAndGet(getAccountId());
         log.info("当前连接数account:{},{}", getAccountId(), connections);
         int maxConnection = ConnectionLimitCache.containKey(getAccountId()) ? Integer.valueOf(proxyAccount.getMaxConnection() / 2) : proxyAccount.getMaxConnection();
@@ -202,7 +206,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
     private ProxyAccount getProxyAccount() {
-        ProxyAccount proxyAccount = proxyAccountCache.get(accountNo, host);
+        ProxyAccount proxyAccount = proxyAccountCache.getProxyAccount(accountNo, host);
         if (proxyAccount == null) {
             log.warn("获取不到账号。。。");
             //ReferenceCountUtil.release(handshakeByteBuf);
@@ -215,7 +219,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     /**
      * 为channel 增加对应的TrafficController
      *
-     * @param ctx ChannelHandlerContext
+     * @param ctx          ChannelHandlerContext
      * @param proxyAccount ProxyAccount
      */
     private void attachTrafficController(ChannelHandlerContext ctx, ProxyAccount proxyAccount) {
@@ -259,7 +263,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
             }
         });
     }
-
 
 
     /**
@@ -307,16 +310,14 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
+        if (proxyAccountCache.isInterrupt(accountNo, host, createTime)) {
+            log.info("当前连接因 rm事件中断...");
+            closeOnFlush(ctx.channel());
+            return;
+        }
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                if (proxyAccountCache.get(accountNo, host) == null) {
-                    future.channel().close();
-                } else {
                     ctx.channel().read();
-                }
-                // was able to flush out data, start to read the next chunk
-
-
             } else {
                 future.channel().close();
             }
@@ -325,7 +326,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-
         if (outboundChannel != null) {
             closeOnFlush(outboundChannel);
         }

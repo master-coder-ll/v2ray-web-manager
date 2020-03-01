@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -42,7 +43,7 @@ public final class ProxyServer implements Runnable {
 
     @Override
     public void run() {
-        log.info("Proxying *:" + proxyConstant.getLocalPort() +  " ...");
+        log.info("Proxying on:" + proxyConstant.getLocalPort() +  " ...");
 
         // Configure the bootstrap.
         try {
@@ -75,8 +76,8 @@ public final class ProxyServer implements Runnable {
     public void preDestroy() throws InterruptedException {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
+        workerGroup.awaitTermination(3, TimeUnit.SECONDS);
         log.warn("netty 已经关闭....");
-
         ReportService.destroy();
         log.warn("ReportService 已经关闭....");
 

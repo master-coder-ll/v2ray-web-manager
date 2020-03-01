@@ -3,6 +3,7 @@ package com.jhl.admin.controller;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.jhl.admin.Interceptor.PreAuth;
+import com.jhl.admin.VO.ChangePasswordVO;
 import com.jhl.admin.cache.UserCache;
 import com.jhl.admin.constant.enumObject.WebsiteConfigEnum;
 import com.jhl.admin.model.Account;
@@ -25,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -147,6 +149,20 @@ public class UserController {
     public Result forgot(@RequestBody User user, String vCode) {
         user.setVCode(vCode);
         userService.changePassword(user);
+        return Result.SUCCESS();
+    }
+
+    /**
+     * 使用原密码修改密码
+     * @return
+     */
+    @PreAuth("vip")
+    @PostMapping("/change-password")
+    public Result changePassword(@RequestBody ChangePasswordVO changePasswordVO ,@CookieValue(value = COOKIE_NAME, defaultValue = "") String auth) {
+        Assert.notNull(changePasswordVO, "参数不能为空");
+        User user = userCache.getCache(auth);
+        Integer id = user.getId();
+        userService.changePassword(id,changePasswordVO.getOldPassword(),changePasswordVO.getNewPassword());
         return Result.SUCCESS();
     }
 

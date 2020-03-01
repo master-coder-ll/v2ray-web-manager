@@ -57,13 +57,32 @@ public class UserService {
         if (dbUser == null) {
             throw new NullPointerException("用户不存在");
         }
-        User newUser = User.builder().password(DigestUtils.md5Hex(user.getPassword()))
+        User newUser = User.builder().password(encodePassword(user.getPassword()))
                 .build();
         newUser.setId(dbUser.getId());
         userRepository.save(newUser);
         //删除访问限制
         defendBruteForceAttackUser.rmCache(user.getEmail());
+    }
 
+    /**
+     * @param userId
+     * @param oldPw  旧密码
+     * @param newPw  新你们
+     */
+    public void changePassword(Integer userId, String oldPw, String newPw) {
+        Validator.isNotNull(userId);
+        Validator.isNotNull(oldPw);
+        Validator.isNotNull(newPw);
+        User user = userRepository.findById(userId).orElse(null);
+        if (user == null) {
+            throw new NullPointerException("用户不存在");
+        }
+        String password = user.getPassword();
+
+        if (!encodePassword(oldPw).equals(password)) throw new RuntimeException("旧密码不正确");
+            user.setPassword(encodePassword(newPw));
+        userRepository.save(user);
     }
 
     public void create(User user) {
@@ -112,11 +131,11 @@ public class UserService {
 
 
     public User getUserButRemovePW(
-            Integer id  ) {
+            Integer id) {
 
         User user = get(id);
-        if (user !=null)
-        user.setPassword(null);
+        if (user != null)
+            user.setPassword(null);
         return user;
     }
 
@@ -125,5 +144,9 @@ public class UserService {
         user.setId(userId);
         user.setRemark(remark);
         userRepository.save(user);
+    }
+
+    public String encodePassword(String pw) {
+        return DigestUtils.md5Hex(pw);
     }
 }

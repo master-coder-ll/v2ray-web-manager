@@ -297,7 +297,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
         if (proxyAccountCache.interrupted(accountNo, host, version)) {
-            log.info("当前连接因 rm事件中断...");
+            log.info("当前连接因:版本号不对");
             closeOnFlush(ctx.channel());
             return;
         }

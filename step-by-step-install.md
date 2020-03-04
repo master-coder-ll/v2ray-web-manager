@@ -102,7 +102,7 @@ wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll
 # 下载代理服务的配置文件
 wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/proxy.yaml
 
-# 下载v2ra的y专用配置文件
+# 下载v2ray的专用配置文件
 wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll/v2ray-web-manager/master/conf/config.json
 ```  
 

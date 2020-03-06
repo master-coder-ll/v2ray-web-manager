@@ -1,4 +1,4 @@
-## next versions
+## Next version
 
 #### 1.修复 account获取不到引起的空指针
 ## v3.1.0

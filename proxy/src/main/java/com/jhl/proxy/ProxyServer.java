@@ -8,9 +8,7 @@ import com.jhl.service.ReportService;
 import com.jhl.service.TrafficControllerService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -44,7 +42,7 @@ public final class ProxyServer {
 
     @PostConstruct
     public void initNettyServer() {
-        log.info("Proxying on:" + proxyConstant.getLocalPort() +  " ...");
+
 
         // Configure the bootstrap.
         try {
@@ -62,12 +60,10 @@ public final class ProxyServer {
                         }
                     })
                     .childOption(ChannelOption.AUTO_READ, false)
-                    .bind(proxyConstant.getLocalPort()).sync().channel()
-                    .closeFuture().
-                    addListener(future -> {
-                       ReportService.destroy();
-                        log.warn("ReportService 已经关闭....");
-                    });
+                    .bind(proxyConstant.getLocalPort()).sync()
+                    .addListener((ChannelFutureListener) future -> log.info("Proxying on:" + proxyConstant.getLocalPort() +  " ..."));
+
+
 
         } catch (Exception e) {
             log.error("netty start exception:{}", e);
@@ -76,10 +72,12 @@ public final class ProxyServer {
 
 
     @PreDestroy
-    public void preDestroy()   {
+    public void preDestroy() throws InterruptedException {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
         log.warn("netty 已经关闭....");
+        ReportService.destroy();
+        log.warn("ReportService 已经关闭....");
 
 
     }

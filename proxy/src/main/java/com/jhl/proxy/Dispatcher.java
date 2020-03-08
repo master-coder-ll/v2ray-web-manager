@@ -18,6 +18,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
+import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import io.netty.handler.traffic.TrafficCounter;
 import io.netty.util.ReferenceCountUtil;
@@ -228,7 +229,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param proxyAccount
      */
     private void sendNewPackageToClient(ChannelHandlerContext ctx, ByteBuf handshakeByteBuf, Channel inboundChannel, ProxyAccount proxyAccount) {
-        Bootstrap b = getMuxClient(ctx, inboundChannel);
+        Bootstrap b = getMuxClient(inboundChannel);
 
         ChannelFuture f = b.connect(proxyAccount.getV2rayHost(), proxyAccount.getV2rayPort());
         outboundChannel = f.channel();
@@ -245,22 +246,15 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         });
     }
 
-    private static Bootstrap b = null;
 
-    private Bootstrap getMuxClient(ChannelHandlerContext ctx, Channel inboundChannel) {
+    private Bootstrap getMuxClient( Channel inboundChannel) {
 
-        if (b == null) {
-            synchronized (Dispatcher.class) {
-                if (b != null) return b;
-                b = new Bootstrap();
-                b.option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(true));
-                b.group(inboundChannel.eventLoop())
-                        .channel(ctx.channel().getClass())
-                        .handler(new Receiver(inboundChannel))
-                        .option(ChannelOption.AUTO_READ, false);
-            }
-
-        }
+        Bootstrap b = new Bootstrap();
+        b.group(inboundChannel.eventLoop())
+                .channel(NioSocketChannel.class)
+                .handler(new Receiver(inboundChannel))
+                .option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(true))
+                .option(ChannelOption.AUTO_READ, false);
         return b;
 
 

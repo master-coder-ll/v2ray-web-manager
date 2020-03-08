@@ -248,11 +248,11 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private static Bootstrap b = null;
 
     private Bootstrap getMuxClient(ChannelHandlerContext ctx, Channel inboundChannel) {
-        if (b != null) return b;
-        else {
+
+        if (b == null) {
             synchronized (Dispatcher.class) {
                 if (b != null) return b;
-                 b = new Bootstrap();
+                b = new Bootstrap();
                 b.option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(true));
                 b.group(inboundChannel.eventLoop())
                         .channel(ctx.channel().getClass())
@@ -260,8 +260,8 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                         .option(ChannelOption.AUTO_READ, false);
             }
 
-            return b;
         }
+        return b;
 
 
     }

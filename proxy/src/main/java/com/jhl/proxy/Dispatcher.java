@@ -198,7 +198,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
             //  closeOnFlush(ctx.channel());
             return null;
         }
-         version=proxyAccount.getVersion();
+        version = proxyAccount.getVersion();
         return proxyAccount;
     }
 
@@ -228,12 +228,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param proxyAccount
      */
     private void sendNewPackageToClient(ChannelHandlerContext ctx, ByteBuf handshakeByteBuf, Channel inboundChannel, ProxyAccount proxyAccount) {
-        Bootstrap b = new Bootstrap();
-        b.option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
-        b.group(inboundChannel.eventLoop())
-                .channel(ctx.channel().getClass())
-                .handler(new Receiver(inboundChannel))
-                .option(ChannelOption.AUTO_READ, false);
+        Bootstrap b = getMuxClient(ctx, inboundChannel);
 
         ChannelFuture f = b.connect(proxyAccount.getV2rayHost(), proxyAccount.getV2rayPort());
         outboundChannel = f.channel();
@@ -248,6 +243,27 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 inboundChannel.close();
             }
         });
+    }
+
+    private static Bootstrap b = null;
+
+    private Bootstrap getMuxClient(ChannelHandlerContext ctx, Channel inboundChannel) {
+        if (b != null) return b;
+        else {
+            synchronized (Dispatcher.class) {
+                if (b != null) return b;
+                 b = new Bootstrap();
+                b.option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(true));
+                b.group(inboundChannel.eventLoop())
+                        .channel(ctx.channel().getClass())
+                        .handler(new Receiver(inboundChannel))
+                        .option(ChannelOption.AUTO_READ, false);
+            }
+
+            return b;
+        }
+
+
     }
 
 
@@ -279,7 +295,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
     private String getAccountId() {
-        return accountNo + ":" + host+":"+version;
+        return accountNo + ":" + host + ":" + version;
     }
 
     private void reportConnectionLimit() {
@@ -303,7 +319,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         }
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                    ctx.channel().read();
+                ctx.channel().read();
             } else {
                 future.channel().close();
             }

@@ -33,8 +33,7 @@ public class ProxyAccountCache {
     RestTemplate restTemplate;
     @Autowired
     V2rayService v2rayService;
-    @Autowired
-    ConnectionStatsService connectionStatsService;
+   
     private static final Short BEGIN_BLOCK = 3;
     /**
      * 缓存 ProxyAccount

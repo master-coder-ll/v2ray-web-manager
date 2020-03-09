@@ -43,7 +43,7 @@ public class ReportService<T extends Report> {
 
 
     private static Thread workerThread = null;
-    private   static  boolean IS_SHUTDOWN=false;
+    private  volatile static  boolean IS_SHUTDOWN=false;
     @PostConstruct
     public void start() {
         workerThread = new Thread(() -> {

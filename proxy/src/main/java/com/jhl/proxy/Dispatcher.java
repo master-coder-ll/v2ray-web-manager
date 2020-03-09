@@ -246,9 +246,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         });
     }
 
-
-    private Bootstrap getMuxClient( Channel inboundChannel) {
-
+    private Bootstrap getMuxClient(Channel inboundChannel) {
         Bootstrap b = new Bootstrap();
         b.group(inboundChannel.eventLoop())
                 .channel(NioSocketChannel.class)

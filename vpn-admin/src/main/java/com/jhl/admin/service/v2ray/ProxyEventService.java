@@ -106,7 +106,6 @@ public class ProxyEventService {
             Account builder = Account.builder().build();
             builder.setId(account.getId());
             account = accountRepository.findOne(Example.of(builder)).orElse(null);
-            serverId = account.getServerId();
         }
 
         Integer userId = account.getUserId();

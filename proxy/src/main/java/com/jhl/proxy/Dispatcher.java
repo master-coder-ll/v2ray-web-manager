@@ -3,6 +3,7 @@ package com.jhl.proxy;
 import com.jhl.cache.ConnectionLimitCache;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.constant.ProxyConstant;
+import com.jhl.exception.ReleaseDirectMemoryException;
 import com.jhl.pojo.ConnectionLimit;
 import com.jhl.pojo.ProxyAccountWrapper;
 import com.jhl.pojo.Report;
@@ -92,10 +93,11 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 closeOnFlush(ctx.channel());
                 return;
             } finally {
-                //释放就的握手数据，防止内存溢出
+                //释放握手数据，防止内存溢出
                 ReferenceCountUtil.release(msg);
             }
 
+            //step2
 
             try {
                 // 获取proxyAccount
@@ -113,9 +115,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
             } catch (Exception e) {
                 log.error("建立与v2ray连接阶段发送错误e:{}", e);
-                if (handshakeByteBuf.refCnt() > 0) {
-                    handshakeByteBuf.release(handshakeByteBuf.refCnt());
-                }
+                release(handshakeByteBuf);
                 closeOnFlush(ctx.channel());
             } finally {
                 isHandshaking = false;
@@ -123,13 +123,31 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
 
         } else {
+            try {
+                if (outboundChannel.isActive()) {
+                    writeToOutBoundChannel(msg, ctx);
+                }
+            } catch (Exception e) {
 
-            if (outboundChannel.isActive()) {
-                writeToOutBoundChannel(msg, ctx);
+                if (!(e instanceof ReleaseDirectMemoryException)) {
+                    log.error("数据交互发生异常：{}", e);
+                }
+
+                release((ByteBuf) msg);
+                closeOnFlush(ctx.channel());
             }
+
         }
 
 
+    }
+
+    private void release(ByteBuf msg) {
+        if (msg == null) return;
+        ByteBuf byteBuf = msg;
+        if (byteBuf.refCnt() > 0) {
+            byteBuf.release(byteBuf.refCnt());
+        }
     }
 
     /**
@@ -228,20 +246,18 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param inboundChannel
      * @param proxyAccount
      */
-    private void sendNewPackageToClient(ChannelHandlerContext ctx, ByteBuf handshakeByteBuf, Channel inboundChannel, ProxyAccount proxyAccount) {
+    private void sendNewPackageToClient(ChannelHandlerContext ctx, final ByteBuf handshakeByteBuf, Channel inboundChannel, ProxyAccount proxyAccount) {
         Bootstrap b = getMuxClient(inboundChannel);
 
         ChannelFuture f = b.connect(proxyAccount.getV2rayHost(), proxyAccount.getV2rayPort());
         outboundChannel = f.channel();
-        final ByteBuf handshakeByteBuf2 = handshakeByteBuf;
         f.addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
-                // connection complete start to read first data
-                writeToOutBoundChannel(handshakeByteBuf2, ctx);
-
+                writeToOutBoundChannel(handshakeByteBuf, ctx);
             } else {
-                // Close the connection if the connection attempt has failed.
+                release(handshakeByteBuf);
                 inboundChannel.close();
+
             }
         });
     }
@@ -303,11 +319,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         }
     }
 
-    private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) {
+    private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) throws ReleaseDirectMemoryException {
         if (proxyAccountCache.interrupted(accountNo, host, version)) {
-            log.info("当前连接因:版本号不对");
-            closeOnFlush(ctx.channel());
-            return;
+            throw new ReleaseDirectMemoryException("【当前版本已经更新】抛出异常。统一内存释放");
         }
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {

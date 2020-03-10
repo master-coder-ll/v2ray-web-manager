@@ -31,6 +31,8 @@ public class V2rayService {
             AlterInboundRequest req = AlterInboundRequest.newBuilder().setTag(proxyAccount.getInBoundTag()).setOperation(rmOp).build();
             client.getHandlerServiceBlockingStub().alterInbound(req);
         } catch (Exception e) {
+            if (e.getLocalizedMessage().contains("not found"))return;
+
             log.error("rmProxyAccount error:{},{}", e.getLocalizedMessage(), new Gson().toJson(proxyAccount));
         }
     }
@@ -54,6 +56,7 @@ public class V2rayService {
             client.getHandlerServiceBlockingStub().alterInbound(AlterInboundRequest.newBuilder().setTag(proxyAccount.getInBoundTag()).setOperation(typedMessage).build())
             ;
         } catch (Exception e) {
+            if (e.getLocalizedMessage().contains("already exists")) return;
             log.error("addProxyAccount error:{},{}", e.getLocalizedMessage(), new Gson().toJson(proxyAccount));
 
         }

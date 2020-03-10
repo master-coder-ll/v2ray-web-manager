@@ -132,7 +132,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 if (!(e instanceof ReleaseDirectMemoryException)) {
                     log.error("数据交互发生异常：{}", e);
                 }
-
                 release((ByteBuf) msg);
                 closeOnFlush(ctx.channel());
             }

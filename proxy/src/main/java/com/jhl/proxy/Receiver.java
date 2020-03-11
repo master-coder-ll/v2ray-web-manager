@@ -1,6 +1,7 @@
 package com.jhl.proxy;
 
 import io.netty.channel.*;
+import io.netty.util.ReferenceCountUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -25,17 +26,19 @@ public class Receiver extends ChannelInboundHandlerAdapter {
             } else {
                 future.channel().close();
             }
+
         });
     }
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
+
         Dispatcher.closeOnFlush(inboundChannel);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        log.info(" HexDumpProxyBackendHandler exceptionCaught:{}", cause);
+        log.info(" Receiver exceptionCaught:{}", cause);
         Dispatcher.closeOnFlush(ctx.channel());
     }
 }

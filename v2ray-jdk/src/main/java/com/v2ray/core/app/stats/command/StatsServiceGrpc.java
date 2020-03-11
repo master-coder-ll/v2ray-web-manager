@@ -10,9 +10,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 /**
  *
  */
-@javax.annotation.Generated(
-        value = "by gRPC proto compiler (version 1.21.0)",
-        comments = "Source: v2ray.com/core/app/stats/command/command.proto")
+
 public final class StatsServiceGrpc {
 
     private StatsServiceGrpc() {

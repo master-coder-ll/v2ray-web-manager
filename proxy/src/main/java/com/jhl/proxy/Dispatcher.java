@@ -87,6 +87,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 handshakeByteBuf = parse(ctx, msg);
 
             } catch (Exception e) {
+                if (!(e instanceof  ReleaseDirectMemoryException))
                 log.warn("解析阶段发生错误:{},e:{}", ((ByteBuf) msg).toString(Charset.defaultCharset()), e.getLocalizedMessage());
                 if (handshakeByteBuf != null)
                     ReferenceCountUtil.release(handshakeByteBuf);
@@ -103,7 +104,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 // 获取proxyAccount
                 ProxyAccountWrapper proxyAccount = getProxyAccount();
 
-                if (proxyAccount == null || isConnectionFull(proxyAccount)) {
+                if (proxyAccount == null || isFull(proxyAccount)) {
                     ReferenceCountUtil.release(handshakeByteBuf);
                     closeOnFlush(ctx.channel());
                     return;
@@ -169,7 +170,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         //50001:token/
         String[] accountNoAndToken = requestRow[1].split("/")[2].split(":");
 
-        if (accountNoAndToken.length < 2) throw new UnsupportedOperationException("旧版接入不在支持");
+        if (accountNoAndToken.length < 2) throw new NullPointerException("旧版接入不在支持");
 
         accountNo = accountNoAndToken[0];
 
@@ -194,7 +195,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param proxyAccount ProxyAccount
      * @return true is full
      */
-    private boolean isConnectionFull(ProxyAccount proxyAccount) {
+    private boolean isFull(ProxyAccount proxyAccount) {
         int connections = connectionStatsService.incrementAndGet(getAccountId());
         log.info("当前连接数account:{},{}", getAccountId(), connections);
         int maxConnection = ConnectionLimitCache.containKey(getAccountId()) ? Integer.valueOf(proxyAccount.getMaxConnection() / 2) : proxyAccount.getMaxConnection();

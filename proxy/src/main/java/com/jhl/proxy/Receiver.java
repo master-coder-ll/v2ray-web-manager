@@ -24,10 +24,10 @@ public class Receiver extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(final ChannelHandlerContext ctx, Object msg) {
         try {
+           // log.info("Receiver len:"+((ByteBuf)msg).readableBytes()+"B");
             inboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
                 //writeAndFlush 已经回收内存的了，确保内存再次回收把
                 release((ByteBuf) msg);
-
                 if (future.isSuccess()) {
                     ctx.channel().read();
                 } else {
@@ -35,7 +35,6 @@ public class Receiver extends ChannelInboundHandlerAdapter {
                 }
 
             });
-            release((ByteBuf) msg);
         } catch (Exception e) {
             release((ByteBuf) msg);
             Dispatcher.closeOnFlush(ctx.channel());
@@ -46,7 +45,6 @@ public class Receiver extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-
         Dispatcher.closeOnFlush(inboundChannel);
     }
 

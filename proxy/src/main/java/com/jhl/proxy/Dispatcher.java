@@ -68,7 +68,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(final ChannelHandlerContext ctx, final Object msg) {
+       // log.info("Dispatcher len:"+((ByteBuf)msg).readableBytes()+"B");
         if (isHandshaking) {
+
             /**
              * PooledUnsafeDirectByteBuf(ridx: 0, widx: 188, cap: 1024)
              *

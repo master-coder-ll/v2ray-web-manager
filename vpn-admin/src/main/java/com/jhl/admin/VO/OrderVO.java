@@ -1,20 +1,20 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "t_order")
 @Data
-public class Order extends BaseEntity implements Serializable {
-    @Column(unique = true)
+public class OrderVO extends BaseEntityVO implements Serializable {
     private String orderNo;
     private Integer packageId;
     private Integer price;

@@ -3,15 +3,14 @@ package com.jhl.admin.controller;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.jhl.admin.Interceptor.PreAuth;
+import com.jhl.admin.VO.AccountVO;
+import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.UserCache;
 import com.jhl.admin.constant.KVConstant;
 import com.jhl.admin.constant.enumObject.StatusEnum;
 import com.jhl.admin.constant.enumObject.WebsiteConfigEnum;
 import com.jhl.admin.entity.V2rayAccount;
-import com.jhl.admin.model.Account;
-import com.jhl.admin.model.Server;
-import com.jhl.admin.model.ServerConfig;
-import com.jhl.admin.model.User;
+import com.jhl.admin.model.*;
 import com.jhl.admin.repository.AccountRepository;
 import com.jhl.admin.repository.ServerRepository;
 import com.jhl.admin.service.AccountService;
@@ -67,9 +66,9 @@ public class AccountController {
     @PreAuth("admin")
     @ResponseBody
     @PostMapping("/account")
-    public Result createAccount(@RequestBody Account account) {
+    public Result createAccount(@RequestBody AccountVO account) {
         if (account == null || account.getUserId() == null) throw new NullPointerException("不能为空");
-        accountService.create(account);
+        accountService.create(account.toModel(Account.class));
         return Result.SUCCESS();
     }
 
@@ -82,9 +81,9 @@ public class AccountController {
     @PreAuth("admin")
     @ResponseBody
     @PutMapping("/account")
-    public Result updateAccount(@RequestBody Account account) {
+    public Result updateAccount(@RequestBody AccountVO account) {
         if (account == null || account.getId() == null) throw new NullPointerException("不能为空");
-        accountService.updateAccount(account);
+        accountService.updateAccount(account.toModel(Account.class));
         return Result.SUCCESS();
     }
 
@@ -100,7 +99,7 @@ public class AccountController {
     @GetMapping("/account/v2rayAccount")
     public Result getV2rayAccount(Integer serverId, @CookieValue(KVConstant.COOKIE_NAME) String auth) {
         Validator.isNotNull(serverId);
-        User user = userCache.getCache(auth);
+        UserVO user = userCache.getCache(auth);
         Account account = accountService.getAccount(user.getId());
         if (account == null) return Result.builder().code(500).message("账号不存在").build();
 
@@ -120,9 +119,9 @@ public class AccountController {
     @PreAuth("vip")
     @ResponseBody
     @PutMapping("/account/server")
-    public Result updateAccountServer(@RequestBody Account account) {
+    public Result updateAccountServer(@RequestBody AccountVO account) {
         if (account == null || account.getId() == null) throw new NullPointerException("不能为空");
-        accountService.updateAccountServer(account);
+        accountService.updateAccountServer(account.toModel(Account.class));
         return Result.SUCCESS();
     }
 
@@ -136,11 +135,11 @@ public class AccountController {
     @GetMapping("/account/{id}")
     public Result get(@CookieValue(KVConstant.COOKIE_NAME) String auth, @PathVariable Integer id) {
         if (auth == null || userCache.getCache(auth) == null) return Result.builder().code(500).message("认证失败").build();
-        User cacheUser = userCache.getCache(auth);
+        UserVO cacheUser = userCache.getCache(auth);
         Integer userId = cacheUser.getId();
 
-       List<Account> accounts = accountService.getAccounts(userId);
-        Account account = accounts.get(0);
+       List<AccountVO> accounts = accountService.getAccounts(userId);
+        AccountVO account = accounts.get(0);
         String subscriptionUrl = account.getSubscriptionUrl();
         if (StringUtils.isNoneBlank(subscriptionUrl)){
             ServerConfig serverConfig = serverConfigService.getServerConfig(WebsiteConfigEnum.SUBSCRIPTION_ADDRESS_PREFIX.getKey());
@@ -176,10 +175,11 @@ public class AccountController {
             accounts = accountRepository.findByUserEmail("%" + userEmail + "%");
             total = accounts == null ? 0l : accounts.size();
         }
-        accounts.forEach(account -> {
+        List<AccountVO> accountVOList = BaseEntity.toVOList(accounts, AccountVO.class);
+        accountVOList.forEach(account -> {
             accountService.fillAccount(date, account);
         });
-        return Result.buildPageObject(total, accounts);
+        return Result.buildPageObject(total,accountVOList );
     }
 
     /**
@@ -192,7 +192,7 @@ public class AccountController {
     @ResponseBody
     @GetMapping("/account/generatorSubscriptionUrl")
     public Result generatorSubscriptionUrl(@CookieValue(KVConstant.COOKIE_NAME) String auth, Integer type) {
-        User user = userCache.getCache(auth);
+        UserVO user = userCache.getCache(auth);
         Integer accountId = accountService.getAccount(user.getId()).getId();
         accountService.generatorSubscriptionUrl(accountId,type);
         return Result.SUCCESS();
@@ -228,25 +228,7 @@ public class AccountController {
     }*/
 
 
-    @Deprecated
-    private Result getRemoteConnection(@PathVariable Integer accountId, String accountNo, String url) {
-        try {
-            HashMap<String, Object> objectObjectHashMap = Maps.newHashMap();
-            objectObjectHashMap.put("accountNo", accountNo);
-            ResponseEntity<Result> responseEntity = restTemplate.getForEntity(url, Result.class, objectObjectHashMap);
-            if (responseEntity.getStatusCode().is2xxSuccessful()) {
-                Result body = responseEntity.getBody();
-                return body;
-            } else {
-                log.error("获取连接数失败:{},{}", accountId, responseEntity);
-                return Result.builder().code(501).message("获取失败").build();
-            }
-        } catch (Exception e) {
-            log.error("获取连接数失败:{}", e.getLocalizedMessage());
-            return Result.builder().code(501).message("获取失败").build();
 
-        }
-    }
 
 
 //    private List<String> buildConnectionCountUrl(String ips, Integer port) {

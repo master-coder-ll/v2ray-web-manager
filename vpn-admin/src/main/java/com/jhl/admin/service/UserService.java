@@ -1,5 +1,6 @@
 package com.jhl.admin.service;
 
+import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.DefendBruteForceAttackUser;
 import com.jhl.admin.model.Account;
 import com.jhl.admin.model.User;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -93,7 +95,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User login(User user) {
+    public User login(UserVO user) {
         Validator.isNotNull(user);
         String email = user.getEmail();
         Validator.isNotNull(email, "email为空");
@@ -129,7 +131,14 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-
+    public UserVO getOne(User user) {
+        user.setStatus(1);
+        Optional<User> one = userRepository.findOne(Example.of(user));
+            if (!one.isPresent()) return null;
+        UserVO userVO = one.get().toVO(UserVO.class);
+        userVO.setPassword(null);
+        return userVO;
+    }
     public User getUserButRemovePW(
             Integer id) {
 

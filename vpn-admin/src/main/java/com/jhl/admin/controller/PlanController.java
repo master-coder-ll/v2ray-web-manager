@@ -1,5 +1,6 @@
 package com.jhl.admin.controller;
 
+import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.UserCache;
 import com.jhl.admin.model.Package;
 import com.jhl.admin.model.User;
@@ -33,7 +34,7 @@ public class PlanController {
     public Result findByPage(@CookieValue(value = COOKIE_NAME, defaultValue = "") String auth,Integer page, Integer pageSize) {
         if (page == null || pageSize == null) throw new NullPointerException("page, pageSize不能为空");
 
-        User cache = userCache.getCache(auth);
+        UserVO cache = userCache.getCache(auth);
         String role = cache.getRole();
         Page<Package> pages =null;
         if (role.equals(ROLE_ADMIN)){

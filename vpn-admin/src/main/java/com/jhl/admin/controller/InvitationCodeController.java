@@ -1,8 +1,11 @@
 package com.jhl.admin.controller;
 
 import com.jhl.admin.Interceptor.PreAuth;
+import com.jhl.admin.VO.InvitationCodeVO;
+import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.UserCache;
 import com.jhl.admin.constant.enumObject.WebsiteConfigEnum;
+import com.jhl.admin.model.BaseEntity;
 import com.jhl.admin.model.InvitationCode;
 import com.jhl.admin.model.User;
 import com.jhl.admin.repository.InvitationCodeRepository;
@@ -39,7 +42,7 @@ public class InvitationCodeController {
         if (auth == null) throw new NullPointerException("获取不到用户");
 
 
-        User user = userCache.getCache(auth);
+        UserVO user = userCache.getCache(auth);
         if ( !user.getRole().equals("admin") && !serverConfigService.checkKey(WebsiteConfigEnum.VIP_CAN_INVITE.getKey())){
                 throw  new RuntimeException("管理员不允许用户邀请其他人");
         }
@@ -58,14 +61,14 @@ public class InvitationCodeController {
     public Result listByUser(@CookieValue(value = UserController.COOKIE_NAME, defaultValue = "") String auth, Integer page, Integer pageSize) {
 
         if (auth == null) throw new NullPointerException("获取不到用户");
-        User user = userCache.getCache(auth);
+        UserVO user = userCache.getCache(auth);
         Integer userId = user.getId();
         String role = user.getRole();
         Page<InvitationCode> codes = null;
             codes= invitationCodeRepository.findAll(Example.of(InvitationCode.builder().generateUserId(userId).build()),
                     PageRequest.of(page - 1, pageSize, Sort.by(Sort.Order.asc("status"))));
 
-        return Result.buildPageObject(codes!=null?codes.getTotalElements():0, codes!=null?codes.getContent():null);
+        return Result.buildPageObject(codes!=null?codes.getTotalElements():0, codes!=null? BaseEntity.toVOList(codes.getContent(), InvitationCodeVO.class):null);
     }
 
     @PreAuth("admin")
@@ -75,7 +78,7 @@ public class InvitationCodeController {
 
         if (auth == null) throw new NullPointerException("获取不到用户");
         if (codeId == null) new NullPointerException("id 不能为空");
-        User user = userCache.getCache(auth);
+        UserVO user = userCache.getCache(auth);
         Integer userId = user.getId();
         InvitationCode invitationCode = new InvitationCode();
         invitationCode.setId(codeId);

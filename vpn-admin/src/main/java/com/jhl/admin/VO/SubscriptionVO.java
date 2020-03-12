@@ -1,20 +1,22 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import com.jhl.admin.model.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Subscription extends BaseEntity implements Serializable {
-    @Column(unique = true,nullable = false)
+public class SubscriptionVO extends BaseEntityVO implements Serializable {
     private String code ;
 
     private Integer accountId;

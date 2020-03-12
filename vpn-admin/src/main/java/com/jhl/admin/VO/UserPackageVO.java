@@ -1,18 +1,22 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
-import lombok.*;
+import com.jhl.admin.model.BaseEntity;
+import com.jhl.admin.model.Package;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class UserPackage extends BaseEntity implements Serializable {
+public class UserPackageVO extends BaseEntityVO implements Serializable {
 
 
     private Integer planId;

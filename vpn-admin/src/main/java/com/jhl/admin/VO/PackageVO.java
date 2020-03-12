@@ -1,16 +1,19 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
-import lombok.*;
+import com.jhl.admin.model.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Package extends BaseEntity implements Serializable {
+public class PackageVO extends BaseEntityVO implements Serializable {
 
     private String name;
     //宽带

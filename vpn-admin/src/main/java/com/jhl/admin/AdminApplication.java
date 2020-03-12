@@ -1,13 +1,10 @@
 package com.jhl.admin;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.jhl.admin.constant.ProxyConstant;
 import com.jhl.admin.util.SimpleJpaRepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +37,7 @@ public class AdminApplication {
         SpringApplication.run(AdminApplication.class, args);
     }
 
-    @Bean
+  /*  @Bean
     public ObjectMapper objectMapper() {
 
         ObjectMapper objectMapper = new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
@@ -48,7 +45,7 @@ public class AdminApplication {
 
 
         return objectMapper;
-    }
+    }*/
 
     @Bean
     public RestTemplate restTemplate() {

@@ -2,6 +2,9 @@ package com.jhl.admin.service;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.jhl.admin.VO.AccountVO;
+import com.jhl.admin.VO.StatVO;
+import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.constant.KVConstant;
 import com.jhl.admin.constant.ProxyConstant;
 import com.jhl.admin.entity.V2rayAccount;
@@ -153,17 +156,19 @@ public class AccountService {
      * @param userId
      * @return
      */
-    public List<Account> getAccounts(Integer userId) {
+    public List<AccountVO> getAccounts(Integer userId) {
 
         Date date = new Date();
 
         List<Account> accounts = accountRepository.findAll(Example.of(Account.builder().userId(userId).build()));
-
+            List<AccountVO> accountVOList = Lists.newArrayListWithCapacity(accounts.size());
         accounts.forEach(account -> {
-            fillAccount(date, account);
+            AccountVO accountVO = account.toVO(AccountVO.class);
+            fillAccount(date, accountVO);
+            accountVOList.add(accountVO);
 
         });
-        return accounts;
+        return accountVOList;
     }
 
     public Account getAccount(Integer userId) {
@@ -173,14 +178,14 @@ public class AccountService {
         if (accounts.size() >1) throw new IllegalArgumentException("用户存在多个账号，请修复");
         return accounts.isEmpty()?null:accounts.get(0);
     }
-    public void fillAccount(Date date, Account account) {
+    public void fillAccount(Date date, AccountVO account) {
         Integer accountId = account.getId();
         Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(accountId, date, date);
 
         Integer userId = account.getUserId();
         User user = userService.getUserButRemovePW(userId);
-        if (user != null) account.setUser(user);
-        if (stat != null) account.setStat(stat);
+        if (user != null) account.setUserVO(user.toVO(UserVO.class));
+        if (stat != null) account.setStatVO(stat.toVO(StatVO.class));
     }
 
     /**

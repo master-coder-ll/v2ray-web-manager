@@ -1,20 +1,27 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import com.jhl.admin.model.BaseEntity;
+import com.jhl.admin.model.Server;
+import com.jhl.admin.model.Stat;
+import com.jhl.admin.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true,value = { "hibernateLazyInitializer", "hibernateLazyInitializer", "handler", "fieldHandler"})
-
-public class Account extends BaseEntity implements Serializable {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AccountVO extends BaseEntityVO implements Serializable {
     @Transient
     public final static int G =1024;
     //有效周期
@@ -23,7 +30,6 @@ public class Account extends BaseEntity implements Serializable {
     //周期类型 day,week month year？
     private Integer cycle;
 
-    @Column(unique = true,nullable = false)
     private String accountNo;
     //Kb 1024*1024 =1M
     private Long speed;
@@ -32,7 +38,6 @@ public class Account extends BaseEntity implements Serializable {
     /*//账号类型
     private  Integer type;*/
     //服务器账号相关
-    @Column(length = 512)
     private String content;
     private Integer status;
     private Integer userId;
@@ -43,7 +48,6 @@ public class Account extends BaseEntity implements Serializable {
      * 0~9
      * 9最大，上一级应该可以获取下一级的数据
      */
-    @Column(  columnDefinition="smallint default 0")
     private Short level;
 
     private  String subscriptionUrl;
@@ -52,13 +56,10 @@ public class Account extends BaseEntity implements Serializable {
      * v2rayAccount中的id
      */
     private String uuid;
-    @Transient
     //最近的流量统计
-    private Stat stat;
-    @Transient
-    private Server server;
-    @Transient
-    private User user;
+    private StatVO statVO;
+    private ServerVO serverVO;
+    private UserVO userVO;
 
 
 

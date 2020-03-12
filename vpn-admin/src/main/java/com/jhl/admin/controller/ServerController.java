@@ -1,6 +1,10 @@
 package com.jhl.admin.controller;
 
+import com.google.common.collect.Lists;
 import com.jhl.admin.Interceptor.PreAuth;
+import com.jhl.admin.VO.AccountVO;
+import com.jhl.admin.VO.ServerVO;
+import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.UserCache;
 import com.jhl.admin.constant.KVConstant;
 import com.jhl.admin.model.Account;
@@ -19,6 +23,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,7 +45,7 @@ public class ServerController {
     public Result get(@PathVariable Integer id) {
         Validator.isNotNull(id);
         Server server = serverRepository.findById(id).get();
-        return Result.builder().code(Result.CODE_SUCCESS).obj(server).build();
+        return Result.builder().code(Result.CODE_SUCCESS).obj(server.toVO(ServerVO.class)).build();
     }
 
     @PreAuth("admin")
@@ -51,8 +56,11 @@ public class ServerController {
         Validator.isNotNull(pageSize);
         Page<Server> all = serverRepository.findAll(Example.of(Server.builder().build()), PageRequest.of(page - 1, pageSize));
         ;
-
-        return Result.buildPageObject(all.getTotalElements(), all.getContent());
+        ArrayList<Object> VOList = Lists.newArrayListWithCapacity(all.getContent().size());
+        all.getContent().forEach(server -> {
+            VOList.add(server.toVO(ServerVO.class));
+        });
+        return Result.buildPageObject(all.getTotalElements(), VOList);
     }
 
     @PreAuth("vip")
@@ -60,13 +68,17 @@ public class ServerController {
     @GetMapping("/server/findServersForAccount")
     public Result findServersForAccount(@CookieValue(KVConstant.COOKIE_NAME) String auth) {
 
-        User user = userCache.getCache(auth);
-        List<Account> accounts = accountService.getAccounts(user.getId());
+        UserVO user = userCache.getCache(auth);
+        List<AccountVO> accounts = accountService.getAccounts(user.getId());
         if (accounts.size() != 1) return Result.builder().code(500).message("用户存在多个账号/或者账号为空").build();
-        Account account = accounts.get(0);
+        AccountVO account = accounts.get(0);
         Short level = account.getLevel();
         List<Server> servers = serverService.listByLevel(level);
-        return Result.buildSuccess(servers, null);
+        ArrayList<Object> VOList = Lists.newArrayListWithCapacity(servers.size());
+        servers.forEach(server -> {
+            VOList.add(server.toVO(ServerVO.class));
+        });
+        return Result.buildSuccess(VOList, null);
     }
 
     @PreAuth("admin")

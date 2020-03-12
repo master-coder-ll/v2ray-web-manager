@@ -1,21 +1,22 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import com.jhl.admin.model.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class EmailEventHistory extends BaseEntity implements Serializable {
+public class EmailEventHistoryVO extends BaseEntityVO implements Serializable {
 
     private String email;
 

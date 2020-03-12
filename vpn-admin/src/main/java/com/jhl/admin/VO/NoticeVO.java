@@ -1,15 +1,14 @@
-package com.jhl.admin.model;
+package com.jhl.admin.VO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jhl.admin.model.BaseEntity;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,11 +18,10 @@ import java.util.Date;
 /**
  * 公告
  */
-public class Notice extends BaseEntity implements Serializable {
+public class NoticeVO extends BaseEntityVO implements Serializable {
 
     private String name;
     private Date toDate;
-    @Column( columnDefinition = "TEXT")
     private String content;
 
     private Integer status =1;

@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Entity
 @Builder
-@ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

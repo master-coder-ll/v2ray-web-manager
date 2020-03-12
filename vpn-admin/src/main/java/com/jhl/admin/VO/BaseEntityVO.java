@@ -1,6 +1,5 @@
 package com.jhl.admin.VO;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jhl.admin.model.ModelI;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +16,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
-@JsonIgnoreProperties(ignoreUnknown = true,value = { "hibernateLazyInitializer", "hibernateLazyInitializer", "handler", "fieldHandler"})
 public class BaseEntityVO implements Serializable,VOI {
     private Integer id;
     private Date createTime;

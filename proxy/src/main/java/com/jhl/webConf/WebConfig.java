@@ -1,11 +1,17 @@
 package com.jhl.webConf;
 
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.google.common.collect.Lists;
 import com.jhl.interceptor.AuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @Configuration
 @EnableWebMvc
@@ -23,4 +29,10 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor).addPathPatterns("/**");
     }
 
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
+        fastJsonHttpMessageConverter.setSupportedMediaTypes(Lists.newArrayList(MediaType.APPLICATION_JSON));
+        converters.add(0,fastJsonHttpMessageConverter);
+    }
 }

@@ -3,8 +3,6 @@ package com.jhl.admin.cache;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.jhl.admin.VO.UserVO;
-import com.jhl.admin.model.User;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;

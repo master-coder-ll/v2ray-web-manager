@@ -1,13 +1,10 @@
 package com.jhl.admin.VO;
 
-import com.jhl.admin.model.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import java.io.Serializable;
 
 @Builder

@@ -1,6 +1,5 @@
 package com.jhl.admin.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.Column;
@@ -13,7 +12,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
 /**
  * 公告
  */

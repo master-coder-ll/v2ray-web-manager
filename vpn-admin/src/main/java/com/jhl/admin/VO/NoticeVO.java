@@ -1,11 +1,7 @@
 package com.jhl.admin.VO;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.jhl.admin.model.BaseEntity;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,7 +10,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
 /**
  * 公告
  */

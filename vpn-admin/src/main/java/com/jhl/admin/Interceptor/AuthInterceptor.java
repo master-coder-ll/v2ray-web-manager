@@ -3,7 +3,6 @@ package com.jhl.admin.Interceptor;
 import com.alibaba.fastjson.JSON;
 import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.UserCache;
-import com.jhl.admin.model.User;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

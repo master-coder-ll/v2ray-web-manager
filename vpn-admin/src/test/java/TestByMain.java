@@ -1,7 +1,6 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.model.User;
-import com.test.test.testModel;
 
 public class TestByMain {
     public static void main(String[] args) throws JsonProcessingException, ClassNotFoundException {

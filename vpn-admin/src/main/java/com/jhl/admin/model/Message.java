@@ -1,11 +1,12 @@
 package com.jhl.admin.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Builder
@@ -13,7 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Message extends BaseEntity implements Serializable {
 
     @Column

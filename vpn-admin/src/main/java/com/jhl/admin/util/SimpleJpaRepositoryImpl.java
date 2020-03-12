@@ -1,5 +1,5 @@
 package com.jhl.admin.util;
- 
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
- 
+
 import javax.persistence.EntityManager;
 import java.beans.PropertyDescriptor;
 import java.util.HashSet;

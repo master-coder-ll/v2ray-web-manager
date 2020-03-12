@@ -1,7 +1,6 @@
 package com.jhl.admin.service.v2ray;
 
 import com.alibaba.fastjson.JSON;
-import com.jhl.admin.entity.V2rayAccount;
 import com.jhl.admin.model.Account;
 import com.jhl.admin.model.Server;
 import com.jhl.admin.model.User;

@@ -1,6 +1,5 @@
 package com.jhl.admin.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Lists;
 import com.jhl.admin.VO.VOI;
 import lombok.AllArgsConstructor;
@@ -21,7 +20,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "hibernateLazyInitializer", "handler", "fieldHandler"})
 public class BaseEntity implements Serializable,ModelI {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

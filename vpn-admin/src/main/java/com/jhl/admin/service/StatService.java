@@ -5,10 +5,6 @@ import com.jhl.admin.model.Stat;
 import com.jhl.admin.repository.StatRepository;
 import com.jhl.admin.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;

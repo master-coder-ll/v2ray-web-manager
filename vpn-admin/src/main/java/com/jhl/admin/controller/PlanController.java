@@ -3,7 +3,6 @@ package com.jhl.admin.controller;
 import com.jhl.admin.VO.UserVO;
 import com.jhl.admin.cache.UserCache;
 import com.jhl.admin.model.Package;
-import com.jhl.admin.model.User;
 import com.jhl.admin.repository.PackageRepository;
 import com.ljh.common.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;

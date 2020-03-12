@@ -1,10 +1,5 @@
 package com.jhl.admin.util;
 
-import java.sql.SQLException;
-import java.sql.Types;
-import java.util.Iterator;
-
-import org.hibernate.Hibernate;
 import org.hibernate.JDBCException;
 import org.hibernate.ScrollMode;
 import org.hibernate.boot.Metadata;
@@ -27,9 +22,11 @@ import org.hibernate.exception.spi.ViolatedConstraintNameExtracter;
 import org.hibernate.internal.util.JdbcExceptionHelper;
 import org.hibernate.mapping.Column;
 import org.hibernate.mapping.UniqueKey;
-import org.hibernate.type.IntegerType;
 import org.hibernate.type.StandardBasicTypes;
-import org.hibernate.type.StringType;
+
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.Iterator;
  
 public class SQLiteDialect extends Dialect {
         private final UniqueDelegate uniqueDelegate;

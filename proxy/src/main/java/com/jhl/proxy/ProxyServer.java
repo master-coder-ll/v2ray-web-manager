@@ -12,15 +12,12 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.util.concurrent.Future;
-import io.netty.util.concurrent.GenericFutureListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -50,19 +47,25 @@ public final class ProxyServer {
             b.option(ChannelOption.SO_BACKLOG, 1024);
             b.option(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(true));
             b.childOption(ChannelOption.ALLOCATOR, new PooledByteBufAllocator(true));
+                   // 发送buf :32k
+                    b.childOption(ChannelOption.SO_SNDBUF,32 * 1024)
+                    //接收BUF: 32k
+                    .childOption(ChannelOption.SO_RCVBUF,32 * 1024)
+                    //low 32k/ high 64k
+                    .childOption(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT);
+
             //ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.ADVANCED);
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
                     //    .handler(new LoggingHandler(LogLevel.ERROR))
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel ch) {
-                            ch.pipeline().addLast(new Dispatcher(proxyConstant,trafficControllerService,proxyAccountCache, connectionStatsService));
+                            ch.pipeline().addLast(new Dispatcher(proxyConstant, trafficControllerService, proxyAccountCache, connectionStatsService));
                         }
                     })
                     .childOption(ChannelOption.AUTO_READ, false)
                     .bind(proxyConstant.getLocalPort()).sync()
-                    .addListener((ChannelFutureListener) future -> log.info("Proxying on:" + proxyConstant.getLocalPort() +  " ..."));
-
+                    .addListener((ChannelFutureListener) future -> log.info("Proxying on:" + proxyConstant.getLocalPort() + " ..."));
 
 
         } catch (Exception e) {

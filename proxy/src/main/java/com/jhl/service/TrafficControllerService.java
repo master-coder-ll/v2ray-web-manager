@@ -13,6 +13,8 @@ import org.springframework.util.Assert;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import static com.jhl.cache.ProxyAccountCache.ACCOUNT_EXPIRE_TIME;
+
 /**
  * TrafficControllerService 提供流量控制，
  * 每个账号持有生命周期内全局的  {@link GlobalTrafficShapingHandler}
@@ -23,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class TrafficControllerService {
 
     private final Cache<Object, GlobalTrafficShapingHandler> ACCOUNT_TRAFFIC_HANDLER_MAP = CacheBuilder.newBuilder()
-            .expireAfterWrite(65, TimeUnit.MINUTES)
+            .expireAfterWrite(ACCOUNT_EXPIRE_TIME+5, TimeUnit.MINUTES)
             .build();
 
     @Autowired

@@ -10,6 +10,8 @@ import org.springframework.util.Assert;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.jhl.cache.ProxyAccountCache.ACCOUNT_EXPIRE_TIME;
+
 /**
  * 提供账号连接数支持
  */
@@ -19,7 +21,7 @@ public class ConnectionStatsService {
     // private final ConcurrentHashMap<Object, AtomicInteger> ACCOUNT_CONNECTION_COUNT_STATS = new ConcurrentHashMap<>(5);
 
     private final Cache<Object, AtomicInteger> ACCOUNT_CONNECTION_COUNT_STATS = CacheBuilder.newBuilder()
-            .expireAfterWrite(65, TimeUnit.MINUTES).build();
+            .expireAfterWrite(ACCOUNT_EXPIRE_TIME+5, TimeUnit.MINUTES).build();
 
     /**
      * @param accountId

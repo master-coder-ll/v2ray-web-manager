@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Component
@@ -77,10 +78,13 @@ public final class ProxyServer {
     @PreDestroy
     public void preDestroy() throws InterruptedException {
         bossGroup.shutdownGracefully();
-        workerGroup.shutdownGracefully();
+        workerGroup.shutdownGracefully().addListener(future -> {
+            log.warn("ReportService 已经关闭....");
+            ReportService.destroy();
+        });
+        workerGroup.awaitTermination(3, TimeUnit.SECONDS);
         log.warn("netty 已经关闭....");
-        ReportService.destroy();
-        log.warn("ReportService 已经关闭....");
+
 
 
     }

@@ -1,5 +1,7 @@
 package com.jhl.admin.model;
 
+import com.jhl.admin.VO.UserVO;
+import com.jhl.admin.VO.VOI;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,10 +27,8 @@ public class User extends BaseEntity implements Serializable {
 
     private String remark;
 
-    //mappedBy The value of mappedBy attributes is the name of the class field on the other side of the relationship
-    //cascade 当用户删除的时候
-     @OneToMany(mappedBy = "user",cascade = {CascadeType.REMOVE},fetch=FetchType.LAZY)
-    private List<Message> messages ;
+
+
 
     @Transient
     private String vCode;
@@ -36,6 +36,9 @@ public class User extends BaseEntity implements Serializable {
     @Transient
     private  String inviteCode;
 
-
-
+    public UserVO toVO() {
+        UserVO userVO = super.toVO(UserVO.class);
+        userVO.setPassword(null);
+        return userVO;
+    }
 }

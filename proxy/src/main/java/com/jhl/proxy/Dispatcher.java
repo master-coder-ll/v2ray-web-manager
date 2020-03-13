@@ -363,12 +363,10 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
         } else {
             if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
-                synchronized (SynchronizedInternerUtils.getInterner().intern(accountNo + accountNo + ":reportStat")) {
+                synchronized (SynchronizedInternerUtils.getInterner().intern( accountNo + ":reportStat")) {
                     if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
-
                         long writtenBytes = trafficCounter.cumulativeWrittenBytes();
                         long readBytes = trafficCounter.cumulativeReadBytes();
-
                         reportStat(writtenBytes, readBytes);
                         //重置
                         trafficCounter.resetCumulativeTime();

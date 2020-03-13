@@ -43,11 +43,9 @@ public class UserMessageTest {
     public  void testAddMessage(){
         Message message = new Message();
         message.setMessageContent("test1");
-        message.setUser(user);
         messageRepository.save(message);
         Message message2 = new Message();
         message2.setMessageContent("test22");
-        message2.setUser(user);
         messageRepository.save(message2);
 
     }
@@ -56,7 +54,6 @@ public class UserMessageTest {
     public  void testGetMessage(){
         Message message = new Message();
         message.setMessageContent("test1");
-        message.setUser(user);
         messageRepository.save(message);
         Integer id = message.getId();
         Message message1 = messageRepository.findById(id).orElse(null);
@@ -68,7 +65,6 @@ public class UserMessageTest {
     public void testDeleteMessage()  {
     Message message = new Message();
         message.setMessageContent("test1");
-        message.setUser(user);
         messageRepository.save(message);
 
         messageRepository.deleteById(message.getId());

@@ -68,66 +68,14 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelRead(final ChannelHandlerContext ctx, final Object msg) {
-       // log.info("Dispatcher len:"+((ByteBuf)msg).readableBytes()+"B");
+        // log.info("Dispatcher len:"+((ByteBuf)msg).readableBytes()+"B");
         if (isHandshaking) {
-
-            /**
-             * PooledUnsafeDirectByteBuf(ridx: 0, widx: 188, cap: 1024)
-             *
-             * GET /ws/50001:token/ HTTP/1.1
-             * Host: 127.0.0.1:8081
-             * User-Agent: Go-http-client/1.1
-             * Connection: Upgrade
-             * Sec-WebSocket-Key: 90rYhIPctMP+ykUzA6QLrA==
-             * Sec-WebSocket-Version: 13
-             * Upgrade: websocket
-             */
-
-            ByteBuf handshakeByteBuf = null;
-            try {
-
-                handshakeByteBuf = parse(ctx, msg);
-
-            } catch (Exception e) {
-                if (!(e instanceof ReleaseDirectMemoryException))
-                    log.warn("解析阶段发生错误:{},e:{}", ((ByteBuf) msg).toString(Charset.defaultCharset()), e.getLocalizedMessage());
-                if (handshakeByteBuf != null)
-                    ReferenceCountUtil.release(handshakeByteBuf);
-                closeOnFlush(ctx.channel());
-                return;
-            } finally {
-                //释放握手数据，防止内存溢出
-                ReferenceCountUtil.release(msg);
-            }
-
-            //step2
-
-            try {
-                // 获取proxyAccount
-                ProxyAccountWrapper proxyAccount = getProxyAccount();
-
-                if (proxyAccount == null || isFull(proxyAccount)) {
-                    ReferenceCountUtil.release(handshakeByteBuf);
-                    closeOnFlush(ctx.channel());
-                    return;
-                }
-
-                attachTrafficController(ctx, proxyAccount);
-
-                sendNewPackageToClient(ctx, handshakeByteBuf, ctx.channel(), proxyAccount);
-
-            } catch (Exception e) {
-                log.error("建立与v2ray连接阶段发送错误e:{}", e);
-                release(handshakeByteBuf);
-                closeOnFlush(ctx.channel());
-            } finally {
-                isHandshaking = false;
-            }
-
-
+            parseAndSendNwePackage(ctx, msg);
         } else {
+
             try {
                 writeToOutBoundChannel(msg, ctx);
+                segmentReportingFlowStat();
             } catch (Exception e) {
                 if (!(e instanceof ReleaseDirectMemoryException)) {
                     log.error("数据交互发生异常：{}", e);
@@ -139,6 +87,109 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         }
 
 
+    }
+
+
+
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) {
+        log.debug("active");
+        ctx.read();
+    }
+
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        if (!(cause instanceof IOException)) log.error("exceptionCaught:", cause);
+
+        closeOnFlush(ctx.channel());
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) {
+        if (outboundChannel != null) {
+            closeOnFlush(outboundChannel);
+        }
+
+        if (accountNo == null) return;
+        //减少channel 引用计数
+        int accountConnections = connectionStatsService.decrementAndGet(getAccountId());
+        log.info("关闭当前连接数后->account:{},：{}", getAccountId(), accountConnections);
+
+        GlobalTrafficShapingHandler globalTrafficShapingHandler = trafficControllerService.getGlobalTrafficShapingHandler(getAccountId());
+        if (globalTrafficShapingHandler == null) return;
+        TrafficCounter trafficCounter = globalTrafficShapingHandler.trafficCounter();
+
+        if (accountConnections < 1) {
+            long writtenBytes = trafficCounter.cumulativeWrittenBytes();
+            long readBytes = trafficCounter.cumulativeReadBytes();
+            //统计流量
+            reportStat(writtenBytes, readBytes);
+            log.info("账号:{},完全断开连接,累计字节:{}B", getAccountId(), writtenBytes + readBytes);
+            //   log.info("当前{},累计读字节:{}", accountNo, readBytes);
+            trafficControllerService.releaseGroupGlobalTrafficShapingHandler(getAccountId());
+            connectionStatsService.delete(getAccountId());
+        }
+
+
+    }
+
+
+
+    private void parseAndSendNwePackage(ChannelHandlerContext ctx, Object msg) {
+        /**
+         * PooledUnsafeDirectByteBuf(ridx: 0, widx: 188, cap: 1024)
+         *
+         * GET /ws/50001:token/ HTTP/1.1
+         * Host: 127.0.0.1:8081
+         * User-Agent: Go-http-client/1.1
+         * Connection: Upgrade
+         * Sec-WebSocket-Key: 90rYhIPctMP+ykUzA6QLrA==
+         * Sec-WebSocket-Version: 13
+         * Upgrade: websocket
+         */
+
+        ByteBuf handshakeByteBuf = null;
+        try {
+
+            handshakeByteBuf = parse(ctx, msg);
+
+        } catch (Exception e) {
+            if (!(e instanceof ReleaseDirectMemoryException))
+                log.warn("解析阶段发生错误:{},e:{}", ((ByteBuf) msg).toString(Charset.defaultCharset()), e.getLocalizedMessage());
+            if (handshakeByteBuf != null)
+                ReferenceCountUtil.release(handshakeByteBuf);
+            closeOnFlush(ctx.channel());
+            return;
+        } finally {
+            //释放握手数据，防止内存溢出
+            ReferenceCountUtil.release(msg);
+        }
+
+        //step2
+
+        try {
+            // 获取proxyAccount
+            ProxyAccountWrapper proxyAccount = getProxyAccount();
+
+            if (proxyAccount == null || isFull(proxyAccount)) {
+                ReferenceCountUtil.release(handshakeByteBuf);
+                closeOnFlush(ctx.channel());
+                return;
+            }
+
+            attachTrafficController(ctx, proxyAccount);
+
+            sendNewPackageToClient(ctx, handshakeByteBuf, ctx.channel(), proxyAccount);
+
+        } catch (Exception e) {
+            log.error("建立与v2ray连接阶段发送错误e:{}", e);
+            release(handshakeByteBuf);
+            closeOnFlush(ctx.channel());
+        } finally {
+            isHandshaking = false;
+        }
     }
 
     private void release(ByteBuf msg) {
@@ -336,50 +387,30 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         });
     }
 
-    @Override
-    public void channelInactive(ChannelHandlerContext ctx) {
-        if (outboundChannel != null) {
-            closeOnFlush(outboundChannel);
-        }
 
-        if (accountNo == null) return;
-        //减少channel 引用计数
-        int accountConnections = connectionStatsService.decrementAndGet(getAccountId());
-        log.info("关闭当前连接数后->account:{},：{}", getAccountId(), accountConnections);
+    /**
+     * 分段上传流量
+     */
+    private void segmentReportingFlowStat() {
+        if (connectionStatsService.get(getAccountId()) < 1) return;
+        TrafficCounter trafficCounter = trafficControllerService.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
+        if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
+            synchronized (SynchronizedInternerUtils.getInterner().intern(accountNo + ":reportStat")) {
 
-        GlobalTrafficShapingHandler globalTrafficShapingHandler = trafficControllerService.getGlobalTrafficShapingHandler(getAccountId());
-        if (globalTrafficShapingHandler == null) return;
-        TrafficCounter trafficCounter = globalTrafficShapingHandler.trafficCounter();
-        if (accountConnections < 1) {
-            long writtenBytes = trafficCounter.cumulativeWrittenBytes();
-            long readBytes = trafficCounter.cumulativeReadBytes();
-            //统计流量
-            reportStat(writtenBytes, readBytes);
-
-            log.info("账号:{},完全断开连接,累计字节:{}B", getAccountId(), writtenBytes + readBytes);
-            //   log.info("当前{},累计读字节:{}", accountNo, readBytes);
-            trafficControllerService.releaseGroupGlobalTrafficShapingHandler(getAccountId());
-            connectionStatsService.delete(getAccountId());
-
-        } else {
-            if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
-                synchronized (SynchronizedInternerUtils.getInterner().intern( accountNo + ":reportStat")) {
-                    if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
-                        long writtenBytes = trafficCounter.cumulativeWrittenBytes();
-                        long readBytes = trafficCounter.cumulativeReadBytes();
-                        reportStat(writtenBytes, readBytes);
-                        //重置
-                        trafficCounter.resetCumulativeTime();
-                        log.info("账号:{},连接超过5分钟.上传分段流量统计数据:{}B", getAccountId(), writtenBytes + readBytes);
-                    }
-
+                if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
+                    long writtenBytes = trafficCounter.cumulativeWrittenBytes();
+                    long readBytes = trafficCounter.cumulativeReadBytes();
+                    reportStat(writtenBytes, readBytes);
+                    //重置
+                    trafficCounter.resetCumulativeTime();
+                    log.info("账号:{},连接超过5分钟.上传分段流量统计数据:{}B", getAccountId(), writtenBytes + readBytes);
                 }
 
             }
+
         }
-
-
     }
+
 
     private void reportStat(long writtenBytes, long readBytes) {
         FlowStat flowStat = new FlowStat();
@@ -390,12 +421,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         ReportService.addQueue(Report.builder().t(flowStat).failureTimes(0).nextTime(0).build());
     }
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        if (!(cause instanceof IOException)) log.error("exceptionCaught:", cause);
-
-        closeOnFlush(ctx.channel());
-    }
 
     /**
      * Closes the specified channel after all queued write requests are flushed.
@@ -406,11 +431,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         }
     }
 
-    @Override
-    public void channelActive(ChannelHandlerContext ctx) {
-        log.debug("active");
-        ctx.read();
-    }
 
    /* public String convertByteBufToString(ByteBuf buf) {
 

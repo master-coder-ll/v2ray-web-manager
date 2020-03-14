@@ -19,8 +19,7 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
     @Autowired
     AuthInterceptor authInterceptor;
-    @Autowired
-    FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+
     /**
      * 拦截器
      *
@@ -34,7 +33,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 
-        converters.add(0,fastJsonHttpMessageConverter);
+        converters.add(0,fastJsonHttpMessageConverter());
     }
         @Bean
     public FastJsonHttpMessageConverter fastJsonHttpMessageConverter(){

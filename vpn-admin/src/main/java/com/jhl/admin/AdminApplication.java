@@ -1,5 +1,6 @@
 package com.jhl.admin;
 
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.jhl.admin.constant.ProxyConstant;
 import com.jhl.admin.util.SimpleJpaRepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -59,6 +60,7 @@ public class AdminApplication {
                 return execution.execute(request, body);
             }
         });
+        restTemplate.getMessageConverters().add(new FastJsonHttpMessageConverter());
         return restTemplate;
     }
 

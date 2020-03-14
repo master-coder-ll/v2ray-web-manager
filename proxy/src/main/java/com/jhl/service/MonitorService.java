@@ -44,7 +44,7 @@ public class MonitorService {
         scheduledExecutorService.scheduleAtFixedRate(
                 () -> {
                     internalPollInfo();
-                    jvmMemoryInfo();
+                   // jvmMemoryInfo();
 
                 }, 0, 60, TimeUnit.SECONDS
         );

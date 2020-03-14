@@ -152,5 +152,8 @@ public class ProxyAccountCache {
         return true;
     }
 
+    public  Long getSize(){
+        return  PA_MAP.size();
+    }
 
 }

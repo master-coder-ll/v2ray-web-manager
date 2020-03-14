@@ -17,7 +17,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.util.concurrent.DelayQueue;
 
 
@@ -31,14 +30,17 @@ public class ReporterService<T extends Report> {
     @Autowired
     ManagerConstant managerConstant;
 
-    private static DelayQueue<Report> REPORT_QUEUE = new DelayQueue<>();
+    private static DelayQueue<Report> REPORTER_QUEUE = new DelayQueue<>();
     @Autowired
     RestTemplate restTemplate;
+
+
+    private static int MAX_RETRIES=20;
 
     public static <T extends Report> void addQueue(T t) {
         if (t == null) return;
         if (IS_SHUTDOWN) throw  new IllegalStateException(" the report service is closed");
-        REPORT_QUEUE.offer(t);
+        REPORTER_QUEUE.offer(t);
     }
 
 
@@ -48,7 +50,7 @@ public class ReporterService<T extends Report> {
     public void start() {
         workerThread = new Thread(() -> {
             startQueue();
-        }, "report thread");
+        }, "reporter thread");
         workerThread.start();
 
     }
@@ -58,11 +60,11 @@ public class ReporterService<T extends Report> {
             Report take = null;
             try {
 
-                if (IS_SHUTDOWN && REPORT_QUEUE.size()<=0) break;
+                if (IS_SHUTDOWN && REPORTER_QUEUE.size()<=0) break;
 
-                take = REPORT_QUEUE.take();
+                take = REPORTER_QUEUE.take();
                 //超过最大努力值不继续
-                if (take.getFailureTimes() > 80) {
+                if (take.getFailureTimes() > MAX_RETRIES) {
                     log.warn("上报次数大于最大值:{}", take);
                     continue;
                 }
@@ -134,7 +136,7 @@ public class ReporterService<T extends Report> {
         int sleepTime = 6000 * take.getFailureTimes();
 
         take.setNextTime(System.currentTimeMillis() + sleepTime);
-        log.warn("上报失败 等待：{}ms,{}", sleepTime, REPORT_QUEUE.offer(take));
+        log.warn("上报失败 等待：{}ms,{}", sleepTime, REPORTER_QUEUE.offer(take));
     }
 
     public static void destroy() throws InterruptedException {
@@ -142,13 +144,17 @@ public class ReporterService<T extends Report> {
         IS_SHUTDOWN=true;
         workerThread.interrupt();
         Thread.sleep(100);
-        if (REPORT_QUEUE.size()>0) {
+        if (REPORTER_QUEUE.size()>0) {
             Thread.sleep(5000);
-            REPORT_QUEUE.clear();
+            REPORTER_QUEUE.clear();
             workerThread.interrupt();
         }
     }
 
+
+    public int getQueueSize(){
+        return  REPORTER_QUEUE.size();
+    }
 //    public static void main(String[] args) throws InterruptedException {
     //      DelayQueue<ComparableFlowStat> queue = new DelayQueue();
     //}

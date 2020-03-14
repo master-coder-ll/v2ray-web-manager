@@ -25,7 +25,7 @@ import static com.jhl.cache.ProxyAccountCache.ACCOUNT_EXPIRE_TIME;
 public class TrafficControllerService {
 
     private final Cache<Object, GlobalTrafficShapingHandler> ACCOUNT_TRAFFIC_HANDLER_MAP = CacheBuilder.newBuilder()
-            .expireAfterWrite(ACCOUNT_EXPIRE_TIME+5, TimeUnit.MINUTES)
+            .expireAfterWrite(ACCOUNT_EXPIRE_TIME + 5, TimeUnit.MINUTES)
             .build();
 
     @Autowired
@@ -48,11 +48,11 @@ public class TrafficControllerService {
         GlobalTrafficShapingHandler trafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
         if (trafficShapingHandler != null) return trafficShapingHandler;
 
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId+":acquireGlobalTrafficShapingHandler")) {
-            trafficShapingHandler= ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
-            if (trafficShapingHandler !=null) return trafficShapingHandler;
+        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId + ":acquireGlobalTrafficShapingHandler")) {
+            trafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
+            if (trafficShapingHandler != null) return trafficShapingHandler;
             trafficShapingHandler = new GlobalTrafficShapingHandler(executor, writeLimit, readLimit);
-            ACCOUNT_TRAFFIC_HANDLER_MAP.put(accountId,trafficShapingHandler);
+            ACCOUNT_TRAFFIC_HANDLER_MAP.put(accountId, trafficShapingHandler);
         }
         return trafficShapingHandler;
     }
@@ -60,6 +60,7 @@ public class TrafficControllerService {
 
     /**
      * 应该获取锁，但是不必要
+     *
      * @param accountId
      * @return
      */
@@ -68,8 +69,10 @@ public class TrafficControllerService {
         Assert.notNull(accountId, "accountId must not be null");
         return ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
     }
+
     /**
      * 应该获取锁，但是不必要
+     *
      * @param accountId
      * @return
      */
@@ -82,9 +85,11 @@ public class TrafficControllerService {
                 globalTrafficShapingHandler.release();
             }
             ACCOUNT_TRAFFIC_HANDLER_MAP.invalidate(accountId);
-            log.info("TrafficShapingHandler cache size:{}", ACCOUNT_TRAFFIC_HANDLER_MAP.size());
+            //   log.info("TrafficShapingHandler cache size:{}", ACCOUNT_TRAFFIC_HANDLER_MAP.size());
         }
     }
 
-
+    public Long getSize() {
+        return ACCOUNT_TRAFFIC_HANDLER_MAP.size();
+    }
 }

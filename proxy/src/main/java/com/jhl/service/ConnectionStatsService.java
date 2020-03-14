@@ -17,7 +17,7 @@ import static com.jhl.cache.ProxyAccountCache.ACCOUNT_EXPIRE_TIME;
  */
 @Component
 @Slf4j
-public class ConnectionStatsService {
+public class ConnectionStatsService   {
     // private final ConcurrentHashMap<Object, AtomicInteger> ACCOUNT_CONNECTION_COUNT_STATS = new ConcurrentHashMap<>(5);
 
     private final Cache<Object, AtomicInteger> ACCOUNT_CONNECTION_COUNT_STATS = CacheBuilder.newBuilder()
@@ -59,10 +59,13 @@ public class ConnectionStatsService {
     public void delete(Object accountId) {
         Assert.notNull(accountId, "accountId must not be null");
         ACCOUNT_CONNECTION_COUNT_STATS.invalidate(accountId);
-        log.info("connectionCounter  size:{}", ACCOUNT_CONNECTION_COUNT_STATS.size());
+       // log.info("connectionCounter  size:{}", ACCOUNT_CONNECTION_COUNT_STATS.size());
 
     }
 
+    public  Long getSize(){
+        return  ACCOUNT_CONNECTION_COUNT_STATS.size();
+    }
     public int decrementAndGet(Object accountId) {
         if (accountId == null) return -1;
 

@@ -24,7 +24,7 @@ public class Receiver extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(final ChannelHandlerContext ctx, Object msg) {
         try {
-           // log.info("Receiver len:"+((ByteBuf)msg).readableBytes()+"B");
+      //      log.info("Receiver:{},{}",ctx.alloc().getClass() , ctx.alloc().buffer().getClass());
             inboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
                 //writeAndFlush 已经回收内存的了，确保内存再次回收把
                 release((ByteBuf) msg);

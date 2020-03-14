@@ -1,5 +1,6 @@
 package com.jhl.proxy;
 
+import com.alibaba.fastjson.JSON;
 import com.jhl.cache.ConnectionLimitCache;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.constant.ProxyConstant;
@@ -8,7 +9,7 @@ import com.jhl.pojo.ConnectionLimit;
 import com.jhl.pojo.ProxyAccountWrapper;
 import com.jhl.pojo.Report;
 import com.jhl.service.ConnectionStatsService;
-import com.jhl.service.ReportService;
+import com.jhl.service.ReporterService;
 import com.jhl.service.TrafficControllerService;
 import com.jhl.utils.SynchronizedInternerUtils;
 import com.ljh.common.model.FlowStat;
@@ -235,7 +236,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         // /ws/
         String newHeadPackage = heads.replaceAll(directory, directory.substring(0, directoryLen - (tokenLen + 1)));
         //整形后的新握手数据
-
+       // log.info("dispatcher:{}",ctx.alloc().getClass() , ctx.alloc().buffer());
         return ctx.alloc().buffer().writeBytes(newHeadPackage.getBytes());
     }
 
@@ -323,6 +324,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 .option(ChannelOption.SO_RCVBUF, 32 * 1024)
                 //32k/64k
                 .option(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT);
+
         return b;
 
 
@@ -363,7 +365,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private void reportConnectionLimit() {
         if (!ConnectionLimitCache.containKey(accountNo)) {
             //连接限制警告
-            ReportService.addQueue(Report.builder()
+            ReporterService.addQueue(Report.builder()
                     .t(ConnectionLimit.builder().accountNo(accountNo).build())
                     .nextTime(0)
                     .failureTimes(0)
@@ -392,6 +394,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * 分段上传流量
      */
     private void segmentReportingFlowStat() {
+
+           // log.info( "Used Direct memory:{}/B",PlatformDependent.usedDirectMemory() );
+
         if (connectionStatsService.get(getAccountId()) < 1) return;
         TrafficCounter trafficCounter = trafficControllerService.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
         if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
@@ -418,7 +423,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         flowStat.setAccountNo(accountNo);
         flowStat.setUsed(writtenBytes + readBytes);
         flowStat.setUniqueId(UUID.randomUUID().toString());
-        ReportService.addQueue(Report.builder().t(flowStat).failureTimes(0).nextTime(0).build());
+        ReporterService.addQueue(Report.builder().t(flowStat).failureTimes(0).nextTime(0).build());
     }
 
 

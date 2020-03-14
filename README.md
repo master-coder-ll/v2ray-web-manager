@@ -98,6 +98,9 @@
 
      
 ### 优化
+
+   #### [->内存占用情况<-](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/memory.md)
+   
    #### 减少java 内存占用
    
    1. 使用其他jre 如：[openj9-eclipse](https://www.eclipse.org/openj9/),

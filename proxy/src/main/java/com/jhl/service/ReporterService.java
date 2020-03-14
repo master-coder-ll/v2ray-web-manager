@@ -27,7 +27,7 @@ import java.util.concurrent.DelayQueue;
  */
 @Slf4j
 @Component
-public class ReportService<T extends Report> {
+public class ReporterService<T extends Report> {
     @Autowired
     ManagerConstant managerConstant;
 

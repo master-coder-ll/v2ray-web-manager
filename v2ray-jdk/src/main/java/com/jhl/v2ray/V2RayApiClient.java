@@ -22,12 +22,7 @@ public class V2RayApiClient {
     private LoggerServiceGrpc.LoggerServiceBlockingStub loggerServiceBlockingStub;
     private StatsServiceGrpc.StatsServiceBlockingStub statsServiceBlockingStub;
     private static final ConcurrentHashMap<String, V2RayApiClient> concurrentHashMap = new ConcurrentHashMap();
-    private static final ExecutorService SINGLE_POLL = Executors.newSingleThreadExecutor(new ThreadFactory() {
-        @Override
-        public Thread newThread(Runnable r) {
-            return new Thread(r, "grpc_single_thread");
-        }
-    });
+
 
 
     public static V2RayApiClient getInstance(String host, int port) {
@@ -35,7 +30,7 @@ public class V2RayApiClient {
         if (concurrentHashMap.containsKey(key)) return concurrentHashMap.get(key);
         synchronized (key.intern()) {
             if (!concurrentHashMap.containsKey(key)) {
-                ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).executor(SINGLE_POLL)
+                ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                         // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                         // needing certificates.
                         .usePlaintext()

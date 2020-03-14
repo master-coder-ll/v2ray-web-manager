@@ -4,7 +4,7 @@ package com.jhl.proxy;
 import com.jhl.cache.ProxyAccountCache;
 import com.jhl.constant.ProxyConstant;
 import com.jhl.service.ConnectionStatsService;
-import com.jhl.service.ReportService;
+import com.jhl.service.ReporterService;
 import com.jhl.service.TrafficControllerService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -80,7 +80,7 @@ public final class ProxyServer {
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully().addListener(future -> {
             log.warn("ReportService 已经关闭....");
-            ReportService.destroy();
+            ReporterService.destroy();
         });
         workerGroup.awaitTermination(3, TimeUnit.SECONDS);
         log.warn("netty 已经关闭....");

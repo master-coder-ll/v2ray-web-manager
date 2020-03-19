@@ -1,7 +1,6 @@
 package com.jhl.service;
 
 import com.jhl.cache.ProxyAccountCache;
-import io.netty.util.internal.PlatformDependent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,7 @@ import sun.management.ManagementFactoryHelper;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryMXBean;
 import java.lang.management.MemoryPoolMXBean;
-import java.lang.management.MemoryUsage;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

@@ -249,12 +249,11 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private boolean isFull(ProxyAccount proxyAccount) {
         int connections = connectionStatsService.incrementAndGet(getAccountId());
         log.info("当前连接数account:{},{}", getAccountId(), connections);
-        int maxConnection = ConnectionLimitCache.containKey(getAccountId()) ? Integer.valueOf(proxyAccount.getMaxConnection() / 2) : proxyAccount.getMaxConnection();
+        int maxConnection = ConnectionLimitCache.containKey(accountNo) ? Integer.valueOf(proxyAccount.getMaxConnection() / 2) : proxyAccount.getMaxConnection();
+
         if (connections > maxConnection) {
             reportConnectionLimit();
-            log.warn("{}:连接数过多当前：{},最大值：{}", accountNo, connections, maxConnection);
-            //ReferenceCountUtil.release(handshakeByteBuf);
-            //closeOnFlush(ctx.channel());
+            log.warn("已经触发最大连接数上限，最大值:{}，后续一个小时账号全局连接数仅允许最大值半数接入",proxyAccount.getMaxConnection());
             return true;
         }
         return false;
@@ -362,18 +361,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         return accountNo + ":" + host + ":" + version;
     }
 
-    private void reportConnectionLimit() {
-        if (!ConnectionLimitCache.containKey(accountNo)) {
-            //连接限制警告
-            ReporterService.addQueue(Report.builder()
-                    .t(ConnectionLimit.builder().accountNo(accountNo).build())
-                    .nextTime(0)
-                    .failureTimes(0)
-                    .build()
-            );
-            ConnectionLimitCache.put(accountNo);
-        }
-    }
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) throws ReleaseDirectMemoryException {
         if (proxyAccountCache.interrupted(accountNo, host, version)) {
@@ -387,6 +374,19 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 future.channel().close();
             }
         });
+    }
+
+    private void reportConnectionLimit() {
+        if (!ConnectionLimitCache.containKey(accountNo)) {
+            //连接限制警告
+            ReporterService.addQueue(Report.builder()
+                    .t(ConnectionLimit.builder().accountNo(accountNo).build())
+                    .nextTime(0)
+                    .failureTimes(0)
+                    .build()
+            );
+            ConnectionLimitCache.put(accountNo);
+        }
     }
 
 

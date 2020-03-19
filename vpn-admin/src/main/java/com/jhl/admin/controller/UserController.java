@@ -70,6 +70,8 @@ public class UserController {
         //12个小时
         cookie.setMaxAge(60 * 60 * 12);
         cookie.setPath("/");
+        // xss
+        cookie.setHttpOnly(true);
         response.addCookie(cookie);
         userCache.setCache(cKey, userVO);
 

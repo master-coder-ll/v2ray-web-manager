@@ -1,4 +1,4 @@
-package com.jhl.cache;
+package com.jhl.service;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.cache.Cache;
@@ -24,7 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Slf4j
 @Component
-public class ProxyAccountCache {
+public class ProxyAccountService {
 
     @Autowired
     ManagerConstant managerConstant;

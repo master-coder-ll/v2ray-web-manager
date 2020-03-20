@@ -48,53 +48,56 @@ public class V2RayProxyEvent implements ProxyEvent {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<ProxyAccount> entity = new HttpEntity(proxyAccount, headers);
-    for (String url : urls){
-        try {
-            ResponseEntity<Result> responseEntity = restTemplate.postForEntity( url+"/del", entity, Result.class);
-            Result result = responseEntity.getBody();
-            if (result.getCode() != 200) {
-                log.error("远程调用失败,事件：{},result:{}",getEvent(),result);
+        for (String url : urls) {
+            try {
+                ResponseEntity<Result> responseEntity = restTemplate.postForEntity(url + "/del", entity, Result.class);
+                Result result = responseEntity.getBody();
+                if (result.getCode() != 200) {
+                    log.error("远程调用失败,事件：{},result:{}", getEvent(), result);
+                }
+            } catch (Exception e) {
+                log.error("请求发生异常:{}", e.getLocalizedMessage());
             }
-        }catch (Exception e){
-            log.error("请求发生异常:{}",e.getLocalizedMessage());
+
         }
 
     }
 
-    }
     @Deprecated
     public void createEvent() {
         ProxyAccount proxyAccount = buildProxyAccount();
-        List<String> urls  = buildProxyServerUrl();
+        List<String> urls = buildProxyServerUrl();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<ProxyAccount> entity = new HttpEntity(proxyAccount, headers);
-        for (String url :urls){
+        for (String url : urls) {
             try {
-            ResponseEntity<Result> responseEntity = restTemplate.postForEntity(url, entity, Result.class);
-            Result result = responseEntity.getBody();
-            if (result.getCode() != 200) {
-                log.error("远程调用失败,事件：{},result:{}",getEvent(),result);
+                ResponseEntity<Result> responseEntity = restTemplate.postForEntity(url, entity, Result.class);
+                Result result = responseEntity.getBody();
+                if (result.getCode() != 200) {
+                    log.error("远程调用失败,事件：{},result:{}", getEvent(), result);
+                }
+            } catch (Exception e) {
+                log.error("请求发生异常:{}", e.getLocalizedMessage());
             }
-        }catch (Exception e){
-            log.error("请求发生异常:{}",e.getLocalizedMessage());
-        }
 
         }
 
     }
 
-    public  ProxyAccount buildProxyAccount() {
+    public ProxyAccount buildProxyAccount() {
 
 
         ProxyAccount proxyAccount = new ProxyAccount();
         //V2rayAccount v2rayAccount = JSON.parseObject(account.getContent(), V2rayAccount.class);
         String id
-                =account.getUuid() ==null? v2rayAccountService.buildV2rayAccount(Lists.newArrayList(server), account).get(0).getId():account.getUuid();
+                = account.getUuid() == null ?
+                v2rayAccountService.buildV2rayAccount(Lists.newArrayList(server), account).get(0).getId()
+                : account.getUuid();
         proxyAccount.setAccountId(account.getId());
         proxyAccount.setAccountNo(account.getAccountNo());
-        proxyAccount.setAlterId( 64);
+        proxyAccount.setAlterId(64);
         proxyAccount.setDownTrafficLimit(account.getSpeed());
         proxyAccount.setEmail(email);
         proxyAccount.setId(id);
@@ -105,13 +108,14 @@ public class V2RayProxyEvent implements ProxyEvent {
         proxyAccount.setV2rayPort(server.getV2rayPort());
         proxyAccount.setV2rayManagerPort(server.getV2rayManagerPort());
         proxyAccount.setHost(server.getClientDomain());
+        proxyAccount.setProxyIp(server.getProxyIp());
         return proxyAccount;
     }
 
-    public List<String> buildProxyServerUrl(){
+    public List<String> buildProxyServerUrl() {
         String[] proxyIps = server.getProxyIp().split(",");
-        List<String> urls= Lists.newArrayList();
-        for (String proxyIp : proxyIps){
+        List<String> urls = Lists.newArrayList();
+        for (String proxyIp : proxyIps) {
             StringBuilder sb = new StringBuilder("http://");
             sb.append(proxyIp).append(":").append(server.getProxyPort()).append("/proxyApi/account");
             urls.add(sb.toString());
@@ -122,7 +126,7 @@ public class V2RayProxyEvent implements ProxyEvent {
 
 
     public static void main(String[] args) {
-         V2rayAccount v2rayAccount =new V2rayAccount();
+        V2rayAccount v2rayAccount = new V2rayAccount();
 
         System.out.println(v2rayAccount.getAid());
     }

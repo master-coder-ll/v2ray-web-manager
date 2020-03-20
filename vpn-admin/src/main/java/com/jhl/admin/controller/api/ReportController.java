@@ -1,7 +1,8 @@
-package com.jhl.admin.controller;
+package com.jhl.admin.controller.api;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.jhl.admin.cache.ConnectionCache;
 import com.jhl.admin.constant.EmailConstant;
 import com.jhl.admin.constant.enumObject.EmailEventEnum;
 import com.jhl.admin.model.*;
@@ -51,8 +52,10 @@ public class ReportController {
     ProxyEventService proxyEventService;
     @Autowired
     EmailConstant emailConstant;
+    @Autowired
+    ConnectionCache connectionCache;
     //幂等
-    Cache<String, Object> cacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(1, TimeUnit.HOURS).build();
+    Cache<String, Object> cacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(1, TimeUnit.MINUTES).build();
 
     private static byte object = 1;
 
@@ -143,6 +146,14 @@ public class ReportController {
                         .unlockDate(Utils.getDateBy(new Date(),1, Calendar.HOUR_OF_DAY))
                         .build());
         return Result.SUCCESS();
+    }
+
+    @ResponseBody
+    @GetMapping("/connectionStat")
+    public Result connectionStat(String accountNo,String host,Integer count) {
+        connectionCache.add(accountNo,host,count);
+
+        return Result.buildSuccess(connectionCache.getTotal(accountNo)+"",null);
     }
     public static void main(String[] args) {
         //System.out.println(STRING_WEAK_POLL.intern("a")== STRING_WEAK_POLL.intern(new String("a")));

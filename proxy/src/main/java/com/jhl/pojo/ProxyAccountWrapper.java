@@ -13,4 +13,7 @@ public class ProxyAccountWrapper extends ProxyAccount {
      * 版本号
      */
     private  Long version;
+
+
+
 }

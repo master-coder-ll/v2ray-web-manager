@@ -53,6 +53,10 @@ public class ProxyAccount implements Serializable {
     private String v2rayHost = "127.0.0.1";
     private int v2rayPort = 6001;
     private int v2rayManagerPort = 62789;
+    /**
+     * 代理中间件的ip
+     */
+    private  String proxyIp;
 
 
 }

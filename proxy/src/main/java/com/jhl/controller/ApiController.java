@@ -1,14 +1,16 @@
 package com.jhl.controller;
 
-import com.jhl.service.TrafficControllerService;
-import com.jhl.cache.ProxyAccountCache;
+import com.jhl.service.ProxyAccountService;
 import com.jhl.v2ray.service.V2rayService;
 import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
@@ -17,9 +19,8 @@ public class ApiController {
     @Autowired
     V2rayService v2rayService;
     @Autowired
-    ProxyAccountCache proxyAccountCache;
-    @Autowired
-    TrafficControllerService trafficControllerService;
+    ProxyAccountService proxyAccountService;
+
 
     @ResponseBody
     @PostMapping(value = "/account/del")
@@ -27,7 +28,7 @@ public class ApiController {
         try {
             if (proxyAccount == null) return Result.builder().code(405).message("accountNo 为空").build();
             String accountNo = proxyAccount.getAccountNo();
-            proxyAccountCache.rmProxyAccountCache(accountNo,proxyAccount.getHost());
+            proxyAccountService.rmProxyAccountCache(accountNo,proxyAccount.getHost());
             v2rayService.rmProxyAccount(proxyAccount.getV2rayHost(), proxyAccount.getV2rayManagerPort(), proxyAccount);
         } catch (Exception e) {
             log.error("rmAccount error :{}", e.getLocalizedMessage());

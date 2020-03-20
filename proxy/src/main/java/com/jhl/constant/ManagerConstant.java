@@ -19,4 +19,7 @@ public class ManagerConstant {
     private String reportFlowUrl;
 
     private String reportOverConnectionLimitUrl;
+
+
+    private  String globalConnectionStatUrl = "/report/connectionStat?accountNo={accountNo}&host={host}&count={count}";
 }

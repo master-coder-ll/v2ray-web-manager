@@ -71,7 +71,7 @@ public class UserController {
         cookie.setMaxAge(60 * 60 * 12);
         cookie.setPath("/");
         // xss
-        cookie.setHttpOnly(true);
+     //   cookie.setHttpOnly(true);
         response.addCookie(cookie);
         userCache.setCache(cKey, userVO);
 

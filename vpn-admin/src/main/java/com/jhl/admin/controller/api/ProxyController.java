@@ -1,4 +1,4 @@
-package com.jhl.admin.controller;
+package com.jhl.admin.controller.api;
 
 import com.jhl.admin.model.Account;
 import com.jhl.admin.model.Server;

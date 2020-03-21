@@ -12,9 +12,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class AccountConnectionStat {
     //每个账号的连接数
-    private AtomicInteger accountConnectionsCounter = new AtomicInteger(1);
+    private AtomicInteger accountConnectionsCounter = new AtomicInteger(0);
 
-    private ConcurrentHashMap<String, AtomicInteger> hostCounter = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, AtomicInteger> hostCounter = new ConcurrentHashMap<>(3);
 
     //远程全局连接数
     // unsafe
@@ -34,6 +34,7 @@ public class AccountConnectionStat {
 
     public final static long _5MINUTE_MS = 5 * 60 * 1000;
 
+
     /**
      * 对 totalCounter 设置， 对 hostCounter 设置
      *
@@ -43,13 +44,17 @@ public class AccountConnectionStat {
         int v = accountConnectionsCounter.addAndGet(count);
         if (v < 0) accountConnectionsCounter.set(0);
         //account --> host
-        AtomicInteger atomicInteger = hostCounter.get(host);
+        AtomicInteger hostCount = hostCounter.get(host);
 
-        if (atomicInteger != null) atomicInteger.addAndGet(count);
-        else if (atomicInteger == null && count > 0) {
-
-            atomicInteger = new AtomicInteger(count);
-            AtomicInteger old = hostCounter.putIfAbsent(host, atomicInteger);
+        if (hostCount != null) {
+            int i = hostCount.addAndGet(count);
+            if (i < 0) {
+                hostCounter.remove(host);
+            }
+        } else {
+            if (count < 0) return;
+            hostCount = new AtomicInteger(count);
+            AtomicInteger old = hostCounter.putIfAbsent(host, hostCount);
             if (old != null) old.addAndGet(count);
 
         }
@@ -91,7 +96,8 @@ public class AccountConnectionStat {
     public int getByGlobal() {
         //小于5分钟内
         if (remoteConnectionNum > 0 && (System.currentTimeMillis() - lastReportTime) < _5MINUTE_MS) {
-            return remoteConnectionNum - lastReportNum + getByServer();
+            int remote = (remoteConnectionNum - lastReportNum);
+            return remote < 0 ? 0 : remote + getByServer();
         }
         return getByServer();
     }

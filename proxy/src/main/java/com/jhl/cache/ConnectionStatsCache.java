@@ -11,14 +11,11 @@ import org.springframework.util.Assert;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.jhl.service.ProxyAccountService.ACCOUNT_EXPIRE_TIME;
-
 /**
  * 提供账号连接数支持
- *
- *   全局异步同步数据。 最大程度保证正确，允许脏读。
- *  仅保证最终一致性
- *
+ * <p>
+ * 全局异步同步数据。 最大程度保证正确，允许脏读。
+ * 仅保证最终一致性
  */
 @Slf4j
 public class ConnectionStatsCache {
@@ -36,18 +33,22 @@ public class ConnectionStatsCache {
         Assert.notNull(accountId, "accountId must not be null");
         //存在
         AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
-        if (accountConnectionStat != null){
-            accountConnectionStat.addAndGet(1,host);
+        if (accountConnectionStat != null) {
+            accountConnectionStat.addAndGet(1, host);
+            return;
         }
         //不存在
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId +":connection:"+host)) {
+        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId + ":connection:" + host)) {
 
             accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
             if (accountConnectionStat != null) {
-                accountConnectionStat.addAndGet(1,host);
+                accountConnectionStat.addAndGet(1, host);
+            } else {
+                accountConnectionStat = new AccountConnectionStat();
+                accountConnectionStat.addAndGet(1, host);
+                ACCOUNT_CONNECTION_COUNT_STATS.put(accountId, accountConnectionStat);
             }
-            accountConnectionStat = new AccountConnectionStat();
-            ACCOUNT_CONNECTION_COUNT_STATS.put(accountId, accountConnectionStat);
+
         }
 
 
@@ -58,13 +59,14 @@ public class ConnectionStatsCache {
         AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
         return accountConnectionStat == null ? 0 : accountConnectionStat.getByGlobal();
     }
+
     public static int getBySeverInternal(String accountId) {
         Assert.notNull(accountId, "accountId must not be null");
         AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
         return accountConnectionStat == null ? 0 : accountConnectionStat.getByServer();
     }
 
-    public static int getByHost(String accountId,String host) {
+    public static int getByHost(String accountId, String host) {
         Assert.notNull(accountId, "accountId must not be null");
         AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
         return accountConnectionStat == null ? 0 : accountConnectionStat.getByHost(host);
@@ -81,12 +83,11 @@ public class ConnectionStatsCache {
         return ACCOUNT_CONNECTION_COUNT_STATS.size();
     }
 
-    public static void decrement(Object accountId,String host) {
-        if (accountId == null) return ;
+    public static void decrement(Object accountId, String host) {
+        if (accountId == null) return;
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
-
         if (connectionCounter != null)
-             connectionCounter.addAndGet(-1,host);
+            connectionCounter.addAndGet(-1, host);
 
     }
 
@@ -116,6 +117,7 @@ public class ConnectionStatsCache {
 
     /**
      * 更新 全局连接数
+     *
      * @param accountNo
      * @param count
      */
@@ -129,20 +131,21 @@ public class ConnectionStatsCache {
     /**
      * 上报当前账号在这台服务器的连接数
      */
-    private  final  static  long _1MINUTES=60_000;
+    private final static long _30S = 30_000;
 
     /**
      * unSafe
+     *
      * @param accountNo
      * @param proxyIp
      */
-    public  static void reportConnectionNum(String accountNo, String proxyIp){
+    public static void reportConnectionNum(String accountNo, String proxyIp) {
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
         int internalConnectionCount = connectionCounter.getByServer();
 
-        if (System.currentTimeMillis()-connectionCounter.getLastReportTime()>_1MINUTES){
+        if (System.currentTimeMillis() - connectionCounter.getLastReportTime() > _30S) {
             GlobalConnectionStatTask globalConnectionStatTask =
-                    new GlobalConnectionStatTask(accountNo,proxyIp,internalConnectionCount);
+                    new GlobalConnectionStatTask(accountNo, proxyIp, internalConnectionCount);
             TaskService.addTask(globalConnectionStatTask);
             //更新上报
             connectionCounter.setLastReportNum(internalConnectionCount);

@@ -1,5 +1,6 @@
 package com.jhl.admin.entity;
 
+import com.jhl.admin.cache.ConnectionStatCache;
 import lombok.Data;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,7 +8,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConnectionStat {
     ConcurrentHashMap<String, InternalEntry> cache = new ConcurrentHashMap<>();
-    private static final Long _2MINUTES = 2 * 60_000l;
 
     public void createOrAdd(String host, int count) {
         InternalEntry entry = cache.get(host);
@@ -30,7 +30,7 @@ public class ConnectionStat {
         final long currentTimeMillis = System.currentTimeMillis();
         AtomicInteger total = new AtomicInteger();
         cache.forEachValue(1, internalEntry -> {
-            if (currentTimeMillis - internalEntry.getLastSetTime() < _2MINUTES) {
+            if (currentTimeMillis - internalEntry.getLastSetTime() < ConnectionStatCache.EXPIRE_TIME) {
                 total.addAndGet(internalEntry.count);
             }
         });

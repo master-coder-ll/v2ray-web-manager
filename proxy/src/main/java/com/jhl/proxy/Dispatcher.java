@@ -115,7 +115,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
         if (proxyIp != null) ConnectionStatsCache.reportConnectionNum(accountNo, proxyIp);
 
-        log.info("关闭当前连接数后->account:{},：{}", accountNo, accountConnections);
+        log.info("{}账号关闭连接后:{},服务器:{},全局:{}", getAccountId(), accountConnections,
+                ConnectionStatsCache.getBySeverInternal(accountNo),
+                ConnectionStatsCache.getByGlobal(accountNo));
 
         GlobalTrafficShapingHandler globalTrafficShapingHandler = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId());
         if (globalTrafficShapingHandler == null) return;
@@ -245,10 +247,13 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @return true is full
      */
     private boolean isFull(ProxyAccount proxyAccount) {
-         ConnectionStatsCache.incr(accountNo,host);
+        ConnectionStatsCache.incr(accountNo,host);
         ConnectionStatsCache.reportConnectionNum(accountNo, proxyAccount.getProxyIp());
-         int globalConnections = ConnectionStatsCache.getByGlobal(accountNo);
-        log.info("当前account:{},全局连接数:{}", getAccountId(), globalConnections);
+        int globalConnections = ConnectionStatsCache.getByGlobal(accountNo);
+        log.info("当前账号:{},连接数:{},服务器连接数:{},全局连接数:{}", getAccountId(),
+                ConnectionStatsCache.getByHost(accountNo,host),
+                ConnectionStatsCache.getBySeverInternal(accountNo)
+                , globalConnections);
         Integer maxConnection = proxyAccount.getMaxConnection();
         boolean full = ConnectionStatsCache.isFull(accountNo, maxConnection);
         int currentMaxConnection = full ? Integer.valueOf(maxConnection / 2) : maxConnection;
@@ -403,7 +408,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     private void segmentReportingFlowStat() {
 
 
-        if (ConnectionStatsCache.getByHost(accountNo,host) < 1) return;
+      if (ConnectionStatsCache.getByHost(accountNo,host) < 1) return;
         TrafficCounter trafficCounter = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
         if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
             synchronized (SynchronizedInternerUtils.getInterner().intern(accountNo + ":reportStat")) {

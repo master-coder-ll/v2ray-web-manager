@@ -109,7 +109,10 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
         if (accountNo == null) return;
         //减少channel 引用计数
-        int accountConnections = ConnectionStatsCache.decrementAndGet(accountNo);
+         ConnectionStatsCache.decrement(accountNo,host);
+
+        int accountConnections =ConnectionStatsCache.getByHost(accountNo,host);
+
         if (proxyIp != null) ConnectionStatsCache.reportConnectionNum(accountNo, proxyIp);
 
         log.info("关闭当前连接数后->account:{},：{}", accountNo, accountConnections);
@@ -123,7 +126,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
             long readBytes = trafficCounter.cumulativeReadBytes();
             //统计流量
             reportStat(writtenBytes, readBytes);
-            log.info("账号:{},完全断开连接,累计字节:{}B", getAccountId(), writtenBytes + readBytes);
+            log.info("账号:{},当前服务器完全断开连接,累计字节:{}B", getAccountId(), writtenBytes + readBytes);
             //   log.info("当前{},累计读字节:{}", accountNo, readBytes);
             TrafficControllerCache.releaseGroupGlobalTrafficShapingHandler(getAccountId());
             // ConnectionStatsService.delete(getAccountId());
@@ -242,14 +245,15 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @return true is full
      */
     private boolean isFull(ProxyAccount proxyAccount) {
-        int connections = ConnectionStatsCache.incrementAndGet(accountNo);
+         ConnectionStatsCache.incr(accountNo,host);
         ConnectionStatsCache.reportConnectionNum(accountNo, proxyAccount.getProxyIp());
-        log.info("当前连接数account:{},{}", getAccountId(), connections);
+         int globalConnections = ConnectionStatsCache.getByGlobal(accountNo);
+        log.info("当前account:{},全局连接数:{}", getAccountId(), globalConnections);
         Integer maxConnection = proxyAccount.getMaxConnection();
         boolean full = ConnectionStatsCache.isFull(accountNo, maxConnection);
         int currentMaxConnection = full ? Integer.valueOf(maxConnection / 2) : maxConnection;
 
-        if (connections > currentMaxConnection) {
+        if (globalConnections > currentMaxConnection) {
             reportConnectionLimit();
             log.warn("已经触发最大连接数上限，最大值:{}，后续一个小时账号全局连接数仅允许最大值半数接入", maxConnection);
             return true;
@@ -398,9 +402,8 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      */
     private void segmentReportingFlowStat() {
 
-        // log.info( "Used Direct memory:{}/B",PlatformDependent.usedDirectMemory() );
 
-        if (ConnectionStatsCache.get(accountNo) < 1) return;
+        if (ConnectionStatsCache.getByHost(accountNo,host) < 1) return;
         TrafficCounter trafficCounter = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
         if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
             synchronized (SynchronizedInternerUtils.getInterner().intern(accountNo + ":reportStat")) {

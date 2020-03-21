@@ -2,7 +2,7 @@ package com.jhl.admin.controller.api;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.jhl.admin.cache.ConnectionCache;
+import com.jhl.admin.cache.ConnectionStatCache;
 import com.jhl.admin.constant.EmailConstant;
 import com.jhl.admin.constant.enumObject.EmailEventEnum;
 import com.jhl.admin.model.*;
@@ -53,7 +53,7 @@ public class ReportController {
     @Autowired
     EmailConstant emailConstant;
     @Autowired
-    ConnectionCache connectionCache;
+    ConnectionStatCache connectionStatCache;
     //幂等
     Cache<String, Object> cacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(1, TimeUnit.MINUTES).build();
 
@@ -151,9 +151,9 @@ public class ReportController {
     @ResponseBody
     @GetMapping("/connectionStat")
     public Result connectionStat(String accountNo,String host,Integer count) {
-        connectionCache.add(accountNo,host,count);
+        connectionStatCache.add(accountNo,host,count);
 
-        return Result.buildSuccess(connectionCache.getTotal(accountNo)+"",null);
+        return Result.buildSuccess(connectionStatCache.getTotal(accountNo)+"",null);
     }
     public static void main(String[] args) {
         //System.out.println(STRING_WEAK_POLL.intern("a")== STRING_WEAK_POLL.intern(new String("a")));

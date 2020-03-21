@@ -51,9 +51,9 @@ public class FlowStatTask extends AbstractTask {
                 log.error("上报失败：{},{},error:{}", flowStat, responseEntity);
                 tryAgain(getTaskCondition());
 
-            } else {
+            }/* else {
                 log.info("上报成功");
-            }
+            }*/
         }
     }
 

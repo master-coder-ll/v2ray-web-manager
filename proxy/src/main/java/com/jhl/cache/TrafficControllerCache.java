@@ -22,7 +22,7 @@ import static com.jhl.service.ProxyAccountService.ACCOUNT_EXPIRE_TIME;
 public class TrafficControllerCache {
 
     private static final Cache<Object, GlobalTrafficShapingHandler> ACCOUNT_TRAFFIC_HANDLER_MAP = CacheBuilder.newBuilder()
-            .expireAfterWrite(ACCOUNT_EXPIRE_TIME + 5, TimeUnit.MINUTES)
+            .expireAfterAccess(5, TimeUnit.MINUTES)
             .build();
 
 

@@ -2,7 +2,7 @@ package com.jhl.cache;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.jhl.pojo.ConnectionStat;
+import com.jhl.pojo.AccountConnectionStat;
 import com.jhl.task.GlobalConnectionStatTask;
 import com.jhl.task.service.TaskService;
 import com.jhl.utils.SynchronizedInternerUtils;
@@ -23,41 +23,51 @@ import static com.jhl.service.ProxyAccountService.ACCOUNT_EXPIRE_TIME;
 @Slf4j
 public class ConnectionStatsCache {
 
-    private static final Cache<Object, ConnectionStat> ACCOUNT_CONNECTION_COUNT_STATS = CacheBuilder.newBuilder()
-            .expireAfterAccess(ACCOUNT_EXPIRE_TIME + 5, TimeUnit.MINUTES).build();
+    private static final Cache<Object, AccountConnectionStat> ACCOUNT_CONNECTION_COUNT_STATS = CacheBuilder.newBuilder()
+            .expireAfterAccess(5, TimeUnit.MINUTES).build();
 
     public final static long _1HOUR_MS = 3600000;
 
     /**
      * @param accountId
-     * @return
+     * @return global connections
      */
-    public static int incrementAndGet(String accountId) {
+    public static void incr(String accountId, String host) {
         Assert.notNull(accountId, "accountId must not be null");
         //存在
-        ConnectionStat connectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
-        if (connectionStat != null)
-            return connectionStat.addAndGet(1);
-
+        AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+        if (accountConnectionStat != null){
+            accountConnectionStat.addAndGet(1,host);
+        }
         //不存在
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId + ":acquireConnectionStats")) {
+        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId +":connection:"+host)) {
 
-            connectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
-            if (connectionStat != null) {
-                return connectionStat.addAndGet(1);
+            accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+            if (accountConnectionStat != null) {
+                accountConnectionStat.addAndGet(1,host);
             }
-            connectionStat = new ConnectionStat();
-            ACCOUNT_CONNECTION_COUNT_STATS.put(accountId, connectionStat);
-            return connectionStat.get();
+            accountConnectionStat = new AccountConnectionStat();
+            ACCOUNT_CONNECTION_COUNT_STATS.put(accountId, accountConnectionStat);
         }
 
 
     }
 
-    public static int get(String accountId) {
+    public static int getByGlobal(String accountId) {
         Assert.notNull(accountId, "accountId must not be null");
-        ConnectionStat connectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
-        return connectionStat == null ? 0 : connectionStat.get();
+        AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+        return accountConnectionStat == null ? 0 : accountConnectionStat.getByGlobal();
+    }
+    public static int getBySeverInternal(String accountId) {
+        Assert.notNull(accountId, "accountId must not be null");
+        AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+        return accountConnectionStat == null ? 0 : accountConnectionStat.getByServer();
+    }
+
+    public static int getByHost(String accountId,String host) {
+        Assert.notNull(accountId, "accountId must not be null");
+        AccountConnectionStat accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+        return accountConnectionStat == null ? 0 : accountConnectionStat.getByHost(host);
     }
 
   /*  public void delete(String accountId) {
@@ -71,18 +81,17 @@ public class ConnectionStatsCache {
         return ACCOUNT_CONNECTION_COUNT_STATS.size();
     }
 
-    public static int decrementAndGet(Object accountId) {
-        if (accountId == null) return -1;
-        ConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+    public static void decrement(Object accountId,String host) {
+        if (accountId == null) return ;
+        AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
 
         if (connectionCounter != null)
-            return connectionCounter.addAndGet(-1);
-        else
-            return -1;
+             connectionCounter.addAndGet(-1,host);
+
     }
 
     public static boolean isFull(String accountId, int maxConnections) {
-        ConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+        AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
         if (connectionCounter != null) {
             return connectionCounter.isFull(maxConnections);
         }
@@ -90,7 +99,7 @@ public class ConnectionStatsCache {
     }
 
     public static boolean canReport(String accountId) {
-        ConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+        AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
         if (connectionCounter != null) {
             long interruptionTime = connectionCounter.getInterruptionTime();
             //操作一个小时后，可以继续执行上报
@@ -111,7 +120,7 @@ public class ConnectionStatsCache {
      * @param count
      */
     public static void updateGlobalConnectionStat(String accountNo, int count) {
-        ConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
+        AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
         if (connectionCounter != null) {
             connectionCounter.updateRemoteConnectionNum(count);
         }
@@ -128,8 +137,8 @@ public class ConnectionStatsCache {
      * @param proxyIp
      */
     public  static void reportConnectionNum(String accountNo, String proxyIp){
-        ConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
-        int internalConnectionCount = connectionCounter.getInternalCount();
+        AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
+        int internalConnectionCount = connectionCounter.getByServer();
 
         if (System.currentTimeMillis()-connectionCounter.getLastReportTime()>_1MINUTES){
             GlobalConnectionStatTask globalConnectionStatTask =

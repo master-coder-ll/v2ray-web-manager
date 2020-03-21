@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class UserCache extends RootCache<String, UserVO> {
-    Cache<String, Integer> cacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterWrite(12, TimeUnit.HOURS).build();
+    Cache<String, Integer> cacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterWrite(6, TimeUnit.HOURS).build();
     //expireAfterAccess
-    Cache<Integer, UserVO>  userCacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(12, TimeUnit.HOURS).build();
+    Cache<Integer, UserVO>  userCacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(6, TimeUnit.HOURS).build();
 
     @Override
     public UserVO getCache(String key) {

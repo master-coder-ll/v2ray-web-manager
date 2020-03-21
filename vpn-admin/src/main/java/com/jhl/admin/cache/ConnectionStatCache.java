@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 @Component
-public class ConnectionCache {
+public class ConnectionStatCache {
     Cache<String, ConnectionStat> cacheManager = CacheBuilder.newBuilder().
-            maximumSize(1000).expireAfterAccess(1, TimeUnit.HOURS).build();
+            maximumSize(1000).expireAfterAccess(5, TimeUnit.MINUTES).build();
 
 
     public void add(String accountNo, String host, int count) {

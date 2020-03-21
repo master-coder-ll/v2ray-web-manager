@@ -3,6 +3,7 @@ package com.jhl.cache;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.jhl.pojo.AccountConnectionStat;
+import com.jhl.service.ProxyAccountService;
 import com.jhl.task.GlobalConnectionStatTask;
 import com.jhl.task.service.TaskService;
 import com.jhl.utils.SynchronizedInternerUtils;
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class ConnectionStatsCache {
 
     private static final Cache<Object, AccountConnectionStat> ACCOUNT_CONNECTION_COUNT_STATS = CacheBuilder.newBuilder()
-            .expireAfterAccess(5, TimeUnit.MINUTES).build();
+            .expireAfterAccess(ProxyAccountService.ACCOUNT_EXPIRE_TIME, TimeUnit.MINUTES).build();
 
     public final static long _1HOUR_MS = 3600000;
 

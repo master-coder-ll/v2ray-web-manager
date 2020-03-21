@@ -10,9 +10,9 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class ConnectionStatCache {
 
-    public   static  final  long  EXPIRE_TIME =60_000;
+    public   static  final  long  EXPIRE_TIME =60;
     Cache<String, ConnectionStat> cacheManager = CacheBuilder.newBuilder().
-            maximumSize(1000).expireAfterAccess(EXPIRE_TIME, TimeUnit.MILLISECONDS).build();
+            maximumSize(1000).expireAfterAccess(EXPIRE_TIME, TimeUnit.MINUTES).build();
 
 
     public void add(String accountNo, String host, int count) {

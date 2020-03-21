@@ -61,7 +61,7 @@ public class MonitorService {
         log.info("TrafficController:{},ReporterQueue:{},ConnectionPool:{},AccountCache:{}",
                 TrafficControllerCache.getSize(), taskService.getQueueSize(),
                 ConnectionStatsCache.getSize(), proxyAccountService.getSize());
-        log.info("netty申请的物理内存：是否使用地址内存" + PlatformDependent.directBufferPreferred() + ",使用量(-1为无法探知)B:"
+        log.info("netty是否使用直接内存:" + PlatformDependent.directBufferPreferred() + ",使用量(-1为无法探知)B:"
                 + PlatformDependent.usedDirectMemory());
     }
 

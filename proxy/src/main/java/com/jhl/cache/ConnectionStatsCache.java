@@ -80,6 +80,13 @@ public class ConnectionStatsCache {
 
     }*/
 
+    /**
+     * <p>Expired entries may be counted in {@link Cache#size}, but will never be visible to read or
+     * write operations. Expired entries are cleaned up as part of the routine maintenance described
+     * in the class javadoc.
+     *
+     * @return size
+     */
     public static Long getSize() {
         return ACCOUNT_CONNECTION_COUNT_STATS.size();
     }

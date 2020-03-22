@@ -18,12 +18,12 @@ public class AccountConnectionStat {
 
     //远程全局连接数
     // unsafe
-    private int remoteConnectionNum = 0;
+    private volatile  int remoteConnectionNum = 0;
     //上次上报的数量
     @Getter
     @Setter
     // unsafe
-    private int lastReportNum = 0;
+    private  int lastReportNum = 0;
     //上次上报的时间
     @Getter
     @Setter

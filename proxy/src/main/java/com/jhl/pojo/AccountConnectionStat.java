@@ -23,7 +23,7 @@ public class AccountConnectionStat {
     @Getter
     @Setter
     // unsafe
-    private  int lastReportNum = 0;
+    private  volatile int lastReportNum = 0;
     //上次上报的时间
     @Getter
     @Setter

@@ -53,7 +53,6 @@ public class TaskService<T extends AbstractTask> {
                 if (IS_SHUTDOWN && REPORTER_QUEUE.size() <= 0) {
                     break;
                 }
-
                 abstractTask = REPORTER_QUEUE.take();
 
 

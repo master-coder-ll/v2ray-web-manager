@@ -2,13 +2,19 @@ package com.jhl.admin.entity;
 
 import com.jhl.admin.cache.ConnectionStatCache;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ConnectionStat {
     ConcurrentHashMap<String, InternalEntry> cache = new ConcurrentHashMap<>();
-
+    @Getter
+    @Setter
+    private volatile Long lastBlock=0L;
     public void createOrAdd(String host, int count) {
         InternalEntry entry = cache.get(host);
         if (entry != null) {
@@ -24,17 +30,23 @@ public class ConnectionStat {
 
     /**
      * 返回2分钟内的全局总数
+     *
      * @return
      */
     public Integer getTotal() {
         final long currentTimeMillis = System.currentTimeMillis();
         AtomicInteger total = new AtomicInteger();
-        cache.forEachValue(1, internalEntry -> {
-            if (currentTimeMillis - internalEntry.getLastSetTime() < ConnectionStatCache.EXPIRE_TIME) {
-                total.addAndGet(internalEntry.count);
+        List<String> removeKeys = new ArrayList<>();
+        cache.forEach((key, value) -> {
+            if (currentTimeMillis - value.getLastSetTime() < ConnectionStatCache.EXPIRE_TIME) {
+                total.addAndGet(value.count);
+            } else {
+                removeKeys.add(key);
             }
         });
-        return total.get();
+        removeKeys.forEach(key -> cache.remove(key));
+        int count = total.get();
+        return count;
     }
 
     @Data

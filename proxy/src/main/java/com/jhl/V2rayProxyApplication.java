@@ -20,6 +20,11 @@ public class V2rayProxyApplication {
     @Bean
     public RestTemplate getRestTemplate() {
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().removeIf(httpMessageConverter -> {
+            String name = httpMessageConverter.getClass().getName();
+            if (name.contains("json")) return true;
+            else return false;
+        });
         restTemplate.getMessageConverters().add(fastJsonHttpMessageConverter);
         return restTemplate;
     }

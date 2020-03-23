@@ -9,6 +9,7 @@ import com.jhl.admin.repository.ServerRepository;
 import com.jhl.admin.repository.StatRepository;
 import com.jhl.admin.repository.UserRepository;
 import com.jhl.admin.service.ServerService;
+import com.jhl.admin.service.StatService;
 import com.jhl.admin.service.v2ray.V2RayProxyEvent;
 import com.jhl.admin.service.v2ray.V2rayAccountService;
 import com.jhl.admin.util.Utils;
@@ -44,6 +45,8 @@ public class ProxyController {
     private long G = 1024 * 1024 * 1024;
     @Autowired
     V2rayAccountService v2rayAccountService;
+    @Autowired
+    StatService statService;
     /**
      * 获取一个proxyAccount
      *
@@ -70,7 +73,9 @@ public class ProxyController {
          Date date = new Date();
          Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(accountId, date, date);
          if (stat ==null) {
-             return Result.builder().code(500).message("获取不到stat,原因:未生成stat，已经过期").build();
+              stat = statService.createStat(account);
+              if (stat ==null) return Result.builder().code(500).message("获取不到stat,原因:未生成stat，已经过期").build();
+
          }
          //check flow
         if ((account.getBandwidth() * G) < stat.getFlow()) {

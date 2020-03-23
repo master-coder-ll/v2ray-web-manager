@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -216,6 +217,13 @@ public class AccountService {
         accountRepository.save(account);
     }
 
+    public  Account findByAccountNo(String accountNo){
+        Assert.notNull(accountNo,"accountNo must not be null");
+        Account account = accountRepository.findOne(Example.of(Account.builder()
+                .accountNo(accountNo).status(KVConstant.V_TRUE).build())).orElse(null);
+        return account;
+
+    }
 /*
     public List<Account> listAllAccount(List<User> users) {
         ArrayList<Account> allAccounts = Lists.newArrayList();

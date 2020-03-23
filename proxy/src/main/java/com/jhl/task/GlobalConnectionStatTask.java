@@ -1,5 +1,6 @@
 package com.jhl.task;
 
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.jhl.cache.ConnectionStatsCache;
 import com.jhl.constant.ManagerConstant;
@@ -16,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 应该基于触发
@@ -51,8 +53,10 @@ public class GlobalConnectionStatTask extends AbstractTask {
 
         Result result = responseEntity.getBody();
         if (responseEntity.getStatusCode().is2xxSuccessful() && result.getCode() == 200) {
-            Integer count = Integer.parseInt(result.getObj() + "");
-            ConnectionStatsCache.updateGlobalConnectionStat(accountNo, count);
+            JSONObject jsonObject = (JSONObject)result.getObj();
+            Integer total = jsonObject.getInteger("total");
+            Long lastBlackTime = jsonObject.getLong("lastBlackTime");
+            ConnectionStatsCache.updateGlobalConnectionStat(accountNo, total,lastBlackTime);
             log.debug("Report success!,");
         }
     }

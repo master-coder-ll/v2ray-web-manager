@@ -2,16 +2,14 @@ package com.jhl.admin.controller.api;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.common.collect.Maps;
 import com.jhl.admin.cache.ConnectionStatCache;
 import com.jhl.admin.constant.EmailConstant;
 import com.jhl.admin.constant.enumObject.EmailEventEnum;
 import com.jhl.admin.model.*;
 import com.jhl.admin.repository.AccountRepository;
 import com.jhl.admin.repository.StatRepository;
-import com.jhl.admin.service.EmailService;
-import com.jhl.admin.service.ServerService;
-import com.jhl.admin.service.StatService;
-import com.jhl.admin.service.UserService;
+import com.jhl.admin.service.*;
 import com.jhl.admin.service.v2ray.ProxyEvent;
 import com.jhl.admin.service.v2ray.ProxyEventService;
 import com.jhl.admin.service.v2ray.V2RayProxyEvent;
@@ -21,12 +19,12 @@ import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -56,10 +54,9 @@ public class ReportController {
     ConnectionStatCache connectionStatCache;
     //幂等
     Cache<String, Object> cacheManager = CacheBuilder.newBuilder().maximumSize(100).expireAfterAccess(1, TimeUnit.MINUTES).build();
-
+    @Autowired
+    AccountService accountService;
     private static byte object = 1;
-
-
 
 
     @ResponseBody
@@ -74,7 +71,7 @@ public class ReportController {
         String uniqueId = flowStat.getUniqueId();
 
         if (cacheManager.getIfPresent(uniqueId) != null) {
-            log.warn("重复的stat上报{}",uniqueId);
+            log.warn("重复的stat上报{}", uniqueId);
             return Result.SUCCESS();
         }
         synchronized (Utils.getInternersPoll().intern(uniqueId)) {
@@ -84,7 +81,7 @@ public class ReportController {
             }
 
             Date date = new Date();
-            Account account = accountRepository.findOne(Example.of(Account.builder().accountNo(flowStat.getAccountNo()).build())).orElse(null);
+            Account account = accountService.findByAccountNo(flowStat.getAccountNo());
             if (account == null) {
                 log.warn("找不到对应的account");
                 return Result.SUCCESS();
@@ -132,29 +129,37 @@ public class ReportController {
 
         if (StringUtils.isBlank(accountNo)) return Result.SUCCESS();
 
-        Account account = accountRepository.findOne(Example.of(Account.builder().accountNo(accountNo).build())).orElse(null);
-        if (account ==null )return  Result.SUCCESS();
+        Account account = accountService.findByAccountNo(accountNo);
+        if (account == null) return Result.SUCCESS();
 
         Integer userId = account.getUserId();
         User user = userService.get(userId);
         String email = user.getEmail();
 
-        emailService.sendEmail(email,"风险系统:检测到你的账号连接数过大",
+        emailService.sendEmail(email, "风险系统:检测到你的账号连接数过大",
                 emailConstant.getExceedConnections(),
                 EmailEventHistory.builder().email(email).
                         event(EmailEventEnum.EXCEEDS_MAX_CONNECTION_EVENT.name())
-                        .unlockDate(Utils.getDateBy(new Date(),1, Calendar.HOUR_OF_DAY))
+                        .unlockDate(Utils.getDateBy(new Date(), 1, Calendar.HOUR_OF_DAY))
                         .build());
         return Result.SUCCESS();
     }
 
     @ResponseBody
     @GetMapping("/connectionStat")
-    public Result connectionStat(String accountNo,String host,Integer count) {
-        connectionStatCache.add(accountNo,host,count);
+    public Result connectionStat(String accountNo, String host, Integer count) {
+        connectionStatCache.add(accountNo, host, count);
 
-        return Result.buildSuccess(connectionStatCache.getTotal(accountNo)+"",null);
+        Account account = accountService.findByAccountNo(accountNo);
+        Integer maxConnections = account.getMaxConnection();
+        int total = connectionStatCache.getTotal(accountNo, maxConnections);
+        long lastBlackTime = connectionStatCache.getLastBlackTime(accountNo);
+        HashMap<String, Object> result = Maps.newHashMapWithExpectedSize(2);
+        result.put("total", total);
+        result.put("lastBlackTime", lastBlackTime);
+        return Result.buildSuccess(result, null);
     }
+
     public static void main(String[] args) {
         //System.out.println(STRING_WEAK_POLL.intern("a")== STRING_WEAK_POLL.intern(new String("a")));
     }

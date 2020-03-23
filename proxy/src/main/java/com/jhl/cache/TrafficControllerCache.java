@@ -66,7 +66,6 @@ public class TrafficControllerCache {
     }
 
     /**
-     * 应该获取锁，但是不必要
      *
      * @param accountId
      * @return

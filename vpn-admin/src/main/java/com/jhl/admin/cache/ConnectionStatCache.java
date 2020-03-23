@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class ConnectionStatCache {
 
-    public   static  final  long  EXPIRE_TIME =60;
+    public static final long EXPIRE_TIME = 60;
     Cache<String, ConnectionStat> cacheManager = CacheBuilder.newBuilder().
             maximumSize(1000).expireAfterAccess(EXPIRE_TIME, TimeUnit.MINUTES).build();
 
@@ -26,10 +26,20 @@ public class ConnectionStatCache {
 
     }
 
-    public  int getTotal(String accountNo){
+    public int getTotal(String accountNo, int maxConnections) {
 
         ConnectionStat stat = cacheManager.getIfPresent(accountNo);
-        if (stat != null) return stat.getTotal();
-        else return 0;
+        Integer count = 0;
+        if (stat != null) count = stat.getTotal();
+
+        if (count > maxConnections) {
+            stat.setLastBlock(System.currentTimeMillis());
+        }
+        return  count;
     }
+
+        public long getLastBlackTime(String accountNo){
+            ConnectionStat stat = cacheManager.getIfPresent(accountNo);
+            return  stat.getLastBlock();
+        }
 }

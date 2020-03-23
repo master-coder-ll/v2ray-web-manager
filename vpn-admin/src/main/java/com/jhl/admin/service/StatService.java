@@ -40,7 +40,6 @@ public class StatService {
                  statRepository.save(stat);
             }
             return stat;
-
     }
   /*  private void createStat(Account account) {
         Integer accountId = account.getId();

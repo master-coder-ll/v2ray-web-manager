@@ -8,12 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.TimeZone;
+
 @SpringBootApplication
 public class V2rayProxyApplication {
     @Autowired
     FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
 
     public static void main(String[] args) {
+        TimeZone.getTimeZone("Asia/Shanghai");
         SpringApplication.run(V2rayProxyApplication.class, args);
     }
 

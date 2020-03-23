@@ -19,7 +19,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     AuthInterceptor authInterceptor;
 
-
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();

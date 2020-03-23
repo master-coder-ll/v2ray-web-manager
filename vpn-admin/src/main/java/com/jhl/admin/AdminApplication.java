@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.TimeZone;
+import java.util.concurrent.*;
 
 @SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = SimpleJpaRepositoryImpl.class)
@@ -35,18 +37,10 @@ public class AdminApplication {
 
 
     public static void main(String[] args) {
+        TimeZone.getTimeZone("Asia/Shanghai");
         SpringApplication.run(AdminApplication.class, args);
     }
 
-  /*  @Bean
-    public ObjectMapper objectMapper() {
-
-        ObjectMapper objectMapper = new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-        //  objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
-
-
-        return objectMapper;
-    }*/
 
     @Bean
     public RestTemplate restTemplate() {

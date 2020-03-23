@@ -3,6 +3,7 @@ package com.jhl.pojo;
 import com.jhl.cache.ConnectionStatsCache;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -10,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 异步，延迟。 最大程度保证正确，允许脏读。
  */
+@Slf4j
 public class AccountConnectionStat {
     //每个账号的连接数
     private AtomicInteger accountConnectionsCounter = new AtomicInteger(0);
@@ -42,7 +44,10 @@ public class AccountConnectionStat {
      */
     public void addAndGet(int count, String host) {
         int v = accountConnectionsCounter.addAndGet(count);
-        if (v < 0) accountConnectionsCounter.set(0);
+        if (v < 0) {
+            log.warn("addAndGet:accountConnectionsCounter 小于1,并发问题");
+            accountConnectionsCounter.set(0);
+        }
         //account --> host
         AtomicInteger hostCount = hostCounter.get(host);
 
@@ -95,10 +100,11 @@ public class AccountConnectionStat {
      */
     public int getByGlobal() {
         //小于5分钟内
-        if (remoteConnectionNum > 0 && (System.currentTimeMillis() - lastReportTime) < _5MINUTE_MS) {
+        if ((System.currentTimeMillis() - lastReportTime) < _5MINUTE_MS) {
             synchronized (this) {
                 int remote = (remoteConnectionNum - lastReportNum);
-                return remote < 0 ? 0 : remote + getByServer();
+                if (remote<0) remote=0;
+                return  remote + getByServer();
             }
         }
         return getByServer();

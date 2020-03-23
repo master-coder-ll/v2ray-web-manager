@@ -63,7 +63,6 @@ public class ReportController {
     @PostMapping("/flowStat")
     public Result flowStat(@RequestBody FlowStat flowStat) {
 
-
         if (flowStat == null) {
             log.error("收到空的  flowStat report。。");
             return Result.SUCCESS();
@@ -135,13 +134,15 @@ public class ReportController {
         Integer userId = account.getUserId();
         User user = userService.get(userId);
         String email = user.getEmail();
+        synchronized (Utils.getInternersPoll().intern(account)) {
+            emailService.sendEmail(email, "风险系统:检测到你的账号连接数过大",
+                    emailConstant.getExceedConnections(),
+                    EmailEventHistory.builder().email(email).
+                            event(EmailEventEnum.EXCEEDS_MAX_CONNECTION_EVENT.name())
+                            .unlockDate(Utils.getDateBy(new Date(), 1, Calendar.HOUR_OF_DAY))
+                            .build());
+        }
 
-        emailService.sendEmail(email, "风险系统:检测到你的账号连接数过大",
-                emailConstant.getExceedConnections(),
-                EmailEventHistory.builder().email(email).
-                        event(EmailEventEnum.EXCEEDS_MAX_CONNECTION_EVENT.name())
-                        .unlockDate(Utils.getDateBy(new Date(), 1, Calendar.HOUR_OF_DAY))
-                        .build());
         return Result.SUCCESS();
     }
 

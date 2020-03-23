@@ -107,7 +107,8 @@ public class ConnectionStatsCache {
         return false;
     }
 
-    public static boolean canReport(String accountId) {
+    public static  boolean canReport(String accountId) {
+        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId)){
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
         if (connectionCounter != null) {
             long interruptionTime = connectionCounter.getInterruptionTime();
@@ -115,10 +116,12 @@ public class ConnectionStatsCache {
             //interruptionTime =0 ok
             // interruptionTime !=0 ok
             if ((System.currentTimeMillis() - interruptionTime) > _1HOUR_MS) {
+                connectionCounter.setInterruptionTime(System.currentTimeMillis());
                 return true;
             }
         }
         return false;
+        }
     }
 
     /**

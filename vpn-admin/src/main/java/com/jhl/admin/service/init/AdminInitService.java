@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Slf4j
 @Service
@@ -36,6 +37,7 @@ public class AdminInitService {
     String password;
     @PostConstruct
     public void init() {
+
         ServerConfig initialedConfig = serverConfigRepository.findOne(Example.of(ServerConfig.builder().key("initialed").build())).orElse(null);
 
         if (initialedConfig != null && Boolean.valueOf(initialedConfig.getValue())) return;

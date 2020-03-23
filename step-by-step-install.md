@@ -3,7 +3,7 @@
  仅在CentOS7/ ubuntu 16 + 测试如下安装过程
 
 #### 1. 必要软件安装
-  
+ 
 - ubuntu    
 ```bash
 # 获得root权限
@@ -27,7 +27,7 @@ yum install vim nginx java-1.8.0-openjdk wget unzip -y
 # 安装v2ray -来源官网
 bash <(curl -L -s https://install.direct/go.sh)
 ```
-       
+
        
 ####  2. 配置nginx
 ```bash

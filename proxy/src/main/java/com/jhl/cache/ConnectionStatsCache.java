@@ -3,7 +3,6 @@ package com.jhl.cache;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.jhl.pojo.AccountConnectionStat;
-import com.jhl.service.ProxyAccountService;
 import com.jhl.task.GlobalConnectionStatTask;
 import com.jhl.task.service.TaskService;
 import com.jhl.utils.SynchronizedInternerUtils;
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class ConnectionStatsCache {
 
     private static final Cache<Object, AccountConnectionStat> ACCOUNT_CONNECTION_COUNT_STATS = CacheBuilder.newBuilder()
-            .expireAfterAccess(ProxyAccountService.ACCOUNT_EXPIRE_TIME, TimeUnit.MINUTES).build();
+            .expireAfterAccess(5, TimeUnit.MINUTES).build();
 
     public final static long _1HOUR_MS = 3600000;
 
@@ -107,20 +106,20 @@ public class ConnectionStatsCache {
         return false;
     }
 
-    public static  boolean canReport(String accountId) {
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId)){
-        AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
-        if (connectionCounter != null) {
-            long interruptionTime = connectionCounter.getInterruptionTime();
-            //操作一个小时后，可以继续执行上报
-            //interruptionTime =0 ok
-            // interruptionTime !=0 ok
-            if ((System.currentTimeMillis() - interruptionTime) > _1HOUR_MS) {
-                connectionCounter.setInterruptionTime(System.currentTimeMillis());
-                return true;
+    public static boolean canReport(String accountId) {
+        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId)) {
+            AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
+            if (connectionCounter != null) {
+                long interruptionTime = connectionCounter.getInterruptionTime();
+                //操作一个小时后，可以继续执行上报
+                //interruptionTime =0 ok
+                // interruptionTime !=0 ok
+                if ((System.currentTimeMillis() - interruptionTime) > _1HOUR_MS) {
+                    connectionCounter.setInterruptionTime(System.currentTimeMillis());
+                    return true;
+                }
             }
-        }
-        return false;
+            return false;
         }
     }
 
@@ -136,7 +135,7 @@ public class ConnectionStatsCache {
             connectionCounter.updateRemoteConnectionNum(count);
         }
         //全局控制
-        if (interruptionTime>0)  connectionCounter.setInterruptionTime(interruptionTime);
+        if (interruptionTime > 0) connectionCounter.setInterruptionTime(interruptionTime);
     }
 
     /**
@@ -152,9 +151,9 @@ public class ConnectionStatsCache {
      */
     public static void reportConnectionNum(String accountNo, String proxyIp) {
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
-        int internalConnectionCount = connectionCounter.getByServer();
 
         if (System.currentTimeMillis() - connectionCounter.getLastReportTime() > _30S) {
+            int internalConnectionCount = connectionCounter.getByServer();
             GlobalConnectionStatTask globalConnectionStatTask =
                     new GlobalConnectionStatTask(accountNo, proxyIp, internalConnectionCount);
             TaskService.addTask(globalConnectionStatTask);

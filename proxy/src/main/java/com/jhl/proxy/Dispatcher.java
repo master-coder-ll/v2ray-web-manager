@@ -36,7 +36,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     private static final String HOST = "HOST";
     private static final Long MAX_INTERVAL_REPORT_TIME_MS = 1000 * 60 * 5L;
-
+    private static final Long _1MINUTES=60_000L;
     /**
      * proxy端配置数据
      */
@@ -71,7 +71,13 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         } else {
 
             try {
+
+                if (proxyAccountService.interrupted(accountNo, host, version))
+                    throw new ReleaseDirectMemoryException("【当前版本已经更新】抛出异常。统一内存释放");
+
                 writeToOutBoundChannel(msg, ctx);
+
+                ConnectionStatsCache.reportConnectionNum(accountNo,proxyIp);
                 segmentReportingFlowStat();
             } catch (Exception e) {
                 if (!(e instanceof ReleaseDirectMemoryException)) {
@@ -379,9 +385,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) throws ReleaseDirectMemoryException {
-        if (proxyAccountService.interrupted(accountNo, host, version)) {
-            throw new ReleaseDirectMemoryException("【当前版本已经更新】抛出异常。统一内存释放");
-        }
+
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             release((ByteBuf) msg);
             if (future.isSuccess()) {
@@ -391,6 +395,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
             }
         });
     }
+
 
     private void reportConnectionLimit() {
 
@@ -412,8 +417,8 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
       if (ConnectionStatsCache.getByHost(accountNo,host) < 1) return;
         TrafficCounter trafficCounter = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
         if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
-            synchronized (SynchronizedInternerUtils.getInterner().intern(accountNo + ":reportStat")) {
 
+            synchronized (SynchronizedInternerUtils.getInterner().intern(accountNo + ":reportStat")) {
                 if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
                     long writtenBytes = trafficCounter.cumulativeWrittenBytes();
                     long readBytes = trafficCounter.cumulativeReadBytes();

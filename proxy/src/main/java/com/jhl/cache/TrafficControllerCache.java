@@ -5,7 +5,6 @@ import com.google.common.cache.CacheBuilder;
 import com.jhl.utils.SynchronizedInternerUtils;
 import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import java.util.concurrent.ScheduledExecutorService;
@@ -26,16 +25,14 @@ public class TrafficControllerCache {
             .build();
 
 
-
-
     /**
-     * 为每个账号增加或者获取旧的 {@GlobalTrafficShapingHandler}，
+     * 为每个账号增加或者获取旧的 {@link GlobalTrafficShapingHandler}，
      *
      * @param accountId  accountId
      * @param executor   可定时的线程池
      * @param readLimit  读限制速度
      * @param writeLimit 写限制速度
-     * @return
+     * @return GlobalTrafficShapingHandler
      */
     public static GlobalTrafficShapingHandler putIfAbsent(Object accountId, ScheduledExecutorService executor, Long readLimit, Long writeLimit) {
         Assert.notNull(accountId, "accountId must not be null");
@@ -56,8 +53,8 @@ public class TrafficControllerCache {
     /**
      * 应该获取锁，但是不必要
      *
-     * @param accountId
-     * @return
+     * @param accountId id
+     * @return GlobalTrafficShapingHandler
      */
     public static GlobalTrafficShapingHandler getGlobalTrafficShapingHandler(Object accountId) {
 
@@ -66,20 +63,27 @@ public class TrafficControllerCache {
     }
 
     /**
-     *
-     * @param accountId
-     * @return
+     * @param accountId id
+
      */
     public static void releaseGroupGlobalTrafficShapingHandler(Object accountId) {
-          Assert.notNull(accountId, "accountId must not be null");
-            GlobalTrafficShapingHandler globalTrafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
-            if (globalTrafficShapingHandler != null) {
-                globalTrafficShapingHandler.release();
-            }
-            ACCOUNT_TRAFFIC_HANDLER_MAP.invalidate(accountId);
+        Assert.notNull(accountId, "accountId must not be null");
+        GlobalTrafficShapingHandler globalTrafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
+        if (globalTrafficShapingHandler != null) {
+            globalTrafficShapingHandler.release();
+        }
+        ACCOUNT_TRAFFIC_HANDLER_MAP.invalidate(accountId);
     }
 
     public static Long getSize() {
-        return ACCOUNT_TRAFFIC_HANDLER_MAP.size();
+        long size = ACCOUNT_TRAFFIC_HANDLER_MAP.size();
+
+      /*  if (size >= 20) {
+            StringBuilder sb = new StringBuilder();
+            ACCOUNT_TRAFFIC_HANDLER_MAP.asMap().forEach((key, value) -> sb.append(key.toString()).append("|"));
+            log.warn("TrafficControllerCache is too big >=20 :{}", sb.toString());
+        }*/
+
+        return size;
     }
 }

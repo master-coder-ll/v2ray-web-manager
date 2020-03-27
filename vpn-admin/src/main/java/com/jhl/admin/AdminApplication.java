@@ -37,7 +37,7 @@ public class AdminApplication {
 
 
     public static void main(String[] args) {
-        TimeZone.getTimeZone("Asia/Shanghai");
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
         SpringApplication.run(AdminApplication.class, args);
     }
 

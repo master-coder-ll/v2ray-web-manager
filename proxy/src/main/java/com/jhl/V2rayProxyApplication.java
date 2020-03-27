@@ -16,7 +16,7 @@ public class V2rayProxyApplication {
     FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
 
     public static void main(String[] args) {
-        TimeZone.getTimeZone("Asia/Shanghai");
+        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
         SpringApplication.run(V2rayProxyApplication.class, args);
     }
 

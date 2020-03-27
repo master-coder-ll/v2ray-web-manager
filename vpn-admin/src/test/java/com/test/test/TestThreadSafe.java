@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestThreadSafe {
     static Integer count = 0;
@@ -30,7 +31,7 @@ public class TestThreadSafe {
     public  void Test2() {
         //cache  -127~128
         Object intern1 = Utils.getInternersPoll().intern(1);
-        Object intern2 = Utils.getInternersPoll().intern(new Integer(1));
+        Object intern2 = Utils.getInternersPoll().intern(new AtomicInteger(1).get());
         Assert.assertEquals(intern1,intern2);
 
         Object intern3 = Utils.getInternersPoll().intern(new StringBuffer("2222").toString());

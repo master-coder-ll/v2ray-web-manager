@@ -11,9 +11,12 @@ import org.springframework.web.client.RestTemplate;
 import java.util.TimeZone;
 
 @SpringBootApplication
+
 public class V2rayProxyApplication {
     @Autowired
     FastJsonHttpMessageConverter fastJsonHttpMessageConverter;
+
+
 
     public static void main(String[] args) {
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));

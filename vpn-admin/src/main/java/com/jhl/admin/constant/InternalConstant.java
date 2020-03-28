@@ -34,7 +34,7 @@ public class InternalConstant {
             log.info("===========================================");
             log.info("Welcome to v2ray-web-manager  : " + version );
             log.info("The latest version :{}",tagName);
-            log.info("The latest update :{}",body.trim());
+            log.info("The latest update :{}",body);
             log.info("===========================================");
         }).start();
 

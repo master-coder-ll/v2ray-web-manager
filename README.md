@@ -7,6 +7,8 @@
  项目核心是工作在传输层的中间件，位于用户与v2ray链路之间。通过转发流量实现。理论上支持上层所有的协议，现适配了ws协议。 
  
  ssl/tls 支持使用nginx 等工具提供，也可以套cdn提供。
+
+ 项目本质上是一个管理工具，并不存在任何*穿墙*功能。
  
   ## 特征：
   * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制
@@ -48,7 +50,6 @@
     * 内存大于等于300M
     * cpu vCPU 1核心
     * nginx 或者其他具有相同功能
-    * java8 +
 
 
    
@@ -126,7 +127,7 @@
   * 任何issue/文档错误，你都可以pull request
   * 想法/优化/新功能，先讨论在pull request 
                 
-## [理论](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/theory.md)
+## [->理论-<](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/theory.md)
    
 ## 架构
 现在架构：

@@ -126,8 +126,7 @@
   * 查看项目的 [todo-list](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/todo-list.md),如果你有能力并且有时间可以实现 欢迎 pull request
   * 任何issue/文档错误，你都可以pull request
   * 想法/优化/新功能，先讨论在pull request 
-                
-## [->理论-<](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/theory.md)
+
    
 ## 架构
 现在架构：

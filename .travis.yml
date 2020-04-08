@@ -6,9 +6,9 @@ addons:
   sonarcloud:
     organization: "master-coder-ll"
     token:
-      secure: "$sonarcloud_token" # encrypted value of your token
+      secure: "$SONAR_TOKEN" # encrypted value of your token
 script:
-  - mvn  clean install  -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+  - mvn  clean install  -Dmaven.test.skip=true  org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
 #  - "mvn cobertura:cobertura"
 #
 after_success:

@@ -8,7 +8,6 @@
  
  ssl/tls 支持使用nginx 等工具提供，也可以套cdn提供。
 
- 项目本质上是一个管理工具，并不存在任何*穿墙*功能。
  
   ## 特征：
   * 流量控制(qos)-无敌的速率、流量、连接数控制 ，一切都可以灵活定制
@@ -126,8 +125,7 @@
   * 查看项目的 [todo-list](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/todo-list.md),如果你有能力并且有时间可以实现 欢迎 pull request
   * 任何issue/文档错误，你都可以pull request
   * 想法/优化/新功能，先讨论在pull request 
-                
-## [->理论-<](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/theory.md)
+
    
 ## 架构
 现在架构：

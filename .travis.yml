@@ -6,6 +6,5 @@ jdk:
 script:
  # - mvn clean install -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent  sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
   - mvn clean install -Dmaven.test.skip=true
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)

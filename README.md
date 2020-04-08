@@ -1,6 +1,9 @@
 # v2ray-web-manager 
  [![Build Status](https://travis-ci.com/master-coder-ll/v2ray-web-manager.svg?branch=master)](https://travis-ci.com/master-coder-ll/v2ray-web-manager) 
-
+ [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=master-coder-ll_v2ray-web-manager&metric=alert_status)](https://sonarcloud.io/dashboard/index/master-coder-ll_v2ray-web-manager)
+ [![reliability_rating]( https://sonarcloud.io/api/project_badges/measure?project=master-coder-ll_v2ray-web-manager&metric=reliability_rating)](https://sonarcloud.io/dashboard/index/master-coder-ll_v2ray-web-manager)
+ [![bugs](https://sonarcloud.io/api/project_badges/measure?project=master-coder-ll_v2ray-web-manager&metric=bugs)](https://sonarcloud.io/dashboard/index/master-coder-ll_v2ray-web-manager)
+ 
  v2ray-web-manager 项目包含admin管理端和proxy端，admin端提供管理功能。proxy端提供核心的流量控制、账号识别、流量转发功能，
  同时支持多种转发流量模型（1对1，1对多）。
  

@@ -69,9 +69,10 @@ public class TaskService<T extends AbstractTask> {
 
             } catch (InterruptedException e) {
                 //ignore
+                Thread.currentThread().interrupt();
             } catch (Exception e) {
                 log.error("task thread error :{}", e);
-                abstractTask.catchException(e);
+             if (abstractTask!=null)  abstractTask.catchException(e);
             } catch (Error e) {
                 log.error(e.getMessage());
                 //跳过

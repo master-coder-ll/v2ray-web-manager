@@ -34,7 +34,7 @@ public class AccountConnectionStat {
     @Getter
     private long interruptionTime = 0;
 
-    public final static long _5MINUTE_MS = 5 * 60 * 1000;
+    public final static long _5MINUTE_MS = 5 * 60 * 1000L;
 
 
     /**

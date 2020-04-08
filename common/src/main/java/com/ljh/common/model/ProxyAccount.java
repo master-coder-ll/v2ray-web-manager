@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class ProxyAccount implements Serializable {
-    public final static Long M = 1024 * 1024L;
+    public static final  Long M = 1024 * 1024L;
     /**
      * 账号ID,用于标识 连接属于谁
      */

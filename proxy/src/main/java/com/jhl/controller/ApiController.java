@@ -34,7 +34,7 @@ public class ApiController {
             log.error("rmAccount error :{}", e.getLocalizedMessage());
             return Result.builder().code(500).message(e.getMessage()).build();
         }
-        return Result.SUCCESS();
+        return Result.doSuccess();
 
     }
 

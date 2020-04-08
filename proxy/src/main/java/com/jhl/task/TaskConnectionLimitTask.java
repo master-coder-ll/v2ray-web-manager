@@ -30,9 +30,6 @@ public class TaskConnectionLimitTask extends AbstractTask {
         ResponseEntity<Result> resultEt = restTemplate.getForEntity(managerConstant.getReportOverConnectionLimitUrl(),
                 Result.class, connectionLimit.getAccountNo());
 
-        if (resultEt == null) {
-            return;
-        }
         if (!resultEt.getStatusCode().is2xxSuccessful()) {
             log.warn("上报失败:{}", resultEt);
             tryAgain(getTaskCondition());

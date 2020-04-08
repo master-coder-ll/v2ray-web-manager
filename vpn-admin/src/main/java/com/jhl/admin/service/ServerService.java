@@ -54,7 +54,7 @@ public class ServerService {
     public Server findByIdAndStatus(Integer id, Integer status){
         if (status==null) status= StatusEnum.SUCCESS.code();
         Server server = serverRepository.findById(id).orElse(null);
-        if (server !=null &&  server.getStatus()!=status){
+        if (server !=null && !server.getStatus().equals(status)){
             server =null;
         }
         return  server;
@@ -66,7 +66,7 @@ public class ServerService {
         } catch (Exception e) {
 
         }
-        if (checkServer == null || checkServer.getId() == server.getId()) {
+        if (checkServer == null || checkServer.getId().equals(server.getId())) {
             serverRepository.save(server);
         } else {
             throw new IllegalArgumentException("已经存在相同的域名");

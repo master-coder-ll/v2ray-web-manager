@@ -88,7 +88,7 @@ public class UserController {
             response.addCookie(cookie);
         }
         userCache.rmCache(auth);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -116,7 +116,7 @@ public class UserController {
 
         }
         emailService.sendVCode(email);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     @PostMapping("/reg")
@@ -143,7 +143,7 @@ public class UserController {
             invitationCode.setStatus(1);
             invitationCodeRepository.save(invitationCode);
         }
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     private boolean checkIsNeedInviteCode() {
@@ -154,7 +154,7 @@ public class UserController {
     public Result forgot(@RequestBody UserVO user, String vCode) {
         user.setVCode(vCode);
         userService.changePassword(user.toModel(User.class));
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -168,7 +168,7 @@ public class UserController {
         UserVO user = userCache.getCache(auth);
         Integer id = user.getId();
         userService.changePassword(id,changePasswordVO.getOldPassword(),changePasswordVO.getNewPassword());
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -222,7 +222,7 @@ public class UserController {
     public Result addRemark(@RequestBody UserVO user) {
         if (user == null || user.getId() == null || user.getRemark() == null) throw new RuntimeException("参数不能为空");
         userService.addRemark(user.getId(), user.getRemark());
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -250,7 +250,7 @@ public class UserController {
         Validator.isNotNull(id);
         Validator.isNotNull(auth);
         UserVO cacheUser =  userCache.getCache(auth);
-        if (cacheUser.getId() == id) throw new RuntimeException("不能修改自己账号");
+        if (cacheUser.getId().equals(id)) throw new RuntimeException("不能修改自己账号");
 
         List<Account> accounts = accountRepository.findAll(Example.of(Account.builder().userId(id).build()));
 
@@ -265,7 +265,7 @@ public class UserController {
         if (accounts != null)
             accountRepository.deleteAll(accounts);
 
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -283,7 +283,7 @@ public class UserController {
         }
         //   user.setPassword(DigestUtils.md5Hex(user.getPassword()));
         userService.adminReg(user.toModel(User.class));
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -299,11 +299,11 @@ public class UserController {
         Validator.isNotNull(user);
         Validator.isNotNull(user.getId());
         UserVO cacheUser = userCache.getCache(auth);
-        if (cacheUser.getId() == user.getId()) throw new RuntimeException("不能修改自己账号");
+        if (cacheUser.getId().equals(user.getId())) throw new RuntimeException("不能修改自己账号");
         User user1 = User.builder().status(user.getStatus()).build();
         user1.setId(user.getId());
         userRepository.save(user1);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
 

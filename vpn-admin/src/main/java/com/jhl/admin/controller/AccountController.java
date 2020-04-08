@@ -67,7 +67,7 @@ public class AccountController {
     public Result createAccount(@RequestBody AccountVO account) {
         if (account == null || account.getUserId() == null) throw new NullPointerException("不能为空");
         accountService.create(account.toModel(Account.class));
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -86,7 +86,7 @@ public class AccountController {
     public Result updateAccount(@RequestBody AccountVO account) {
         if (account == null || account.getId() == null) throw new NullPointerException("不能为空");
         accountService.updateAccount(account.toModel(Account.class));
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
 
@@ -124,7 +124,7 @@ public class AccountController {
     public Result updateAccountServer(@RequestBody AccountVO account) {
         if (account == null || account.getId() == null) throw new NullPointerException("不能为空");
         accountService.updateAccountServer(account.toModel(Account.class));
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -197,7 +197,7 @@ public class AccountController {
         UserVO user = userCache.getCache(auth);
         Integer accountId = accountService.getAccount(user.getId()).getId();
         accountService.generatorSubscriptionUrl(accountId,type);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /*@Deprecated

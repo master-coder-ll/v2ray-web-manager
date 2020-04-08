@@ -37,6 +37,6 @@ public class MonitorScanTask extends AbstractTask {
     public void setCondition(TaskCondition taskCondition) {
         taskCondition.setMaxFailureTimes(-1);
         taskCondition.setFailureTimes(0);
-        taskCondition.setInterval(60_000 * 5);
+        taskCondition.setInterval(60_000L * 5);
     }
 }

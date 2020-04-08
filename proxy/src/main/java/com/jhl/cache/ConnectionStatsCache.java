@@ -133,9 +133,12 @@ public class ConnectionStatsCache {
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
         if (connectionCounter != null) {
             connectionCounter.updateRemoteConnectionNum(count);
+            //全局控制
+            if (interruptionTime > 0) connectionCounter.setInterruptionTime(interruptionTime);
+        }else{
+            throw  new NullPointerException("AccountConnectionStat is null");
         }
-        //全局控制
-        if (interruptionTime > 0) connectionCounter.setInterruptionTime(interruptionTime);
+
     }
 
     /**

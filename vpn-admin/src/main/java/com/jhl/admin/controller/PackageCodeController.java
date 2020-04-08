@@ -25,7 +25,7 @@ public class PackageCodeController {
     @GetMapping("/package/code/generate")
     public Result generate(Integer packageId) {
         if (packageId == null) throw new NullPointerException("packageId不能为空");
-        Package aPackage = packageRepository.findById(packageId).get();
+        Package aPackage = packageRepository.findById(packageId).orElse(null);
         if (aPackage == null) throw new NullPointerException("package不存在");
         PackageCode pc = new PackageCode();
         pc.setCode(Utils.getCharAndNum(10));
@@ -61,7 +61,7 @@ public class PackageCodeController {
         if (packageCode == null || packageCode.getId() ==null) throw new NullPointerException("Id不能为空");
 
         packageCodeRepository.save(packageCode);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -78,7 +78,7 @@ public class PackageCodeController {
          packageCode.setId(id);
          packageCode.setStatus(-1);
         packageCodeRepository.save(packageCode);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
 

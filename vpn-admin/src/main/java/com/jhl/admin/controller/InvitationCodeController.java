@@ -51,7 +51,7 @@ public class InvitationCodeController {
         InvitationCode code = InvitationCode.builder().generateUserId(userId).inviteCode(UUID.randomUUID().toString()).build();
             code.setStatus(0);
         invitationCodeRepository.save(code);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     @PreAuth("vip")
@@ -62,12 +62,11 @@ public class InvitationCodeController {
         if (auth == null) throw new NullPointerException("获取不到用户");
         UserVO user = userCache.getCache(auth);
         Integer userId = user.getId();
-        String role = user.getRole();
         Page<InvitationCode> codes = null;
             codes= invitationCodeRepository.findAll(Example.of(InvitationCode.builder().generateUserId(userId).build()),
                     PageRequest.of(page - 1, pageSize, Sort.by(Sort.Order.asc("status"))));
 
-        return Result.buildPageObject(codes!=null?codes.getTotalElements():0, codes!=null? BaseEntity.toVOList(codes.getContent(), InvitationCodeVO.class):null);
+        return Result.buildPageObject(codes.getTotalElements(),  BaseEntity.toVOList(codes.getContent(), InvitationCodeVO.class));
     }
 
     @PreAuth("admin")
@@ -76,13 +75,13 @@ public class InvitationCodeController {
     public Result delete(@CookieValue(value = UserController.COOKIE_NAME, defaultValue = "") String auth, @PathVariable Integer codeId) {
 
         if (auth == null) throw new NullPointerException("获取不到用户");
-        if (codeId == null) new NullPointerException("id 不能为空");
+        if (codeId == null) throw new NullPointerException("id 不能为空");
         UserVO user = userCache.getCache(auth);
         Integer userId = user.getId();
         InvitationCode invitationCode = new InvitationCode();
         invitationCode.setId(codeId);
         invitationCode.setGenerateUserId(userId);
         invitationCodeRepository.delete(invitationCode);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 }

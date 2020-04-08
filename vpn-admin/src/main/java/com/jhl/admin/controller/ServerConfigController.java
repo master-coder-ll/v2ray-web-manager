@@ -37,7 +37,7 @@ public class ServerConfigController {
         }
             serverConfig.setScope("config");
         serverConfigRepository.save(serverConfig.toModel(ServerConfig.class));
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ServerConfigController {
     @ResponseBody
     @PutMapping("/serverConfig")
     public Result update(@RequestBody ServerConfigVO serverConfig) {
-        if (serverConfig == null && serverConfig.getId() == null) throw new NullPointerException("id 不能为空");
+        if (serverConfig == null || serverConfig.getId() == null) throw new NullPointerException("id 不能为空");
         return addServerConfig(serverConfig);
     }
 
@@ -79,18 +79,18 @@ public class ServerConfigController {
     @GetMapping("/serverConfig/{id}")
     public Result get(@PathVariable Integer id) {
 
-        if (id == null) new NullPointerException("id 不能为空");
+        if (id == null) throw new NullPointerException("id 不能为空");
         ServerConfig serverConfig = serverConfigRepository.findById(id).orElse(null);
-        return Result.buildSuccess(serverConfig.toVO(ServerConfigVO.class), null);
+        return Result.buildSuccess(serverConfig==null?null:serverConfig.toVO(ServerConfigVO.class), null);
     }
 
     @PreAuth("admin")
     @ResponseBody
     @DeleteMapping("/serverConfig/{id}")
     public Result delete(@PathVariable Integer id) {
-        if (id == null) new NullPointerException("id 不能为空");
+        if (id == null) throw new NullPointerException("id 不能为空");
         serverConfigRepository.deleteById(id);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
 

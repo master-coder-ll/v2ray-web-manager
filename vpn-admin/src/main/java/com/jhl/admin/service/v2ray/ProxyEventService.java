@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -45,6 +46,8 @@ public class ProxyEventService {
                 queue.offer(proxyEvent, 10, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 log.error("addProxyEvent error", e);
+                Thread.currentThread().interrupt();
+
             }
         }
 
@@ -76,6 +79,8 @@ public class ProxyEventService {
                     }
                 } catch (InterruptedException e) {
                     log.error("event InterruptedException :{}", e);
+                    Thread.currentThread().interrupt();
+
                     break;
 
                 } catch (Exception e) {
@@ -100,6 +105,7 @@ public class ProxyEventService {
     }*/
 
     public List<V2RayProxyEvent> buildV2RayProxyEvent(Account account, String opName) {
+        Assert.notNull(account,"account is null");
         Integer serverId = account.getServerId();
         if (serverId == null) {
             Account builder = Account.builder().build();
@@ -107,9 +113,10 @@ public class ProxyEventService {
             account = accountRepository.findOne(Example.of(builder)).orElse(null);
         }
 
+        Assert.notNull(account,"account is null");
         Integer userId = account.getUserId();
         User user = userRepository.findById(userId).orElse(null);
-
+        Assert.notNull(user,"user is null");
         List<Server> servers = serverService.listByLevel(account.getLevel());
         List<V2RayProxyEvent> v2RayProxyEvents = new ArrayList<>(servers.size());
         for (Server server : servers)

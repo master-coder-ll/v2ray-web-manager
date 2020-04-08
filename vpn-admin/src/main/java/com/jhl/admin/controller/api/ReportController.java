@@ -41,7 +41,7 @@ public class ReportController {
     StatService statService;
     @Autowired
     ServerService serverService;
-    private long G = 1024 * 1024 * 1024;
+    private long G = 1024 * 1024 * 1024L;
     @Autowired
     EmailService emailService;
     @Autowired
@@ -65,25 +65,25 @@ public class ReportController {
 
         if (flowStat == null) {
             log.error("收到空的  flowStat report。。");
-            return Result.SUCCESS();
+            return Result.doSuccess();
         }
         String uniqueId = flowStat.getUniqueId();
 
         if (cacheManager.getIfPresent(uniqueId) != null) {
             log.warn("重复的stat上报{}", uniqueId);
-            return Result.SUCCESS();
+            return Result.doSuccess();
         }
         synchronized (Utils.getInternersPoll().intern(uniqueId)) {
 
             if (cacheManager.getIfPresent(uniqueId) != null) {
-                return Result.SUCCESS();
+                return Result.doSuccess();
             }
 
             Date date = new Date();
             Account account = accountService.findByAccountNo(flowStat.getAccountNo());
             if (account == null) {
                 log.warn("找不到对应的account");
-                return Result.SUCCESS();
+                return Result.doSuccess();
             }
             //账号到期
             if (!account.getToDate().after(new Date())) {
@@ -92,7 +92,7 @@ public class ReportController {
            /* account.setStatus(0);
             accountService.updateAccount(account);*/
                 log.warn("账号到期。,{},{}", account.getAccountNo(), Utils.formatDate(account.getToDate(), null));
-                return Result.SUCCESS();
+                return Result.doSuccess();
             }
             Integer accountId = account.getId();
             Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(accountId, date, date);
@@ -100,12 +100,12 @@ public class ReportController {
                 stat = statService.createStat(account);
                 //原因：账号到期；增加rm
                 if (stat == null) {
-                    return Result.SUCCESS();
+                    return Result.doSuccess();
                 }
             }
             Server server = serverService.findByDomain(flowStat.getDomain(), account.getLevel());
             // 乘 流量倍数
-            long used = stat.getFlow() + new Double(flowStat.getUsed() * server.getMultiple()).longValue();
+            long used = stat.getFlow() + Double.valueOf(flowStat.getUsed() * server.getMultiple()).longValue();
             stat.setFlow(used);
             statRepository.save(stat);
             //防止重复
@@ -118,7 +118,7 @@ public class ReportController {
                 proxyEventService.addProxyEvent(v2RayProxyEvents);
 
             }
-            return Result.SUCCESS();
+            return Result.doSuccess();
         }
     }
 
@@ -126,10 +126,10 @@ public class ReportController {
     @GetMapping("/connectionLimit")
     public Result exceedsMaxConnection(String accountNo) {
 
-        if (StringUtils.isBlank(accountNo)) return Result.SUCCESS();
+        if (StringUtils.isBlank(accountNo)) return Result.doSuccess();
 
         Account account = accountService.findByAccountNo(accountNo);
-        if (account == null) return Result.SUCCESS();
+        if (account == null) return Result.doSuccess();
 
         Integer userId = account.getUserId();
         User user = userService.get(userId);
@@ -143,7 +143,7 @@ public class ReportController {
                             .build());
         }
 
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     @ResponseBody

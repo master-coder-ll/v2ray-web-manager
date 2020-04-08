@@ -164,9 +164,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         } catch (Exception e) {
             if (!(e instanceof ReleaseDirectMemoryException))
                 log.warn("解析阶段发生错误:{},e:{}", ((ByteBuf) msg).toString(Charset.defaultCharset()), e.getLocalizedMessage());
-            if (handshakeByteBuf != null)
+        /*    if (handshakeByteBuf != null)
                 ReferenceCountUtil.release(handshakeByteBuf);
-            closeOnFlush(ctx.channel());
+            closeOnFlush(ctx.channel());*/
             return;
         } finally {
             //释放握手数据，防止内存溢出

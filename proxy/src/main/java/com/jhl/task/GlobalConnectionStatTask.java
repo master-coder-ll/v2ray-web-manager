@@ -41,9 +41,7 @@ public class GlobalConnectionStatTask extends AbstractTask {
 
     @Override
     public void runTask(RestTemplate restTemplate, ManagerConstant managerConstant) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ProxyAccount> entity = new HttpEntity(this, headers);
+
         String url = managerConstant.getAddress() + managerConstant.getGlobalConnectionStatUrl();
         HashMap<String, Object> v = Maps.newHashMap();
         v.put("accountNo", accountNo);

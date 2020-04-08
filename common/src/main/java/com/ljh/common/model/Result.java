@@ -15,9 +15,9 @@ public class Result<T> implements Serializable {
     private T obj;
 
 
-    public static int CODE_SUCCESS = 200;
+    public static final int CODE_SUCCESS = 200;
 
-    public static Result SUCCESS() {
+    public static Result doSuccess() {
         return Result.builder().code(CODE_SUCCESS).build();
     }
 

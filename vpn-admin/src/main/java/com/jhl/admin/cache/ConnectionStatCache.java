@@ -29,8 +29,8 @@ public class ConnectionStatCache {
     public int getTotal(String accountNo, int maxConnections) {
 
         ConnectionStat stat = cacheManager.getIfPresent(accountNo);
-        Integer count = 0;
-        if (stat != null) count = stat.getTotal();
+        if (stat ==null) throw  new NullPointerException("ConnectionStat is null");
+        Integer  count = stat.getTotal();
 
         if (count > maxConnections) {
             stat.setLastBlock(System.currentTimeMillis());

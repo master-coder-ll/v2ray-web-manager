@@ -42,8 +42,8 @@ public class ServerController {
     @GetMapping("/server/{id}")
     public Result get(@PathVariable Integer id) {
         Validator.isNotNull(id);
-        Server server = serverRepository.findById(id).get();
-        return Result.builder().code(Result.CODE_SUCCESS).obj(server.toVO(ServerVO.class)).build();
+        Server server = serverRepository.findById(id).orElse(null);
+        return Result.builder().code(Result.CODE_SUCCESS).obj(server==null?null:server.toVO(ServerVO.class)).build();
     }
 
     @PreAuth("admin")
@@ -99,7 +99,7 @@ public class ServerController {
     public Result insert(@RequestBody Server server) {
         Validator.isNotNull(server);
         serverService.save(server);
-        return Result.SUCCESS();
+        return Result.doSuccess();
     }
 
     /**

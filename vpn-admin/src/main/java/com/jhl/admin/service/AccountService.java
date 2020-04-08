@@ -107,7 +107,7 @@ public class AccountService {
     public void updateAccountServer(Account account) {
         Integer id = account.getId();
         Account dbAccount = accountRepository.findById(id).orElse(null);
-        if (dbAccount.getStatus() == 0 || !dbAccount.getToDate().after(new Date())) {
+        if (dbAccount ==null|| dbAccount.getStatus() == 0 || !dbAccount.getToDate().after(new Date())) {
             throw new IllegalStateException("账号不可用");
         }
 
@@ -209,6 +209,7 @@ public class AccountService {
         subscriptionService.addSubscription(subscription);
 
       Account account = accountRepository.findById(accountId).orElse(null);
+      Assert.notNull(account,"account is null");
         long timeStamp =System.currentTimeMillis();
 
         String token = DigestUtils.md5Hex(subscription.getCode()+timeStamp+proxyConstant.getAuthPassword());

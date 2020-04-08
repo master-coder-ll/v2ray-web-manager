@@ -9,7 +9,7 @@ addons:
     token:
       secure: Y8pFbbHF8CfJJCJU44cX4gdK8BSesnGPdvSSCCc1WsKrC3o2u10axqVLXVh/vQneCLBZvpEfvSWpEKsYZ8pTs0FQsrgL8Vwo81FjYjaqwlWpxPMGuheqGnNMO9dAGWY+dC9zw4hNNG6UUTY9OlOsJeqIirE5XPUgi9Z5UbZdFopvuj4lhzl01NO8JyNzW+yzbmv+onK5AcjjSwKROzPSKQGWHUZ68hHbyy0fZu8PCLGpPowfLptDgIqxhmZes9/wUXKVqTmzCa/12JEcTRlZ+/iXXv57AkVu4Gc4CyOU/bX/h/VXVgetyAsj+mHOkiqFhRvRJaAgGB10U8wx8Y6q/XJtuxLcgoI5/Iw9JyC86hN7QHdZsaIxc9gRTV+Isx5m3WoclANWufwMhANqUnzgcBgYZhCjxa0CRV1G2ZQpqtWRkp/9IBxm4tXObmZTwWuwT7iocagKTLLZWnECD/TuvdD0kwuatOaCy1ns9xUTDBD+EHxBA6rVtEuMtcENARMwPF1Ts3yEoX/N1FM3Uy+0O0kVLOwwLEiWNODhrGNFB8DFWIqJVlEdzUPLi75EFVEImJBxcyqYI7aiBsen2UpPiyhMMlyAYYPOF8Q7UmSuvy2p0qzYfNJllBTTM9Oh2AV+5V+yRNJhrkU4GKhir0OPEcoFWhQ5l9p0uuPeGTMxUyw= # encrypted value of your token
 script:
-  - mvn clean  -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent  sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
+  - mvn clean  -Dmaven.test.skip=true -X org.jacoco:jacoco-maven-plugin:prepare-agent  sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
 # - "mvn cobertura:cobertura"
 #
 after_success:

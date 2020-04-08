@@ -3,8 +3,15 @@ language: java
 jdk:
   - openjdk8
 
+addons:
+  sonarcloud:
+    organization: "master-coder-ll"
+    token:
+      secure: "RqxhnLtQMbpbeDo5s8e6ovVFHdyrDr3hXZ18vk+ue30EvHJxlZnUZ4WqGhq2YQJIsIvfM02wKFycHHlK9bAqqOzXzTNupbVTCDcbRgfUTRF+KX3yOeXeqKfPGVqIdTPLHMBLequddtPuyHR4etZJz00lDRRSwSQwgnEPvrhAMtzCd14ABsXBb8xAz9psaRhSTdXkSdvDYjnvKPO2Oj8E3mPkk+ujboso+dKR3/xuA5DtO9jYHHE9B8GyTvwO7E5vgqe4sJYi+3wmnGoYi/3m1fwj/cdVY24l4sNWDOImti/9TCx4tRUCb06ZPq4NJsCOVpqaQfZpEHSwdkjZt5VsJoTJzkABzS0d7vkQ+FSPlOLmUYK5lx7/cy9UmqKm/GeyDTxUio4W5+ndKBdXIsbZOchRhzbOFlVPyUI+AupU5OQUSLxxB4vV/UlbapPi/pblobK3VcIP6S9eeFHNg8hX0QCpe1RlIFJuQd6InRkug1n63n/oim6jIZFzntaoM3PIkd/3aN6EMz/Nzmk9nX8ZApeM2Az+WQICWiXjmr3eIo6zE9dhJw3qCD7etcl4V2UyA8fpfgs3djov0m4SP74cN5hFLf6nYuJTRd8qL2mpUE2exCcDhXy+N0SrE2kqjHQe//ox3x/Y3IoXyFA8uT1KT1iP4F/JpKGaH/92WSJI9q8="
+
 script:
  # - mvn clean install -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent  sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
   - mvn clean install -Dmaven.test.skip=true
+  -   - sonar-scanner
 after_success:
   - bash <(curl -s https://codecov.io/bash)

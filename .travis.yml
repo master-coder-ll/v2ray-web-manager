@@ -1,17 +1,13 @@
 language: java
 jdk:
-  - openjdk8
+- openjdk8
 
 addons:
   sonarcloud:
     organization: "master-coder-ll"
     token:
-      secure: "bgk03UU1+Uclwl0sb4Ygy7qkHL9/DjnDbtpiYWgbPV472BXLkD9GPFZsZylhfpXfD5W2zF5TMDx+CeBj5kKLPvPrhoju7DljcibBITaKKVWwF2THCKZ1NmYB7ONP+HvUUImv+700Y8C9kKBshmlcNOzMsOs7HbdeRNg7eMHt6SNODXoBCpCrRMmrmVi+m2EL816ObsmS1qfShphrbLymITYRjmbMnuM274ihWDEt7MBrRVhR6nf6I2/e3qVJ47qeSrWI0XVVjlbIuwaY9KaDZKd6zi/YhrTSSi+D1xikXVQYO1owlKhPA/nB1U50dlteNmrqZIdsp/TokAJ6r0IF6lpVuCkCYzfcFZmg2Zof/qDDP8HAhKVA6nASTMDQVLYlXWDrGAiUde6y1tvPwnkU8b8FpvUsetoboJ4oVxbQYSDjEbjabf10ryY+LQ4gwKEWozmdy5+bBwjoH+VLQIY6r8KXcVggyjSKpVn89pVZfw9nYJ2nJBu+J7RF+w/xYdyHqR8JHuLCtpicHvgehKsh298j6jAUSJ3zpfGjZEpjBH3FVQuqR10MROJ6mTOr1vS6LluE2qTNbBNWohDQResYqoAlU5ZYVqiKTP5rSX6Cxjm40COnTJ6JNfixkEVycLf3nkzKfQ5GdZd+QaEj2DPJkDg52VX/obAfMkCz55iVjmY=" # encrypted value of your token
+    secure: Qs1WqomuFjRJZbpLxqjM4H7EupodrCVEEveGs+2jZxXDEAQcgqFGIvOGq6kjL5nh0NxEcdFPgMLEd7lEKjN0j4J8ZAigw8c6ih/imVkwqzB5N77gN7H8tgPaa/pJCVAF0e2qXL3XUhuaQSIGGUvKKb4MSPCfi9jSXxpOnl5knT2ee2t6UTOo+E5mcKE53lfmT83+rvLC59WFVfEc2pnvYr/lrCkJHNDfUIOatX1N8ai7WFOuYMnZFtS7ebXJ52CEcdcFrCG6NssFY/qhiqjeIm85zbgsMWk0aBJYXqq/37QInPYwhpJU4fTrmcUbYimMuxv6ugaHJtpW3TorkMpWUe5LRMwTHgN9ll8C1v6EPPquhfEduiV9arDTY3862cJiRNjWoqYhlEffOyAPVrauHKC8Yr0KLlyv4WWG34ae+a09OOYv0wKSQTMMHyKr7/cIb1tQkcx09AvbCXi8Xi3YixHnToCIAG3j54aphsk/khxApuCvHtLXWlCD4WPHgGQgqR6oFoByONJ13YjVY49gNIP7CGuMgJKiwGMINY1jfriDc9vID5D56tmQL3BMk3G4DE3v83bHGNe5cj5wZn3bqXvOywK49JxXW3x6LHMhD2om++X0Hnfs51muFRYx+qmW9vdwrdvbUbDsGTXFiH3AFAnSpxKyfpRVtkG6iPUYR2E=
 script:
-
-  - mvn install -Dmaven.test.skip=true
-# - "mvn cobertura:cobertura"
-#
+-  mvn  clean install -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
+- bash <(curl -s https://codecov.io/bash)

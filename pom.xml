@@ -24,7 +24,11 @@
     </developer>
     </developers>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <sonar.projectKey>master-coder-ll_v2ray-web-manager</sonar.projectKey>
+            <sonar.organization>master-coder-ll</sonar.organization>
+            <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+            <sonar.login>fc0114a430b04e17da9faafe6f16200095653f56</sonar.login>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <modules>
         <module>v2ray-jdk</module>

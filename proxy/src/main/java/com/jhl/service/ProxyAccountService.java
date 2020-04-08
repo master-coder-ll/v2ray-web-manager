@@ -39,7 +39,7 @@ public class ProxyAccountService {
      * key:getKey(accountNo, host)
      * value: ProxyAccount
      */
-    public static Integer ACCOUNT_EXPIRE_TIME = 60;
+    public final  static Integer ACCOUNT_EXPIRE_TIME = 60;
     private final Cache<String, ProxyAccountWrapper> PA_MAP = CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(ACCOUNT_EXPIRE_TIME, TimeUnit.MINUTES).build();
     /**
      * 屏蔽无限刷admin端

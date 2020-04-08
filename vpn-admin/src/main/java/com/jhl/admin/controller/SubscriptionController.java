@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,7 @@ public class SubscriptionController {
      * @return
      */
 
-    @RequestMapping("/subscribe/{code}")
+    @RequestMapping(value = "/subscribe/{code}")
     public void subscribe(@PathVariable String code, Integer type, Long timestamp, String token, HttpServletResponse response) throws IOException {
          if (code==null||type==null ||  timestamp==null || token ==null)  throw  new NullPointerException("参数错误");
 

@@ -8,6 +8,6 @@ addons:
     token:
     secure: Qs1WqomuFjRJZbpLxqjM4H7EupodrCVEEveGs+2jZxXDEAQcgqFGIvOGq6kjL5nh0NxEcdFPgMLEd7lEKjN0j4J8ZAigw8c6ih/imVkwqzB5N77gN7H8tgPaa/pJCVAF0e2qXL3XUhuaQSIGGUvKKb4MSPCfi9jSXxpOnl5knT2ee2t6UTOo+E5mcKE53lfmT83+rvLC59WFVfEc2pnvYr/lrCkJHNDfUIOatX1N8ai7WFOuYMnZFtS7ebXJ52CEcdcFrCG6NssFY/qhiqjeIm85zbgsMWk0aBJYXqq/37QInPYwhpJU4fTrmcUbYimMuxv6ugaHJtpW3TorkMpWUe5LRMwTHgN9ll8C1v6EPPquhfEduiV9arDTY3862cJiRNjWoqYhlEffOyAPVrauHKC8Yr0KLlyv4WWG34ae+a09OOYv0wKSQTMMHyKr7/cIb1tQkcx09AvbCXi8Xi3YixHnToCIAG3j54aphsk/khxApuCvHtLXWlCD4WPHgGQgqR6oFoByONJ13YjVY49gNIP7CGuMgJKiwGMINY1jfriDc9vID5D56tmQL3BMk3G4DE3v83bHGNe5cj5wZn3bqXvOywK49JxXW3x6LHMhD2om++X0Hnfs51muFRYx+qmW9vdwrdvbUbDsGTXFiH3AFAnSpxKyfpRVtkG6iPUYR2E=
 script:
--  mvn  clean install -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
+-  mvn clean install -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
 after_success:
 - bash <(curl -s https://codecov.io/bash)

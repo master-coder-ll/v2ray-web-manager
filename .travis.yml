@@ -11,7 +11,8 @@ addons:
 
 script:
  # - mvn clean install -Dmaven.test.skip=true org.jacoco:jacoco-maven-plugin:prepare-agent  sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
+  - mvn  -Dmaven.test.skip=true verify sonar:sonar  > /dev/null 2>&1 &
   - mvn clean install -Dmaven.test.skip=true
-  - mvn  -Dmaven.test.skip=true verify sonar:sonar
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)

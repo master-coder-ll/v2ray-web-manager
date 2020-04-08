@@ -6,9 +6,10 @@ addons:
   sonarcloud:
     organization: "master-coder-ll"
     token:
-      secure: "bgk03UU1+Uclwl0sb4Ygy7qkHL9/DjnDbtpiYWgbPV472BXLkD9GPFZsZylhfpXfD5W2zF5TMDx+CeBj5kKLPvPrhoju7DljcibBITaKKVWwF2THCKZ1NmYB7ONP+HvUUImv+700Y8C9kKBshmlcNOzMsOs7HbdeRNg7eMHt6SNODXoBCpCrRMmrmVi+m2EL816ObsmS1qfShphrbLymITYRjmbMnuM274ihWDEt7MBrRVhR6nf6I2/e3qVJ47qeSrWI0XVVjlbIuwaY9KaDZKd6zi/YhrTSSi+D1xikXVQYO1owlKhPA/nB1U50dlteNmrqZIdsp/TokAJ6r0IF6lpVuCkCYzfcFZmg2Zof/qDDP8HAhKVA6nASTMDQVLYlXWDrGAiUde6y1tvPwnkU8b8FpvUsetoboJ4oVxbQYSDjEbjabf10ryY+LQ4gwKEWozmdy5+bBwjoH+VLQIY6r8KXcVggyjSKpVn89pVZfw9nYJ2nJBu+J7RF+w/xYdyHqR8JHuLCtpicHvgehKsh298j6jAUSJ3zpfGjZEpjBH3FVQuqR10MROJ6mTOr1vS6LluE2qTNbBNWohDQResYqoAlU5ZYVqiKTP5rSX6Cxjm40COnTJ6JNfixkEVycLf3nkzKfQ5GdZd+QaEj2DPJkDg52VX/obAfMkCz55iVjmY=" # encrypted value of your token
+      secure: "$SONAR_TOKEN" # encrypted value of your token
 script:
-  - mvn  clean install  -Dmaven.test.skip=true  org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
+  - mvn  clean  -Dmaven.test.skip=true  org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=master-coder-ll_v2ray-web-manager
+  - mvn install -Dmaven.test.skip=true
 #  - "mvn cobertura:cobertura"
 #
 after_success:

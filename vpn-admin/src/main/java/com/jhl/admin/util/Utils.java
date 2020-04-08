@@ -4,6 +4,8 @@ import com.google.common.collect.Interner;
 import com.google.common.collect.Interners;
 import com.jhl.admin.constant.KVConstant;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,9 +15,14 @@ import java.util.Random;
 public final class Utils {
     private final static Interner<Object> STRING_WEAK_POLL = Interners.newWeakInterner();
 
-    public static String generateVCode() {
-        Random random = new Random();
-        return random.nextInt(100000) + "";
+
+
+    public static String generateVCode()  {
+
+            SecureRandom random = new SecureRandom();
+            return random.nextInt(100000) + "";
+
+
 
     }
 
@@ -25,7 +32,7 @@ public final class Utils {
 
     public static String getCharAndNum(int length) {
 
-        Random random = new Random();
+        SecureRandom random = new SecureRandom();
 
         StringBuffer valSb = new StringBuffer();
 
@@ -59,10 +66,9 @@ public final class Utils {
         return calendar.getTime();
     }
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat(KVConstant.YYYYMMddHH);
 
     public static Date formatDate(Date date, SimpleDateFormat simpleDateFormat) {
-        SimpleDateFormat thisSDF = sdf;
+        SimpleDateFormat thisSDF = new SimpleDateFormat(KVConstant.YYYYMMddHH);
 
         if (simpleDateFormat != null) thisSDF = simpleDateFormat;
         try {

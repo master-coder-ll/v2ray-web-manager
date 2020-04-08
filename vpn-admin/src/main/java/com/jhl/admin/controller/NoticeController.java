@@ -94,7 +94,7 @@ public class NoticeController {
 
     private void addOrUpdate(@RequestBody NoticeVO notice) {
 
-        if (StringUtils.isBlank(notice.getContent())
+        if ( notice ==null|| StringUtils.isBlank(notice.getContent())
                 || StringUtils.isBlank(notice.getName())
                 || notice.getToDate() == null
                 || notice.getStatus() == null

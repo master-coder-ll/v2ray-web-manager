@@ -105,7 +105,7 @@ public class ReportController {
             }
             Server server = serverService.findByDomain(flowStat.getDomain(), account.getLevel());
             // 乘 流量倍数
-            long used = stat.getFlow() + Double.valueOf(flowStat.getUsed() * server.getMultiple()).longValue();
+            long used =  stat.getFlow() + (long)(flowStat.getUsed() * server.getMultiple());
             stat.setFlow(used);
             statRepository.save(stat);
             //防止重复

@@ -237,7 +237,7 @@ docker run -d --name v2 --net=host -v ~/conf:/opt/conf greatbody/v2ray-web-manag
 请注意防火墙是否允许 80 端口的传入请求。
 ## 提示
 
-### 一些docker中版本不中地方
+### 一些docker中版本不足地方
 * nginx 暂未提供tls支持
 * 只能在**一个**服务器上运行
 * 排查问题将会更加困难

@@ -234,7 +234,21 @@ docker run -d --name v2 --net=host -v ~/conf:/opt/conf greatbody/v2ray-web-manag
 ```
 
 然后就可以在浏览器上输入 http://IP 或者 http://你的域名 访问了。
-
+请注意防火墙是否允许 80 端口的传入请求。
 ## 提示
 
-请注意防火墙是否允许 80 端口的传入请求。
+### 一些docker中版本不中地方
+* nginx 暂未提供tls支持
+* 只能在**一个**服务器上运行
+* 排查问题将会更加困难
+* 占用资源更多
+### 后续需要改进
+* admin、proxy 服务分容器，可以基于`docker-compose、Docker Swarm`
+* 容器日志支持通过`docker logs` 查看对应服务日志
+* nginx tls
+
+### 欢迎有能力者继续提交RP
+
+此文档由@greatbody提供。
+
+

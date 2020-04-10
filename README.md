@@ -64,6 +64,10 @@
   [中级-为服务提供tls(https/wss)支持](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/support-https.md)
     
   [高级-模式](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
+  
+  ##### 其他版本
+  
+  [从docker中开始](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-docker.md)
 
 ## 2.维护与治理 
 

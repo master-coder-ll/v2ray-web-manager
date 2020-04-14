@@ -50,7 +50,7 @@ public class AdminApplication   {
     public static void main(String[] args) {
 
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
-        SpringApplication.run(AdminApplication.class);
+        SpringApplication.run(AdminApplication.class,args);
     }
 
 

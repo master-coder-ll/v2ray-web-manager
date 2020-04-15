@@ -26,8 +26,6 @@ public class Receiver extends ChannelInboundHandlerAdapter {
         try {
       //      log.info("Receiver:{},{}",ctx.alloc().getClass() , ctx.alloc().buffer().getClass());
             inboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
-                //writeAndFlush 已经回收内存的了，确保内存再次回收把
-                release((ByteBuf) msg);
                 if (future.isSuccess()) {
                     ctx.channel().read();
                 } else {

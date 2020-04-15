@@ -36,7 +36,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     private static final String HOST = "HOST";
     private static final Long MAX_INTERVAL_REPORT_TIME_MS = 1000 * 60 * 5L;
-    private static final Long _1MINUTES=60_000L;
+    private static final Long _1MINUTES = 60_000L;
     /**
      * proxy端配置数据
      */
@@ -67,18 +67,15 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     public void channelRead(final ChannelHandlerContext ctx, final Object msg) {
         // log.info("Dispatcher len:"+((ByteBuf)msg).readableBytes()+"B");
         if (isHandshaking) {
-            parseAndSendNwePackage(ctx, msg);
+            parsing(ctx, msg);
         } else {
-
             try {
-
                 if (proxyAccountService.interrupted(accountNo, host, version))
                     throw new ReleaseDirectMemoryException("【当前版本已经更新】抛出异常。统一内存释放");
-
                 writeToOutBoundChannel(msg, ctx);
 
-                ConnectionStatsCache.reportConnectionNum(accountNo,proxyIp);
-                segmentReportingFlowStat();
+                ConnectionStatsCache.reportConnectionNum(accountNo, proxyIp);
+                reportFlowStat();
             } catch (Exception e) {
                 if (!(e instanceof ReleaseDirectMemoryException)) {
                     log.error("数据交互发生异常：{}", e);
@@ -92,13 +89,11 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     }
 
-
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         log.debug("active");
         ctx.read();
     }
-
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
@@ -116,7 +111,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         if (accountNo == null) return;
 
         //减少channel 引用计数
-         ConnectionStatsCache.decrement(accountNo,host);
+        ConnectionStatsCache.decrement(accountNo, host);
 
         if (proxyIp != null) ConnectionStatsCache.reportConnectionNum(accountNo, proxyIp);
 
@@ -125,14 +120,14 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 ConnectionStatsCache.getByGlobal(accountNo));*/
 
 
-        if (ConnectionStatsCache.getByHost(accountNo,host)< 1) {
+        if (ConnectionStatsCache.getByHost(accountNo, host) < 1) {
             GlobalTrafficShapingHandler globalTrafficShapingHandler = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId());
             if (globalTrafficShapingHandler == null) return;
             TrafficCounter trafficCounter = globalTrafficShapingHandler.trafficCounter();
             long writtenBytes = trafficCounter.cumulativeWrittenBytes();
             long readBytes = trafficCounter.cumulativeReadBytes();
             //统计流量
-            reportStat(writtenBytes, readBytes);
+            reportFlowStat(writtenBytes, readBytes);
             log.info("账号:{},当前服务器完全断开连接,累计字节:{}B", getAccountId(), writtenBytes + readBytes);
             //   log.info("当前{},累计读字节:{}", accountNo, readBytes);
             TrafficControllerCache.releaseGroupGlobalTrafficShapingHandler(getAccountId());
@@ -142,24 +137,24 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
     }
 
+    /**
+     * PooledUnsafeDirectByteBuf(ridx: 0, widx: 188, cap: 1024)
+     *
+     * GET /ws/50001:token/ HTTP/1.1
+     * Host: 127.0.0.1:8081
+     * User-Agent: Go-http-client/1.1
+     * Connection: Upgrade
+     * Sec-WebSocket-Key: 90rYhIPctMP+ykUzA6QLrA==
+     * Sec-WebSocket-Version: 13
+     * Upgrade: websocket
+     */
+    private void parsing(ChannelHandlerContext ctx, Object msg) {
 
-    private void parseAndSendNwePackage(ChannelHandlerContext ctx, Object msg) {
-        /**
-         * PooledUnsafeDirectByteBuf(ridx: 0, widx: 188, cap: 1024)
-         *
-         * GET /ws/50001:token/ HTTP/1.1
-         * Host: 127.0.0.1:8081
-         * User-Agent: Go-http-client/1.1
-         * Connection: Upgrade
-         * Sec-WebSocket-Key: 90rYhIPctMP+ykUzA6QLrA==
-         * Sec-WebSocket-Version: 13
-         * Upgrade: websocket
-         */
 
         ByteBuf handshakeByteBuf = null;
         try {
 
-            handshakeByteBuf = parse(ctx, msg);
+            handshakeByteBuf = convert(ctx, msg);
 
         } catch (Exception e) {
             if (!(e instanceof ReleaseDirectMemoryException))
@@ -172,9 +167,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
             //释放握手数据，防止内存溢出
             ReferenceCountUtil.release(msg);
         }
-
         //step2
-
         try {
             // 获取proxyAccount
             ProxyAccountWrapper proxyAccount = getProxyAccount();
@@ -185,7 +178,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 return;
             }
             log.info("当前账号:{},连接数:{},服务器连接数:{},全局连接数:{}", getAccountId(),
-                    ConnectionStatsCache.getByHost(accountNo,host),
+                    ConnectionStatsCache.getByHost(accountNo, host),
                     ConnectionStatsCache.getBySeverInternal(accountNo)
                     , ConnectionStatsCache.getByGlobal(accountNo));
             proxyIp = proxyAccount.getProxyIp();
@@ -218,7 +211,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @return newHeadPackage
      * @throws Exception
      */
-    private ByteBuf parse(final ChannelHandlerContext ctx, final Object msg) throws Exception {
+    private ByteBuf convert(final ChannelHandlerContext ctx, final Object msg) throws Exception {
         ByteBuf byteBuf = ((ByteBuf) msg);
         String heads = byteBuf.toString(Charset.defaultCharset());
 
@@ -256,7 +249,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @return true is full
      */
     private boolean isFull(ProxyAccount proxyAccount) {
-        ConnectionStatsCache.incr(accountNo,host);
+        ConnectionStatsCache.incr(accountNo, host);
         ConnectionStatsCache.reportConnectionNum(accountNo, proxyAccount.getProxyIp());
         int globalConnections = ConnectionStatsCache.getByGlobal(accountNo);
 
@@ -311,10 +304,11 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
      * @param proxyAccount
      */
     private void sendNewPackageToClient(ChannelHandlerContext ctx, final ByteBuf handshakeByteBuf, Channel inboundChannel, ProxyAccount proxyAccount) {
-        Bootstrap b = getMuxClient(inboundChannel);
-
-        ChannelFuture f = b.connect(proxyAccount.getV2rayHost(), proxyAccount.getV2rayPort());
+        Bootstrap client = NettyClientFactory.getClient(inboundChannel.eventLoop());
+        ChannelFuture f = client.connect(proxyAccount.getV2rayHost(), proxyAccount.getV2rayPort());
         outboundChannel = f.channel();
+        outboundChannel.pipeline().addLast(new Receiver(inboundChannel));
+        //Success or failure
         f.addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
                 writeToOutBoundChannel(handshakeByteBuf, ctx);
@@ -326,8 +320,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
         });
     }
 
-    private Bootstrap getMuxClient(Channel inboundChannel) {
-        Bootstrap b = new Bootstrap();
+    /*private Bootstrap getMuxClient(Channel inboundChannel) {
+
+       *//* Bootstrap b = new Bootstrap();
         b.group(inboundChannel.eventLoop())
                 .channel(NioSocketChannel.class)
                 .handler(new ChannelInitializer<SocketChannel>() {
@@ -346,11 +341,37 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 //32k/64k
                 .option(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT);
 
-        return b;
+        return b;*//*
 
+    }*/
 
+    private static class NettyClientFactory {
+        private static volatile Bootstrap b = null;
+        private static Object LOCK = new Object();
+
+        public static Bootstrap getClient(EventLoop eventLoop) {
+            if (b != null) return b;
+            synchronized (LOCK) {
+                if (b != null) return b;
+                b = new Bootstrap();
+                b.group(eventLoop)
+                        .channel(NioSocketChannel.class).handler(new ChannelInitializer<SocketChannel>() {
+
+                    @Override
+                    protected void initChannel(SocketChannel ch)   {
+                        ch.pipeline().addLast(new ChannelInboundHandlerAdapter());
+                    }
+                })
+                        .option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
+                        .option(ChannelOption.AUTO_READ, false)
+                        .option(ChannelOption.SO_SNDBUF, 32 * 1024)
+                        .option(ChannelOption.SO_RCVBUF, 32 * 1024)
+                        .option(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT);
+            }
+            return b;
+
+        }
     }
-
 
     /**
      * 获取host头信息
@@ -384,10 +405,9 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
 
-    private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx) throws ReleaseDirectMemoryException {
+    private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx)  {
 
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
-            release((ByteBuf) msg);
             if (future.isSuccess()) {
                 ctx.channel().read();
             } else {
@@ -411,10 +431,10 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     /**
      * 分段上传流量
      */
-    private void segmentReportingFlowStat() {
+    private void reportFlowStat() {
 
 
-      if (ConnectionStatsCache.getByHost(accountNo,host) < 1) return;
+        if (ConnectionStatsCache.getByHost(accountNo, host) < 1) return;
         TrafficCounter trafficCounter = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
         if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
 
@@ -422,7 +442,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
                 if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
                     long writtenBytes = trafficCounter.cumulativeWrittenBytes();
                     long readBytes = trafficCounter.cumulativeReadBytes();
-                    reportStat(writtenBytes, readBytes);
+                    reportFlowStat(writtenBytes, readBytes);
                     //重置
                     trafficCounter.resetCumulativeTime();
                     log.info("账号:{},连接超过5分钟.上传分段流量统计数据:{}B", getAccountId(), writtenBytes + readBytes);
@@ -434,7 +454,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }
 
 
-    private void reportStat(long writtenBytes, long readBytes) {
+    private void reportFlowStat(long writtenBytes, long readBytes) {
         FlowStat flowStat = new FlowStat();
         flowStat.setDomain(host);
         flowStat.setAccountNo(accountNo);

@@ -39,13 +39,7 @@ import java.util.concurrent.*;
 public class AdminApplication   {
     @Autowired
     ProxyConstant proxyConstant;
-    @Value("${app.version}")
-    private  String version;
 
-    @PostConstruct
-    public void init()   {
-        System.err.println("v2ray-web-manager's version :" + version );
-    }
 
     public static void main(String[] args) {
 

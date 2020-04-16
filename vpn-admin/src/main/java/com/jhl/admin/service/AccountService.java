@@ -74,9 +74,9 @@ public class AccountService {
         Date fromDate = Utils.formatDate(date, null);
         if (account.getFromDate() == null) account.setFromDate(fromDate);
         if (account.getCycle() == null) {
-            account.setCycle(KVConstant.DAY);
+            account.setCycle(KVConstant.MONTH);
         }
-        if (account.getMaxConnection() == null) account.setMaxConnection(32);
+        if (account.getMaxConnection() == null) account.setMaxConnection(64);
         if (account.getToDate() == null)
             account.setToDate(Utils.getDateBy(fromDate, KVConstant.DAY, Calendar.DAY_OF_YEAR));
         account.setStatus(1);

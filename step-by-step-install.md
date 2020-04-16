@@ -174,9 +174,13 @@ nohup java -jar -Xms40m -Xmx40m -XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize
 ```bash
 # 查看admin日志
 tail -100f /opt/jar/logs/admin.log
+# 查看admin的错误日志
+tail -100f /opt/jar/logs/admin.log.ERROR
     
 # 查看 v2ray-proxy日志
-tail -f /opt/jar/logs/v2ray-proxy.log
+tail -100f /opt/jar/logs/v2ray-proxy.log
+# 查看v2ray-proxy的错误日志
+tail -100f /opt/jar/logs/v2ray-proxy.log.ERROR
     
 # ctrl+c 退出查看日志
 ```

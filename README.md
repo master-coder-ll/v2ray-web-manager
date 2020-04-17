@@ -1,6 +1,5 @@
 # v2ray-web-manager 
  [![Build Status](https://travis-ci.com/master-coder-ll/v2ray-web-manager.svg?branch=master)](https://travis-ci.com/master-coder-ll/v2ray-web-manager) 
- [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=master-coder-ll_v2ray-web-manager&metric=alert_status)](https://sonarcloud.io/dashboard/index/master-coder-ll_v2ray-web-manager)
  [![reliability_rating]( https://sonarcloud.io/api/project_badges/measure?project=master-coder-ll_v2ray-web-manager&metric=reliability_rating)](https://sonarcloud.io/dashboard/index/master-coder-ll_v2ray-web-manager)
  [![bugs](https://sonarcloud.io/api/project_badges/measure?project=master-coder-ll_v2ray-web-manager&metric=bugs)](https://sonarcloud.io/dashboard/index/master-coder-ll_v2ray-web-manager)
  
@@ -99,6 +98,13 @@
  ```
 
    * [重新启动服务](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-install.md#6-%E8%BF%90%E8%A1%8Cjava)
+
+### 重置管理员密码
+> 根据配置文件重置密码或者创建新账号。
+```bash
+# x.y.z 为版本号，版本大于3.1.4提供支持
+java -jar admin-x.y.z.jar restpwd
+```
     
 
 

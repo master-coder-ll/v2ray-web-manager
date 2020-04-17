@@ -139,6 +139,12 @@ public class UserService {
         userVO.setPassword(null);
         return userVO;
     }
+
+    public User getOneByAdmin(User user) {
+        user.setStatus(1);
+        Optional<User> one = userRepository.findOne(Example.of(user));
+        return one.orElse(null);
+    }
     public User getUserButRemovePW(
             Integer id) {
 

@@ -146,7 +146,7 @@ wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll
 ####  5. 配置v2ray
 
 ```bash
-# 备份默认v2ray默认配置
+# 备份v2ray默认配置
 mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
 
 # 复制配置到v2ray目录

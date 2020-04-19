@@ -64,6 +64,8 @@
     
   [高级-模式](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
   
+  [高级-实践集群模式](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/cluster.md)
+
   ##### 其他版本
   
   [从docker中开始](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-docker.md)

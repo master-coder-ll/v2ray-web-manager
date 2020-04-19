@@ -155,7 +155,7 @@ nginx -s reload
 
 参考：[中级-为服务提供tls(https/wss)支持](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/support-https.md)
 
-如果说TLS支持泛域名，那么之间复制TLS文件到当前机器，并且配置就好。
+如果说TLS支持泛域名，那么复制TLS文件到当前机器，并且配置就好。
 
 注意：域名是不能相同的，比喻机器1的域名是`test.test.com`,机器2的域名**不能**也是`test.test.com`，只能是`test2.test.com`等不同的域名。
 admin端根据IP/域名的不同区分服务器。

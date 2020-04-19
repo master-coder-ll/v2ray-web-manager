@@ -103,7 +103,7 @@
 > 根据配置文件重置密码或者创建新账号。
 ```bash
 # x.y.z 为版本号，版本大于3.1.4提供支持
-java -jar admin-x.y.z.jar restpwd
+java -jar admin-x.y.z.jar --spring.config.location=/opt/jar/admin.yaml restpwd
 ```
     
 

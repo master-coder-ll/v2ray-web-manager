@@ -160,7 +160,7 @@ nginx -s reload
 注意：域名是不能相同的，比喻机器1的域名是`test.test.com`,机器2的域名**不能**也是`test.test.com`，只能是`test2.test.com`等不同的域名。
 admin端根据IP/域名的不同区分服务器。
 
-理论： [一步一步跟着我从零配置](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
+理论： [高级-模式](https://github.com/master-coder-ll/v2ray-web-manager/blob/master/step-by-step-model.md)
 
       
  

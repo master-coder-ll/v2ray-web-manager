@@ -133,7 +133,7 @@ nginx -s reload
  ####  7. 查看日志
  ```bash
 
- #查看java 经常是否已经存在
+ #查看java 进程是否已经存在
  ps -ef |grep java 
  
  # 查看 v2ray-proxy日志

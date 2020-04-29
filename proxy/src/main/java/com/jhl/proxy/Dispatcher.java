@@ -406,7 +406,6 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
 
     private void writeToOutBoundChannel(Object msg, final ChannelHandlerContext ctx)  {
-
         outboundChannel.writeAndFlush(msg).addListener((ChannelFutureListener) future -> {
             if (future.isSuccess()) {
                 ctx.channel().read();

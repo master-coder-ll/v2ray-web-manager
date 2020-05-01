@@ -1,7 +1,7 @@
 
-# 教程：使 V2ray 支持 WebService + TLS 模式
+# 教程：为服务提供 TLS 支持
 
-配置服务器HTTPS访问，使 V2ray 支持 WebService + TLS 模式
+配置服务器HTTPS访问，使 V2ray 支持  TLS 模式
 
 ## 1. 跟着新手教程安装前后端服务
 

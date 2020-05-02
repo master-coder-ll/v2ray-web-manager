@@ -2,10 +2,15 @@ package com.jhl.task;
 
 import com.jhl.constant.ManagerConstant;
 import com.jhl.service.MonitorService;
-import com.jhl.task.inteface.AbstractTask;
+import com.jhl.task.inteface.AbstractDelayedTask;
+import com.v2ray.core.common.log.Log;
+import io.netty.buffer.PooledByteBufAllocator;
 import org.springframework.web.client.RestTemplate;
 
-public class MonitorScanTask extends AbstractTask {
+/**
+ * 每次监控
+ */
+public class MonitorScanTask extends AbstractDelayedTask {
     private MonitorService monitorService;
 
     public MonitorScanTask(MonitorService monitorService) {
@@ -21,6 +26,7 @@ public class MonitorScanTask extends AbstractTask {
     public void runTask(RestTemplate restTemplate, ManagerConstant managerConstant) {
         monitorService.internalPollInfo();
         //  monitorService.jvmMemoryInfo();
+
     }
 
     @Override

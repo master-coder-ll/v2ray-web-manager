@@ -4,6 +4,7 @@ import com.jhl.cache.ConnectionStatsCache;
 import com.jhl.cache.TrafficControllerCache;
 import com.jhl.task.MonitorScanTask;
 import com.jhl.task.service.TaskService;
+import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.util.internal.PlatformDependent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,13 +57,14 @@ public class MonitorService {
 
     }
 
-
     public void internalPollInfo() {
         log.info("TrafficController:{},ReporterQueue:{},ConnectionPool:{},AccountCache:{}",
                 TrafficControllerCache.getSize(), taskService.getQueueSize(),
                 ConnectionStatsCache.getSize(), proxyAccountService.getSize());
         log.info("netty是否使用直接内存:" + PlatformDependent.directBufferPreferred() + ",使用量(-1为无法探知)B:"
                 + PlatformDependent.usedDirectMemory());
+
+        log.info("metric:{}", PooledByteBufAllocator.DEFAULT.metric().toString());
     }
 
     private class MonitorThreadFactory implements ThreadFactory {

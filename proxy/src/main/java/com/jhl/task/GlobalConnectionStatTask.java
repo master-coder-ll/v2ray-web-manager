@@ -4,28 +4,23 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.jhl.cache.ConnectionStatsCache;
 import com.jhl.constant.ManagerConstant;
-import com.jhl.task.inteface.AbstractTask;
-import com.ljh.common.model.ProxyAccount;
+import com.jhl.task.inteface.AbstractDelayedTask;
 import com.ljh.common.model.Result;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
- * 应该基于触发
+ * 连接数上传统计
  */
 @Slf4j
 @AllArgsConstructor
 @Getter
-public class GlobalConnectionStatTask extends AbstractTask {
+public class GlobalConnectionStatTask extends AbstractDelayedTask {
 
     private String accountNo;
     //当前的主机

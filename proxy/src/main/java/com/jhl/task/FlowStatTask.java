@@ -1,7 +1,7 @@
 package com.jhl.task;
 
 import com.jhl.constant.ManagerConstant;
-import com.jhl.task.inteface.AbstractTask;
+import com.jhl.task.inteface.AbstractDelayedTask;
 import com.ljh.common.model.FlowStat;
 import com.ljh.common.model.ProxyAccount;
 import com.ljh.common.model.Result;
@@ -12,8 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * 上传流量统计
+ */
 @Slf4j
-public class FlowStatTask extends AbstractTask {
+public class FlowStatTask extends AbstractDelayedTask {
     private FlowStat flowStat;
 
     private ResponseEntity<Result> responseEntity = null;

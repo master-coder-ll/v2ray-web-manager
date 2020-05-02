@@ -8,7 +8,7 @@ import com.jhl.pojo.ConnectionLimit;
 import com.jhl.pojo.ProxyAccountWrapper;
 import com.jhl.service.ProxyAccountService;
 import com.jhl.task.FlowStatTask;
-import com.jhl.task.TaskConnectionLimitTask;
+import com.jhl.task.TaskConnectionLimitDelayedTask;
 import com.jhl.task.service.TaskService;
 import com.jhl.utils.SynchronizedInternerUtils;
 import com.ljh.common.model.FlowStat;
@@ -346,7 +346,7 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
     }*/
 
     private static class NettyClientFactory {
-        private static volatile Bootstrap b = null;
+        private static  Bootstrap b = null;
         private static Object LOCK = new Object();
 
         public static Bootstrap getClient(EventLoop eventLoop) {
@@ -420,8 +420,8 @@ public class Dispatcher extends ChannelInboundHandlerAdapter {
 
         if (ConnectionStatsCache.canReport(accountNo)) {
             //连接限制警告
-            TaskConnectionLimitTask reportConnectionLimitTask =
-                    new TaskConnectionLimitTask(ConnectionLimit.builder().accountNo(accountNo).build());
+            TaskConnectionLimitDelayedTask reportConnectionLimitTask =
+                    new TaskConnectionLimitDelayedTask(ConnectionLimit.builder().accountNo(accountNo).build());
             TaskService.addTask(reportConnectionLimitTask);
         }
     }

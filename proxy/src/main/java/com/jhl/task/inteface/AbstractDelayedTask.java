@@ -2,12 +2,16 @@ package com.jhl.task.inteface;
 
 import com.alibaba.fastjson.JSON;
 import com.jhl.constant.ManagerConstant;
-import com.jhl.pojo.DelayedTask;
 import com.jhl.service.MonitorService;
 import com.jhl.task.TaskCondition;
 import com.jhl.task.service.TaskService;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.concurrent.Delayed;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 类 actor 模型, 每次执行通过邮箱queue提交AbstractTask的实现，
@@ -16,9 +20,30 @@ import org.springframework.web.client.RestTemplate;
  * 生命周期： beforeRun -》runTask ->done->catchException
  */
 @Slf4j
-public abstract class AbstractTask extends DelayedTask {
+public abstract class AbstractDelayedTask implements Delayed {
 
     protected String taskName;
+
+    @Setter
+    private  Long nextRunTime =System.currentTimeMillis();
+    @Setter
+    @Getter
+    protected TaskCondition taskCondition = TaskCondition.builder().build();
+
+
+
+
+    @Override
+    public long getDelay(TimeUnit unit) {
+
+        return unit.convert(nextRunTime-System.currentTimeMillis(), TimeUnit.MILLISECONDS);
+
+    }
+
+    @Override
+    public int compareTo(Delayed o) {
+        return (int) (this.nextRunTime - ((AbstractDelayedTask) o).nextRunTime);
+    }
 
 
     public abstract void beforeRun();

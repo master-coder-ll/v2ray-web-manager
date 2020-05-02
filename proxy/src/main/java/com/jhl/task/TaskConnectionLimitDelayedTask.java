@@ -2,7 +2,7 @@ package com.jhl.task;
 
 import com.jhl.constant.ManagerConstant;
 import com.jhl.pojo.ConnectionLimit;
-import com.jhl.task.inteface.AbstractTask;
+import com.jhl.task.inteface.AbstractDelayedTask;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -11,11 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
-public class TaskConnectionLimitTask extends AbstractTask {
+public class TaskConnectionLimitDelayedTask extends AbstractDelayedTask {
     private ConnectionLimit connectionLimit;
 
 
-    public TaskConnectionLimitTask(ConnectionLimit connectionLimit) {
+    public TaskConnectionLimitDelayedTask(ConnectionLimit connectionLimit) {
         this.connectionLimit = connectionLimit;
     }
 

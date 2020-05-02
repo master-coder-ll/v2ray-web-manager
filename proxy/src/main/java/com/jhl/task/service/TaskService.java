@@ -3,7 +3,7 @@ package com.jhl.task.service;
 import com.alibaba.fastjson.JSON;
 import com.jhl.constant.ManagerConstant;
 import com.jhl.task.TaskCondition;
-import com.jhl.task.inteface.AbstractTask;
+import com.jhl.task.inteface.AbstractDelayedTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,16 +18,16 @@ import java.util.concurrent.DelayQueue;
  */
 @Slf4j
 @Component
-public class TaskService<T extends AbstractTask> {
+public class TaskService<T extends AbstractDelayedTask> {
     @Autowired
     ManagerConstant managerConstant;
 
-    private static DelayQueue<AbstractTask> REPORTER_QUEUE = new DelayQueue<>();
+    private static DelayQueue<AbstractDelayedTask> REPORTER_QUEUE = new DelayQueue<>();
     @Autowired
     RestTemplate restTemplate;
 
 
-    public static <T extends AbstractTask> void addTask(T t) {
+    public static <T extends AbstractDelayedTask> void addTask(T t) {
         if (t == null) return;
         if (IS_SHUTDOWN) throw new IllegalStateException(" The task service is closed");
         t.attachCondition();
@@ -51,7 +51,7 @@ public class TaskService<T extends AbstractTask> {
 
     private void startTask() {
         while (true) {
-            AbstractTask abstractTask = null;
+            AbstractDelayedTask abstractTask = null;
             try {
                 if (IS_SHUTDOWN && REPORTER_QUEUE.size() <= 0) {
                     break;

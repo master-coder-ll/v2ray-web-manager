@@ -5,7 +5,7 @@ import com.jhl.common.cache.TrafficControllerCache;
 import com.jhl.common.constant.ProxyConstant;
 import com.jhl.common.pojo.ConnectionLimit;
 import com.jhl.common.pojo.ProxyAccountWrapper;
-import com.jhl.common.utils.SynchronizedInternerUtils;
+import com.jhl.common.utils.SynchronousPoolUtils;
 import com.jhl.framework.proxy.exception.ReleaseDirectMemoryException;
 import com.jhl.framework.task.FlowStatTask;
 import com.jhl.framework.task.TaskConnectionLimitDelayedTask;
@@ -423,7 +423,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
         TrafficCounter trafficCounter = TrafficControllerCache.getGlobalTrafficShapingHandler(getAccountId()).trafficCounter();
         if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
 
-            synchronized (SynchronizedInternerUtils.getWeakReference(accountNo + ":reportStat")) {
+            synchronized (SynchronousPoolUtils.getWeakReference(accountNo + ":reportStat")) {
                 if (System.currentTimeMillis() - trafficCounter.lastCumulativeTime() >= MAX_INTERVAL_REPORT_TIME_MS) {
                     long writtenBytes = trafficCounter.cumulativeWrittenBytes();
                     long readBytes = trafficCounter.cumulativeReadBytes();

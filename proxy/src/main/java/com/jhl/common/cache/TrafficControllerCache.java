@@ -2,7 +2,7 @@ package com.jhl.common.cache;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import com.jhl.common.utils.SynchronizedInternerUtils;
+import com.jhl.common.utils.SynchronousPoolUtils;
 import io.netty.handler.traffic.GlobalTrafficShapingHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
@@ -38,7 +38,7 @@ public class TrafficControllerCache {
         GlobalTrafficShapingHandler trafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
         if (trafficShapingHandler != null) return trafficShapingHandler;
 
-        synchronized (SynchronizedInternerUtils.getWeakReference(accountId + ":acquireGlobalTrafficShapingHandler")) {
+        synchronized (SynchronousPoolUtils.getWeakReference(accountId + ":acquireGlobalTrafficShapingHandler")) {
             trafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
             if (trafficShapingHandler != null) return trafficShapingHandler;
             trafficShapingHandler = new GlobalTrafficShapingHandler(executor, writeLimit, readLimit);

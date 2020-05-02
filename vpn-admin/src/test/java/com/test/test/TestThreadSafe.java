@@ -34,7 +34,7 @@ public class TestThreadSafe {
         Object intern2 = Utils.getInternersPoll().intern(new AtomicInteger(1).get());
         Assert.assertEquals(intern1,intern2);
 
-        Object intern3 = Utils.getInternersPoll().intern(new StringBuffer("2222").toString());
+        Object intern3 = Utils.getInternersPoll().intern(new StringBuffer("22").append(22).toString());
         Object intern4 = Utils.getInternersPoll().intern("2222");
         Assert.assertEquals(intern3,intern4);
 

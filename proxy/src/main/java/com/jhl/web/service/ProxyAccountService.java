@@ -6,7 +6,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Maps;
 import com.jhl.common.constant.ManagerConstant;
 import com.jhl.common.pojo.ProxyAccountWrapper;
-import com.jhl.common.utils.SynchronizedInternerUtils;
+import com.jhl.common.utils.SynchronousPoolUtils;
 import com.jhl.v2ray.service.V2rayService;
 import com.ljh.common.model.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -65,7 +65,7 @@ public class ProxyAccountService {
         int reqCount = reqCountObj == null ? 0 : reqCountObj.get();
         if (proxyAccount == null && reqCount < BEGIN_BLOCK) {
 
-            synchronized (SynchronizedInternerUtils.getWeakReference(getKey(accountNo, host + ":getRemotePAccount"))) {
+            synchronized (SynchronousPoolUtils.getWeakReference(getKey(accountNo, host + ":getRemotePAccount"))) {
 
                 proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
                 if (proxyAccount != null) return proxyAccount;

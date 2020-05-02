@@ -5,7 +5,7 @@ import com.google.common.cache.CacheBuilder;
 import com.jhl.common.pojo.AccountConnectionStat;
 import com.jhl.framework.task.GlobalConnectionStatTask;
 import com.jhl.framework.task.service.TaskService;
-import com.jhl.common.utils.SynchronizedInternerUtils;
+import com.jhl.common.utils.SynchronousPoolUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
@@ -35,7 +35,7 @@ public class ConnectionStatsCache {
             return;
         }
         //不存在
-        synchronized (SynchronizedInternerUtils.getWeakReference(accountId + ":connection:" + host)) {
+        synchronized (SynchronousPoolUtils.getWeakReference(accountId + ":connection:" + host)) {
 
             accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
             if (accountConnectionStat != null) {
@@ -104,7 +104,7 @@ public class ConnectionStatsCache {
     }
 
     public static boolean canReport(String accountId) {
-        synchronized (SynchronizedInternerUtils.getWeakReference(accountId)) {
+        synchronized (SynchronousPoolUtils.getWeakReference(accountId)) {
             AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
             if (connectionCounter != null) {
                 long interruptionTime = connectionCounter.getInterruptionTime();

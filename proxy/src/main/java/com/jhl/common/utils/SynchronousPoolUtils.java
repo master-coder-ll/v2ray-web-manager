@@ -3,7 +3,7 @@ package com.jhl.common.utils;
 import com.google.common.collect.Interner;
 import com.google.common.collect.Interners;
 
-public final class SynchronizedInternerUtils {
+public final class SynchronousPoolUtils {
 
     private final static Interner< Object> STRING_WEAK_POLL = Interners.newWeakInterner();
 

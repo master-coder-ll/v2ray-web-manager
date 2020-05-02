@@ -46,12 +46,13 @@ public final class ProxyServer {
                     .option(ChannelOption.SO_REUSEADDR, true)
                     .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
                     .childOption(ChannelOption.TCP_NODELAY, true)
-                    // TCP层参数发送buf :32k
+                    // TCP层：发送buf :32k
                     .childOption(ChannelOption.SO_SNDBUF, 32 * 1024)
-                    //接收BUF: 32k
+                    //TCP层 :接收BUF: 32k
                     .childOption(ChannelOption.SO_RCVBUF, 32 * 1024)
                     //netty服务层缓存参数
                     .childOption(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT)
+                    // 不保证优先转发
                     .childOption(ChannelOption.IP_TOS, 0xB8);
             //
             //作为中间件，不打开心跳，委派给真实的服务。

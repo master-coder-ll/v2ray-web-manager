@@ -1,7 +1,7 @@
 
-# 教程：使 V2ray 支持 WebService + TLS 模式
+# 教程：为服务提供 TLS 支持
 
-配置服务器HTTPS访问，使 V2ray 支持 WebService + TLS 模式
+配置服务器HTTPS访问，使 V2ray 支持  TLS 模式
 
 ## 1. 跟着新手教程安装前后端服务
 
@@ -144,7 +144,7 @@ nginx -s reload
 
 获取你的v2ray链接 或 订阅地址 吧！
 
-此时可以发现你的v2ray配置已经为 ws + tls /(wss) 模式了！
+此时可以发现你的服务和v2ray配置已经为 tls 模式了！
 
 
 

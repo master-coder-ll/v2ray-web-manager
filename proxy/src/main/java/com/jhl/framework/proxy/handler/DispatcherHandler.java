@@ -366,7 +366,8 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
                         .option(ChannelOption.AUTO_READ, false)
                         .option(ChannelOption.SO_SNDBUF, 32 * 1024)
                         .option(ChannelOption.SO_RCVBUF, 32 * 1024)
-                        .option(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT);
+                        .option(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark.DEFAULT)
+                        .option(ChannelOption.TCP_NODELAY, true);
             }
             return b;
 

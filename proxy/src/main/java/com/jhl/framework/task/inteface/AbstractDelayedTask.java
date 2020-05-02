@@ -62,7 +62,6 @@ public abstract class AbstractDelayedTask implements Delayed {
     /**
      * 排除 InterruptedException
      *
-     * @param e
      */
     public abstract void catchException(Exception e);
 
@@ -72,7 +71,6 @@ public abstract class AbstractDelayedTask implements Delayed {
     /**
      * 重试
      *
-     * @param
      */
     public void tryAgain(TaskCondition condition) {
         //如果是无限运行的直接跳过

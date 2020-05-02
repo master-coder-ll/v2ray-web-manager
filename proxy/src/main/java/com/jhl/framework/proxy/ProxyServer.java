@@ -20,11 +20,11 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.concurrent.TimeUnit;
 
-@Slf4j
-@Component
 /**
  * a proxyServer starter
  */
+@Slf4j
+@Component
 public final class ProxyServer {
 
     @Autowired
@@ -77,7 +77,7 @@ public final class ProxyServer {
 
 
         } catch (Exception e) {
-            log.error("netty start exception:{}", e);
+            log.error("netty start exception:", e);
         }
     }
 

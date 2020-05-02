@@ -22,7 +22,7 @@ public class TaskCondition {
     /**
      * 间隔时间
      */
-    private long interval = 0;
+    private long interval;
 
 
     public long computeDelay() {

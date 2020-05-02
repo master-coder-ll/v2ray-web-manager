@@ -28,9 +28,10 @@ public class InternalConstant {
     public void init()   {
 
         new Thread(()->{
-            JSONObject forObject = restTemplate.getForObject(githubURL, JSONObject.class);
-            String tagName = forObject.getString("tag_name");
-            String body = forObject.getString("body").replaceAll("#","");
+            JSONObject gitHubJson = restTemplate.getForObject(githubURL, JSONObject.class);
+            if (gitHubJson ==null) return;
+            String tagName = gitHubJson.getString("tag_name");
+            String body = gitHubJson.getString("body").replaceAll("#","");
             log.info("===========================================");
             log.info("Welcome to v2ray-web-manager  : " + version );
             log.info("The latest version :{}",tagName);

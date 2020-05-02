@@ -25,10 +25,7 @@ public class ConnectionStatsCache {
 
     public final static long _1HOUR_MS = 3600000;
 
-    /**
-     * @param accountId
-     * @return global connections
-     */
+
     public static void incr(String accountId, String host) {
         Assert.notNull(accountId, "accountId must not be null");
         //存在
@@ -38,7 +35,7 @@ public class ConnectionStatsCache {
             return;
         }
         //不存在
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId + ":connection:" + host)) {
+        synchronized (SynchronizedInternerUtils.getWeakReference(accountId + ":connection:" + host)) {
 
             accountConnectionStat = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
             if (accountConnectionStat != null) {
@@ -107,7 +104,7 @@ public class ConnectionStatsCache {
     }
 
     public static boolean canReport(String accountId) {
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId)) {
+        synchronized (SynchronizedInternerUtils.getWeakReference(accountId)) {
             AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountId);
             if (connectionCounter != null) {
                 long interruptionTime = connectionCounter.getInterruptionTime();
@@ -126,8 +123,7 @@ public class ConnectionStatsCache {
     /**
      * 更新 全局连接数
      *
-     * @param accountNo
-     * @param count
+
      */
     public static void updateGlobalConnectionStat(String accountNo, int count, long interruptionTime) {
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
@@ -149,13 +145,13 @@ public class ConnectionStatsCache {
     /**
      * unSafe
      *
-     * @param accountNo
-     * @param proxyIp
+
      */
     public static void reportConnectionNum(String accountNo, String proxyIp) {
         AccountConnectionStat connectionCounter = ACCOUNT_CONNECTION_COUNT_STATS.getIfPresent(accountNo);
 
-        if (System.currentTimeMillis() - connectionCounter.getLastReportTime() > _30S) {
+
+        if ( connectionCounter != null && System.currentTimeMillis() - connectionCounter.getLastReportTime() > _30S) {
             int internalConnectionCount = connectionCounter.getByServer();
             GlobalConnectionStatTask globalConnectionStatTask =
                     new GlobalConnectionStatTask(accountNo, proxyIp, internalConnectionCount);

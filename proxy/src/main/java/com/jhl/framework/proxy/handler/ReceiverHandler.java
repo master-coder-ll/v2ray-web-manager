@@ -48,15 +48,14 @@ public class ReceiverHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        log.info(" Receiver exceptionCaught:{}", cause);
+        log.error(" Receiver exceptionCaught:", cause);
         DispatcherHandler.closeOnFlush(ctx.channel());
     }
 
     private void release(ByteBuf msg) {
         if (msg == null) return;
-        ByteBuf byteBuf = msg;
-        if (byteBuf.refCnt() > 0) {
-            byteBuf.release(byteBuf.refCnt());
+        if (msg.refCnt() > 0) {
+            msg.release(msg.refCnt());
         }
     }
 }

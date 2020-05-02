@@ -45,7 +45,8 @@ public class GlobalConnectionStatTask extends AbstractDelayedTask {
         ResponseEntity<Result> responseEntity = restTemplate.getForEntity(url, Result.class, v);
 
         Result result = responseEntity.getBody();
-        if (responseEntity.getStatusCode().is2xxSuccessful() && result.getCode() == 200) {
+
+        if (result!=null && responseEntity.getStatusCode().is2xxSuccessful() && result.getCode() == 200) {
             JSONObject jsonObject = (JSONObject)result.getObj();
             Integer total = jsonObject.getInteger("total");
             Long lastBlackTime = jsonObject.getLong("lastBlackTime");

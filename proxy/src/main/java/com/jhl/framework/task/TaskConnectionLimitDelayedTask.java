@@ -36,8 +36,8 @@ public class TaskConnectionLimitDelayedTask extends AbstractDelayedTask {
         } else {
             Result resultEtBody = resultEt.getBody();
 
-            if (resultEtBody.getCode() != 200) { //系统内部错误
-                log.error("上报失败：{},{},error:{}", connectionLimit, resultEtBody);
+            if ( resultEtBody ==null || resultEtBody.getCode() != 200) { //系统内部错误
+                log.error("上报失败：{},{}", connectionLimit, resultEtBody);
                 tryAgain(getTaskCondition());
 
             } else {

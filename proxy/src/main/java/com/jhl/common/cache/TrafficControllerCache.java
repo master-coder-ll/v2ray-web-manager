@@ -38,7 +38,7 @@ public class TrafficControllerCache {
         GlobalTrafficShapingHandler trafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
         if (trafficShapingHandler != null) return trafficShapingHandler;
 
-        synchronized (SynchronizedInternerUtils.getInterner().intern(accountId + ":acquireGlobalTrafficShapingHandler")) {
+        synchronized (SynchronizedInternerUtils.getWeakReference(accountId + ":acquireGlobalTrafficShapingHandler")) {
             trafficShapingHandler = ACCOUNT_TRAFFIC_HANDLER_MAP.getIfPresent(accountId);
             if (trafficShapingHandler != null) return trafficShapingHandler;
             trafficShapingHandler = new GlobalTrafficShapingHandler(executor, writeLimit, readLimit);
@@ -74,7 +74,6 @@ public class TrafficControllerCache {
     }
 
     public static Long getSize() {
-        long size = ACCOUNT_TRAFFIC_HANDLER_MAP.size();
 
       /*  if (size >= 20) {
             StringBuilder sb = new StringBuilder();
@@ -82,6 +81,6 @@ public class TrafficControllerCache {
             log.warn("TrafficControllerCache is too big >=20 :{}", sb.toString());
         }*/
 
-        return size;
+        return ACCOUNT_TRAFFIC_HANDLER_MAP.size();
     }
 }

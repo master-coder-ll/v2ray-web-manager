@@ -56,9 +56,7 @@ public class ProxyAccountService {
     /**
      * 如何缓存没有需要获得账号基本的锁，然后向远程请求数据。
      *
-     * @param accountNo
-     * @param host
-     * @return ProxyAccount or null
+
      */
     public ProxyAccountWrapper getProxyAccount(String accountNo, String host) {
         ProxyAccountWrapper proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
@@ -67,7 +65,7 @@ public class ProxyAccountService {
         int reqCount = reqCountObj == null ? 0 : reqCountObj.get();
         if (proxyAccount == null && reqCount < BEGIN_BLOCK) {
 
-            synchronized (SynchronizedInternerUtils.getInterner().intern(getKey(accountNo, host + ":getRemotePAccount"))) {
+            synchronized (SynchronizedInternerUtils.getWeakReference(getKey(accountNo, host + ":getRemotePAccount"))) {
 
                 proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
                 if (proxyAccount != null) return proxyAccount;
@@ -103,8 +101,6 @@ public class ProxyAccountService {
 
         return proxyAccount;
     }
-
-
     private ProxyAccountWrapper getRemotePAccount(String accountNo, String host) {
         log.info("getRemotePAccount:{}", getKey(accountNo, host));
         HashMap<String, Object> kvMap = Maps.newHashMap();
@@ -117,7 +113,7 @@ public class ProxyAccountService {
             return null;
         }
         Result result = entity.getBody();
-        if (result.getCode() != 200) {
+        if (result ==null || result.getCode() != 200) {
             log.warn("getRemotePAccount  error:{}", JSON.toJSONString(result));
             return null;
         }
@@ -134,9 +130,9 @@ public class ProxyAccountService {
     }
 
 
-    public boolean containKey(String accountNo, String host) {
+/*    public boolean containKey(String accountNo, String host) {
         return PA_MAP.getIfPresent(getKey(accountNo, host)) != null;
-    }
+    }*/
 
     public boolean interrupted(String accountNo, String host, Long ctxContextVersion) {
         boolean result = true;

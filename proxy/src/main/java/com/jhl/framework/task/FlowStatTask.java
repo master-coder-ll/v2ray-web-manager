@@ -50,8 +50,8 @@ public class FlowStatTask extends AbstractDelayedTask {
         } else {
             Result resultEtBody = resultEt.getBody();
 
-            if (resultEtBody.getCode() != 200) { //系统内部错误
-                log.error("上报失败：{},{},error:{}", flowStat, responseEntity);
+            if (resultEtBody==null || resultEtBody.getCode() != 200) { //系统内部错误
+                log.error("上报失败：{},{}", flowStat, responseEntity);
                 tryAgain(getTaskCondition());
 
             }/* else {

@@ -7,6 +7,7 @@ import com.jhl.framework.task.service.TaskService;
 import com.jhl.web.service.ProxyAccountService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
@@ -59,7 +60,6 @@ public final class ProxyServer {
             // 心跳 需要 传输层 keepalive+应用层 心跳检测
             // .childOption(ChannelOption.SO_KEEPALIVE,true)
             //.childOption(NioChannelOption.of(StandardSocketOptions.SO_KEEPALIVE),true);
-
             // ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.ADVANCED);
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
@@ -67,7 +67,6 @@ public final class ProxyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         protected void initChannel(SocketChannel ch) {
                             ch.pipeline().addLast(
-                                    //new SafeByteToMessageDecoder(),
                                     new DispatcherHandler(proxyConstant, proxyAccountService));
                         }
                     })

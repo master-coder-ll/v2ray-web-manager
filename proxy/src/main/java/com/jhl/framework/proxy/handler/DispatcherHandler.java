@@ -30,6 +30,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
+/**
+ * TODO 重构
+ */
 @Slf4j
 public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 
@@ -66,7 +69,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(final ChannelHandlerContext ctx, final Object msg) {
         // log.info("Dispatcher len:"+((ByteBuf)msg).readableBytes()+"B");
         if (isHandshaking) {
-            parsing(ctx, msg);
+            parse(ctx, msg);
         } else {
             try {
                 if (proxyAccountService.interrupted(accountNo, host, version))
@@ -137,6 +140,8 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     }
 
     /**
+     *
+     * 解析
      * PooledUnsafeDirectByteBuf(ridx: 0, widx: 188, cap: 1024)
      * <p>
      * GET /ws/50001:token/ HTTP/1.1
@@ -147,7 +152,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
      * Sec-WebSocket-Version: 13
      * Upgrade: websocket
      */
-    private void parsing(ChannelHandlerContext ctx, Object msg) {
+    private void parse(ChannelHandlerContext ctx, Object msg) {
 
 
         ByteBuf handshakeByteBuf;

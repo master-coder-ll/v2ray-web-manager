@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Controller
 @RequestMapping("/report")
-public class ReportController {
+public class ReporterController {
 
     @Autowired
     StatRepository statRepository;

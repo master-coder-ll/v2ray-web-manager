@@ -88,7 +88,8 @@ public class ProxyController {
         //新版应该根据域名查找服务器
 
         Server server=  serverService.findByDomain(domain,account.getLevel());
-        //Integer serverId = account.getServerId();
+    //https://github.com/master-coder-ll/v2ray-web-manager/issues/96
+    if (server.getLevel()<account.getLevel())  return Result.builder().code(500).message("账号等级不够").build();
 
         User user = userRepository.findById(userId).orElse(null);
         if (user ==null) throw  new NullPointerException("user is null");

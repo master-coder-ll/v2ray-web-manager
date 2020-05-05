@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 
 /**
  * 异步，延迟。 最大程度保证正确，允许脏读。
@@ -14,7 +15,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 public class AccountConnectionStat {
     //每个账号的连接数
-    private AtomicInteger accountConnectionsCounter = new AtomicInteger(0);
+   // private AtomicInteger ConnectionsCounter = new AtomicInteger(0);
+
+    private volatile int connectionCounter;
+    private static AtomicIntegerFieldUpdater<AccountConnectionStat>  CONNECTION_COUNTER_UPDATER =
+            AtomicIntegerFieldUpdater.newUpdater(AccountConnectionStat.class, "connectionCounter");
 
     private ConcurrentHashMap<String, AtomicInteger> hostCounter = new ConcurrentHashMap<>(3);
 
@@ -40,13 +45,13 @@ public class AccountConnectionStat {
     /**
      * 对 totalCounter 设置， 对 hostCounter 设置
      *
-     * @param count
+     * @param count 增加或者扣减的数据
      */
     public void addAndGet(int count, String host) {
-        int v = accountConnectionsCounter.addAndGet(count);
-        if (v < 0) {
+   CONNECTION_COUNTER_UPDATER.addAndGet(this, count);
+        if (connectionCounter < 0) {
             log.warn("addAndGet:accountConnectionsCounter 小于1,并发问题");
-            accountConnectionsCounter.set(0);
+            CONNECTION_COUNTER_UPDATER.set(this,0);
         }
         //account --> host
         AtomicInteger hostCount = hostCounter.get(host);
@@ -94,7 +99,7 @@ public class AccountConnectionStat {
     }
 
     /**
-     * 跟以前全部服务器的账号总连接数
+     * 全局服务器的账号总连接数
      *
      * @return
      */
@@ -116,7 +121,7 @@ public class AccountConnectionStat {
      * @return
      */
     public int getByServer() {
-        return accountConnectionsCounter.get();
+        return connectionCounter;
     }
 
     /**

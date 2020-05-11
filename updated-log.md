@@ -1,4 +1,5 @@
 ## Next version
+#### 修复 [issue #96]
 #### Nagle算法禁用， TCP包_增加QOS高优先转发标识
 #### 复用端口
 ### V3.1.5

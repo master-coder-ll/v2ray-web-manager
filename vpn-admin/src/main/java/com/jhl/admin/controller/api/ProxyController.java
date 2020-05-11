@@ -89,7 +89,7 @@ public class ProxyController {
 
         Server server=  serverService.findByDomain(domain,account.getLevel());
     //https://github.com/master-coder-ll/v2ray-web-manager/issues/96
-    if (server.getLevel()<account.getLevel())  {
+    if (server.getLevel()>account.getLevel())  {
         log.warn("账号等级不够：{}" ,account.getAccountNo());
         return Result.builder().code(500).message("账号等级不够").build();
     }

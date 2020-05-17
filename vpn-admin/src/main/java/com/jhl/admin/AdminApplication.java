@@ -26,8 +26,7 @@ import java.util.TimeZone;
 @EnableScheduling
 @EnableAsync
 public class AdminApplication   {
-    @Autowired
-    ProxyConstant proxyConstant;
+
 
 
     public static void main(String[] args) {
@@ -37,18 +36,7 @@ public class AdminApplication   {
     }
 
 
-    @Bean
-    public RestTemplate restTemplate(FastJsonHttpMessageConverter fastJsonHttpMessageConverter) {
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add((request, body, execution) -> {
-            HttpHeaders headers = request.getHeaders();
-            headers.add("Authorization", DigestUtils.md5Hex(proxyConstant.getAuthPassword()));
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            return execution.execute(request, body);
-        });
-        restTemplate.getMessageConverters().add(fastJsonHttpMessageConverter);
-        return restTemplate;
-    }
+
 
 
 

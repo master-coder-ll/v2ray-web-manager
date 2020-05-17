@@ -46,7 +46,7 @@ public class UserService {
         create(user);
         Account account = Account.builder().userId(user.getId()).build();
         accountService.create(account);
-        StatService.createStat(account);
+        StatService.createOrGetStat(account);
     }
 
     public void changePassword(User user) {

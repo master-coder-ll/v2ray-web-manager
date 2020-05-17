@@ -88,7 +88,7 @@ public class ReporterController {
             //账号到期
             if (!account.getToDate().after(new Date())) {
 
-                proxyEventService.addProxyEvent(proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT));
+                proxyEventService.addProxyEvent(getProxyEvents(account));
            /* account.setStatus(0);
             accountService.updateAccount(account);*/
                 log.warn("账号到期。,{},{}", account.getAccountNo(), Utils.formatDate(account.getToDate(), null));
@@ -97,9 +97,11 @@ public class ReporterController {
             Integer accountId = account.getId();
             Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(accountId, date, date);
             if (stat == null) {
-                stat = statService.createStat(account);
-                //原因：账号到期；增加rm
+                stat = statService.createOrGetStat(account);
+
                 if (stat == null) {
+                    //原因：账号到期；增加rm
+                    proxyEventService.addProxyEvent( getProxyEvents(account));
                     return Result.doSuccess();
                 }
             }
@@ -114,12 +116,16 @@ public class ReporterController {
             if ((account.getBandwidth() * G) < used) {
                 log.warn("账号流量已经超强限制：{}", account.getAccountNo());
                 //不可用状态
-                List<V2RayProxyEvent> v2RayProxyEvents = proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT);
+                List<V2RayProxyEvent> v2RayProxyEvents = getProxyEvents(account);
                 proxyEventService.addProxyEvent(v2RayProxyEvents);
 
             }
             return Result.doSuccess();
         }
+    }
+
+    private List<V2RayProxyEvent> getProxyEvents(Account account) {
+        return proxyEventService.buildV2RayProxyEvent(account, ProxyEvent.RM_EVENT);
     }
 
     @ResponseBody

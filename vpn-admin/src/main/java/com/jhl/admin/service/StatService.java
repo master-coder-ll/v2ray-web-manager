@@ -22,7 +22,7 @@ public class StatService {
      * @param account
      * @return
      */
-    public Stat createStat(Account account){
+    public Stat createOrGetStat(Account account){
         Date today = new Date();
         Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(account.getId(), today,today);
             if (stat == null){

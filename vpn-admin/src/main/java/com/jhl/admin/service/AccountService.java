@@ -97,7 +97,7 @@ public class AccountService {
         accountRepository.save(account);
         Account account1 = accountRepository.findById(account.getId()).orElse(null);
         //判断是否需要生成新的stat
-        statService.createStat(accountRepository.getOne(account.getId()));
+        statService.createOrGetStat(accountRepository.getOne(account.getId()));
         //删除事件
             proxyEventService.addProxyEvent(
                     proxyEventService.buildV2RayProxyEvent(account1, ProxyEvent.RM_EVENT));

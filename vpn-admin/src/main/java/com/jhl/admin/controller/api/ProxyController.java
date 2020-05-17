@@ -73,13 +73,13 @@ public class ProxyController {
          Date date = new Date();
          Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(accountId, date, date);
          if (stat ==null) {
-              stat = statService.createStat(account);
+              stat = statService.createOrGetStat(account);
               if (stat ==null) return Result.builder().code(500).message("获取不到stat,原因:未生成stat，已经过期").build();
 
          }
          //check flow
         if ((account.getBandwidth() * G) < stat.getFlow()) {
-            log.warn("账号流量已经超强限制：{}" ,account.getAccountNo());
+            log.warn("账号流量已经超过限制：{}" ,account.getAccountNo());
             return Result.builder().code(500).message("流量已经超过限制").build();
         }
 
@@ -89,7 +89,7 @@ public class ProxyController {
 
         Server server=  serverService.findByDomain(domain,account.getLevel());
     //https://github.com/master-coder-ll/v2ray-web-manager/issues/96
-    if (server.getLevel()>account.getLevel())  {
+    if (account.getLevel()<server.getLevel())  {
         log.warn("账号等级不够：{}" ,account.getAccountNo());
         return Result.builder().code(500).message("账号等级不够").build();
     }

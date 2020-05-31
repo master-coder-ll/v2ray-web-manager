@@ -106,6 +106,10 @@ public class UserController {
             if (StringUtils.isBlank(inviteCode)) throw new NullPointerException("邀请码不能为空");
             InvitationCode invitationCode = invitationCodeRepository.findOne(Example.of(InvitationCode.builder().inviteCode(inviteCode.trim()).status(0).build())).orElse(null);
             if (invitationCode == null) throw new NullPointerException("邀请码不正确/已使用");
+            //已经过有效期
+            if (invitationCode.getEffectiveTime() != null && invitationCode.getEffectiveTime().before(new Date())){
+                throw  new IllegalArgumentException("邀请码已经过期");
+            }
         }
         UserVO userVO = userService.getOne(User.builder().email(email).build());
         if (type.equals("reg")) {

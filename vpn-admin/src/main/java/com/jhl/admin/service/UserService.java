@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -83,7 +86,7 @@ public class UserService {
         String password = user.getPassword();
 
         if (!encodePassword(oldPw).equals(password)) throw new RuntimeException("旧密码不正确");
-            user.setPassword(encodePassword(newPw));
+        user.setPassword(encodePassword(newPw));
         userRepository.save(user);
     }
 
@@ -131,10 +134,19 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public Map<Integer, User> getUserMapBy(Iterable<Integer> ids) {
+        Map<Integer, User> userMap = new HashMap<>();
+        if (ids == null) return userMap;
+        final List<User> regUsers = userRepository.findAllById(ids);
+        regUsers.forEach(user1 -> userMap.put(user1.getId(), user1));
+
+        return userMap;
+    }
+
     public UserVO getOne(User user) {
         user.setStatus(1);
         Optional<User> one = userRepository.findOne(Example.of(user));
-            if (!one.isPresent()) return null;
+        if (!one.isPresent()) return null;
         UserVO userVO = one.get().toVO(UserVO.class);
         userVO.setPassword(null);
         return userVO;
@@ -145,6 +157,7 @@ public class UserService {
         Optional<User> one = userRepository.findOne(Example.of(user));
         return one.orElse(null);
     }
+
     public User getUserButRemovePW(
             Integer id) {
 

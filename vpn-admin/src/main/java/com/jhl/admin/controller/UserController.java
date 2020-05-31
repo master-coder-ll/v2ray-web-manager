@@ -34,6 +34,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -129,17 +130,20 @@ public class UserController {
             if (StringUtils.isBlank(inviteCode)) throw new NullPointerException("邀请码不能为空");
             invitationCode = invitationCodeRepository.findOne(Example.of(InvitationCode.builder().inviteCode(inviteCode.trim()).status(0).build())).orElse(null);
             if (invitationCode == null) throw new NullPointerException("邀请码不正确/已使用");
-
-
+            final Date effectiveTime = invitationCode.getEffectiveTime();
+            //已经过有效期
+            if (effectiveTime != null && effectiveTime.before(new Date())){
+                throw  new IllegalArgumentException("邀请码已经过期");
+            }
         }
 
         userVO.setVCode(vCode);
         userVO.setRole("vip");
-
-        userService.reg(userVO.toModel(User.class));
+        final User user = userVO.toModel(User.class);
+        userService.reg(user);
 
         if (isNeedInviteCode) {
-            invitationCode.setRegUserId(userVO.getId());
+            invitationCode.setRegUserId(user.getId());
             invitationCode.setStatus(1);
             invitationCodeRepository.save(invitationCode);
         }

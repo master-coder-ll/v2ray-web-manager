@@ -25,7 +25,7 @@ yum install epel-release
 # 安装必要软件
 yum install vim nginx java-1.8.0-openjdk wget unzip -y
 # 安装v2ray -来源官网
-bash <(curl -L -s https://install.direct/go.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 ```
 
        

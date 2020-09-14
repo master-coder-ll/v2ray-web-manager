@@ -12,8 +12,8 @@ sudo su
 apt-get update
 # 安装必要软件
 apt install vim nginx openjdk-8-jre wget unzip  -y
-# 安装v2ray -来源官网
-bash <(curl -L -s https://install.direct/go.sh)
+# 安装v2ray -来源官网新版
+bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 
 ```
 - CentOS

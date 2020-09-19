@@ -47,12 +47,12 @@ public class V2RayProxyEvent implements ProxyEvent {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ProxyAccount> entity = new HttpEntity(proxyAccount, headers);
+        HttpEntity entity = new HttpEntity(proxyAccount, headers);
         for (String url : urls) {
             try {
                 ResponseEntity<Result> responseEntity = restTemplate.postForEntity(url + "/del", entity, Result.class);
                 Result result = responseEntity.getBody();
-                if (result.getCode() != 200) {
+                if (result!=null && result.getCode() != 200) {
                     log.error("远程调用失败,事件：{},result:{}", getEvent(), result);
                 }
             } catch (Exception e) {
@@ -70,12 +70,12 @@ public class V2RayProxyEvent implements ProxyEvent {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<ProxyAccount> entity = new HttpEntity(proxyAccount, headers);
+        HttpEntity entity = new HttpEntity(proxyAccount, headers);
         for (String url : urls) {
             try {
                 ResponseEntity<Result> responseEntity = restTemplate.postForEntity(url, entity, Result.class);
                 Result result = responseEntity.getBody();
-                if (result.getCode() != 200) {
+                if (result!=null &&result.getCode() != 200) {
                     log.error("远程调用失败,事件：{},result:{}", getEvent(), result);
                 }
             } catch (Exception e) {
@@ -116,9 +116,7 @@ public class V2RayProxyEvent implements ProxyEvent {
         String[] proxyIps = server.getProxyIp().split(",");
         List<String> urls = Lists.newArrayList();
         for (String proxyIp : proxyIps) {
-            StringBuilder sb = new StringBuilder("http://");
-            sb.append(proxyIp).append(":").append(server.getProxyPort()).append("/proxyApi/account");
-            urls.add(sb.toString());
+            urls.add("http://" + proxyIp + ":" + server.getProxyPort() + "/proxyApi/account");
         }
 
         return urls;

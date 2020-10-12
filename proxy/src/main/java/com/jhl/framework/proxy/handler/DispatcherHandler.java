@@ -83,7 +83,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
                     log.error("数据交互发生异常：", e);
                 }
                 release((ByteBuf) msg);
-                closeOnFlush(ctx.channel());
+                closeOnFlush(ctx.channel(),outboundChannel);
             }
 
         }
@@ -101,7 +101,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         if (!(cause instanceof IOException)) log.error("exceptionCaught:", cause);
 
-        closeOnFlush(ctx.channel());
+        closeOnFlush(ctx.channel(),outboundChannel);
     }
 
     @Override
@@ -136,7 +136,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
             // ConnectionStatsService.delete(getAccountId());
         }
 
-
+        closeOnFlush(ctx.channel());
     }
 
     /**
@@ -178,7 +178,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
 
             if (proxyAccount == null || isFull(proxyAccount)) {
                 ReferenceCountUtil.release(handshakeByteBuf);
-                closeOnFlush(ctx.channel());
+                closeOnFlush(ctx.channel(),outboundChannel);
                 return;
             }
             log.info("当前账号:{},连接数:{},服务器连接数:{},全局连接数:{}", getAccountId(),
@@ -193,7 +193,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
         } catch (Exception e) {
             log.error("建立与v2ray连接阶段发送错误", e);
             release(handshakeByteBuf);
-            closeOnFlush(ctx.channel());
+            closeOnFlush(ctx.channel(),outboundChannel);
         } finally {
             isHandshaking = false;
         }
@@ -307,7 +307,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
                 writeToOutBoundChannel(handshakeByteBuf, ctx);
             } else {
                 release(handshakeByteBuf);
-                inboundChannel.close();
+                closeOnFlush(inboundChannel,outboundChannel);
 
             }
         });
@@ -401,7 +401,9 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
             if (future.isSuccess()) {
                 ctx.channel().read();
             } else {
-                future.channel().close();
+                //out
+              closeOnFlush(future.channel(),ctx.channel());
+
             }
         });
     }
@@ -458,9 +460,13 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
     /**
      * Closes the specified channel after all queued write requests are flushed.
      */
-    static void closeOnFlush(Channel ch) {
-        if (ch.isActive()) {
+    static void closeOnFlush(Channel... chs) {
+        if (chs ==null) return;
+
+        for (Channel ch:chs){
+        if (ch!=null && ch.isActive()) {
             ch.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+        }
         }
     }
 

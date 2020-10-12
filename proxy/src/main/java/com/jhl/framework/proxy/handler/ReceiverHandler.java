@@ -29,13 +29,13 @@ public class ReceiverHandler extends ChannelInboundHandlerAdapter {
                 if (future.isSuccess()) {
                     ctx.channel().read();
                 } else {
-                    future.channel().close();
+                    DispatcherHandler.closeOnFlush(ctx.channel(),future.channel());
                 }
 
             });
         } catch (Exception e) {
             release((ByteBuf) msg);
-            DispatcherHandler.closeOnFlush(ctx.channel());
+            DispatcherHandler.closeOnFlush(ctx.channel(),inboundChannel);
         }
 
 
@@ -43,13 +43,13 @@ public class ReceiverHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
-        DispatcherHandler.closeOnFlush(inboundChannel);
+        DispatcherHandler.closeOnFlush(ctx.channel(),inboundChannel);
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
         log.error(" Receiver exceptionCaught:", cause);
-        DispatcherHandler.closeOnFlush(ctx.channel());
+        DispatcherHandler.closeOnFlush(ctx.channel(),inboundChannel);
     }
 
     private void release(ByteBuf msg) {

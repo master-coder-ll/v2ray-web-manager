@@ -70,13 +70,17 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
         // log.info("Dispatcher len:"+((ByteBuf)msg).readableBytes()+"B");
         if (isHandshaking) {
             parse(ctx, msg);
-        } else {
+            return;
+        }
+
             try {
                 if (proxyAccountService.interrupted(accountNo, host, version))
                     throw new ReleaseDirectMemoryException("【当前版本已经更新】抛出异常。统一内存释放");
-                writeToOutBoundChannel(msg, ctx);
 
+                writeToOutBoundChannel(msg, ctx);
+                //异步
                 ConnectionStatsCache.reportConnectionNum(accountNo, proxyIp);
+                //异步
                 reportFlowStat();
             } catch (Exception e) {
                 if (!(e instanceof ReleaseDirectMemoryException)) {
@@ -86,7 +90,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
                 closeOnFlush(ctx.channel(),outboundChannel);
             }
 
-        }
+
 
 
     }
@@ -163,9 +167,8 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
         } catch (Exception e) {
             if (!(e instanceof ReleaseDirectMemoryException))
                 log.warn("解析阶段发生错误:{},e:{}", ((ByteBuf) msg).toString(Charset.defaultCharset()), e.getLocalizedMessage());
-        /*    if (handshakeByteBuf != null)
-                ReferenceCountUtil.release(handshakeByteBuf);
-            closeOnFlush(ctx.channel());*/
+
+            closeOnFlush(ctx.channel(),outboundChannel);
             return;
         } finally {
             //释放握手数据，防止内存溢出
@@ -177,9 +180,7 @@ public class DispatcherHandler extends ChannelInboundHandlerAdapter {
             ProxyAccountWrapper proxyAccount = getProxyAccount();
 
             if (proxyAccount == null || isFull(proxyAccount)) {
-                ReferenceCountUtil.release(handshakeByteBuf);
-                closeOnFlush(ctx.channel(),outboundChannel);
-                return;
+                    throw new IllegalAccessException("获取不到账号或者连接数已经满");
             }
             log.info("当前账号:{},连接数:{},服务器连接数:{},全局连接数:{}", getAccountId(),
                     ConnectionStatsCache.getByHost(accountNo, host),

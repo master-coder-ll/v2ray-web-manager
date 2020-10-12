@@ -64,9 +64,7 @@ public class ProxyAccountService {
         AtomicInteger reqCountObj = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
         int reqCount = reqCountObj == null ? 0 : reqCountObj.get();
         if (proxyAccount == null && reqCount < BEGIN_BLOCK) {
-
             synchronized (SynchronousPoolUtils.getWeakReference(getKey(accountNo, host + ":getRemotePAccount"))) {
-
                 proxyAccount = PA_MAP.getIfPresent(getKey(accountNo, host));
                 if (proxyAccount != null) return proxyAccount;
                 //远程请求，获取信息
@@ -75,14 +73,11 @@ public class ProxyAccountService {
                 //如果获取不到账号，增加错误次数
                 if (proxyAccount == null) {
                     AtomicInteger counter = REQUEST_ERROR_COUNT.getIfPresent(accountNo);
-
                     if (counter != null) {
                         counter.addAndGet(1);
                     } else {
                         REQUEST_ERROR_COUNT.put(accountNo, new AtomicInteger(1));
                     }
-
-
                 } else {
                     addOrUpdate(proxyAccount);
                     try {

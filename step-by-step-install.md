@@ -147,10 +147,10 @@ wget -c --no-check-certificate https://raw.githubusercontent.com/master-coder-ll
 
 ```bash
 # 备份v2ray默认配置
-mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
+mv /usr/local/etc/v2ray/config.json /usr/local/etc/v2ray/config.json.bak
 
 # 复制配置到v2ray目录
-cp /opt/jar/config.json /etc/v2ray/
+cp /opt/jar/config.json /usr/local/etc/v2ray/
 
 # 重启v2ray
 service v2ray stop

@@ -20,7 +20,7 @@
  # 安装必要软件
  apt install vim nginx openjdk-8-jre wget unzip  -y
  # 安装v2ray -来源官网
- bash <(curl -L -s https://install.direct/go.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
  
  ```
  - CentOS
@@ -32,7 +32,7 @@
  # 安装必要软件
  yum install vim nginx java-1.8.0-openjdk wget unzip -y
  # 安装v2ray -来源官网
- bash <(curl -L -s https://install.direct/go.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
  ```
     
 ####  2. 配置nginx
@@ -113,10 +113,10 @@ nginx -s reload
  
  ```bash
  # 备份v2ray默认配置
- mv /etc/v2ray/config.json /etc/v2ray/config.json.bak
- 
+mv /usr/local/etc/v2ray/config.json /usr/local/etc/v2ray/config.json.bak
+
  # 复制配置到v2ray目录
- cp /opt/jar/config.json /etc/v2ray/
+cp /opt/jar/config.json /usr/local/etc/v2ray/
  
  # 重启v2ray
  service v2ray restart

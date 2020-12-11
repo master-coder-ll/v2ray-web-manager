@@ -3,8 +3,8 @@
  仅在CentOS7/ ubuntu 16 + 测试如下安装过程
 
 #### 1. 必要软件安装
- 
-- ubuntu    
+
+- ubuntu/debian （推荐）
 ```bash
 # 获得root权限
 sudo su
@@ -16,7 +16,7 @@ apt install vim nginx openjdk-8-jre wget unzip  -y
 bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
 
 ```
-- CentOS
+- CentOS （据反映有selinux相关的问题）
 ```bash
 sudo su
 yum update

@@ -13,7 +13,7 @@ apt-get update
 # 安装必要软件
 apt install vim nginx openjdk-8-jre wget unzip  -y
 # 安装v2ray -来源官网新版
-bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) --version 4.33.0
 
 ```
 - CentOS （据反映有selinux相关的问题）
@@ -25,7 +25,7 @@ yum install epel-release
 # 安装必要软件
 yum install vim nginx java-1.8.0-openjdk wget unzip -y
 # 安装v2ray -来源官网
-bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+bash <(curl -L -s https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh) --version 4.33.0
 ```
 
        

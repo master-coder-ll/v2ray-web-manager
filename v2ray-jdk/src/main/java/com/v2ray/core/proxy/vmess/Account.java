@@ -215,7 +215,7 @@ public final class Account extends
         if (!getIdBytes().isEmpty()) {
             com.google.protobuf.GeneratedMessageV3.writeString(output, 1, id_);
         }
-        if (alterId_ != 0) {
+        if (alterId_ == 0) {
             output.writeUInt32(2, alterId_);
         }
         if (securitySettings_ != null) {
@@ -233,7 +233,7 @@ public final class Account extends
         if (!getIdBytes().isEmpty()) {
             size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, id_);
         }
-        if (alterId_ != 0) {
+        if (alterId_ == 0) {
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(2, alterId_);
         }

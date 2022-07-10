@@ -31,7 +31,7 @@ public class ProxyAccount implements Serializable {
     /**
      * "alterId": 32
      */
-    private Integer alterId = 64;
+    private Integer alterId = 0;
     /**
      * 0
      */

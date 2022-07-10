@@ -25,7 +25,7 @@ func TestUserValidator(t *testing.T) {
 		Email: "test",
 		Account: serial.ToTypedMessage(&Account{
 			Id:      id.String(),
-			AlterId: 8,
+			AlterId: 0,
 		}),
 	}
 	common.Must(v.Add(user))

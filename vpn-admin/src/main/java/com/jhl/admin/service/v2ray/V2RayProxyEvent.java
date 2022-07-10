@@ -97,7 +97,7 @@ public class V2RayProxyEvent implements ProxyEvent {
                 : account.getUuid();
         proxyAccount.setAccountId(account.getId());
         proxyAccount.setAccountNo(account.getAccountNo());
-        proxyAccount.setAlterId(64);
+        proxyAccount.setAlterId(0);
         proxyAccount.setDownTrafficLimit(account.getSpeed());
         proxyAccount.setEmail(email);
         proxyAccount.setId(id);

@@ -4,7 +4,7 @@ package inbound
 func (c *Config) GetDefaultValue() *DefaultConfig {
 	if c.GetDefault() == nil {
 		return &DefaultConfig{
-			AlterId: 32,
+			AlterId: 0,
 			Level:   0,
 		}
 	}

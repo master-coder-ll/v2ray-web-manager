@@ -7,7 +7,7 @@ public class Test {
     static int LEVEL = 0;
     static String EMAIL = "123@gmail.com";
     static String UUID= "2601070b-ab53-4352-a290-1d44414581ee";
-    static int ALTERID = 32;
+    static int ALTERID = 0;
    static V2RayApiClient client =  V2RayApiClient.getInstance(API_ADDRESS,API_PORT);
 
     public static void main(String[] args) throws Exception {

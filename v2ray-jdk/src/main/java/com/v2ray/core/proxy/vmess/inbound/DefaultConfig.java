@@ -123,7 +123,7 @@ public final class DefaultConfig extends
     @Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-        if (alterId_ != 0) {
+        if (alterId_ == 0) {
             output.writeUInt32(1, alterId_);
         }
         if (level_ != 0) {
@@ -138,7 +138,7 @@ public final class DefaultConfig extends
         if (size != -1) return size;
 
         size = 0;
-        if (alterId_ != 0) {
+        if (alterId_ == 0) {
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(1, alterId_);
         }

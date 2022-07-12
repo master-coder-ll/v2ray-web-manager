@@ -16,7 +16,7 @@ public class V2rayAccount {
      * "add": "",
      * "port": "443",
      * "id": "976fdcba-fb53-44a1-d7e2-74e4c3de0020",
-     * "aid": "64",
+     * "aid": "0",
      * "net": "ws",
      * "type": "none",
      * "host": "",
@@ -31,7 +31,7 @@ public class V2rayAccount {
     private String add;
     private String port;
     private String id;
-    private String aid = "64";
+    private String aid = "0";
     private String net = "ws";
     private String type = "none";
      private String host ="";

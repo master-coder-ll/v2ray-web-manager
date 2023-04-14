@@ -55,6 +55,8 @@ public class Server extends BaseEntity implements Serializable {
 
     //ws路径
     private String wsPath ="/ws/%s/";
+    //默认0
+    private Integer alterId=0;
 
 
 }

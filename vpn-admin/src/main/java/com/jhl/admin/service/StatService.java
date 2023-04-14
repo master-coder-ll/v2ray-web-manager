@@ -26,18 +26,22 @@ public class StatService {
         Date today = new Date();
         Stat stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(account.getId(), today,today);
             if (stat == null){
-                Date fromDate =Utils.formatDate(today,null);
+                synchronized (Utils.getInternersPoll().intern(account.getAccountNo())){
+                    stat = statRepository.findByAccountIdAndFromDateBeforeAndToDateAfter(account.getId(), today,today);
+                    if (stat != null) return stat;
+                    Date fromDate =Utils.formatDate(today,null);
 
-                Integer cycleNum = account.getCycle();
-                Date maxToDate = account.getToDate();
-                Date nextCycleDate = Utils.getDateBy(fromDate,cycleNum, Calendar.DAY_OF_YEAR);
-                    if (!maxToDate.after(fromDate)) return  null;
-                stat = new Stat();
-                 stat.setAccountId(account.getId());
-                 stat.setFromDate(fromDate);
-                 stat.setToDate(nextCycleDate);
-                 stat.setFlow(0l);
-                 statRepository.save(stat);
+                    Integer cycleNum = account.getCycle();
+                    Date maxToDate = account.getToDate();
+                    Date nextCycleDate = Utils.getDateBy(fromDate,cycleNum, Calendar.DAY_OF_YEAR);
+                        if (!maxToDate.after(fromDate)) return  null;
+                    stat = new Stat();
+                     stat.setAccountId(account.getId());
+                     stat.setFromDate(fromDate);
+                     stat.setToDate(nextCycleDate);
+                     stat.setFlow(0l);
+                     statRepository.save(stat);
+                }
             }
             return stat;
     }

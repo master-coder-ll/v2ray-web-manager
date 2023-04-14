@@ -270,8 +270,7 @@ public class UserController {
 
 
         userRepository.deleteById(id);
-        if (accounts != null)
-            accountRepository.deleteAll(accounts);
+        accountRepository.deleteAll(accounts);
 
         return Result.doSuccess();
     }

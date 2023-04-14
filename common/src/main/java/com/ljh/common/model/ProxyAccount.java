@@ -30,6 +30,8 @@ public class ProxyAccount implements Serializable {
     private String id;
     /**
      * "alterId": 32
+     * 兼用新版 alterId 0
+     * alterID 是 v2ray 的一个安全特性，用于防止被识别和干扰。但是在最新的 v2ray 版本中，已经引入了更先进的安全机制，所以不再需要 alterID 了。
      */
     private Integer alterId = 64;
     /**

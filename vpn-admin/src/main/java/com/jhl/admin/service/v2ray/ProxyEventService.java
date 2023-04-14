@@ -40,7 +40,7 @@ public class ProxyEventService {
     @Autowired
     V2rayAccountService v2rayAccountService;
 
-    private LinkedBlockingQueue<ProxyEvent> queue = new LinkedBlockingQueue<>();
+    private LinkedBlockingQueue<ProxyEvent> queue = new LinkedBlockingQueue<>(100);
 
     public void addProxyEvent(List<? extends ProxyEvent> proxyEvents) {
         for (ProxyEvent proxyEvent : proxyEvents) {
@@ -81,13 +81,13 @@ public class ProxyEventService {
                             return;
                     }
                 } catch (InterruptedException e) {
-                    log.error("event InterruptedException :{}", e);
+                    log.error("event InterruptedException :", e);
                     Thread.currentThread().interrupt();
 
                     break;
 
                 } catch (Exception e) {
-                    log.error("event 队列 抛出异常:{}", e);
+                    log.error("event 队列 抛出异常:", e);
                 }
             }
 

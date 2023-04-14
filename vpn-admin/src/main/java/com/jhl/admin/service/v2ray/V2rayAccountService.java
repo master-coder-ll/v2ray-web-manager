@@ -54,6 +54,7 @@ public class V2rayAccountService {
             v2rayAccount.setTls(s.getSupportTLS() ? "tls" : "");
             v2rayAccount.setHost("");
             v2rayAccount.setPs(s.getServerName());
+            v2rayAccount.setAid(s.getAlterId()+"");
             result.add(v2rayAccount);
         }
         return result;

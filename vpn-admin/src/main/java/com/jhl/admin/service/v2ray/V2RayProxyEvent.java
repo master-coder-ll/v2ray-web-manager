@@ -1,6 +1,7 @@
 package com.jhl.admin.service.v2ray;
 
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.jhl.admin.entity.V2rayAccount;
 import com.jhl.admin.model.Account;
@@ -15,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Slf4j
@@ -95,9 +97,10 @@ public class V2RayProxyEvent implements ProxyEvent {
                 = account.getUuid() == null ?
                 v2rayAccountService.buildV2rayAccount(Lists.newArrayList(server), account).get(0).getId()
                 : account.getUuid();
+        V2rayAccount v2rayAccount = JSON.parseObject(account.getContent(), V2rayAccount.class);
         proxyAccount.setAccountId(account.getId());
         proxyAccount.setAccountNo(account.getAccountNo());
-        proxyAccount.setAlterId(64);
+        proxyAccount.setAlterId(server.getAlterId());
         proxyAccount.setDownTrafficLimit(account.getSpeed());
         proxyAccount.setEmail(email);
         proxyAccount.setId(id);

@@ -52,6 +52,8 @@ public class ServerVO extends BaseEntityVO implements Serializable {
     //ws路径
     private String wsPath ="/ws/%s/";
 
+    private Integer  alterId=64;
+
 
 }
 

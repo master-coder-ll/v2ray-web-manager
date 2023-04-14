@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,15 +50,15 @@ public class Server extends BaseEntity implements Serializable {
     /**
      * 服务器等级
      */
-    @Column(  columnDefinition="smallint default 0")
+    @Column(  columnDefinition="smallint default 0" )
     private  Short level;
 
 
     //ws路径
     private String wsPath ="/ws/%s/";
     //默认0
+    @Column(columnDefinition="smallint default 64" )
     private Integer alterId=0;
-
 
 }
 

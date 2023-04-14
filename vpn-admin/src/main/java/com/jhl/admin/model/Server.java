@@ -58,7 +58,7 @@ public class Server extends BaseEntity implements Serializable {
     private String wsPath ="/ws/%s/";
     //默认0
     @Column(columnDefinition="smallint default 64" )
-    private Integer alterId=0;
+    private Integer alterId=64;
 
 }
 

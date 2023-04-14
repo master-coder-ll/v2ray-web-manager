@@ -13,11 +13,10 @@
      
    * 服务器配置参数
    
-        1.  访问域名 如：test.com ,v2ray客户端显示的名称，可以是域名/IP
-         
+        1. 访问域名 如：test.com ,v2ray客户端显示的名称，可以是域名/IP
         2. 访问端口  https tls ->443 ,或者其他80 etc
-        
         3. v2rayTag  当前v2ray config.json下默认`6001` 
+        4. alterId 新服务器填0
      
    * 账号参数
    

@@ -10,10 +10,10 @@
     <scm>
     <url>https://github.com/master-coder-ll/v2ray-web-manager</url>
     <connection>
-        scm:git:https://github.com/master-coder-ll/v2ray-web-manager.git
+        scm:git:git://github.com/master-coder-ll/v2ray-web-manager.git
     </connection>
     <developerConnection>
-        scm:git:http://github.com/master-coder-ll/v2ray-web-manager
+        scm:git:ssh://git@github.com:master-coder-ll/v2ray-web-manager.git
     </developerConnection>
     <tag>v3.1.10</tag>
 </scm>

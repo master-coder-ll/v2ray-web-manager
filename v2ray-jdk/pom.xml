@@ -14,7 +14,7 @@
         <dependency>
             <groupId>com.jhl</groupId>
             <artifactId>common</artifactId>
-            <version>3.1.10</version>
+            <version>。</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
         <dependency>

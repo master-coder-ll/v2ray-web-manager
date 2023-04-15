@@ -62,7 +62,7 @@
         <dependency>
             <groupId>com.jhl</groupId>
             <artifactId>common</artifactId>
-            <version>。</version>
+            <version>3.1.10</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>

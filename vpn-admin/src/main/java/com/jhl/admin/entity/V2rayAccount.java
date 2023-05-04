@@ -28,14 +28,14 @@ public class V2rayAccount {
     private String v = "2";
     private String ps = "";
     //地址
-    private String add;
-    private String port;
-    private String id;
+    private String add="127.0.0.1";
+    private String port="80";
+    private String id="kxsw";
     private String aid = "0";
     private String net = "ws";
     private String type = "none";
      private String host ="";
-    private String path;
+    private String path="/";
     private String tls = "tls";
 
 

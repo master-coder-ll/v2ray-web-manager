@@ -10,7 +10,7 @@ public class KVConstant {
     public static final  String YYYYMMddHH="yyyy-MM-dd HH";
     public static final  String YYYYMMddHHmmss="yyyy-MM-dd HH:mm:ss";
 
-
+    public static final  String YYYYMMddHHmm="yyyy-MM-dd HH:mm";
     public static final Integer MS_OF_DAY= 1000 * 60 * 60 * 24;
 
     public static final String ROLE_ADMIN = "admin";

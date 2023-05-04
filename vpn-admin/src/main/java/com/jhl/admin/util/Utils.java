@@ -3,6 +3,8 @@ package com.jhl.admin.util;
 import com.google.common.collect.Interner;
 import com.google.common.collect.Interners;
 import com.jhl.admin.constant.KVConstant;
+import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -77,6 +79,19 @@ public final class Utils {
             throw new RuntimeException("转换错误", e);
         }
 
+    }
+
+    public  static  String toDateStr(Date date ,String pattern){
+        if (StringUtils.isEmpty(pattern)){
+            pattern=KVConstant.YYYYMMddHHmm;
+        }
+        Assert.notNull(date,"The date  must not be null");
+        try {
+            SimpleDateFormat thisSDF = new SimpleDateFormat(pattern);
+           return thisSDF.format(date);
+        }catch (Exception e){
+            throw new RuntimeException("转换错误", e);
+        }
     }
 
     public static void main(String[] args) {

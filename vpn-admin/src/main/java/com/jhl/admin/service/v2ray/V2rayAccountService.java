@@ -45,11 +45,12 @@ public class V2rayAccountService {
 
         // tip 流量 和 有效期
         V2rayAccount tip = new V2rayAccount();
+        tip.setAdd("127.0.0.2");
         Stat stat = statService.createOrGetStat(account);
         tip.setPs("通知-流量:"+stat.getFlow()/1024/1024/1024+"/"+account.getBandwidth()+"G;流量重置时间:"+Utils.toDateStr(stat.getToDate(),"yyyy-MM-dd HH时"));
         V2rayAccount tip2 = new V2rayAccount();
         tip2.setPs("通知-账号有效期至:"+ Utils.toDateStr(account.getToDate(),null));
-
+        tip2.setAdd("127.0.0.3");
         sb.append("vmess://").append(encoder.encodeToString(JSON.toJSONString(tip).getBytes(StandardCharsets.UTF_8))).append("\n");
         sb.append("vmess://").append(encoder.encodeToString(JSON.toJSONString(tip2).getBytes(StandardCharsets.UTF_8))).append("\n");
 

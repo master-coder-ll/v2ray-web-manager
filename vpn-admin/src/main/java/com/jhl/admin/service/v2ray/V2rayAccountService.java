@@ -29,12 +29,18 @@ public class V2rayAccountService {
     public String buildB64V2rayAccount(List<Server> servers, Account account) {
         StringBuilder sb = new StringBuilder();
         Base64.Encoder encoder = Base64.getEncoder();
-        //
+        // tip
         if (new Date().getTime()>account.getToDate().getTime()){
             V2rayAccount alertMessage = new V2rayAccount();
             alertMessage.setPs("通知-账号已经过期，请联系管理员:"+Utils.toDateStr(account.getToDate(),null));
             sb.append("vmess://").append(encoder.encodeToString(JSON.toJSONString(alertMessage).getBytes(StandardCharsets.UTF_8))).append("\n");
             return  sb.toString();
+        }
+
+
+        for (V2rayAccount v2rayAccount : buildV2rayAccount(servers, account)) {
+            String encode = encoder.encodeToString(JSON.toJSONString(v2rayAccount).getBytes(StandardCharsets.UTF_8));
+            sb.append("vmess://").append(encode).append("\n");
         }
 
         // tip 流量 和 有效期
@@ -47,10 +53,6 @@ public class V2rayAccountService {
         sb.append("vmess://").append(encoder.encodeToString(JSON.toJSONString(tip).getBytes(StandardCharsets.UTF_8))).append("\n");
         sb.append("vmess://").append(encoder.encodeToString(JSON.toJSONString(tip2).getBytes(StandardCharsets.UTF_8))).append("\n");
 
-        for (V2rayAccount v2rayAccount : buildV2rayAccount(servers, account)) {
-            String encode = encoder.encodeToString(JSON.toJSONString(v2rayAccount).getBytes(StandardCharsets.UTF_8));
-            sb.append("vmess://").append(encode).append("\n");
-        }
         return sb.toString();
     }
 
